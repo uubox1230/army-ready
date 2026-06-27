@@ -1,0 +1,15 @@
+{
+  "name": "ARMY READY",
+  "short_name": "ARMY READY",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0f0b18",
+  "theme_color": "#0f0b18",
+  "icons": [
+  {
+    "src": "android-chrome-2000x2000.png",
+    "sizes": "512x512",
+    "type": "image/png"
+  }
+  ]
+}

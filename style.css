@@ -1,0 +1,781 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #09070f;
+  color: white;
+}
+
+button {
+  font: inherit;
+}
+
+.app,
+.song-page {
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: 100vh;
+  padding: 32px 20px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Home */
+
+.hero {
+  text-align: center;
+  padding: 32px 0;
+}
+
+.logo {
+  font-size: 48px;
+  margin-bottom: 12px;
+}
+
+.eyebrow {
+  color: #b99cff;
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+
+h1 {
+  font-size: 42px;
+  margin: 8px 0;
+}
+
+.subtitle {
+  color: #c8bfd8;
+  line-height: 1.6;
+}
+
+.progress-card {
+  background: #171224;
+  border: 1px solid #2d2342;
+  border-radius: 24px;
+  padding: 20px;
+  margin-bottom: 32px;
+}
+
+.progress-card p {
+  color: #b99cff;
+  margin: 0 0 8px;
+}
+
+#progressText {
+  display: block;
+  margin-bottom: 14px;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 10px;
+  background: #2b223c;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+#progressBar {
+  width: 0%;
+  height: 100%;
+  background: #8b5cf6;
+  border-radius: 999px;
+}
+
+.song-section h2 {
+  margin-bottom: 16px;
+}
+
+.song-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.song-item {
+  width: 100%;
+  background: #14101f;
+  color: white;
+  border: 1px solid #2a2238;
+  border-radius: 18px;
+  padding: 16px 18px;
+  display: grid;
+  grid-template-columns: 44px 1fr 32px;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.song-item:hover {
+  background: #1d1730;
+  transform: translateY(-1px);
+}
+
+.song-number {
+  color: #b99cff;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.song-name {
+  font-size: 17px;
+  font-weight: 750;
+}
+
+.status {
+  text-align: right;
+}
+
+/* Song Page */
+
+.back-btn,
+.mode-buttons button,
+.practice-controls button {
+  background: #171224;
+  color: white;
+  border: 1px solid #2d2342;
+  border-radius: 14px;
+  padding: 12px 16px;
+  cursor: pointer;
+}
+
+.back-btn {
+  margin-bottom: 24px;
+}
+
+#songTitle {
+  margin-top: 8px;
+}
+
+#songNote {
+  color: #b9b0c9;
+  line-height: 1.6;
+}
+
+.mode-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 24px 0;
+}
+
+.mode-buttons button:hover,
+.back-btn:hover,
+.practice-controls button:hover {
+  background: #241a38;
+}
+
+/* Guide */
+
+.chant-line {
+  background: #14101f;
+  border: 1px solid #2a2238;
+  border-radius: 18px;
+  padding: 16px;
+  margin-bottom: 12px;
+}
+
+.chant-time {
+  color: #b99cff;
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+
+.chant-text {
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.chant-line.lyrics .chant-time {
+  color: #8f86a8;
+}
+
+.chant-line.lyrics .chant-text {
+  color: #d8d3e3;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.chant-line.sing {
+  border-color: #8b2d5f;
+  background: #1a1020;
+}
+
+.chant-line.sing .chant-time,
+.chant-line.sing .chant-text {
+  color: #ff79c6;
+}
+
+.chant-line.chant {
+  border-color: #3158ff;
+  background: #10162b;
+}
+
+.chant-line.chant .chant-time,
+.chant-line.chant .chant-text {
+  color: #7aa2ff;
+}
+
+.chant-line.cheer {
+  border-color: #F6C453;
+  background: #181026;
+}
+
+/* Practice */
+
+.practice-mode {
+  padding: 16px 0 40px;
+}
+
+.practice-top {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 16px;
+  color: #b99cff;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.practice-card {
+  border-radius: 28px;
+  padding: 24px;
+  margin-bottom: 16px;
+  border: 1px solid #2d2342;
+}
+
+.practice-card.current {
+  min-height: 230px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: linear-gradient(180deg, #1b122a, #100b18);
+}
+
+.practice-card.next {
+  background: #14101f;
+  opacity: 0.9;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  border-radius: 999px;
+  padding: 8px 12px;
+  margin-bottom: 18px;
+  font-size: 14px;
+  font-weight: 850;
+}
+
+.badge.sing {
+  background: rgba(255, 121, 198, 0.16);
+  color: #ff79c6;
+}
+
+.badge.chant {
+  background: rgba(122, 162, 255, 0.16);
+  color: #7aa2ff;
+}
+
+.badge.cheer {
+  background: rgba(185, 156, 255, 0.16);
+  color: #F6C453;
+}
+
+.badge.lyrics,
+.badge.default {
+  background: rgba(216, 211, 227, 0.12);
+  color: #d8d3e3;
+}
+
+.practice-text {
+  font-size: 42px;
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+}
+
+.next-title {
+  margin: 0 0 12px;
+  color: #8f86a8;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.next-text,
+#nextPracticeText {
+  font-size: 24px;
+  font-weight: 850;
+  line-height: 1.25;
+  color: #e7e0f3;
+}
+
+.practice-controls {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.practice-controls button {
+  flex: 1;
+  font-size: 22px;
+  padding: 16px;
+}
+
+/* Studio */
+
+.editor-card {
+  background: #14101f;
+  border: 1px solid #2a2238;
+  border-radius: 24px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.editor-card label {
+  display: block;
+  color: #b99cff;
+  font-weight: 800;
+  margin: 16px 0 8px;
+}
+
+.editor-card input,
+.editor-card select,
+.editor-card textarea {
+  width: 100%;
+  background: #09070f;
+  color: white;
+  border: 1px solid #2d2342;
+  border-radius: 14px;
+  padding: 14px;
+  font: inherit;
+}
+
+.editor-card textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.editor-card button {
+  width: 100%;
+  background: #8b5cf6;
+  color: white;
+  border: none;
+  border-radius: 14px;
+  padding: 14px;
+  margin-top: 16px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+#outputJson {
+  min-height: 280px;
+  font-family: monospace;
+}
+
+.editor-hint {
+  color: #b9b0c9;
+  line-height: 1.6;
+}
+
+.line-editor-item {
+  background: #0f0b17;
+  border: 1px solid #2a2238;
+  border-radius: 18px;
+  padding: 14px;
+  margin-bottom: 12px;
+}
+
+.line-editor-item.lyrics {
+  border-color: #2a2238;
+}
+
+.line-editor-item.sing {
+  border-color: #8b2d5f;
+}
+
+.line-editor-item.chant {
+  border-color: #3158ff;
+}
+
+.line-editor-item.cheer {
+  border-color: #F6C453;
+}
+
+.line-editor-text {
+  font-weight: 800;
+  line-height: 1.45;
+  margin-bottom: 12px;
+}
+
+.line-type-buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.line-type-buttons button {
+  background: #171224;
+  color: #cfc7dd;
+  border: 1px solid #2d2342;
+  border-radius: 12px;
+  padding: 8px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.line-type-buttons button.active {
+  background: #8b5cf6;
+  color: white;
+  border-color: #8b5cf6;
+}
+
+/* Studio - practice text override */
+
+.practice-text-label {
+  display: block;
+  color: #b99cff;
+  font-size: 13px;
+  font-weight: 800;
+  margin: 14px 0 8px;
+}
+
+.practice-text-input {
+  width: 100%;
+  background: #09070f;
+  color: white;
+  border: 1px solid #2d2342;
+  border-radius: 12px;
+  padding: 12px;
+  font: inherit;
+}
+
+.practice-roman {
+  margin-top: 12px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #a89dbd;
+  line-height: 1.4;
+}
+
+.practice-card.current.cheer {
+  background:
+    radial-gradient(circle at top left, rgba(255, 210, 87, 0.22), transparent 36%),
+    linear-gradient(180deg, #24172f, #130d1f);
+  border-color: #ffd257;
+}
+
+.practice-card.current.cheer .practice-text {
+  color: #fff4c7;
+}
+
+.completed-card {
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255, 210, 87, 0.22), transparent 32%),
+    radial-gradient(circle at 80% 10%, rgba(185, 156, 255, 0.28), transparent 34%),
+    linear-gradient(180deg, #251337, #120b1c) !important;
+  border-color: #b99cff !important;
+}
+
+.complete-heart {
+  font-size: 56px;
+  margin-bottom: 16px;
+}
+
+.complete-subtitle {
+  margin-top: 12px;
+  font-size: 20px;
+  color: #b99cff;
+  letter-spacing: 1.5px;
+}
+
+/* Layout safety */
+html,
+body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.app,
+.song-page {
+  width: 100%;
+  max-width: 480px;
+  overflow-x: hidden;
+}
+
+input,
+textarea,
+select,
+button {
+  max-width: 100%;
+}
+
+.editor-card,
+.line-editor-item {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.line-editor-text,
+.chant-text,
+.practice-text,
+.next-text,
+#nextPracticeText {
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+.line-type-buttons {
+  width: 100%;
+  min-width: 0;
+}
+
+.line-type-buttons button {
+  min-width: 0;
+  white-space: nowrap;
+}
+
+/* v1.1 Guide highlight rules */
+.chant-line.has-highlight.sing,
+.chant-line.has-highlight.chant {
+  background: #14101f;
+  border-color: #2a2238;
+}
+
+.chant-line.has-highlight.sing .chant-text,
+.chant-line.has-highlight.chant .chant-text {
+  color: #d8d3e3;
+}
+
+.chant-line.has-highlight.sing .chant-time {
+  color: #ff79c6;
+  font-weight: 900;
+}
+
+.chant-line.has-highlight.chant .chant-time {
+  color: #7aa2ff;
+  font-weight: 900;
+}
+
+.inline-highlight.sing {
+  color: #ff79c6;
+  font-weight: 950;
+}
+
+.inline-highlight.chant {
+  color: #7aa2ff;
+  font-weight: 950;
+}
+
+.inline-highlight.cheer {
+  color: #f6c453;
+  font-weight: 950;
+}
+
+/* Cheer = gold */
+.chant-line.cheer {
+  border-color: rgba(246, 196, 83, 0.7);
+  background: #181026;
+  box-shadow: 0 0 0 1px rgba(246, 196, 83, 0.08);
+}
+
+.chant-line.cheer .chant-time,
+.chant-line.cheer .chant-text {
+  color: #f6c453;
+}
+
+.badge.cheer {
+  background: rgba(246, 196, 83, 0.16);
+  color: #f6c453;
+}
+
+/* Practice helper text */
+.practice-target {
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  font-size: 24px;
+  font-weight: 800;
+  color: #ff79c6;
+  line-height: 1.35;
+}
+
+.practice-card.current.chant .practice-target {
+  color: #7aa2ff;
+}
+
+.practice-card.current.cheer .practice-target {
+  color: #f6c453;
+}
+
+/* v1.1 Practice mode color rules */
+
+.practice-full.sing {
+  color: #ff79c6;
+}
+
+.practice-full.chant {
+  color: #7aa2ff;
+}
+
+.practice-full.cheer {
+  color: #f6c453;
+}
+
+/* 練習目標依 type 變色 */
+.practice-target.sing {
+  color: #ff79c6;
+}
+
+.practice-target.chant {
+  color: #7aa2ff;
+}
+
+.practice-target.cheer {
+  color: #f6c453;
+}
+
+/* 下一句弱化，不搶主卡 */
+.practice-card.next {
+  transform: scale(0.96);
+  opacity: 0.72;
+  filter: saturate(0.75);
+}
+
+.practice-card.next .badge {
+  margin-bottom: 12px;
+  font-size: 12px;
+}
+
+.practice-card.next .practice-target {
+  margin-top: 12px;
+  padding-top: 12px;
+  font-size: 18px;
+}
+
+.practice-card.next .practice-roman {
+  font-size: 16px;
+}
+
+#nextPracticeText {
+  font-size: 20px;
+  line-height: 1.3;
+}
+
+/* 下一句依 type 微調色感 */
+.practice-card.next.sing {
+  border-color: rgba(255, 121, 198, 0.22);
+}
+
+.practice-card.next.chant {
+  border-color: rgba(122, 162, 255, 0.22);
+}
+
+.practice-card.next.cheer {
+  border-color: rgba(246, 196, 83, 0.25);
+}
+
+.chant-line.has-highlight.sing .chant-text,
+.chant-line.has-highlight.chant .chant-text {
+  color: #d8d3e3;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.chant-line.has-highlight .inline-highlight {
+  font-size: 22px;
+  font-weight: 950;
+}
+
+.replace-original {
+  display: block;
+  color: #8f86a8;
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+  text-decoration-color: rgba(255,255,255,0.55);
+  margin-bottom: 8px;
+}
+
+.replace-new {
+  display: block;
+  font-weight: 950;
+}
+
+.replace-new.sing {
+  color: #ff79c6;
+}
+
+.replace-new.chant {
+  color: #7aa2ff;
+}
+
+.replace-new.cheer {
+  color: #f6c453;
+}
+
+.replace-hint {
+  display: block;
+  margin: 4px 0 6px;
+  color: #8f86a8;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.replace-line {
+  display: block;
+  color: #d8d3e3;
+}
+
+.replace-original-inline {
+  color: #8f86a8;
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+  text-decoration-color: rgba(255, 255, 255, 0.55);
+}
+
+.site-footer {
+  margin: 80px 0 40px;
+  text-align: center;
+  color: #8f86a8;
+  font-size: 13px;
+}
+
+.footer-credit {
+  margin-bottom: 8px;
+}
+
+.footer-credit span {
+  color: #b892ff;
+  font-weight: 700;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-links a {
+  color: #b892ff;
+  text-decoration: none;
+  transition: color .2s ease;
+}
+
+.footer-links a:hover {
+  color: #d8bfff;
+}
+
+.footer-links span {
+  color: #6f6685;
+}

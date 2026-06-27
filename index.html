@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ARMY READY 💜</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/png" href="android-chrome-2000x2000.png">
+  <link rel="apple-touch-icon" href="android-chrome-2000x2000.png">
+</head>
+
+<body>
+  <main class="app">
+    <section class="hero">
+      <div class="logo">💜</div>
+      <p class="eyebrow">BTS FAN CHANT PRACTICE</p>
+      <h1>ARMY READY</h1>
+      <p class="subtitle">希望可以幫助到大家練習應援！我們高雄場見唷～</p>
+    </section>
+
+    <section class="progress-card">
+      <p>練習進度</p>
+      <span id="progressText">0 / 21 completed</span>
+      <div class="progress-bar">
+        <div id="progressBar"></div>
+      </div>
+    </section>
+
+    <section class="song-section">
+      <h2>Setlist</h2>
+      <div id="songList" class="song-list"></div>
+    </section>
+  </main>
+
+  <section id="songPage" class="song-page hidden">
+    <button class="back-btn" onclick="backHome()">← 返回歌單</button>
+
+    <h1 id="songTitle">Song Title</h1>
+    <p id="songNote">官方 Fan Chant + 現場練習提醒。</p>
+
+    <div class="mode-buttons">
+      <button onclick="showReadMode()">📖 完整歌詞</button>
+      <button onclick="startPractice()">🎤 練習模式</button>
+      <button id="doneBtn" onclick="toggleDone()">✓ 標記完成</button>
+    </div>
+
+    <div id="readMode" class="read-mode"></div>
+
+    <div id="practiceMode" class="practice-mode hidden">
+      <div class="practice-top">
+        <span id="practiceCounter">1 / 8</span>
+      </div>
+
+      <section id="currentCard" class="practice-card current">
+        <div id="practiceBadge" class="badge sing">🎤 跟唱</div>
+        <div id="practiceText" class="practice-text">準備開始</div>
+      </section>
+
+      <section id="nextCard" class="practice-card next">
+        <p class="next-title">下一句</p>
+        <div id="nextBadge" class="badge chant">💙 應援</div>
+        <div id="nextPracticeText" class="next-text">下一句會顯示在這裡</div>
+      </section>
+
+      <div class="practice-controls">
+        <button onclick="prevLine()">◀︎</button>
+        <button onclick="nextLine()">▶︎</button>
+      </div>
+    </div>
+  </section>
+
+  <script src="songs.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
+
+<footer class="site-footer">
+  <div class="footer-credit">
+    2026.07 • TAIWAN ARMY • Made with 💜 by <span>@uu_box_</span>
+  </div>
+
+  <div class="footer-links">
+    <a
+      href="https://www.instagram.com/uu_box_/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Instagram
+    </a>
+
+    <span>•</span>
+
+    <a
+      href="https://x.com/uu_box_"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      X (Twitter)
+    </a>
+  </div>
+</footer>
