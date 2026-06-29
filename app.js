@@ -53,6 +53,9 @@ function renderHome() {
 }
 
 function openSong(index) {
+  closeHomeFab();
+  closeFab();
+
   currentSongIndex = index;
   practiceIndex = 0;
 
@@ -76,10 +79,13 @@ function openSong(index) {
 
 function backHome() {
   closeFab();
+  closeHomeFab();
+
   document.getElementById("songPage").classList.add("hidden");
   document.querySelector(".app").classList.remove("hidden");
+
   renderHome();
-  document.getElementById("fabMenu")?.classList.remove("open");
+
   window.scrollTo(0, 0);
 }
 
@@ -92,24 +98,49 @@ function goPrevSong() {
 
 function toggleFab() {
   const fab = document.getElementById("fabMenu");
-  const fabMain = document.querySelector(".fab-main");
+  const fabMain = document.querySelector("#fabMenu .fab-main");
 
-  fab?.classList.toggle("open");
+  const isOpen = fab.classList.toggle("open");
 
-  if (fabMain) {
-    fabMain.textContent = fab?.classList.contains("open") ? "✕" : "☰";
-  }
+  fabMain.textContent = isOpen ? "✕" : "☰";
 }
+
+function toggleHomeFab() {
+  const fab = document.getElementById("homeFabMenu");
+  const fabMain = document.querySelector("#homeFabMenu .fab-main");
+
+  const isOpen = fab.classList.toggle("open");
+
+  fabMain.textContent = isOpen ? "✕" : "💜";
+}
+
+function closeHomeFab() {
+  const fab = document.getElementById("homeFabMenu");
+  const fabMain = document.querySelector("#homeFabMenu .fab-main");
+
+  fab.classList.remove("open");
+  fabMain.textContent = "💜";
+}
+
+document.addEventListener("click", event => {
+  const homeFab = document.getElementById("homeFabMenu");
+  const songFab = document.getElementById("fabMenu");
+
+  if (homeFab && !homeFab.contains(event.target)) {
+    closeHomeFab();
+  }
+
+  if (songFab && !songFab.contains(event.target)) {
+    closeFab();
+  }
+});
 
 function closeFab() {
   const fab = document.getElementById("fabMenu");
-  const fabMain = document.querySelector(".fab-main");
+  const fabMain = document.querySelector("#fabMenu .fab-main");
 
-  fab?.classList.remove("open");
-
-  if (fabMain) {
-    fabMain.textContent = "☰";
-  }
+  fab.classList.remove("open");
+  fabMain.textContent = "☰";
 }
 
 function goNextSong() {
@@ -384,7 +415,14 @@ if ("serviceWorker" in navigator) {
   });
 }
 
+let deferredPrompt = null;
+const installBtn = document.getElementById("installBtn");
 const shareBtn = document.getElementById("shareBtn");
+
+window.addEventListener("beforeinstallprompt", event => {
+  event.preventDefault();
+  deferredPrompt = event;
+});
 
 function isMobileDevice() {
   return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
@@ -401,6 +439,8 @@ async function copyShareLink(url) {
 
 if (shareBtn) {
   shareBtn.addEventListener("click", async () => {
+    closeHomeFab();
+
     const shareUrl = window.location.href.split("#")[0];
 
     const shareData = {
@@ -422,5 +462,34 @@ if (shareBtn) {
     }
   });
 }
+
+if (installBtn) {
+  installBtn.addEventListener("click", async () => {
+    closeHomeFab();
+
+    const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+    const isAndroid = /Android/i.test(navigator.userAgent);
+
+    if (isIOS) {
+      alert("iPhone 安裝方式：按 Safari 下方分享按鈕 → 選擇「加入主畫面」。");
+      return;
+    }
+
+    if (deferredPrompt && isAndroid) {
+      deferredPrompt.prompt();
+      await deferredPrompt.userChoice;
+      deferredPrompt = null;
+      return;
+    }
+
+    alert("請用瀏覽器選單選擇「加入主畫面」或「安裝 App」。");
+  });
+}
+
+document.querySelectorAll("#homeFabMenu .fab-action").forEach(action => {
+  action.addEventListener("click", () => {
+    closeHomeFab();
+  });
+});
 
 renderHome();
