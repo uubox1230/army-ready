@@ -41,27 +41,25 @@
     </section>
 
     <div class="home-fab-menu" id="homeFabMenu">
-      <button class="fab-action" id="installBtn" type="button">
-        <span class="fab-icon">📱</span>
+      <button id="installBtn" class="fab-action" type="button">
+        <i data-lucide="download"></i>
         <span>加到主畫面</span>
       </button>
 
-      <button class="fab-action" id="shareBtn" type="button">
-        <span class="fab-icon">💜</span>
+      <button id="shareBtn" class="fab-action" type="button">
+        <i data-lucide="share-2"></i>
         <span>分享給朋友</span>
       </button>
 
       <div class="fab-divider"></div>
 
-      <a class="fab-action" href="https://www.instagram.com/uu_box_/" target="_blank" rel="noopener">
-        <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M7.75 2h8.5A5.76 5.76 0 0 1 22 7.75v8.5A5.76 5.76 0 0 1 16.25 22h-8.5A5.76 5.76 0 0 1 2 16.25v-8.5A5.76 5.76 0 0 1 7.75 2Zm0 2A3.75 3.75 0 0 0 4 7.75v8.5A3.75 3.75 0 0 0 7.75 20h8.5A3.75 3.75 0 0 0 20 16.25v-8.5A3.75 3.75 0 0 0 16.25 4h-8.5ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm5.25-2.2a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4Z"/>
-        </svg>
+      <a class="fab-action" href="https://www.instagram.com/uu_box_" target="_blank" rel="noopener">
+        <img src="icons/instagram.svg" class="social-icon ig-icon">
         <span>追蹤 uubox</span>
       </a>
 
       <a class="fab-action" href="https://x.com/uu_box_" target="_blank" rel="noopener">
-        <span class="social-icon x-icon">𝕏</span>
+        <img src="icons/x.svg" class="social-icon x-icon">
         <span>追蹤 uubox</span>
       </a>
 
@@ -112,10 +110,10 @@
       </div>
     </div>
 
-    <div class="fab-menu" id="fabMenu">
-      <button class="fab-action" onclick="backHome()">← 歌單</button>
-      <button class="fab-action" onclick="goPrevSong()">上一首</button>
-      <button class="fab-action" onclick="goNextSong()">下一首</button>
+    <div class="fab-menu song-fab-menu" id="fabMenu">
+      <button class="fab-action song-fab-action" onclick="backHome()">← 歌單</button>
+      <button class="fab-action song-fab-action" onclick="goPrevSong()">← 上一首</button>
+      <button class="fab-action song-fab-action" onclick="goNextSong()">下一首 →</button>
 
       <button class="fab-main" onclick="toggleFab()" aria-label="開啟快捷選單">
         ☰
@@ -125,31 +123,13 @@
 
   <script src="songs.js"></script>
   <script src="app.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    lucide.createIcons();
+  </script>
+
+  <footer class="site-footer">
+    2026.07 更新 • BY TAIWAN ARMY <span>@uu_box_</span>
+  </footer>
 </body>
 </html>
-
-<footer class="site-footer">
-  <div class="footer-credit">
-    2026.07 • TAIWAN ARMY • Made with 💜 by <span>@uu_box_</span>
-  </div>
-
-  <div class="footer-links">
-    <a
-      href="https://www.instagram.com/uu_box_/"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      Instagram
-    </a>
-
-    <span>•</span>
-
-    <a
-      href="https://x.com/uu_box_"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      X (Twitter)
-    </a>
-  </div>
-</footer>

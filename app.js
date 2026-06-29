@@ -1,3 +1,7 @@
+if ("scrollRestoration" in history) {
+  history.scrollRestoration = "manual";
+}
+
 let currentSongIndex = 0;
 let practiceIndex = 0;
 
@@ -17,6 +21,20 @@ window.addEventListener("popstate", () => {
   renderHome();
   window.scrollTo(0, 0);
 });
+
+function getSongSlug(song) {
+  return song.title
+    .trim()
+    .toLowerCase()
+    .replace(/[()（）]/g, "")
+    .replace(/[’']/g, "")
+    .replace(/[^a-z0-9\u4e00-\u9fff\uac00-\ud7af]+/gi, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+function findSongIndexBySlug(slug) {
+  return SONGS.findIndex(song => getSongSlug(song) === slug);
+}
 
 function renderHome() {
   const list = document.getElementById("songList");
@@ -59,7 +77,11 @@ function openSong(index) {
   currentSongIndex = index;
   practiceIndex = 0;
 
-  history.pushState({ page: "song", index }, "", `#song-${index}`);
+  history.pushState(
+  { page: "song", index },
+  "",
+  `#${getSongSlug(SONGS[index])}`
+  );
 
   const song = SONGS[index];
 
@@ -74,13 +96,17 @@ function openSong(index) {
   showReadMode();
   updateDoneButton();
 
-  window.scrollTo(0, 0);
+  requestAnimationFrame(() => {
+    window.scrollTo(0,0);
+  });
 }
 
 function backHome() {
   closeFab();
   closeHomeFab();
 
+  history.pushState(null, "", window.location.pathname);
+  
   document.getElementById("songPage").classList.add("hidden");
   document.querySelector(".app").classList.remove("hidden");
 
@@ -492,4 +518,51 @@ document.querySelectorAll("#homeFabMenu .fab-action").forEach(action => {
   });
 });
 
-renderHome();
+function restorePageFromHash() {
+  const hash = window.location.hash;
+
+  if (hash) {
+    const slug = hash.replace("#", "");
+    const index = findSongIndexBySlug(slug);
+
+    if (!Number.isNaN(index) && index >= 0 && index < SONGS.length) {
+      currentSongIndex = index;
+      practiceIndex = 0;
+
+      const song = SONGS[index];
+
+      closeHomeFab();
+      closeFab();
+
+      document.querySelector(".app").classList.add("hidden");
+      document.getElementById("songPage").classList.remove("hidden");
+
+      document.getElementById("songTitle").textContent = song.title;
+      document.getElementById("songNote").textContent =
+        song.note || "官方 Fan Chant + 現場練習提醒。";
+
+      renderChants();
+      showReadMode();
+      updateDoneButton();
+
+      requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+              window.scrollTo(0, 0);
+          });
+      });
+      return;
+    }
+  }
+
+  document.getElementById("songPage").classList.add("hidden");
+  document.querySelector(".app").classList.remove("hidden");
+
+  renderHome();
+  window.scrollTo(0, 0);
+}
+
+restorePageFromHash();
+
+if (window.lucide) {
+  lucide.createIcons();
+}

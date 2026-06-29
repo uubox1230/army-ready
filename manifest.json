@@ -1,6 +1,8 @@
 {
   "name": "ARMY READY",
   "short_name": "ARMY READY",
+  "id": "/",
+  "scope": "./",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#0f0b18",
