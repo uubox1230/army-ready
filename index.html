@@ -16,6 +16,10 @@
       <p class="eyebrow">BTS FAN CHANT PRACTICE</p>
       <h1>ARMY READY</h1>
       <p class="subtitle">希望可以幫助到大家練習應援！我們高雄場見唷～</p>
+
+      <button id="shareBtn" class="share-btn" type="button">
+        💜 分享給朋友一起練
+      </button>
     </section>
 
     <section class="progress-card">
@@ -28,21 +32,35 @@
 
     <section class="song-section">
       <h2>Setlist</h2>
+
+      <input
+        id="songSearch"
+        class="song-search"
+        type="search"
+        placeholder="搜尋歌曲..."
+        oninput="renderHome()"
+      />
+
       <div id="songList" class="song-list"></div>
     </section>
   </main>
 
   <section id="songPage" class="song-page hidden">
-    <button class="back-btn" onclick="backHome()">← 返回歌單</button>
 
-    <h1 id="songTitle">Song Title</h1>
-    <p id="songNote">官方 Fan Chant + 現場練習提醒。</p>
+  <div class="song-header-row">
+    <button class="back-btn" onclick="backHome()">← 歌單</button>
+    <button id="doneBtn" class="done-chip" onclick="toggleDone()">○ 未練習</button>
+  </div>
 
-    <div class="mode-buttons">
-      <button onclick="showReadMode()">📖 完整歌詞</button>
-      <button onclick="startPractice()">🎤 練習模式</button>
-      <button id="doneBtn" onclick="toggleDone()">✓ 標記完成</button>
+  <h1 id="songTitle">Song Title</h1>
+  <p id="songNote">官方 Fan Chant + 現場練習提醒。</p>
+
+  <div class="song-actions">
+    <div class="mode-switch">
+      <button id="readModeBtn" onclick="showReadMode()">完整歌詞</button>
+      <button id="practiceModeBtn" onclick="startPractice()">練習模式</button>
     </div>
+  </div>
 
     <div id="readMode" class="read-mode"></div>
 
@@ -66,6 +84,16 @@
         <button onclick="prevLine()">◀︎</button>
         <button onclick="nextLine()">▶︎</button>
       </div>
+    </div>
+
+    <div class="fab-menu" id="fabMenu">
+      <button class="fab-action" onclick="backHome()">← 歌單</button>
+      <button class="fab-action" onclick="goPrevSong()">上一首</button>
+      <button class="fab-action" onclick="goNextSong()">下一首</button>
+
+      <button class="fab-main" onclick="toggleFab()" aria-label="開啟快捷選單">
+        ☰
+      </button>
     </div>
   </section>
 

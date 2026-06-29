@@ -11,13 +11,27 @@ function saveDone(done) {
   localStorage.setItem(doneKey, JSON.stringify(done));
 }
 
+window.addEventListener("popstate", () => {
+  document.getElementById("songPage").classList.add("hidden");
+  document.querySelector(".app").classList.remove("hidden");
+  renderHome();
+  window.scrollTo(0, 0);
+});
+
 function renderHome() {
   const list = document.getElementById("songList");
   const done = getDone();
 
   list.innerHTML = "";
 
+  const keyword =
+  document.getElementById("songSearch")?.value.trim().toLowerCase() || "";
+
   SONGS.forEach((song, index) => {
+    if (keyword && !song.title.toLowerCase().includes(keyword)) {
+      return;
+    }
+
     const btn = document.createElement("button");
     btn.className = "song-item";
     btn.onclick = () => openSong(index);
@@ -42,6 +56,8 @@ function openSong(index) {
   currentSongIndex = index;
   practiceIndex = 0;
 
+  history.pushState({ page: "song", index }, "", `#song-${index}`);
+
   const song = SONGS[index];
 
   document.querySelector(".app").classList.add("hidden");
@@ -54,12 +70,38 @@ function openSong(index) {
   renderChants();
   showReadMode();
   updateDoneButton();
+
+  window.scrollTo(0, 0);
 }
 
 function backHome() {
   document.getElementById("songPage").classList.add("hidden");
   document.querySelector(".app").classList.remove("hidden");
   renderHome();
+  document.getElementById("fabMenu")?.classList.remove("open");
+  window.scrollTo(0, 0);
+}
+
+function goPrevSong() {
+  if (currentSongIndex > 0) {
+    document.getElementById("fabMenu")?.classList.remove("open");
+    openSong(currentSongIndex - 1);
+  }
+}
+
+function toggleFab() {
+    const fab=document.getElementById("fabMenu");
+    fab.classList.toggle("open");
+
+    document.querySelector(".fab-main").textContent =
+        fab.classList.contains("open") ? "✕" : "☰";
+}
+
+function goNextSong() {
+  if (currentSongIndex < SONGS.length - 1) {
+    document.getElementById("fabMenu")?.classList.remove("open");
+    openSong(currentSongIndex + 1);
+  }
 }
 
 function renderChants() {
@@ -140,6 +182,8 @@ function escapeHtml(text) {
 function showReadMode() {
   document.getElementById("readMode").classList.remove("hidden");
   document.getElementById("practiceMode").classList.add("hidden");
+  
+  updateModeButtons("read");
 }
 
 function startPractice() {
@@ -165,6 +209,8 @@ function startPractice() {
 
   practiceIndex = 0;
   showPracticeLine();
+
+  updateModeButtons("practice");
 }
 
 function showPracticeLine() {
@@ -282,6 +328,16 @@ function getBadge(type) {
   }
 }
 
+function updateModeButtons(mode) {
+  document
+    .getElementById("readModeBtn")
+    ?.classList.toggle("active", mode === "read");
+
+  document
+    .getElementById("practiceModeBtn")
+    ?.classList.toggle("active", mode === "practice");
+}
+
 function toggleDone() {
   const done = getDone();
   const exists = done.includes(currentSongIndex);
@@ -296,15 +352,54 @@ function toggleDone() {
 
 function updateDoneButton() {
   const done = getDone();
+  const doneBtn = document.getElementById("doneBtn");
+  const isDone = done.includes(currentSongIndex);
 
-  document.getElementById("doneBtn").textContent =
-    done.includes(currentSongIndex)
-      ? "✓ 已完成"
-      : "✓ 標記完成";
+  doneBtn.textContent = isDone ? "💜 已練習" : "○ 未練習";
+  doneBtn.classList.toggle("active", isDone);
 }
 
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("service-worker.js");
+}
+
+const shareBtn = document.getElementById("shareBtn");
+
+function isMobileDevice() {
+  return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+}
+
+async function copyShareLink(url) {
+  try {
+    await navigator.clipboard.writeText(url);
+    alert("已複製網址！");
+  } catch {
+    prompt("複製這個網址分享給朋友：", url);
+  }
+}
+
+if (shareBtn) {
+  shareBtn.addEventListener("click", async () => {
+    const shareUrl = window.location.href.split("#")[0];
+
+    const shareData = {
+      title: "ARMY READY 💜",
+      text: "一起練 BTS Fan Chant！高雄場見～",
+      url: shareUrl
+    };
+
+    if (isMobileDevice() && navigator.share) {
+      try {
+        await navigator.share(shareData);
+      } catch (error) {
+        if (error.name !== "AbortError") {
+          await copyShareLink(shareUrl);
+        }
+      }
+    } else {
+      await copyShareLink(shareUrl);
+    }
+  });
 }
 
 renderHome();
