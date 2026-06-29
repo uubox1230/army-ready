@@ -1,5 +1,6 @@
 const SONGS = [
   {
+  "id": "hooligan",
   "title": "Hooligan",
   "note": "歌曲結束請用力揮舞阿米棒吶喊！！",
   "chants": [
@@ -369,6 +370,7 @@ const SONGS = [
   ]
   },
   {
+  "id": "aliens",
   "title": "Aliens",
   "note": "歌曲結束請用力揮舞阿米棒吶喊！！",
   "chants": [
@@ -895,6 +897,7 @@ const SONGS = [
   ]
   },
   {
+  "id": "run-bts",
   "title": "Run BTS (달려라 방탄)",
   "note": "這首官方這次沒給應援指南，是依照以往經驗填寫",
   "chants": [
@@ -1464,6 +1467,7 @@ const SONGS = [
   ]
   },
   {
+  "id": "they-dont-know-bout-us",
   "title": "they don’t know ’bout us",
   "note": "歌曲結束請用力揮舞阿米棒吶喊！！",
   "chants": [
@@ -1866,6 +1870,7 @@ const SONGS = [
   ]
   },
   {
+  "id": "like-animals",
   "title": "Like Animals",
   "note": "歌曲結束請用力揮舞阿米棒吶喊！！",
   "chants": [
@@ -2112,6 +2117,7 @@ const SONGS = [
   ]
   },
   {
+  "id": "fake-love",
   "title": "FAKE LOVE",
   "note": "演唱會是變奏版本唷～不熟悉沒喊到沒關係！",
   "chants": [
@@ -2664,6 +2670,7 @@ const SONGS = [
   ]
   },
   {
+  "id": "swim",
   "title": "SWIM",
   "note": "高陽場有用阿米棒跳舞，不知道高雄場官方應援會是什麼QQ",
   "chants": [
@@ -3133,6 +3140,7 @@ const SONGS = [
   ]
   },
   {
+  "id": "merry-go-round",
   "title": "Merry Go Round",
   "note": "歌曲結束請用力揮舞阿米棒吶喊！！",
   "chants": [
@@ -3439,6 +3447,7 @@ const SONGS = [
   ]
   },
   {
+  "id": "2.0",
   "title": "2.0",
   "note": "歌曲結束請用力揮舞阿米棒吶喊！！",
   "chants": [
@@ -3922,6 +3931,7 @@ const SONGS = [
   ]
   },
   {
+  "id": "normal",
   "title": "NORMAL",
   "note": "歌曲結束請用力揮舞阿米棒吶喊！！",
   "chants": [
@@ -4307,6 +4317,7 @@ const SONGS = [
   ]
   },
   {
+  "id": "not-today",
   "title": "Not Today",
   "note": "演唱會是變奏版本唷～不熟悉沒喊到沒關係！",
   "chants": [
@@ -4977,6 +4988,7 @@ const SONGS = [
   ]
   },
   {
+  "id": "mic-drop",
   "title": "MIC Drop",
   "note": "「咪啊餒翁媽」那邊請大聲給我喊下去！！！！！",
   "chants": [
@@ -5651,6 +5663,7 @@ const SONGS = [
   ]
   },
   {
+  "id": "fya",
   "title": "FYA",
   "note": "後面跟 FIRE 接在一起，忘記也不要擔心，玩就對了！",
   "chants": [
@@ -6072,6 +6085,7 @@ const SONGS = [
   ]
   },
   {
+  "id": "fire",
   "title": "불타오르네 (FIRE)",
   "note": "前面跟 FYA 接在一起，錯過不要擔心，玩就對了！",
   "chants": [
@@ -6634,6 +6648,7 @@ const SONGS = [
   ]
   },
   {
+  "id": "body-to-body",
   "title": "Body to Body",
   "note": "歌曲結束請用力揮舞阿米棒吶喊！！",
   "chants": [
@@ -7050,6 +7065,7 @@ const SONGS = [
   ]
   },
   {
+  "id": "idol",
   "title": "IDOL",
   "note": "這邊是繞境時間，直接狂歡就好了！！！！",
   "chants": [
@@ -7632,6 +7648,7 @@ const SONGS = [
   ]
   },
   {
+  "id": "come-over",
   "title": "Come Over",
   "note": "韓國場這首是開手機手電筒應援唷！",
   "chants": [
@@ -7996,6 +8013,7 @@ const SONGS = [
   ]
   },
   {
+  "id": "buter",
   "title": "Butter",
   "note": "這是官方2021版本，跟不上就唱整首吧：Ｄ",
   "chants": [
@@ -8469,6 +8487,7 @@ const SONGS = [
   ]
   },
   {
+  "id": "dynamite",
   "title": "Dynamite",
   "note": "這是官方2020版本，跟不上就唱整首吧：Ｄ",
   "chants": [
@@ -8961,6 +8980,7 @@ const SONGS = [
   ]
   },
   {
+  "id": "please",
   "title": "Please",
   "note": "正常巡迴是唱這首！（釜山場改成唱 One More Night）",
   "chants": [
@@ -9429,7 +9449,8 @@ const SONGS = [
   ]
   },
   {
-  "title": "One More Night (釜山場限定)",
+  "id": "one-more-night",
+  "title": "One More Night (釜山場)",
   "note": "限定版，不知道會不會突然掉落！正常巡迴是唱 Please！",
   "chants": [
     {
@@ -9942,6 +9963,7 @@ const SONGS = [
   ]
   },
   {
+  "id": "into-the-sun",
   "title": "Into the Sun",
   "note": "最後一首了唷！這時候會放煙火～",
   "chants": [

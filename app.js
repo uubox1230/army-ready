@@ -16,24 +16,15 @@ function saveDone(done) {
 }
 
 window.addEventListener("popstate", () => {
-  document.getElementById("songPage").classList.add("hidden");
-  document.querySelector(".app").classList.remove("hidden");
-  renderHome();
-  window.scrollTo(0, 0);
+  restorePageFromHash();
 });
 
-function getSongSlug(song) {
-  return song.title
-    .trim()
-    .toLowerCase()
-    .replace(/[()（）]/g, "")
-    .replace(/[’']/g, "")
-    .replace(/[^a-z0-9\u4e00-\u9fff\uac00-\ud7af]+/gi, "-")
-    .replace(/^-+|-+$/g, "");
-}
-
-function findSongIndexBySlug(slug) {
-  return SONGS.findIndex(song => getSongSlug(song) === slug);
+function scrollToTopSafe() {
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      window.scrollTo(0, 0);
+    });
+  });
 }
 
 function renderHome() {
@@ -77,13 +68,10 @@ function openSong(index) {
   currentSongIndex = index;
   practiceIndex = 0;
 
-  history.pushState(
-  { page: "song", index },
-  "",
-  `#${getSongSlug(SONGS[index])}`
-  );
-
   const song = SONGS[index];
+  const songId = song.id;
+
+  history.pushState({ page: "song", index }, "", `#${songId}`);
 
   document.querySelector(".app").classList.add("hidden");
   document.getElementById("songPage").classList.remove("hidden");
@@ -96,9 +84,7 @@ function openSong(index) {
   showReadMode();
   updateDoneButton();
 
-  requestAnimationFrame(() => {
-    window.scrollTo(0,0);
-  });
+  scrollToTopSafe();
 }
 
 function backHome() {
@@ -519,13 +505,12 @@ document.querySelectorAll("#homeFabMenu .fab-action").forEach(action => {
 });
 
 function restorePageFromHash() {
-  const hash = window.location.hash;
+  const hash = window.location.hash.replace("#", "");
 
   if (hash) {
-    const slug = hash.replace("#", "");
-    const index = findSongIndexBySlug(slug);
+    const index = SONGS.findIndex(song => song.id === hash);
 
-    if (!Number.isNaN(index) && index >= 0 && index < SONGS.length) {
+    if (index >= 0) {
       currentSongIndex = index;
       practiceIndex = 0;
 
@@ -545,11 +530,7 @@ function restorePageFromHash() {
       showReadMode();
       updateDoneButton();
 
-      requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-              window.scrollTo(0, 0);
-          });
-      });
+      scrollToTopSafe();
       return;
     }
   }
@@ -558,7 +539,7 @@ function restorePageFromHash() {
   document.querySelector(".app").classList.remove("hidden");
 
   renderHome();
-  window.scrollTo(0, 0);
+  scrollToTopSafe();
 }
 
 restorePageFromHash();
