@@ -377,6 +377,10 @@ function updateDoneButton() {
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("./service-worker.js").then(registration => {
     registration.update();
+
+    if (registration.waiting) {
+      registration.waiting.postMessage({ type: "SKIP_WAITING" });
+    }
   });
 }
 
