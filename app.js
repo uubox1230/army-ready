@@ -75,6 +75,7 @@ function openSong(index) {
 }
 
 function backHome() {
+  closeFab();
   document.getElementById("songPage").classList.add("hidden");
   document.querySelector(".app").classList.remove("hidden");
   renderHome();
@@ -84,22 +85,36 @@ function backHome() {
 
 function goPrevSong() {
   if (currentSongIndex > 0) {
-    document.getElementById("fabMenu")?.classList.remove("open");
+    closeFab();
     openSong(currentSongIndex - 1);
   }
 }
 
 function toggleFab() {
-    const fab=document.getElementById("fabMenu");
-    fab.classList.toggle("open");
+  const fab = document.getElementById("fabMenu");
+  const fabMain = document.querySelector(".fab-main");
 
-    document.querySelector(".fab-main").textContent =
-        fab.classList.contains("open") ? "✕" : "☰";
+  fab?.classList.toggle("open");
+
+  if (fabMain) {
+    fabMain.textContent = fab?.classList.contains("open") ? "✕" : "☰";
+  }
+}
+
+function closeFab() {
+  const fab = document.getElementById("fabMenu");
+  const fabMain = document.querySelector(".fab-main");
+
+  fab?.classList.remove("open");
+
+  if (fabMain) {
+    fabMain.textContent = "☰";
+  }
 }
 
 function goNextSong() {
   if (currentSongIndex < SONGS.length - 1) {
-    document.getElementById("fabMenu")?.classList.remove("open");
+    closeFab();
     openSong(currentSongIndex + 1);
   }
 }

@@ -1,4 +1,4 @@
-const CACHE_NAME = "army-ready-v1-2-20260629-1";
+const CACHE_NAME = "army-ready-v1.2.1";
 
 const ASSETS = [
   "./",
@@ -37,17 +37,28 @@ self.addEventListener("activate", event => {
 self.addEventListener("fetch", event => {
   if (event.request.method !== "GET") return;
 
+  const request = event.request;
+
   event.respondWith(
-    fetch(event.request)
-      .then(response => {
-        const copy = response.clone();
+    caches.match(request).then(cachedResponse => {
+      const fetchPromise = fetch(request)
+        .then(networkResponse => {
+          if (
+            networkResponse &&
+            networkResponse.status === 200 &&
+            networkResponse.type === "basic"
+          ) {
+            const responseCopy = networkResponse.clone();
+            caches.open(CACHE_NAME).then(cache => {
+              cache.put(request, responseCopy);
+            });
+          }
 
-        caches.open(CACHE_NAME).then(cache => {
-          cache.put(event.request, copy);
-        });
+          return networkResponse;
+        })
+        .catch(() => cachedResponse);
 
-        return response;
-      })
-      .catch(() => caches.match(event.request))
+      return cachedResponse || fetchPromise;
+    })
   );
 });
