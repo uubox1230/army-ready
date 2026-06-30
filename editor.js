@@ -79,6 +79,20 @@ function renderLineEditor() {
         oninput="updatePracticeText(${index}, this.value)"
       />
 
+      <label class="practice-text-label">Highlight 文字（選填）</label>
+      <input
+      class="practice-text-input"
+      value="${escapeHtml(line.highlight || "")}"
+      oninput="updateHighlight(${index}, this.value)"
+      />
+
+      <label class="practice-text-label">替換原文 replaceText（選填）</label>
+      <input
+      class="practice-text-input"
+      value="${escapeHtml(line.replaceText || "")}"
+      oninput="updateReplaceText(${index}, this.value)"
+      />
+
       <label class="practice-text-label">羅馬拼音（選填）</label>
       <input
         class="practice-text-input"
@@ -87,6 +101,14 @@ function renderLineEditor() {
       />
     </div>
   `).join("");
+}
+
+function updateHighlight(index, value) {
+  editorLines[index].highlight = value;
+}
+
+function updateReplaceText(index, value) {
+  editorLines[index].replaceText = value;
 }
 
 function setLineType(index, type) {
@@ -108,14 +130,70 @@ function updateRoman(index, value) {
   editorLines[index].roman = value;
 }
 
+function buildAppleEmbed(url) {
+  if (!url) return "";
+
+  return url.replace(
+    "https://music.apple.com",
+    "https://embed.music.apple.com"
+  );
+}
+
+function buildSpotifyEmbed(url) {
+  if (!url) return "";
+
+  return url
+    .replace("https://open.spotify.com/", "https://open.spotify.com/embed/")
+    .split("?")[0];
+}
+
 function exportSong() {
+  const id = document.getElementById("songIdInput").value.trim();
   const title = document.getElementById("songTitleInput").value.trim();
   const note = document.getElementById("songNoteInput").value.trim();
+  const cue = document.getElementById("songCueInput").value.trim();
+  const cueAudio = document.getElementById("songCueAudioInput").value.trim();
+
+  const appleUrl = document.getElementById("appleUrlInput").value.trim();
+  const spotifyUrl = document.getElementById("spotifyUrlInput").value.trim();
+  const youtubeMusicUrl = document.getElementById("youtubeMusicUrlInput").value.trim();
 
   const song = {
-    title,
-    note,
-chants: editorLines.map(line => {
+    id,
+    title
+  };
+
+  if (note) song.note = note;
+  if (cue) song.cue = cue;
+  if (cueAudio) song.cueAudio = cueAudio;
+
+  const platforms = {};
+
+  if (appleUrl) {
+    platforms.apple = {
+      url: appleUrl,
+      embed: buildAppleEmbed(appleUrl)
+    };
+  }
+
+  if (spotifyUrl) {
+    platforms.spotify = {
+      url: spotifyUrl,
+      embed: buildSpotifyEmbed(spotifyUrl)
+    };
+  }
+
+  if (youtubeMusicUrl) {
+    platforms.youtubeMusic = {
+      url: youtubeMusicUrl
+    };
+  }
+
+  if (Object.keys(platforms).length > 0) {
+    song.platforms = platforms;
+  }
+
+  song.chants = editorLines.map(line => {
     const item = {
       type: line.type,
       time: line.time,
@@ -123,13 +201,12 @@ chants: editorLines.map(line => {
       practiceText: line.practiceText || line.text
     };
 
-    if (line.roman && line.roman.trim()) {
-    item.roman = line.roman.trim();
-    }
+    if (line.highlight?.trim()) item.highlight = line.highlight.trim();
+    if (line.replaceText?.trim()) item.replaceText = line.replaceText.trim();
+    if (line.roman?.trim()) item.roman = line.roman.trim();
 
     return item;
-})
-  };
+  });
 
   document.getElementById("outputJson").value =
     JSON.stringify(song, null, 2);

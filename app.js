@@ -64,6 +64,7 @@ function renderHome() {
 function openSong(index) {
   closeHomeFab();
   closeFab();
+  closeSetlistSheet();
 
   const currentAudio = document.getElementById("songCueAudio");
   if (currentAudio) {
@@ -86,6 +87,7 @@ function openSong(index) {
     song.note || "官方 Fan Chant + 現場練習提醒。";
   
   updateSongCue(song);
+  updatePlatforms(song);
   renderChants();
   showReadMode();
   updateDoneButton();
@@ -118,8 +120,9 @@ function toggleFab() {
   const fab = document.getElementById("fabMenu");
   const fabMain = document.querySelector("#fabMenu .fab-main");
 
-  const isOpen = fab.classList.toggle("open");
+  if (!fab || !fabMain) return;
 
+  const isOpen = fab.classList.toggle("open");
   fabMain.textContent = isOpen ? "✕" : "☰";
 }
 
@@ -130,6 +133,19 @@ function toggleHomeFab() {
   const isOpen = fab.classList.toggle("open");
 
   fabMain.textContent = isOpen ? "✕" : "💜";
+}
+
+function togglePlatformSection() {
+  const content = document.getElementById("platformContent");
+  const icon = document.getElementById("platformToggleIcon");
+
+  if (!content || !icon) return;
+
+  const isHidden = content.classList.toggle("hidden");
+
+  icon.style.transform = isHidden
+    ? "rotate(0deg)"
+    : "rotate(180deg)";
 }
 
 function closeHomeFab() {
@@ -157,6 +173,8 @@ function closeFab() {
   const fab = document.getElementById("fabMenu");
   const fabMain = document.querySelector("#fabMenu .fab-main");
 
+  if (!fab || !fabMain) return;
+
   fab.classList.remove("open");
   fabMain.textContent = "☰";
 }
@@ -165,6 +183,55 @@ function goNextSong() {
   if (currentSongIndex < SONGS.length - 1) {
     closeFab();
     openSong(currentSongIndex + 1);
+  }
+}
+
+function renderSetlistSheet() {
+  const list = document.getElementById("setlistSheetList");
+  if (!list) return;
+
+  list.innerHTML = "";
+
+  SONGS.forEach((song, index) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = `setlist-sheet-item ${index === currentSongIndex ? "active" : ""}`;
+
+    button.innerHTML = `
+      <span class="setlist-sheet-number">${String(index + 1).padStart(2, "0")}</span>
+      <span class="setlist-sheet-title">${song.title}</span>
+      <span class="setlist-sheet-status">${index === currentSongIndex ? "播放中" : ""}</span>
+    `;
+
+    button.onclick = () => {
+      closeSetlistSheet();
+      openSong(index);
+    };
+
+    list.appendChild(button);
+  });
+}
+
+function openSetlistSheet() {
+  renderSetlistSheet();
+  document.getElementById("setlistOverlay").classList.remove("hidden");
+  document.getElementById("setlistSheet").classList.remove("hidden");
+  document.body.classList.add("sheet-open");
+}
+
+function closeSetlistSheet() {
+  document.getElementById("setlistOverlay")?.classList.add("hidden");
+  document.getElementById("setlistSheet")?.classList.add("hidden");
+  document.body.classList.remove("sheet-open");
+}
+
+function toggleSetlistSheet() {
+  const sheet = document.getElementById("setlistSheet");
+
+  if (sheet.classList.contains("hidden")) {
+    openSetlistSheet();
+  } else {
+    closeSetlistSheet();
   }
 }
 
@@ -459,9 +526,120 @@ function updateSongCue(song) {
   }
 }
 
+function updatePlatformSubtitle(song) {
+  const subtitle = document.getElementById("platformSubtitle");
+
+  if (!subtitle) return;
+
+  const names = [];
+
+  if (song.platforms?.apple) {
+    names.push("Apple Music");
+  }
+
+  if (song.platforms?.spotify) {
+    names.push("Spotify");
+  }
+
+  if (song.platforms?.youtubeMusic) {
+    names.push("YouTube Music");
+  }
+
+  subtitle.textContent = names.join(" • ");
+}
+
+function updatePlatforms(song) {
+  updatePlatformSubtitle(song);
+  const section = document.getElementById("platformSection");
+  const list = document.getElementById("platformList");
+  const platforms = song.platforms || {};
+
+  list.innerHTML = "";
+
+  if (Object.keys(platforms).length === 0) {
+    section.classList.add("hidden");
+    return;
+  }
+
+  section.classList.remove("hidden");
+  document.getElementById("platformContent").classList.add("hidden");
+  const platformIcon = document.getElementById("platformToggleIcon");
+  platformIcon.style.transform = "rotate(0deg)";
+
+  if (platforms.apple) {
+    list.innerHTML += `
+      <section class="platform-card">
+        <div class="platform-card-header">
+          <span> Apple Music</span>
+          <a href="${platforms.apple.url}" target="_blank" rel="noopener">開啟</a>
+        </div>
+        <iframe
+          allow="autoplay *; encrypted-media *;"
+          frameborder="0"
+          height="150"
+          sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"
+          src="${platforms.apple.embed}">
+        </iframe>
+      </section>
+    `;
+  }
+
+  if (platforms.spotify) {
+    list.innerHTML += `
+      <section class="platform-card">
+        <div class="platform-card-header">
+          <span>Spotify</span>
+          <a href="${platforms.spotify.url}" target="_blank" rel="noopener">開啟</a>
+        </div>
+        <iframe
+          src="${platforms.spotify.embed}"
+          width="100%"
+          height="152"
+          frameborder="0"
+          allowfullscreen
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy">
+        </iframe>
+      </section>
+    `;
+  }
+
+  if (platforms.youtubeMusic) {
+    list.innerHTML += `
+      <section class="platform-card platform-link-card">
+        <div class="platform-card-header">
+          <span>YouTube Music</span>
+          <a href="${platforms.youtubeMusic.url}" target="_blank" rel="noopener">開啟</a>
+        </div>
+        <a class="platform-youtube-link" href="${platforms.youtubeMusic.url}" target="_blank" rel="noopener">
+          ▶ 在 YouTube Music 播放
+        </a>
+      </section>
+    `;
+  }
+}
+
 if ("serviceWorker" in navigator) {
+  let refreshing = false;
+
+  navigator.serviceWorker.addEventListener("controllerchange", () => {
+    if (refreshing) return;
+    refreshing = true;
+    window.location.reload();
+  });
+
   navigator.serviceWorker.register("./service-worker.js").then(registration => {
     registration.update();
+
+    registration.addEventListener("updatefound", () => {
+      const newWorker = registration.installing;
+
+      newWorker.addEventListener("statechange", () => {
+        if (newWorker.state === "installed" && navigator.serviceWorker.controller) {
+          newWorker.postMessage({ type: "SKIP_WAITING" });
+        }
+      });
+    });
 
     if (registration.waiting) {
       registration.waiting.postMessage({ type: "SKIP_WAITING" });
@@ -569,6 +747,7 @@ function restorePageFromHash() {
         song.note || "官方 Fan Chant + 現場練習提醒。";
 
       updateSongCue(song);
+      updatePlatforms(song);
       renderChants();
       showReadMode();
       updateDoneButton();

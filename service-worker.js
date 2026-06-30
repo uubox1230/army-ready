@@ -1,4 +1,4 @@
-const CACHE_NAME = "army-ready-v1.3.2";
+const CACHE_NAME = "army-ready-v1.4.1";
 
 const ASSETS = [
   "./",
@@ -12,6 +12,12 @@ const ASSETS = [
   "./icons/x.svg",
   "./audio/hooligan-intro.mp3"
 ];
+
+self.addEventListener("message", event => {
+  if (event.data && event.data.type === "SKIP_WAITING") {
+    self.skipWaiting();
+  }
+});
 
 self.addEventListener("install", event => {
   self.skipWaiting();

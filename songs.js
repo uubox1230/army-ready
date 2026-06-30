@@ -5,6 +5,19 @@ const SONGS = [
   "note": "演唱會正式開始有1分50秒左右的intro，請在這段時間內準備好！",
   "cue": "從參考音檔 1:59 前奏變化這邊開始喊 (原曲的 0:07)，喊 7 秒快版，喊完剛好會接上磨刀聲",
   "cueAudio": "audio/hooligan-intro.mp3",
+  "platforms": {
+    "apple": {
+      "url": "https://music.apple.com/tw/album/hooligan/1868862375?i=1868862377",
+      "embed": "https://embed.music.apple.com/tw/album/hooligan/1868862375?i=1868862377"
+    },
+    "spotify": {
+      "url": "https://open.spotify.com/track/20dAJsyno9ZoBLJtqgQnUI?si=63b18c856816478c",
+      "embed": "https://open.spotify.com/embed/track/20dAJsyno9ZoBLJtqgQnUI?utm_source=generator&si=7f5a469240314746"
+    },
+    "youtubeMusic": {
+      "url": "https://music.youtube.com/watch?v=lKgzkmTKvHU&si=7DtNfaVczhdkPktL"
+    }
+  },
   "chants": [
     {
       "type": "chant",
@@ -369,6 +382,19 @@ const SONGS = [
   "id": "aliens",
   "title": "Aliens",
   "note": "歌曲結束請用力揮舞阿米棒吶喊！！",
+  "platforms": {
+    "apple": {
+      "url": "https://music.apple.com/tw/album/aliens/1868862375?i=1868862378",
+      "embed": "https://embed.music.apple.com/tw/album/aliens/1868862375?i=1868862378"
+    },
+    "spotify": {
+      "url": "https://open.spotify.com/track/5tg21NdePCn5m8F9BXOEeJ?si=001c9389f4934a35",
+      "embed": "https://open.spotify.com/embed/track/5tg21NdePCn5m8F9BXOEeJ"
+    },
+    "youtubeMusic": {
+      "url": "https://music.youtube.com/watch?v=EC9_h_elSAY&si=jGWLRebICNP1vCC7"
+    }
+    },
   "chants": [
     {
       "type": "lyrics",
@@ -896,6 +922,19 @@ const SONGS = [
   "id": "run-bts",
   "title": "Run BTS (달려라 방탄)",
   "note": "這首官方這次沒給應援指南，是依照以往經驗填寫",
+  "platforms": {
+    "apple": {
+      "url": "https://music.apple.com/tw/album/run-bts/1627573936?i=1627575780",
+      "embed": "https://embed.music.apple.com/tw/album/run-bts/1627573936?i=1627575780"
+    },
+    "spotify": {
+      "url": "https://open.spotify.com/track/69xohKu8C1fsflYAiSNbwM?si=66da67b9d1294d34",
+      "embed": "https://open.spotify.com/embed/track/69xohKu8C1fsflYAiSNbwM"
+    },
+    "youtubeMusic": {
+      "url": "https://music.youtube.com/watch?v=a4YwJCZRh5M&si=d4jW2CsRPMdOqi5E"
+    }
+  },
   "chants": [
     {
       "type": "lyrics",
@@ -1466,6 +1505,19 @@ const SONGS = [
   "id": "they-dont-know-bout-us",
   "title": "they don’t know ’bout us",
   "note": "歌曲結束請用力揮舞阿米棒吶喊！！",
+  "platforms": {
+    "apple": {
+      "url": "https://music.apple.com/tw/album/they-dont-know-bout-us/1868862375?i=1868862389",
+      "embed": "https://embed.music.apple.com/tw/album/they-dont-know-bout-us/1868862375?i=1868862389"
+    },
+    "spotify": {
+      "url": "https://open.spotify.com/track/0b61A7v9agI08BG21jJPQ9?si=d95aad8f963e4a21",
+      "embed": "https://open.spotify.com/embed/track/0b61A7v9agI08BG21jJPQ9"
+    },
+    "youtubeMusic": {
+      "url": "https://music.youtube.com/watch?v=TfzU9XOEnkk&si=nKKFHZ3Mv-In31ua"
+    }
+  },
   "chants": [
     {
       "type": "lyrics",
@@ -1869,6 +1921,19 @@ const SONGS = [
   "id": "like-animals",
   "title": "Like Animals",
   "note": "歌曲結束請用力揮舞阿米棒吶喊！！",
+  "platforms": {
+    "apple": {
+      "url": "https://music.apple.com/tw/album/like-animals/1868862375?i=1868862388",
+      "embed": "https://embed.music.apple.com/tw/album/like-animals/1868862375?i=1868862388"
+    },
+    "spotify": {
+      "url": "https://open.spotify.com/track/2IFND3phjzIG1RcPnHh2hP?si=02fa0d3d535c4a52",
+      "embed": "https://open.spotify.com/embed/track/2IFND3phjzIG1RcPnHh2hP"
+    },
+    "youtubeMusic": {
+      "url": "https://music.youtube.com/watch?v=1BiWkZDiY7s&si=JsFkYD3mno8xw13I"
+    }
+  },
   "chants": [
     {
       "type": "lyrics",
@@ -2116,6 +2181,19 @@ const SONGS = [
   "id": "fake-love",
   "title": "FAKE LOVE",
   "note": "演唱會是變奏版本唷～不熟悉沒喊到沒關係！",
+  "platforms": {
+    "apple": {
+      "url": "https://music.apple.com/tw/album/fake-love/1598660934?i=1598660938",
+      "embed": "https://embed.music.apple.com/tw/album/fake-love/1598660934?i=1598660938"
+    },
+    "spotify": {
+      "url": "https://open.spotify.com/track/6m1TWFMeon7ai9XLOzdbiR?si=d97117e2b8894502",
+      "embed": "https://open.spotify.com/embed/track/6m1TWFMeon7ai9XLOzdbiR"
+    },
+    "youtubeMusic": {
+      "url": "https://music.youtube.com/watch?v=NT8ePWlgx_Y&si=W5c4yvcpRcpIq7eL"
+    }
+  },
   "chants": [
     {
       "type": "lyrics",
@@ -2669,6 +2747,19 @@ const SONGS = [
   "id": "swim",
   "title": "SWIM",
   "note": "高陽場有用阿米棒跳舞，不知道高雄場官方應援會是什麼QQ",
+  "platforms": {
+    "apple": {
+      "url": "https://music.apple.com/tw/album/swim/1868862375?i=1868862384",
+      "embed": "https://embed.music.apple.com/tw/album/swim/1868862375?i=1868862384"
+    },
+    "spotify": {
+      "url": "https://open.spotify.com/track/68lbSrXDORS51pmyjZv712?si=7456a6a21215458a",
+      "embed": "https://open.spotify.com/embed/track/68lbSrXDORS51pmyjZv712"
+    },
+    "youtubeMusic": {
+      "url": "https://music.youtube.com/watch?v=b4iVv91Z6lY&si=zuByL1gCrkB7MVts"
+    }
+  },
   "chants": [
     {
       "type": "sing",
@@ -3139,6 +3230,19 @@ const SONGS = [
   "id": "merry-go-round",
   "title": "Merry Go Round",
   "note": "歌曲結束請用力揮舞阿米棒吶喊！！",
+  "platforms": {
+    "apple": {
+      "url": "https://music.apple.com/tw/album/merry-go-round/1868862375?i=1868862386",
+      "embed": "https://embed.music.apple.com/tw/album/merry-go-round/1868862375?i=1868862386"
+    },
+    "spotify": {
+      "url": "https://open.spotify.com/track/3VegC0PZiHjGxb80DER8XU?si=191e4f7da966425d",
+      "embed": "https://open.spotify.com/embed/track/3VegC0PZiHjGxb80DER8XU"
+    },
+    "youtubeMusic": {
+      "url": "https://music.youtube.com/watch?v=Iy0SpSLW8wo&si=96cySoIp3DXqWa4j"
+    }
+  },
   "chants": [
     {
       "type": "lyrics",
@@ -3446,6 +3550,19 @@ const SONGS = [
   "id": "2.0",
   "title": "2.0",
   "note": "歌曲結束請用力揮舞阿米棒吶喊！！",
+  "platforms": {
+    "apple": {
+      "url": "https://music.apple.com/tw/album/2-0/1868862375?i=1868862380",
+      "embed": "https://embed.music.apple.com/tw/album/2-0/1868862375?i=1868862380"
+    },
+    "spotify": {
+      "url": "https://open.spotify.com/track/3bmpXHVie1GTy37OkXJ7Vc?si=e654807679804031",
+      "embed": "https://open.spotify.com/embed/track/3bmpXHVie1GTy37OkXJ7Vc"
+    },
+    "youtubeMusic": {
+      "url": "https://music.youtube.com/watch?v=_gyultVTesk&si=tNNQEmPCZRCsDhoJ"
+    }
+  },
   "chants": [
     {
       "type": "lyrics",
@@ -3931,6 +4048,19 @@ const SONGS = [
   "title": "NORMAL",
   "note": "歌曲結束請用力揮舞阿米棒吶喊！！",
   "cue": "音樂一下就開始，喊 12 秒慢版，喊完差不多 0:12 剛好接第一句歌詞",
+  "platforms": {
+    "apple": {
+      "url": "https://music.apple.com/tw/album/normal/1868862375?i=1868862387",
+      "embed": "https://embed.music.apple.com/tw/album/normal/1868862375?i=1868862387"
+    },
+    "spotify": {
+      "url": "https://open.spotify.com/track/4B4Q7zfd0aHcuhQBfCRnH5?si=5185695b29ec476e",
+      "embed": "https://open.spotify.com/embed/track/4B4Q7zfd0aHcuhQBfCRnH5"
+    },
+    "youtubeMusic": {
+      "url": "https://music.youtube.com/watch?v=Qye9VHIv6qM&si=-Sap_15ZGBbmBCUQ"
+    }
+  },
   "chants": [
     {
       "type": "chant",
@@ -4311,6 +4441,19 @@ const SONGS = [
   "id": "not-today",
   "title": "Not Today",
   "note": "演唱會是變奏版本唷～不熟悉沒喊到沒關係！",
+  "platforms": {
+    "apple": {
+      "url": "https://music.apple.com/tw/album/not-today/1596528839?i=1596529383",
+      "embed": "https://embed.music.apple.com/tw/album/not-today/1596528839?i=1596529383"
+    },
+    "spotify": {
+      "url": "https://open.spotify.com/track/3wyrhwPpV8uhMMEms4vG3X?si=4ff18ec5c2ab4aba",
+      "embed": "https://open.spotify.com/embed/track/3wyrhwPpV8uhMMEms4vG3X"
+    },
+    "youtubeMusic": {
+      "url": "https://music.youtube.com/watch?v=mCtVrf2x5BQ&si=vJCUwS4Cvfku4WG_"
+    }
+  },
   "chants": [
     {
       "type": "lyrics",
@@ -4983,6 +5126,19 @@ const SONGS = [
   "title": "MIC Drop",
   "note": "「咪啊餒翁媽」那邊請大聲給我喊下去！！！！！",
   "cue": "噗滋噗滋之後就可以開始喊了，喊慢版兩遍謝謝🙏",
+  "platforms": {
+    "apple": {
+      "url": "https://music.apple.com/tw/album/mic-drop/1598730614?i=1598731059",
+      "embed": "https://embed.music.apple.com/tw/album/mic-drop/1598730614?i=1598731059"
+    },
+    "spotify": {
+      "url": "https://open.spotify.com/track/0nUftNWYvNCWnjiyeujCR8?si=e8c77591351d4189",
+      "embed": "https://open.spotify.com/embed/track/0nUftNWYvNCWnjiyeujCR8"
+    },
+    "youtubeMusic": {
+      "url": "https://music.youtube.com/watch?v=e95-Gaj2iXM&si=PBgMqM7P1V2_z6o1"
+    }
+  },
   "chants": [
     {
       "type": "chant",
@@ -5653,6 +5809,19 @@ const SONGS = [
   "title": "FYA",
   "note": "後面跟 FIRE 接在一起，忘記也不要擔心，玩就對了！",
   "cue": "從 0:07 開始喊，或是數 8 次喘氣也可以",
+  "platforms": {
+    "apple": {
+      "url": "https://music.apple.com/tw/album/fya/1868862375?i=1868862379",
+      "embed": "https://embed.music.apple.com/tw/album/fya/1868862375?i=1868862379"
+    },
+    "spotify": {
+      "url": "https://open.spotify.com/track/0KmrKOdScRDVYwWS8hkkdv?si=d2501f2214ae4601",
+      "embed": "https://open.spotify.com/embed/track/0KmrKOdScRDVYwWS8hkkdv"
+    },
+    "youtubeMusic": {
+      "url": "https://music.youtube.com/watch?v=QWDayFgPDjQ&si=6VQc-CJLeL2b8v9U"
+    }
+  },
   "chants": [
     {
       "type": "chant",
@@ -6069,6 +6238,19 @@ const SONGS = [
   "id": "fire",
   "title": "불타오르네 (FIRE)",
   "note": "前面跟 FYA 接在一起，錯過不要擔心，玩就對了！",
+  "platforms": {
+    "apple": {
+      "url": "https://music.apple.com/tw/album/burning-up-fire/1598661880?i=1598662129",
+      "embed": "https://embed.music.apple.com/tw/album/burning-up-fire/1598661880?i=1598662129"
+    },
+    "spotify": {
+      "url": "https://open.spotify.com/track/0aE3V0zgSD2YwkEHW42gxG?si=18453c3306004534",
+      "embed": "https://open.spotify.com/embed/track/0aE3V0zgSD2YwkEHW42gxG"
+    },
+    "youtubeMusic": {
+      "url": "https://music.youtube.com/watch?v=ZbWo60LyvXc&si=AWyxwynJXk8yl1Ti"
+    }
+  },
   "chants": [
     {
       "type": "lyrics",
@@ -6633,6 +6815,19 @@ const SONGS = [
   "title": "Body to Body",
   "note": "阿里郎那一段他們會拿下耳機仔細聽，如果可以盡量大聲唱！",
   "cue": "前面號錫會唱兩次 I need，第二次喊完差不多 0:10 左右，就開始喊快版應援！",
+  "platforms": {
+    "apple": {
+      "url": "https://music.apple.com/tw/album/body-to-body/1868862375?i=1868862376",
+      "embed": "https://embed.music.apple.com/tw/album/body-to-body/1868862375?i=1868862376"
+    },
+    "spotify": {
+      "url": "https://open.spotify.com/track/2rKkfc4VZ74FQDc1FF1Zo6?si=3c3742455d5c480f",
+      "embed": "https://open.spotify.com/embed/track/2rKkfc4VZ74FQDc1FF1Zo6"
+    },
+    "youtubeMusic": {
+      "url": "https://music.youtube.com/watch?v=RBaSiVjtKR4&si=ZSQtZxdUjJDTpirC"
+    }
+  },
   "chants": [
     {
       "type": "lyrics",
@@ -7044,6 +7239,19 @@ const SONGS = [
   "id": "idol",
   "title": "IDOL",
   "note": "這邊是繞境時間，直接狂歡就好了！！！！",
+  "platforms": {
+    "apple": {
+      "url": "https://music.apple.com/tw/album/idol/1598730614?i=1598730980",
+      "embed": "https://embed.music.apple.com/tw/album/idol/1598730614?i=1598730980"
+    },
+    "spotify": {
+      "url": "https://open.spotify.com/track/1e8J3XClxZbFmvIHLI8CE4?si=e0a94a43592b4946",
+      "embed": "https://open.spotify.com/embed/track/1e8J3XClxZbFmvIHLI8CE4"
+    },
+    "youtubeMusic": {
+      "url": "https://music.youtube.com/watch?v=9IVhjh15ofo&si=AQKX4EfJ8MOr1Cb5"
+    }
+  },
   "chants": [
     {
       "type": "chant",
@@ -7627,6 +7835,19 @@ const SONGS = [
   "id": "come-over",
   "title": "Come Over",
   "note": "韓國場這首是開手機手電筒應援唷！",
+  "platforms": {
+    "apple": {
+      "url": "https://music.apple.com/tw/album/come-over/6777857411?i=6777857413",
+      "embed": "https://embed.music.apple.com/tw/album/come-over/6777857411?i=6777857413"
+    },
+    "spotify": {
+      "url": "https://open.spotify.com/track/6uvw8GFIqdqaJ4Nr3kN8Rs?si=b2c7860eba6a4131",
+      "embed": "https://open.spotify.com/embed/track/6uvw8GFIqdqaJ4Nr3kN8Rs"
+    },
+    "youtubeMusic": {
+      "url": "https://music.youtube.com/watch?v=nFpknCzOUTM&si=ZsIpepM5hwWU5LYb"
+    }
+  },
   "chants": [
     {
       "type": "lyrics",
@@ -7992,6 +8213,19 @@ const SONGS = [
   "id": "buter",
   "title": "Butter",
   "note": "這是官方2021版本，跟不上就唱整首吧：Ｄ",
+  "platforms": {
+    "apple": {
+      "url": "https://music.apple.com/tw/album/butter/1598660388?i=1598660389",
+      "embed": "https://embed.music.apple.com/tw/album/butter/1598660388?i=1598660389"
+    },
+    "spotify": {
+      "url": "https://open.spotify.com/track/1mWdTewIgB3gtBM3TOSFhB?si=4faef57082e44547",
+      "embed": "https://open.spotify.com/embed/track/1mWdTewIgB3gtBM3TOSFhB"
+    },
+    "youtubeMusic": {
+      "url": "https://music.youtube.com/playlist?list=OLAK5uy_nmBg48I_LG5esvjcMP9XvdUdZb30WpxBs&si=s5pLH1hRly5wEo9Y"
+    }
+  },
   "chants": [
     
     {
@@ -8466,6 +8700,19 @@ const SONGS = [
   "id": "dynamite",
   "title": "Dynamite",
   "note": "這是官方2020版本，基本上現場都在玩！",
+  "platforms": {
+    "apple": {
+      "url": "https://music.apple.com/tw/album/dynamite/1596532185?i=1596532400",
+      "embed": "https://embed.music.apple.com/tw/album/dynamite/1596532185?i=1596532400"
+    },
+    "spotify": {
+      "url": "https://open.spotify.com/track/5QDLhrAOJJdNAmCTJ8xMyW?si=8faebdb558174f25",
+      "embed": "https://open.spotify.com/embed/track/5QDLhrAOJJdNAmCTJ8xMyW"
+    },
+    "youtubeMusic": {
+      "url": "https://music.youtube.com/watch?v=HaEYUJ2aRHs&si=S8BrrS3Tl87vvKZH"
+    }
+  },
   "chants": [
     {
       "type": "chant",
@@ -8959,6 +9206,19 @@ const SONGS = [
   "id": "please",
   "title": "Please",
   "note": "正常巡迴是唱這首！（釜山場改成唱 One More Night）",
+  "platforms": {
+    "apple": {
+      "url": "https://music.apple.com/tw/album/please/1868862375?i=1868862601",
+      "embed": "https://embed.music.apple.com/tw/album/please/1868862375?i=1868862601"
+    },
+    "spotify": {
+      "url": "https://open.spotify.com/track/1XpVhaI4HzWrhRWIpdfyJB?si=06b37575c0e4490e",
+      "embed": "https://open.spotify.com/embed/track/1XpVhaI4HzWrhRWIpdfyJB"
+    },
+    "youtubeMusic": {
+      "url": "https://music.youtube.com/watch?v=3N1k6ir55-Y&si=v2Rpn7ZbQ6ePmVXQ"
+    }
+  },
   "chants": [
     {
       "type": "lyrics",
@@ -9428,6 +9688,19 @@ const SONGS = [
   "id": "one-more-night",
   "title": "One More Night",
   "note": "釜山場限定版，不知道其他場會不會突然掉落！正常巡迴是唱 Please，沒有這首唷！",
+  "platforms": {
+    "apple": {
+      "url": "https://music.apple.com/tw/album/one-more-night/1868862375?i=1868862600",
+      "embed": "https://embed.music.apple.com/tw/album/one-more-night/1868862375?i=1868862600"
+    },
+    "spotify": {
+      "url": "https://open.spotify.com/track/6s3w7SUVtmm68Bw5KrKMh0?si=8046f45554084e0b",
+      "embed": "https://open.spotify.com/embed/track/6s3w7SUVtmm68Bw5KrKMh0"
+    },
+    "youtubeMusic": {
+      "url": "https://music.youtube.com/watch?v=471JvbFq1Mw&si=2-C67jaKy41wTEiI"
+    }
+  },
   "chants": [
     {
       "type": "lyrics",
@@ -9942,6 +10215,19 @@ const SONGS = [
   "id": "into-the-sun",
   "title": "Into the Sun",
   "note": "最後一首了唷！這時候會放煙火～",
+  "platforms": {
+    "apple": {
+      "url": "https://music.apple.com/tw/album/into-the-sun/1868862375?i=1868862606",
+      "embed": "https://embed.music.apple.com/tw/album/into-the-sun/1868862375?i=1868862606"
+    },
+    "spotify": {
+      "url": "https://open.spotify.com/track/1ZNolq7VI7efGlh2hb2VVr?si=ab702ce124f747ba",
+      "embed": "https://open.spotify.com/embed/track/1ZNolq7VI7efGlh2hb2VVr"
+    },
+    "youtubeMusic": {
+      "url": "https://music.youtube.com/watch?v=N_Id6KNQtLw&si=IoE4VzDT2xaYhj6M"
+    }
+  },
   "chants": [
     {
       "type": "lyrics",

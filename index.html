@@ -72,7 +72,7 @@
   <section id="songPage" class="song-page hidden">
 
   <div class="song-header-row">
-    <button class="back-btn" onclick="backHome()">← 歌單</button>
+    <button class="back-btn" onclick="backHome()">← 返回主頁</button>
     <button id="doneBtn" class="done-chip" onclick="toggleDone()">○ 未練習</button>
   </div>
 
@@ -111,6 +111,39 @@
     </div>
   </div>
 
+  <div id="platformSection" class="platform-section hidden">
+    <button
+      id="platformToggle"
+      class="platform-toggle"
+      type="button"
+      onclick="togglePlatformSection()"
+    >
+      <div class="platform-toggle-left">
+
+        <div class="platform-icon">
+          <i data-lucide="headphones"></i>
+        </div>
+
+        <div class="platform-text">
+          <h4>收聽完整歌曲</h4>
+          <p id="platformSubtitle"></p>
+        </div>
+
+      </div>
+
+      <i
+        id="platformToggleIcon"
+        data-lucide="chevron-down"
+        class="platform-arrow"
+      ></i>
+
+    </button>
+
+    <div id="platformContent" class="platform-content hidden">
+      <div id="platformList" class="platform-list"></div>
+    </div>
+  </div>
+
   <div class="song-actions">
     <div class="mode-switch">
       <button id="readModeBtn" onclick="showReadMode()">完整歌詞</button>
@@ -142,20 +175,31 @@
       </div>
     </div>
 
-    <div class="fab-menu song-fab-menu" id="fabMenu">
-      <button class="fab-action song-fab-action" onclick="backHome()">← 歌單</button>
-      <button class="fab-action song-fab-action" onclick="goPrevSong()">← 上一首</button>
-      <button class="fab-action song-fab-action" onclick="goNextSong()">下一首 →</button>
+    <nav class="song-bottom-bar">
+      <button type="button" onclick="goPrevSong()">← 上一首</button>
+      <button type="button" onclick="toggleSetlistSheet()">Setlist</button>
+      <button type="button" onclick="goNextSong()">下一首 →</button>
+    </nav>
 
-      <button class="fab-main" onclick="toggleFab()" aria-label="開啟快捷選單">
-        ☰
-      </button>
-    </div>
+    <div id="setlistOverlay" class="setlist-overlay hidden" onclick="closeSetlistSheet()"></div>
+
+    <section id="setlistSheet" class="setlist-sheet hidden">
+      <div class="setlist-handle"></div>
+
+      <div class="setlist-sheet-header">
+        <div>
+          <p>SETLIST</p>
+          <h3>選擇歌曲</h3>
+        </div>
+        <button type="button" onclick="closeSetlistSheet()">✕</button>
+      </div>
+
+      <div id="setlistSheetList" class="setlist-sheet-list"></div>
   </section>
 
   <script src="songs.js"></script>
-  <script src="app.js"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="app.js"></script>
   <script>
     lucide.createIcons();
   </script>
