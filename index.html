@@ -78,6 +78,38 @@
 
   <h1 id="songTitle">Song Title</h1>
   <p id="songNote">官方 Fan Chant + 現場練習提醒。</p>
+  <div id="songCue" class="song-cue hidden">
+    <div id="songCueText"></div>
+
+    <div id="cuePlayer" class="cue-player hidden">
+      <audio id="songCueAudio"></audio>
+
+      <div class="cue-player-main">
+        <button id="songCuePlay" class="cue-play-btn" type="button">
+          ▶
+        </button>
+
+        <div class="cue-player-body">
+          <div class="cue-player-label">練習參考音檔</div>
+
+          <input
+            id="cueSeek"
+            class="cue-seek"
+            type="range"
+            min="0"
+            max="100"
+            value="0"
+            step="0.1"
+          >
+
+          <div class="cue-time-row">
+            <span id="cueCurrentTime">0:00</span>
+            <span id="cueDuration">0:00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class="song-actions">
     <div class="mode-switch">

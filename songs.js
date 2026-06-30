@@ -2,14 +2,10 @@ const SONGS = [
   {
   "id": "hooligan",
   "title": "Hooligan",
-  "note": "歌曲結束請用力揮舞阿米棒吶喊！！",
+  "note": "演唱會正式開始有1分50秒左右的intro，請在這段時間內準備好！",
+  "cue": "從參考音檔 1:59 前奏變化這邊開始喊 (原曲的 0:07)，喊 7 秒快版，喊完剛好會接上磨刀聲",
+  "cueAudio": "audio/hooligan-intro.mp3",
   "chants": [
-    {
-      "type": "lyrics",
-      "time": "歌詞",
-      "text": "(從 00:07 前奏變化這邊開始喊)",
-      "practiceText": "(從 00:07 前奏變化這邊開始喊)"
-    },
     {
       "type": "chant",
       "time": "應援",
@@ -3934,13 +3930,8 @@ const SONGS = [
   "id": "normal",
   "title": "NORMAL",
   "note": "歌曲結束請用力揮舞阿米棒吶喊！！",
+  "cue": "音樂一下就開始，喊 12 秒慢版，喊完差不多 0:12 剛好接第一句歌詞",
   "chants": [
-    {
-      "type": "lyrics",
-      "time": "歌詞",
-      "text": "(從 00:01 開始喊)",
-      "practiceText": "(從 00:01 開始喊)"
-    },
     {
       "type": "chant",
       "time": "應援",
@@ -4991,13 +4982,8 @@ const SONGS = [
   "id": "mic-drop",
   "title": "MIC Drop",
   "note": "「咪啊餒翁媽」那邊請大聲給我喊下去！！！！！",
+  "cue": "噗滋噗滋之後就可以開始喊了，喊慢版兩遍謝謝🙏",
   "chants": [
-    {
-      "type": "lyrics",
-      "time": "歌詞",
-      "text": "（噗滋噗滋之後就可以開始喊了，喊兩遍謝謝🙏）",
-      "practiceText": "（噗滋噗滋之後就可以開始喊了，喊兩遍謝謝🙏）"
-    },
     {
       "type": "chant",
       "time": "應援",
@@ -5666,13 +5652,8 @@ const SONGS = [
   "id": "fya",
   "title": "FYA",
   "note": "後面跟 FIRE 接在一起，忘記也不要擔心，玩就對了！",
+  "cue": "從 0:07 開始喊，或是數 8 次喘氣也可以",
   "chants": [
-    {
-      "type": "lyrics",
-      "time": "歌詞",
-      "text": "(從 00:07 開始喊，或是數 8 次喘氣也可以)",
-      "practiceText": "(從 00:07 開始喊，或是數 8 次喘氣也可以)"
-    },
     {
       "type": "chant",
       "time": "應援",
@@ -6650,7 +6631,8 @@ const SONGS = [
   {
   "id": "body-to-body",
   "title": "Body to Body",
-  "note": "歌曲結束請用力揮舞阿米棒吶喊！！",
+  "note": "阿里郎那一段他們會拿下耳機仔細聽，如果可以盡量大聲唱！",
+  "cue": "前面號錫會唱兩次 I need，第二次喊完差不多 0:10 左右，就開始喊快版應援！",
   "chants": [
     {
       "type": "lyrics",
@@ -6663,12 +6645,6 @@ const SONGS = [
       "time": "歌詞",
       "text": "🐿️ j-hope: I need (第二次)",
       "practiceText": "🐿️ j-hope: I need (第二次)"
-    },
-    {
-      "type": "lyrics",
-      "time": "歌詞",
-      "text": "(從第二次之後開始喊)",
-      "practiceText": "(從第二次之後開始喊)"
     },
     {
       "type": "chant",
@@ -8489,7 +8465,7 @@ const SONGS = [
   {
   "id": "dynamite",
   "title": "Dynamite",
-  "note": "這是官方2020版本，跟不上就唱整首吧：Ｄ",
+  "note": "這是官方2020版本，基本上現場都在玩！",
   "chants": [
     {
       "type": "chant",
@@ -9450,8 +9426,8 @@ const SONGS = [
   },
   {
   "id": "one-more-night",
-  "title": "One More Night (釜山場)",
-  "note": "限定版，不知道會不會突然掉落！正常巡迴是唱 Please！",
+  "title": "One More Night",
+  "note": "釜山場限定版，不知道其他場會不會突然掉落！正常巡迴是唱 Please，沒有這首唷！",
   "chants": [
     {
       "type": "lyrics",

@@ -267,7 +267,7 @@ h1 {
 
 .chant-line.cheer {
   border-color: #F6C453;
-  background: #181026;
+  background: rgba(246, 196, 83, 0.12);
 }
 
 /* Practice */
@@ -327,7 +327,7 @@ h1 {
 }
 
 .badge.cheer {
-  background: rgba(185, 156, 255, 0.16);
+  background: rgba(246, 196, 83, 0.12);
   color: #F6C453;
 }
 
@@ -510,7 +510,7 @@ h1 {
 
 .practice-card.current.cheer {
   background:
-    radial-gradient(circle at top left, rgba(255, 210, 87, 0.22), transparent 36%),
+    radial-gradient(circle at top left, rgba(246, 196, 83, 0.12), transparent 36%),
     linear-gradient(180deg, #24172f, #130d1f);
   border-color: #ffd257;
 }
@@ -626,7 +626,7 @@ button {
 /* Cheer = gold */
 .chant-line.cheer {
   border-color: rgba(246, 196, 83, 0.7);
-  background: #181026;
+  background: rgba(246, 196, 83, 0.12);
   box-shadow: 0 0 0 1px rgba(246, 196, 83, 0.08);
 }
 
@@ -723,7 +723,7 @@ button {
 }
 
 .practice-card.next.cheer {
-  border-color: rgba(246, 196, 83, 0.25);
+  border-color: rgba(246, 196, 83, 0.12);
 }
 
 .chant-line.has-highlight.sing .chant-text,
@@ -834,6 +834,28 @@ button {
 
 .song-page {
   padding-bottom: 110px;
+}
+
+.song-cue {
+  margin: 18px 0 0;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: rgba(246, 197, 83, 0);
+  border: 1px solid rgba(246, 196, 83, 0.36);
+  color: #f6c453;
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1.5;
+}
+
+.song-cue::before {
+  content: "切入提示";
+  display: block;
+  margin-bottom: 6px;
+  color: rgba(246, 196, 83, 0.72);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
 }
 
 /* v1.2 Floating Quick Menu */
@@ -1043,4 +1065,70 @@ footer,
 
 .song-fab-menu .fab-main {
   margin-top: 4px;
+}
+
+/* Cue audio player */
+
+.cue-player {
+  margin-top: 14px;
+  padding: 14px;
+  border-radius: 18px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03)),
+    rgba(20, 15, 26, .42);
+  border: 1px solid rgba(246, 196, 83, .22);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.08);
+}
+
+.cue-player-main {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.cue-play-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: 1px solid rgba(246, 196, 83, .42);
+  background: rgba(246, 197, 83, 0);
+  color: #f6c453;
+  font-size: 18px;
+  font-weight: 900;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.cue-play-btn:hover {
+  background: rgba(246, 196, 83, .22);
+}
+
+.cue-player-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.cue-player-label {
+  margin-bottom: 8px;
+  color: rgba(246, 196, 83, .9);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: .06em;
+}
+
+.cue-seek {
+  width: 100%;
+  height: 6px;
+  margin: 0;
+  accent-color: #f6c453;
+  cursor: pointer;
+}
+
+.cue-time-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6px;
+  color: rgba(255,255,255,.58);
+  font-size: 12px;
+  font-weight: 700;
 }

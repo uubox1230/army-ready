@@ -1,4 +1,4 @@
-const CACHE_NAME = "army-ready-v1.3.1";
+const CACHE_NAME = "army-ready-v1.3.2";
 
 const ASSETS = [
   "./",
@@ -9,7 +9,8 @@ const ASSETS = [
   "./manifest.json",
   "./android-chrome-2000x2000.png",
   "./icons/instagram.svg",
-  "./icons/x.svg"
+  "./icons/x.svg",
+  "./audio/hooligan-intro.mp3"
 ];
 
 self.addEventListener("install", event => {

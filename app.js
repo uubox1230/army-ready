@@ -65,6 +65,11 @@ function openSong(index) {
   closeHomeFab();
   closeFab();
 
+  const currentAudio = document.getElementById("songCueAudio");
+  if (currentAudio) {
+    currentAudio.pause();
+  }
+
   currentSongIndex = index;
   practiceIndex = 0;
 
@@ -79,7 +84,8 @@ function openSong(index) {
   document.getElementById("songTitle").textContent = song.title;
   document.getElementById("songNote").textContent =
     song.note || "官方 Fan Chant + 現場練習提醒。";
-
+  
+  updateSongCue(song);
   renderChants();
   showReadMode();
   updateDoneButton();
@@ -417,6 +423,42 @@ function updateDoneButton() {
   doneBtn.classList.toggle("active", isDone);
 }
 
+function updateSongCue(song) {
+  const songCue = document.getElementById("songCue");
+  const songCueText = document.getElementById("songCueText");
+  const songCueAudio = document.getElementById("songCueAudio");
+  const cuePlayer = document.getElementById("cuePlayer");
+  const songCuePlay = document.getElementById("songCuePlay");
+  const cueSeek = document.getElementById("cueSeek");
+  const cueCurrentTime = document.getElementById("cueCurrentTime");
+  const cueDuration = document.getElementById("cueDuration");
+
+  if (song.cue || song.cueAudio) {
+    songCue.classList.remove("hidden");
+    songCueText.textContent = song.cue || "";
+
+    if (song.cueAudio) {
+      songCueAudio.pause();
+      songCueAudio.src = song.cueAudio;
+      cuePlayer.classList.remove("hidden");
+      songCuePlay.textContent = "▶";
+      cueSeek.value = 0;
+      cueCurrentTime.textContent = "0:00";
+      cueDuration.textContent = "0:00";
+    } else {
+      songCueAudio.pause();
+      songCueAudio.removeAttribute("src");
+      cuePlayer.classList.add("hidden");
+    }
+  } else {
+    songCue.classList.add("hidden");
+    songCueText.textContent = "";
+    songCueAudio.pause();
+    songCueAudio.removeAttribute("src");
+    cuePlayer.classList.add("hidden");
+  }
+}
+
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("./service-worker.js").then(registration => {
     registration.update();
@@ -526,6 +568,7 @@ function restorePageFromHash() {
       document.getElementById("songNote").textContent =
         song.note || "官方 Fan Chant + 現場練習提醒。";
 
+      updateSongCue(song);
       renderChants();
       showReadMode();
       updateDoneButton();
@@ -540,6 +583,54 @@ function restorePageFromHash() {
 
   renderHome();
   scrollToTopSafe();
+}
+
+const songCueAudio = document.getElementById("songCueAudio");
+const songCuePlay = document.getElementById("songCuePlay");
+const cuePlayer = document.getElementById("cuePlayer");
+const cueSeek = document.getElementById("cueSeek");
+const cueCurrentTime = document.getElementById("cueCurrentTime");
+const cueDuration = document.getElementById("cueDuration");
+
+function formatTime(seconds) {
+  if (!Number.isFinite(seconds)) return "0:00";
+
+  const minutes = Math.floor(seconds / 60);
+  const secs = Math.floor(seconds % 60).toString().padStart(2, "0");
+
+  return `${minutes}:${secs}`;
+}
+
+if (songCueAudio && songCuePlay && cueSeek) {
+  songCuePlay.addEventListener("click", async () => {
+    if (songCueAudio.paused) {
+      await songCueAudio.play();
+      songCuePlay.textContent = "⏸";
+    } else {
+      songCueAudio.pause();
+      songCuePlay.textContent = "▶";
+    }
+  });
+
+  songCueAudio.addEventListener("loadedmetadata", () => {
+    cueSeek.max = songCueAudio.duration;
+    cueDuration.textContent = formatTime(songCueAudio.duration);
+  });
+
+  songCueAudio.addEventListener("timeupdate", () => {
+    cueSeek.value = songCueAudio.currentTime;
+    cueCurrentTime.textContent = formatTime(songCueAudio.currentTime);
+  });
+
+  cueSeek.addEventListener("input", () => {
+    songCueAudio.currentTime = cueSeek.value;
+  });
+
+  songCueAudio.addEventListener("ended", () => {
+    songCuePlay.textContent = "▶";
+    cueSeek.value = 0;
+    cueCurrentTime.textContent = "0:00";
+  });
 }
 
 restorePageFromHash();
