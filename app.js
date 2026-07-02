@@ -416,7 +416,7 @@ function startKaraoke() {
   }, 80);
 
   const startBtn = document.getElementById("karaokeStartBtn");
-  if (startBtn) startBtn.textContent = "⏸ 暫停";
+  if (startBtn) startBtn.textContent = "Ⅱ 暫停";
 }
 
 function pauseKaraoke() {
