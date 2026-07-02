@@ -1932,11 +1932,6 @@ body.sheet-open {
   padding: 34vh 0 42vh;
 }
 
-body.karaoke-lock,
-body.karaoke-lock .song-page {
-  overflow: hidden;
-}
-
 body.karaoke-lock .song-bottom-bar {
   position: fixed;
   left: 50%;
@@ -2233,18 +2228,6 @@ body {
   background: #09070f;
 }
 
-body.karaoke-lock {
-  height: 100dvh;
-  overflow: hidden;
-  overscroll-behavior: none;
-}
-
-body.karaoke-lock .song-page {
-  height: 100dvh;
-  min-height: 100dvh;
-  overflow: hidden;
-}
-
 body.karaoke-lock .karaoke-mode {
   height: calc(100dvh - 160px);
   overflow: hidden;
@@ -2253,6 +2236,32 @@ body.karaoke-lock .karaoke-mode {
 body.karaoke-lock .karaoke-scroll-list {
   height: calc(100dvh - 330px);
   max-height: calc(100dvh - 330px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* v1.4.6 Karaoke page scroll unlock fix */
+
+body.karaoke-lock {
+  height: auto !important;
+  overflow-y: auto !important;
+  overscroll-behavior-y: auto !important;
+}
+
+body.karaoke-lock .song-page {
+  height: auto !important;
+  min-height: 100vh !important;
+  overflow: visible !important;
+}
+
+body.karaoke-lock .karaoke-mode {
+  height: calc(100dvh - 210px);
+  min-height: 520px;
+  overflow: hidden;
+}
+
+body.karaoke-lock .karaoke-scroll-list {
   overflow-y: auto;
   overscroll-behavior: contain;
   -webkit-overflow-scrolling: touch;
