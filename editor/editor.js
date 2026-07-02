@@ -1,4 +1,145 @@
+let timingSong = null;
+let timingSongIndex = 0;
+let timingLineIndex = 0;
+let timingStart = 0;
+let timingOffset = 0;
+let timingTimer = null;
+let isTimingRunning = false;
+
+window.addEventListener("DOMContentLoaded", () => {
+  setupTimingEditor();
+});
+
 let editorLines = [];
+
+function setupTimingEditor() {
+  const select = document.getElementById("timingSongSelect");
+  if (!select || typeof SONGS === "undefined") return;
+
+  select.innerHTML = SONGS.map((song, index) => `
+    <option value="${index}">${String(index + 1).padStart(2, "0")} ${song.title}</option>
+  `).join("");
+
+  loadTimingSong();
+
+  document.addEventListener("keydown", event => {
+    const tag = document.activeElement.tagName.toLowerCase();
+
+    if (tag === "input" || tag === "textarea" || tag === "select") return;
+
+    if (event.code === "Space") {
+      event.preventDefault();
+      markTiming();
+    }
+
+    if (event.code === "ArrowLeft") {
+      event.preventDefault();
+      prevTimingLine();
+    }
+
+    if (event.code === "ArrowRight") {
+      event.preventDefault();
+      nextTimingLine();
+    }
+  });
+}
+
+function loadTimingSong() {
+  const select = document.getElementById("timingSongSelect");
+  timingSongIndex = Number(select.value);
+  timingSong = JSON.parse(JSON.stringify(SONGS[timingSongIndex]));
+  timingLineIndex = 0;
+
+  resetTiming();
+  renderTimingEditor();
+}
+
+function startTiming() {
+  if (isTimingRunning) return;
+
+  isTimingRunning = true;
+  timingStart = performance.now() - timingOffset * 1000;
+
+  timingTimer = setInterval(() => {
+    timingOffset = (performance.now() - timingStart) / 1000;
+    updateTimingClock();
+  }, 50);
+}
+
+function pauseTiming() {
+  isTimingRunning = false;
+  clearInterval(timingTimer);
+}
+
+function resetTiming() {
+  pauseTiming();
+  timingOffset = 0;
+  updateTimingClock();
+}
+
+function updateTimingClock() {
+  const clock = document.getElementById("timingClock");
+  if (clock) clock.textContent = `${timingOffset.toFixed(2)}s`;
+}
+
+function markTiming() {
+  if (!timingSong) return;
+
+  timingSong.chants[timingLineIndex].at = Number(timingOffset.toFixed(2));
+
+  if (timingLineIndex < timingSong.chants.length - 1) {
+    timingLineIndex++;
+  }
+
+  renderTimingEditor();
+}
+
+function prevTimingLine() {
+  if (timingLineIndex > 0) {
+    timingLineIndex--;
+    renderTimingEditor();
+  }
+}
+
+function nextTimingLine() {
+  if (timingSong && timingLineIndex < timingSong.chants.length - 1) {
+    timingLineIndex++;
+    renderTimingEditor();
+  }
+}
+
+function renderTimingEditor() {
+  if (!timingSong) return;
+
+  const current = timingSong.chants[timingLineIndex];
+  document.getElementById("timingCurrentLine").textContent =
+    current.practiceText || current.text;
+
+  const list = document.getElementById("timingLineList");
+
+  list.innerHTML = timingSong.chants.map((line, index) => `
+    <button
+      class="timing-line-item ${index === timingLineIndex ? "active" : ""} ${line.type || ""}"
+      onclick="jumpTimingLine(${index})"
+    >
+      <span>${String(index + 1).padStart(2, "0")}</span>
+      <strong>${line.at !== undefined ? line.at + "s" : "未標記"}</strong>
+      <em>${escapeHtml(line.practiceText || line.text)}</em>
+    </button>
+  `).join("");
+}
+
+function jumpTimingLine(index) {
+  timingLineIndex = index;
+  renderTimingEditor();
+}
+
+function exportTimedSong() {
+  if (!timingSong) return;
+
+  document.getElementById("outputJson").value =
+    JSON.stringify(timingSong, null, 2);
+}
 
 function parseRawText() {
   const rawText = document.getElementById("rawText").value;

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ARMY READY Studio</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="studio.css">
+</head>
+
+<body>
+
+<div class="studio">
+
+    <!-- ========================= -->
+    <!-- Sidebar -->
+    <!-- ========================= -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <h1>ARMY READY</h1>
+
+            <p>Performance Studio</p>
+
+        </div>
+
+        <section class="card">
+
+            <h3>🎵 Song</h3>
+
+            <select id="songSelect"></select>
+
+        </section>
+
+        <section class="card">
+
+            <h3>⏱ Timer</h3>
+
+            <div id="timer" class="timer">
+
+                00:00.00
+
+            </div>
+
+        </section>
+
+        <section class="card">
+
+            <div class="progress-header">
+
+                <h3>Progress</h3>
+
+                <span id="progressText">
+
+                    0 / 0
+
+                </span>
+
+            </div>
+
+            <div class="progress-bar">
+
+                <div id="progressFill"></div>
+
+            </div>
+
+        </section>
+
+        <section class="card controls">
+
+            <button id="startBtn" class="btn btn-primary">
+
+                ▶ Start
+
+            </button>
+
+            <button id="pauseBtn" class="btn">
+
+                ⏸ Pause
+
+            </button>
+
+            <button id="resetBtn" class="btn">
+
+                ↺ Reset
+
+            </button>
+
+            <button id="saveBtn" class="btn btn-success">
+
+                💾 Save Song
+
+            </button>
+
+            <button id="exportBtn" class="btn">
+
+                ⬇ Export songs.js
+
+            </button>
+
+        </section>
+
+    </aside>
+
+    <!-- ========================= -->
+    <!-- Main -->
+    <!-- ========================= -->
+
+    <main class="main">
+
+        <header class="main-header">
+
+            <div>
+
+                <p class="eyebrow">
+
+                    CURRENT SONG
+
+                </p>
+
+                <h2 id="songTitle">
+
+                    Hooligan
+
+                </h2>
+
+            </div>
+
+            <div class="shortcut">
+
+                <span><kbd>Space</kbd> Mark</span>
+
+                <span><kbd>←</kbd> Prev</span>
+
+                <span><kbd>→</kbd> Next</span>
+
+                <span><kbd>⌫</kbd> Undo</span>
+
+            </div>
+
+        </header>
+
+        <!-- Previous -->
+
+        <section class="line-card previous">
+
+            <div class="line-label">
+
+                Previous
+
+            </div>
+
+            <div id="previousLine" class="line-text">
+
+                -
+
+            </div>
+
+        </section>
+
+        <!-- Current -->
+
+        <section class="line-card current">
+
+            <div class="line-label">
+
+                Current
+
+            </div>
+
+            <div id="currentLine" class="line-text">
+
+                Press Start
+
+            </div>
+
+        </section>
+
+        <!-- Next -->
+
+        <section class="line-card next">
+
+            <div class="line-label">
+
+                Next
+
+            </div>
+
+            <div id="nextLine" class="line-text">
+
+                -
+
+            </div>
+
+        </section>
+
+        <!-- Timeline -->
+
+        <section class="timeline-card">
+
+            <div class="timeline-header">
+
+                <h3>Timeline</h3>
+
+            </div>
+
+            <div id="timelineList" class="timeline-list">
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="../songs.js"></script>
+
+<script src="studio.js"></script>
+
+</body>
+</html>

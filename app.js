@@ -3,7 +3,17 @@ if ("scrollRestoration" in history) {
 }
 
 let currentSongIndex = 0;
-let practiceIndex = 0;
+
+/* =========================
+   Karaoke v3 State
+========================= */
+
+let karaokeIndex = -1;
+let karaokeTimer = null;
+let karaokeStartTime = 0;
+let karaokeElapsed = 0;
+let isKaraokeRunning = false;
+let karaokeBuilt = false;
 
 const doneKey = "army-ready-done";
 
@@ -72,7 +82,6 @@ function openSong(index) {
   }
 
   currentSongIndex = index;
-  practiceIndex = 0;
 
   const song = SONGS[index];
   const songId = song.id;
@@ -137,15 +146,24 @@ function toggleHomeFab() {
 
 function togglePlatformSection() {
   const content = document.getElementById("platformContent");
+  const picker = document.getElementById("platformPicker");
+  const list = document.getElementById("platformList");
   const icon = document.getElementById("platformToggleIcon");
 
-  if (!content || !icon) return;
+  if (!content || !picker || !list) return;
 
-  const isHidden = content.classList.toggle("hidden");
+  const willOpen = content.classList.contains("hidden");
 
-  icon.style.transform = isHidden
-    ? "rotate(0deg)"
-    : "rotate(180deg)";
+  if (willOpen) {
+    content.classList.remove("hidden");
+    picker.classList.remove("hidden");
+    list.classList.add("hidden");
+    list.innerHTML = "";
+
+    if (icon) icon.style.transform = "rotate(180deg)";
+  } else {
+    closePlatformContent();
+  }
 }
 
 function closeHomeFab() {
@@ -159,6 +177,7 @@ function closeHomeFab() {
 document.addEventListener("click", event => {
   const homeFab = document.getElementById("homeFabMenu");
   const songFab = document.getElementById("fabMenu");
+  const platformSection = document.getElementById("platformSection");
 
   if (homeFab && !homeFab.contains(event.target)) {
     closeHomeFab();
@@ -167,6 +186,12 @@ document.addEventListener("click", event => {
   if (songFab && !songFab.contains(event.target)) {
     closeFab();
   }
+
+  if (platformSection && platformSection.contains(event.target)) {
+    return;
+  }
+
+  closePlatformContent();
 });
 
 function closeFab() {
@@ -212,11 +237,35 @@ function renderSetlistSheet() {
   });
 }
 
+function centerActiveSetlistItem() {
+  const list = document.getElementById("setlistSheetList");
+  const active = list?.querySelector(".setlist-sheet-item.active");
+
+  if (!list || !active) return;
+
+  const target =
+    active.offsetTop -
+    list.clientHeight / 2 +
+    active.clientHeight / 2;
+
+  list.scrollTo({
+    top: Math.max(0, target),
+    behavior: "instant"
+  });
+}
+
 function openSetlistSheet() {
   renderSetlistSheet();
+
   document.getElementById("setlistOverlay").classList.remove("hidden");
   document.getElementById("setlistSheet").classList.remove("hidden");
   document.body.classList.add("sheet-open");
+
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      centerActiveSetlistItem();
+    });
+  });
 }
 
 function closeSetlistSheet() {
@@ -249,56 +298,43 @@ function renderChants() {
 
 function renderHighlight(line) {
   if (line.replaceText) {
-  const text = line.text || "";
-  const replaceText = line.replaceText;
-  const safeNewText = escapeHtml(line.practiceText || line.highlight || "");
+    const text = line.text || "";
+    const replaceText = line.replaceText;
+    const safeNewText = escapeHtml(line.practiceText || line.highlight || "");
 
-  const originalWithStrike = escapeHtml(text).replace(
-    escapeHtml(replaceText),
-    `<span class="replace-original-inline">${escapeHtml(replaceText)}</span>`
-  );
+    const originalWithStrike = escapeHtml(text).replace(
+      escapeHtml(replaceText),
+      `<span class="replace-original-inline">${escapeHtml(replaceText)}</span>`
+    );
 
-  return `
-    <span class="replace-line">${originalWithStrike}</span>
-    <span class="replace-hint">↓ 改喊</span>
-    <span class="replace-new ${line.type || ""}">
-      ${safeNewText}
-    </span>
-  `;
+    return `
+      <span class="replace-line">${originalWithStrike}</span>
+      <span class="replace-hint">↓ 改喊</span>
+      <span class="replace-new ${line.type || ""}">
+        ${safeNewText}
+      </span>
+    `;
   }
 
   const text = line.text || "";
-  const highlight = line.highlight || line.practiceText;
+  const highlights = Array.isArray(line.highlight)
+    ? line.highlight
+    : [line.highlight || line.practiceText];
 
-  if (!highlight || highlight === text) {
-    return escapeHtml(text);
-  }
+  let safeText = escapeHtml(text);
 
-  const safeText = escapeHtml(text);
-  const safeHighlight = escapeHtml(highlight);
-  const highlightIndex = line.highlightIndex || 0;
+  highlights.forEach(h => {
+    if (!h || h === text) return;
 
-  const parts = safeText.split(safeHighlight);
+    const safeHighlight = escapeHtml(h);
 
-  if (parts.length <= 1) {
-    return safeText;
-  }
-
-  let result = "";
-
-  parts.forEach((part, index) => {
-    result += part;
-
-    if (index < parts.length - 1) {
-      if (index === highlightIndex) {
-        result += `<span class="inline-highlight ${line.type || ""}">${safeHighlight}</span>`;
-      } else {
-        result += safeHighlight;
-      }
-    }
+    safeText = safeText.replace(
+      safeHighlight,
+      `<span class="inline-highlight ${line.type || ""}">${safeHighlight}</span>`
+    );
   });
 
-  return result;
+  return safeText;
 }
 
 function escapeHtml(text) {
@@ -313,135 +349,350 @@ function escapeHtml(text) {
 function showReadMode() {
   document.getElementById("readMode").classList.remove("hidden");
   document.getElementById("practiceMode").classList.add("hidden");
+  document.body.classList.remove("karaoke-lock");
   
   updateModeButtons("read");
 }
 
 function startPractice() {
+  pauseKaraoke();
+
   document.getElementById("readMode").classList.add("hidden");
   document.getElementById("practiceMode").classList.remove("hidden");
+  document.body.classList.add("karaoke-lock");
 
+  karaokeIndex = -1;
+  karaokeElapsed = 0;
+  isKaraokeRunning = false;
+  karaokeBuilt = false;
+
+  const startBtn = document.getElementById("karaokeStartBtn");
+  if (startBtn) startBtn.textContent = "▶ 同步開始";
+
+  buildKaraoke();
+  activateKaraokeLine(-1);
+  updateKaraokeClock();
+  updateModeButtons("practice");
+
+  document.getElementById("practiceMode")?.scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+}
+
+function toggleKaraoke() {
+  const lines = getKaraokeLines();
+  const lastAt = Number(lines[lines.length - 1]?.at || 0);
+
+  if (karaokeElapsed >= lastAt) {
+    restartKaraoke();
+    return;
+  }
+
+  if (isKaraokeRunning) {
+    pauseKaraoke();
+  } else {
+    startKaraoke();
+  }
+}
+
+function startKaraoke() {
+  const lines = getKaraokeLines();
+
+  if (!lines.length) return;
+
+  isKaraokeRunning = true;
+
+  karaokeStartTime =
+    performance.now() - karaokeElapsed * 1000;
+
+  clearInterval(karaokeTimer);
+
+  karaokeTimer = setInterval(() => {
+    karaokeElapsed =
+      (performance.now() - karaokeStartTime) / 1000;
+
+    updateKaraokeIndex();
+  }, 80);
+
+  const startBtn = document.getElementById("karaokeStartBtn");
+  if (startBtn) startBtn.textContent = "⏸ 暫停";
+}
+
+function pauseKaraoke() {
+  isKaraokeRunning = false;
+  clearInterval(karaokeTimer);
+
+  const startBtn = document.getElementById("karaokeStartBtn");
+  if (startBtn) startBtn.textContent = "▶ 繼續同步";
+}
+
+function restartKaraoke() {
+  karaokeElapsed = 0;
+  activateKaraokeLine(-1);
+  updateKaraokeClock();
+  startKaraoke();
+}
+
+function getKaraokeLines() {
   const song = SONGS[currentSongIndex];
 
-  song.practiceLines = song.chants.filter(line =>
-    line.type === "sing" ||
-    line.type === "chant" ||
-    line.type === "cheer"
-  );
-
-  if (song.practiceLines.length === 0) {
-    song.practiceLines = [
-      {
-        type: "cheer",
-        text: "這首歌的練習內容還在整理中 💜"
-      }
-    ];
-  }
-
-  practiceIndex = 0;
-  showPracticeLine();
-
-  updateModeButtons("practice");
+  return song.practiceLines ||
+    song.chants.filter(line =>
+      line.at !== undefined && line.at !== null
+    );
 }
 
-function showPracticeLine() {
-  const lines =
-    SONGS[currentSongIndex].practiceLines ||
-    SONGS[currentSongIndex].chants;
+function updateKaraokeIndex(){
 
-  const current = lines[practiceIndex];
-  const next = lines[practiceIndex + 1];
+    const lines=getKaraokeLines();
+
+    if(!lines.length)return;
+
+    let activeIndex=-1;
+
+    for(let i=0;i<lines.length;i++){
+
+        if(karaokeElapsed>=Number(lines[i].at)){
+
+            activeIndex=i;
+
+        }else{
+
+            break;
+
+        }
+
+    }
+
+    if(activeIndex!==karaokeIndex){
+
+        activateKaraokeLine(activeIndex);
+
+    }
+
+    updateKaraokeClock();
+
+    const lastIndex=lines.length-1;
+    const lastAt=Number(lines[lastIndex].at);
+
+    if (
+  karaokeIndex === lastIndex &&
+  karaokeElapsed >= lastAt
+    ) {
+
+      pauseKaraoke();
+
+      const startBtn=document.getElementById("karaokeStartBtn");
+
+      if (startBtn) {
+        startBtn.textContent = "↺ 重新開始";
+      }
+
+      }
+
+}
+
+function buildKaraoke() {
+  const wrap = document.getElementById("karaokeLyrics");
+  if (!wrap) return;
+
+  const lines = getKaraokeLines();
+
+  wrap.innerHTML = "";
+
+  // Intro
+  wrap.appendChild(createKaraokeLine({
+    text: "(...)",
+    type: "intro"
+  }, -1));
+
+  // Song
+  lines.forEach((line, index) => {
+    wrap.appendChild(createKaraokeLine(line, index));
+  });
+
+  karaokeBuilt = true;
+}
+
+function createKaraokeLine(line, index) {
+
+  const button = document.createElement("button");
+
+  button.type = "button";
+
+  button.className = "karaoke-line future";
+
+  button.dataset.index = index;
+
+  button.onclick = () => jumpKaraokeTo(index);
+
+  button.innerHTML = renderKaraokeText(line);
+
+  return button;
+
+}
+
+function getKaraokeElement(index){
+
+    return document.querySelector(
+        `.karaoke-line[data-index="${index}"]`
+    );
+
+}
+
+function activateKaraokeLine(index) {
+
+  if (!karaokeBuilt) return;
+
+  const wrap = document.getElementById("karaokeLyrics");
+  if (!wrap) return;
+
+  // 清除所有狀態
+  wrap.querySelectorAll(".karaoke-line").forEach(el => {
+    el.classList.remove("active", "past", "future");
+  });
+
+  // 更新目前 index
+  karaokeIndex = index;
+
+  wrap.querySelectorAll(".karaoke-line").forEach(el => {
+
+    const lineIndex = Number(el.dataset.index);
+
+    if (lineIndex < index) {
+
+      el.classList.add("past");
+
+    } else if (lineIndex === index) {
+
+      el.classList.add("active");
+
+    } else {
+
+      el.classList.add("future");
+
+    }
+
+  });
+
+  // Intro (...)
+  if (index === -1) {
+
+    const intro = getKaraokeElement(-1);
+
+    if (intro) {
+      intro.classList.remove("future");
+      intro.classList.add("active");
+
+      scrollKaraokeToCenter(intro);
+    }
+
+    return;
+  }
+
+  const active = getKaraokeElement(index);
+
+  if (active) {
+    scrollKaraokeToCenter(active);
+  }
+
+}
+
+function scrollKaraokeToCenter(active) {
+  const wrap = document.getElementById("karaokeLyrics");
+  if (!wrap || !active) return;
+
+  const target =
+    active.offsetTop -
+    wrap.clientHeight / 2 +
+    active.clientHeight / 2;
+
+  wrap.scrollTo({
+    top: Math.max(0, target),
+    behavior: "smooth"
+  });
+}
+
+function jumpKaraokeTo(index) {
+  const lines = getKaraokeLines();
+
+  if (index < 0) {
+    karaokeElapsed = 0;
+
+    if (isKaraokeRunning) {
+      karaokeStartTime = performance.now();
+    }
+
+    activateKaraokeLine(-1);
+    updateKaraokeClock();
+    return;
+  }
+
+  const line = lines[index];
+  if (!line) return;
+
+  karaokeElapsed = Number(line.at);
+
+  if (isKaraokeRunning) {
+    karaokeStartTime =
+      performance.now() - karaokeElapsed * 1000;
+  }
+
+  activateKaraokeLine(index);
+  updateKaraokeClock();
+}
+
+function renderKaraokeText(line) {
+  if (!line) return "";
+
+  if (line.replaceText) {
+    return renderHighlight(line);
+  }
+
+  const text = line.text || line.practiceText || "";
+
+  if (!line.highlight && line.type !== "lyrics") {
+    return `<span class="karaoke-highlight ${line.type || ""}">${escapeHtml(text)}</span>`;
+  }
+
+  const highlights = Array.isArray(line.highlight)
+    ? line.highlight
+    : [line.highlight || line.practiceText];
+
+  let safeText = escapeHtml(text);
+
+  highlights.forEach(h => {
+    if (!h || h === text) return;
+
+    const safeHighlight = escapeHtml(h);
+
+    safeText = safeText.replace(
+      safeHighlight,
+      `<span class="karaoke-highlight ${line.type || ""}">${safeHighlight}</span>`
+    );
+  });
+
+  return safeText;
+}
+
+function updateKaraokeClock() {
+  const lines = getKaraokeLines();
+  const last = Number(lines[lines.length - 1]?.at || 0);
+
+  const displayTime = Math.min(karaokeElapsed, last);
 
   document.getElementById("practiceCounter").textContent =
-    `${practiceIndex + 1} / ${lines.length}`;
-
-  const currentBadge = document.getElementById("practiceBadge");
-  currentBadge.className = `badge ${current.type || "default"}`;
-  currentBadge.textContent = getBadge(current.type);
-
-  document.getElementById("practiceText").innerHTML =
-  renderPracticeText(current);
-
-  const nextBadge = document.getElementById("nextBadge");
-
-  if (next) {
-  const nextCard = document.getElementById("nextCard");
-
-  nextCard.className = `practice-card next ${next.type || "default"}`;
-  nextBadge.className = `badge ${next.type || "default"}`;
-  nextBadge.textContent = getBadge(next.type);
-
-  document.getElementById("nextPracticeText").innerHTML =
-    renderPracticeText(next);
-  } else {
-  document.getElementById("nextCard").className = "practice-card next cheer";
-  nextBadge.className = "badge cheer";
-  nextBadge.textContent = "💜";
-  document.getElementById("nextPracticeText").textContent =
-    "最後一句，準備完成！";
-  }
-
-    document.getElementById("currentCard").className =
-    `practice-card current ${current.type || "default"}`;
+    `${formatKaraokeTime(displayTime)} / ${formatKaraokeTime(last)}`;
 }
 
-function renderPracticeText(line) {
-  const hasPartialHighlight =
-    line.highlight && line.practiceText && line.practiceText !== line.text;
+function formatKaraokeTime(sec) {
+  sec = Math.max(0, Number(sec) || 0);
 
-  const mainText = line.highlight
-    ? renderHighlight(line)
-    : `<span class="practice-full ${line.type || "default"}">${escapeHtml(line.practiceText || line.text)}</span>`;
+  const m = Math.floor(sec / 60);
+  const s = Math.floor(sec % 60);
 
-  return `
-    <div>${mainText}</div>
-    ${
-      hasPartialHighlight
-        ? `<div class="practice-target ${line.type || "default"}">練習：${escapeHtml(line.practiceText)}</div>`
-        : ""
-    }
-    ${line.roman ? `<div class="practice-roman">${escapeHtml(line.roman)}</div>` : ""}
-  `;
-}
-
-function nextLine() {
-  const lines =
-    SONGS[currentSongIndex].practiceLines ||
-    SONGS[currentSongIndex].chants;
-
-  if (practiceIndex < lines.length - 1) {
-    practiceIndex += 1;
-    showPracticeLine();
-    } else {
-    document.getElementById("practiceCounter").textContent =
-      `${lines.length} / ${lines.length}`;
-
-    document.getElementById("currentCard").className =
-      "practice-card current completed-card";
-
-    document.getElementById("practiceBadge").className = "badge cheer";
-    document.getElementById("practiceBadge").textContent = "🎉 完成";
-
-    document.getElementById("practiceText").innerHTML =
-      `
-        <div class="complete-heart">💜</div>
-        <div>ARMY READY</div>
-        <div class="complete-subtitle">SEE YOU AT THE CONCERT</div>
-      `;
-
-    document.getElementById("nextBadge").className = "badge cheer";
-    document.getElementById("nextBadge").textContent = "💜";
-
-    document.getElementById("nextPracticeText").textContent =
-      "可以返回歌單標記完成";
-  }
-}
-
-function prevLine() {
-  if (practiceIndex > 0) {
-    practiceIndex -= 1;
-    showPracticeLine();
-  }
+  return `${m}:${String(s).padStart(2, "0")}`;
 }
 
 function getBadge(type) {
@@ -550,49 +801,110 @@ function updatePlatformSubtitle(song) {
 
 function updatePlatforms(song) {
   updatePlatformSubtitle(song);
+
   const section = document.getElementById("platformSection");
+  const content = document.getElementById("platformContent");
+  const picker = document.getElementById("platformPicker");
   const list = document.getElementById("platformList");
   const platforms = song.platforms || {};
 
-  list.innerHTML = "";
+  if (!section || !content || !picker || !list) return;
 
-  if (Object.keys(platforms).length === 0) {
+  picker.innerHTML = "";
+  list.innerHTML = "";
+  list.classList.add("hidden");
+
+  const platformItems = [];
+
+  if (platforms.apple) {
+    platformItems.push({
+      id: "apple",
+      name: "Apple Music",
+      icon: "",
+      data: platforms.apple
+    });
+  }
+
+  if (platforms.spotify) {
+    platformItems.push({
+      id: "spotify",
+      name: "Spotify",
+      icon: "♪",
+      data: platforms.spotify
+    });
+  }
+
+  if (platforms.youtubeMusic) {
+    platformItems.push({
+      id: "youtubeMusic",
+      name: "YouTube Music",
+      icon: "▶",
+      data: platforms.youtubeMusic
+    });
+  }
+
+  if (platformItems.length === 0) {
     section.classList.add("hidden");
     return;
   }
 
   section.classList.remove("hidden");
-  document.getElementById("platformContent").classList.add("hidden");
-  const platformIcon = document.getElementById("platformToggleIcon");
-  platformIcon.style.transform = "rotate(0deg)";
+  content.classList.add("hidden");
 
-  if (platforms.apple) {
-    list.innerHTML += `
+  const platformIcon = document.getElementById("platformToggleIcon");
+  if (platformIcon) platformIcon.style.transform = "rotate(0deg)";
+
+  platformItems.forEach(platform => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "platform-picker-btn";
+
+    btn.innerHTML = `
+      <span class="platform-picker-icon">${platform.icon}</span>
+      <span>${platform.name}</span>
+    `;
+
+    btn.onclick = () => showPlatformCard(platform);
+
+    picker.appendChild(btn);
+  });
+}
+
+function showPlatformCard(platform) {
+  const list = document.getElementById("platformList");
+  if (!list) return;
+
+  list.classList.remove("hidden");
+
+  const data = platform.data;
+
+  if (platform.id === "apple") {
+    list.innerHTML = `
       <section class="platform-card">
         <div class="platform-card-header">
           <span> Apple Music</span>
-          <a href="${platforms.apple.url}" target="_blank" rel="noopener">開啟</a>
+          <a href="${data.url}" target="_blank" rel="noopener">開啟</a>
         </div>
         <iframe
           allow="autoplay *; encrypted-media *;"
           frameborder="0"
           height="150"
           sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"
-          src="${platforms.apple.embed}">
+          src="${data.embed}">
         </iframe>
       </section>
     `;
   }
 
-  if (platforms.spotify) {
-    list.innerHTML += `
+  if (platform.id === "spotify") {
+    list.innerHTML = `
       <section class="platform-card">
         <div class="platform-card-header">
           <span>Spotify</span>
-          <a href="${platforms.spotify.url}" target="_blank" rel="noopener">開啟</a>
+          <a href="${data.url}" target="_blank" rel="noopener">開啟</a>
         </div>
         <iframe
-          src="${platforms.spotify.embed}"
+          src="${data.embed}"
           width="100%"
           height="152"
           frameborder="0"
@@ -604,14 +916,14 @@ function updatePlatforms(song) {
     `;
   }
 
-  if (platforms.youtubeMusic) {
-    list.innerHTML += `
+  if (platform.id === "youtubeMusic") {
+    list.innerHTML = `
       <section class="platform-card platform-link-card">
         <div class="platform-card-header">
           <span>YouTube Music</span>
-          <a href="${platforms.youtubeMusic.url}" target="_blank" rel="noopener">開啟</a>
+          <a href="${data.url}" target="_blank" rel="noopener">開啟</a>
         </div>
-        <a class="platform-youtube-link" href="${platforms.youtubeMusic.url}" target="_blank" rel="noopener">
+        <a class="platform-youtube-link" href="${data.url}" target="_blank" rel="noopener">
           ▶ 在 YouTube Music 播放
         </a>
       </section>
@@ -732,7 +1044,6 @@ function restorePageFromHash() {
 
     if (index >= 0) {
       currentSongIndex = index;
-      practiceIndex = 0;
 
       const song = SONGS[index];
 
@@ -784,7 +1095,7 @@ if (songCueAudio && songCuePlay && cueSeek) {
   songCuePlay.addEventListener("click", async () => {
     if (songCueAudio.paused) {
       await songCueAudio.play();
-      songCuePlay.textContent = "⏸";
+      songCuePlay.textContent = "Ⅱ";
     } else {
       songCueAudio.pause();
       songCuePlay.textContent = "▶";
@@ -817,3 +1128,30 @@ restorePageFromHash();
 if (window.lucide) {
   lucide.createIcons();
 }
+
+function closePlatformContent() {
+  const content = document.getElementById("platformContent");
+  const picker = document.getElementById("platformPicker");
+  const list = document.getElementById("platformList");
+  const icon = document.getElementById("platformToggleIcon");
+
+  if (!content || !picker || !list) return;
+
+  content.classList.add("hidden");
+  picker.classList.remove("hidden");
+  list.innerHTML = "";
+  list.classList.add("hidden");
+
+  if (icon) {
+    icon.style.transform = "rotate(0deg)";
+  }
+}
+
+function renderAppVersion() {
+  const versionEl = document.getElementById("appVersion");
+  if (!versionEl) return;
+
+  versionEl.textContent = `版本 ${APP_VERSION}`;
+}
+
+renderAppVersion();

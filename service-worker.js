@@ -1,8 +1,11 @@
-const CACHE_NAME = "army-ready-v1.4.1";
+importScripts("./version.js");
+
+const CACHE_NAME = APP_CACHE_NAME;
 
 const ASSETS = [
   "./",
   "./index.html",
+  "./version.js",
   "./style.css",
   "./app.js",
   "./songs.js",

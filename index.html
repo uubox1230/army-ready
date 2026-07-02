@@ -140,39 +140,30 @@
     </button>
 
     <div id="platformContent" class="platform-content hidden">
-      <div id="platformList" class="platform-list"></div>
+      <div id="platformPicker" class="platform-picker"></div>
+      <div id="platformList" class="platform-list hidden"></div>
     </div>
   </div>
 
   <div class="song-actions">
     <div class="mode-switch">
       <button id="readModeBtn" onclick="showReadMode()">完整歌詞</button>
-      <button id="practiceModeBtn" onclick="startPractice()">練習模式</button>
+      <button id="practiceModeBtn" onclick="startPractice()">卡拉OK模式</button>
     </div>
   </div>
 
     <div id="readMode" class="read-mode"></div>
 
-    <div id="practiceMode" class="practice-mode hidden">
-      <div class="practice-top">
-        <span id="practiceCounter">1 / 8</span>
+    <div id="practiceMode" class="karaoke-mode hidden">
+      <div class="karaoke-toolbar">
+        <div id="practiceCounter" class="karaoke-clock">0:00 / 0:00</div>
+
+        <div class="karaoke-sync-controls">
+          <button id="karaokeStartBtn" onclick="toggleKaraoke()">▶ 同步開始</button>
+        </div>
       </div>
 
-      <section id="currentCard" class="practice-card current">
-        <div id="practiceBadge" class="badge sing">🎤 跟唱</div>
-        <div id="practiceText" class="practice-text">準備開始</div>
-      </section>
-
-      <section id="nextCard" class="practice-card next">
-        <p class="next-title">下一句</p>
-        <div id="nextBadge" class="badge chant">💙 應援</div>
-        <div id="nextPracticeText" class="next-text">下一句會顯示在這裡</div>
-      </section>
-
-      <div class="practice-controls">
-        <button onclick="prevLine()">◀︎</button>
-        <button onclick="nextLine()">▶︎</button>
-      </div>
+      <div id="karaokeLyrics" class="karaoke-scroll-list"></div>
     </div>
 
     <nav class="song-bottom-bar">
@@ -197,6 +188,7 @@
       <div id="setlistSheetList" class="setlist-sheet-list"></div>
   </section>
 
+  <script src="version.js"></script>
   <script src="songs.js"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <script src="app.js"></script>
@@ -205,7 +197,7 @@
   </script>
 
   <footer class="site-footer">
-    2026.07 更新 • BY TAIWAN ARMY <span>@uu_box_</span>
+    <em id="appVersion">版本讀取中</em> • 2026.07 更新 • BY TAIWAN ARMY <span>@uu_box_</span>
   </footer>
 </body>
 </html>

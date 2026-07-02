@@ -48,6 +48,42 @@
     </section>
 
     <section class="editor-card">
+    <h2>⏱ Timing Editor</h2>
+    <p class="editor-hint">選擇歌曲後，按 Space 記錄目前秒數到該句歌詞。</p>
+
+    <label>選擇現有歌曲</label>
+    <select id="timingSongSelect" onchange="loadTimingSong()"></select>
+
+    <div class="timing-controls">
+        <button onclick="startTiming()">開始標時間</button>
+        <button onclick="pauseTiming()">暫停</button>
+        <button onclick="resetTiming()">重設秒數</button>
+    </div>
+
+    <div class="timing-panel">
+        <div>
+        <p class="editor-hint">目前秒數</p>
+        <div id="timingClock" class="timing-clock">0.00s</div>
+        </div>
+
+        <div>
+        <p class="editor-hint">目前句</p>
+        <div id="timingCurrentLine" class="timing-current-line">請先選擇歌曲</div>
+        </div>
+    </div>
+
+    <div class="timing-controls">
+        <button onclick="prevTimingLine()">← 上一句</button>
+        <button onclick="markTiming()">Space：標記</button>
+        <button onclick="nextTimingLine()">下一句 →</button>
+    </div>
+
+    <div id="timingLineList" class="timing-line-list"></div>
+
+    <button onclick="exportTimedSong()">匯出這首歌 JSON</button>
+    </section>
+
+    <section class="editor-card">
       <h2>逐行標記</h2>
       <p class="editor-hint">點選每一行的類型：歌詞、跟唱、應援、歡呼。</p>
       <div id="lineEditor"></div>
@@ -60,6 +96,7 @@
     </section>
   </main>
 
+  <script src="songs.js"></script>
   <script src="editor.js"></script>
 </body>
 </html>

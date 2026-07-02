@@ -1133,28 +1133,12 @@ footer,
   font-weight: 700;
 }
 
-.platform-section {
-  margin: 18px 0 0;
-  padding: 14px;
-  border-radius: 18px;
-  background: rgba(20, 15, 26, 0.72);
-  border: 1px solid rgba(185, 156, 255, 0.22);
-}
-
 .platform-title {
   margin-bottom: 10px;
   color: #b99cff;
   font-size: 12px;
   font-weight: 900;
   letter-spacing: 0.08em;
-}
-
-.platform-section {
-  margin: 18px 0 0;
-  padding: 14px;
-  border-radius: 18px;
-  background: rgba(20, 15, 26, 0.72);
-  border: 1px solid rgba(185, 156, 255, 0.22);
 }
 
 .platform-title {
@@ -1664,4 +1648,580 @@ footer,
 
 body.sheet-open {
   overflow: hidden;
+}
+
+.timing-controls {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin: 14px 0;
+}
+
+.timing-panel {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 12px;
+  margin: 16px 0;
+}
+
+.timing-clock {
+  font-size: 28px;
+  font-weight: 900;
+  color: #f6c453;
+}
+
+.timing-current-line {
+  min-height: 72px;
+  padding: 16px;
+  border-radius: 18px;
+  background: #09070f;
+  border: 1px solid #2d2342;
+  font-size: 20px;
+  font-weight: 900;
+  line-height: 1.35;
+}
+
+.timing-line-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 16px 0;
+  max-height: 420px;
+  overflow-y: auto;
+}
+
+.timing-line-item {
+  display: grid;
+  grid-template-columns: 36px 72px 1fr;
+  gap: 10px;
+  align-items: center;
+
+  width: 100%;
+  padding: 12px;
+  border-radius: 14px;
+
+  background: #14101f;
+  border: 1px solid #2a2238;
+  color: #fff;
+  text-align: left;
+  cursor: pointer;
+}
+
+.timing-line-item.active {
+  border-color: #b99cff;
+  background: rgba(139, 92, 246, 0.22);
+}
+
+.timing-line-item strong {
+  color: #f6c453;
+  font-size: 12px;
+}
+
+.timing-line-item em {
+  font-style: normal;
+  font-size: 14px;
+  line-height: 1.35;
+}
+
+/* ===========================
+   Karaoke Mode v3
+   Apple Music Style
+=========================== */
+
+.karaoke-lock {
+  overflow: hidden;
+}
+
+.karaoke-mode {
+  height: calc(100dvh - 210px);
+  min-height: 520px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 0;
+}
+
+.karaoke-toolbar {
+  flex-shrink: 0;
+  padding: 8px 0 14px;
+  background: #09070f;
+  z-index: 10;
+}
+
+.karaoke-clock {
+  text-align: center;
+  color: #9f96bb;
+  font-size: 13px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.karaoke-sync-controls {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 8px;
+}
+
+.karaoke-sync-controls button {
+  height: 46px;
+  border: none;
+  border-radius: 14px;
+  background: #1a1426;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 850;
+  cursor: pointer;
+}
+
+#karaokeStartBtn {
+  background: #7c5cff;
+}
+
+.karaoke-scroll-list {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  padding: 38vh 0 42vh;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.karaoke-scroll-list::-webkit-scrollbar {
+  display: none;
+}
+
+.karaoke-line {
+  display: block;
+  width: 100%;
+  border: none;
+  background: transparent;
+  padding: 0 4px;
+  margin: 0;
+  text-align: center;
+  color: #81778f;
+  font: inherit;
+  font-size: clamp(21px, 5.6vw, 30px);
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+  white-space: normal;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+  cursor: pointer;
+  transition:
+    color .25s ease,
+    opacity .25s ease,
+    transform .25s ease,
+    font-size .25s ease,
+    text-shadow .25s ease;
+}
+
+.karaoke-line.past {
+  opacity: .28;
+  transform: scale(.96);
+}
+
+.karaoke-line.future {
+  opacity: .42;
+  transform: scale(.98);
+}
+
+.karaoke-line.active {
+  color: #fff;
+  opacity: 1;
+  font-size: clamp(28px, 7.2vw, 40px);
+  font-weight: 950;
+  transform: scale(1);
+  text-shadow: 0 0 28px rgba(185, 156, 255, .22);
+}
+
+.karaoke-highlight {
+  color: #b99cff;
+  text-shadow: 0 0 18px rgba(185,156,255,.5);
+}
+
+.karaoke-highlight.chant {
+  color: #7aa2ff;
+  text-shadow: 0 0 18px rgba(122,162,255,.5);
+}
+
+.karaoke-highlight.sing {
+  color: #ff79c6;
+  text-shadow: 0 0 18px rgba(255,121,198,.45);
+}
+
+.karaoke-highlight.cheer {
+  color: #f6c453;
+  text-shadow: 0 0 18px rgba(246,196,83,.45);
+}
+
+@media (max-width: 480px) {
+  .karaoke-mode {
+    height: calc(100dvh - 205px);
+    min-height: 500px;
+  }
+
+  .karaoke-scroll-list {
+    gap: 20px;
+    padding-top: 36vh;
+    padding-bottom: 40vh;
+  }
+
+  .karaoke-line {
+    font-size: clamp(20px, 5.2vw, 28px);
+  }
+
+  .karaoke-line.active {
+    font-size: clamp(26px, 6.8vw, 36px);
+  }
+}
+
+/* Karaoke toolbar fixed fix */
+
+.karaoke-mode {
+  height: calc(100dvh - 190px);
+  min-height: 0;
+  position: relative;
+}
+
+.karaoke-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  padding: 10px 0 14px;
+  background: linear-gradient(
+    to bottom,
+    #09070f 75%,
+    rgba(9, 7, 15, 0)
+  );
+}
+
+.karaoke-scroll-list {
+  padding-top: 32vh;
+  padding-bottom: 48vh;
+}
+
+.karaoke-sync-controls button {
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Karaoke polish */
+
+.karaoke-sync-controls {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+#karaokeStartBtn {
+  width: 100%;
+  height: 52px;
+  font-weight: 900;
+}
+
+.karaoke-scroll-list {
+  height: calc(100dvh - 320px);
+  max-height: calc(100dvh - 320px);
+
+  overflow-y: auto;
+  padding: 34vh 0 42vh;
+}
+
+body.karaoke-lock,
+body.karaoke-lock .song-page {
+  overflow: hidden;
+}
+
+body.karaoke-lock .song-bottom-bar {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 18px;
+  width: min(480px, calc(100% - 40px));
+  z-index: 80;
+}
+
+.karaoke-line,
+.karaoke-line * {
+  font-weight: 850 !important;
+}
+
+.karaoke-line.active,
+.karaoke-line.active * {
+  font-weight: 950 !important;
+}
+
+.karaoke-line.active .karaoke-highlight {
+  text-shadow:
+    0 0 18px rgba(122, 162, 255, .7),
+    0 0 34px rgba(122, 162, 255, .35);
+}
+
+.karaoke-line.future,
+.karaoke-line.past {
+  filter: saturate(.85);
+}
+
+/* Karaoke font weight consistency */
+
+.karaoke-line,
+.karaoke-line span {
+  font-weight: 850 !important;
+}
+
+.karaoke-line.active,
+.karaoke-line.active span {
+  font-weight: 950 !important;
+}
+
+.karaoke-line.future,
+.karaoke-line.future span,
+.karaoke-line.past,
+.karaoke-line.past span {
+  font-weight: 850 !important;
+}
+
+/* Korean font weight fix */
+
+body,
+button,
+.chant-text,
+.inline-highlight,
+.karaoke-line,
+.karaoke-line span {
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Apple SD Gothic Neo",
+    "Noto Sans KR",
+    "Pretendard",
+    "Segoe UI",
+    sans-serif;
+}
+
+.chant-text,
+.chant-text *,
+.inline-highlight {
+  font-weight: 900 !important;
+}
+
+.chant-line.lyrics .chant-text {
+  font-weight: 700 !important;
+}
+
+.chant-line.has-highlight .chant-text,
+.chant-line.has-highlight .chant-text *,
+.chant-line.has-highlight .inline-highlight {
+  font-weight: 900 !important;
+}
+
+.karaoke-line,
+.karaoke-line *,
+.karaoke-highlight {
+  font-weight: 900 !important;
+}
+
+.karaoke-line.active,
+.karaoke-line.active *,
+.karaoke-line.active .karaoke-highlight {
+  font-weight: 950 !important;
+  -webkit-text-stroke: 0.01em currentColor;
+}
+
+/* Karaoke Apple Music polish */
+
+.karaoke-scroll-list {
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 18%,
+    black 78%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 18%,
+    black 78%,
+    transparent 100%
+  );
+}
+
+.karaoke-line.active {
+  text-shadow: none !important;
+}
+
+.karaoke-line.active .karaoke-highlight {
+  text-shadow:
+    0 0 16px rgba(122, 162, 255, .72),
+    0 0 32px rgba(122, 162, 255, .38);
+}
+
+.karaoke-line.active .karaoke-highlight.sing {
+  text-shadow:
+    0 0 16px rgba(255, 121, 198, .7),
+    0 0 32px rgba(255, 121, 198, .34);
+}
+
+.karaoke-line.active .karaoke-highlight.cheer {
+  text-shadow:
+    0 0 16px rgba(246, 196, 83, .7),
+    0 0 32px rgba(246, 196, 83, .34);
+}
+
+/* ========= Platform Picker v2 ========= */
+
+.platform-picker{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+
+    padding:4px 0 0;
+}
+
+.platform-picker-btn{
+
+    width:100%;
+
+    display:flex;
+    align-items:center;
+    gap:14px;
+
+    padding:15px 16px;
+
+    border:none;
+    border-radius:16px;
+
+    background:#171224;
+
+    color:#fff;
+
+    font-size:15px;
+    font-weight:800;
+
+    cursor:pointer;
+
+    transition:.18s;
+
+}
+
+.platform-picker-btn:hover{
+
+    background:#231937;
+
+}
+
+.platform-picker-icon{
+
+    width:26px;
+    min-width:26px;
+
+    text-align:center;
+
+    color:#b99cff;
+
+    font-size:20px;
+    font-weight:900;
+
+}
+
+.platform-list{
+
+    margin-top:14px;
+
+    transition:.25s;
+
+}
+
+
+/* Karaoke Apple Music layout fix */
+
+.karaoke-line,
+.karaoke-line span,
+.karaoke-line.active,
+.karaoke-line.active span,
+.karaoke-line.past,
+.karaoke-line.future {
+
+  font-size: clamp(22px, 5vw, 30px) !important;
+
+  font-weight: 900 !important;
+  line-height: 1.22 !important;
+  transform: none !important;
+  letter-spacing: -0.02em;
+}
+
+.karaoke-line {
+  transition:
+    color .25s ease,
+    opacity .25s ease,
+    text-shadow .25s ease !important;
+}
+
+.karaoke-line.active {
+  color: #fff !important;
+  opacity: 1 !important;
+}
+
+.karaoke-line.past {
+  opacity: .28 !important;
+}
+
+.karaoke-line.future {
+  opacity: .42 !important;
+}
+
+/* Karaoke wide lyrics without breaking song page */
+
+body.karaoke-lock .song-page {
+  max-width: 480px;
+  width: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
+  overflow: visible;
+}
+
+body.karaoke-lock .karaoke-mode {
+  width: min(92vw, 800px);
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+
+body.karaoke-lock .karaoke-toolbar,
+body.karaoke-lock .karaoke-scroll-list {
+  width: 100%;
+}
+
+body.karaoke-lock .song-actions {
+  width: 100%;
+}
+
+/* Karaoke button width + no glow */
+
+body.karaoke-lock .karaoke-toolbar {
+  width: 100%;
+}
+
+body.karaoke-lock .karaoke-sync-controls {
+  width: 100%;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.karaoke-line,
+.karaoke-line.active,
+.karaoke-line *,
+.karaoke-highlight,
+.karaoke-line.active .karaoke-highlight,
+.karaoke-line.active .karaoke-highlight.sing,
+.karaoke-line.active .karaoke-highlight.chant,
+.karaoke-line.active .karaoke-highlight.cheer {
+  text-shadow: none !important;
+  filter: none !important;
 }
