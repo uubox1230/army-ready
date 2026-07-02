@@ -1148,10 +1148,18 @@ function closePlatformContent() {
 }
 
 function renderAppVersion() {
-  const versionEl = document.getElementById("appVersion");
-  if (!versionEl) return;
+  const versionEls = document.querySelectorAll(".app-version, #appVersion");
 
-  versionEl.textContent = `版本 ${APP_VERSION}`;
+  if (!versionEls.length) return;
+
+  const version =
+    typeof APP_VERSION !== "undefined"
+      ? APP_VERSION
+      : "v1.4.3";
+
+  versionEls.forEach(el => {
+    el.textContent = `版本 ${version}`;
+  });
 }
 
 renderAppVersion();
