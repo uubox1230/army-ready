@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ffffff">
+
+  <title>Venue Guide｜ARMY READY</title>
+
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/venue.css">
+</head>
+
+<body class="venue-page">
+  <header class="venue-header">
+    <div class="venue-header-inner">
+      <a class="venue-back" href="index.html" aria-label="返回首頁">
+        <span aria-hidden="true">‹</span>
+      </a>
+
+      <div class="venue-header-copy">
+        <p>ARMY READY</p>
+        <h1>Venue Guide</h1>
+      </div>
+    </div>
+  </header>
+
+  <main class="venue-main">
+    <section class="venue-hero">
+      <div>
+        <p class="venue-eyebrow">BTS WORLD TOUR 'ARIRANG'</p>
+        <h2>高雄國家體育場</h2>
+        <p class="venue-hero-subtitle">世運主場館</p>
+      </div>
+
+      <a
+        class="venue-map-button"
+        href="https://maps.google.com/?q=高雄國家體育場"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <span>開啟地圖</span>
+        <span aria-hidden="true">↗</span>
+      </a>
+    </section>
+
+    <nav id="venueTabs" class="venue-tabs" aria-label="場館資訊分類"></nav>
+
+    <section id="venueSections" class="venue-sections"></section>
+
+    <section class="venue-notice">
+      <strong>重要提醒</strong>
+      <p>
+        本頁為 ARMY READY 整理資訊，實際入口、交通管制、物販與現場規範，
+        請以主辦單位及場館最新公告為準。
+      </p>
+    </section>
+  </main>
+
+  <script src="js/venue/data.js"></script>
+  <script src="js/venue/page.js"></script>
+</body>
+</html>

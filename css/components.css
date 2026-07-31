@@ -1,0 +1,152 @@
+/* =========================================================
+   ARMY READY — Shared Components
+   Only components used across more than one page
+========================================================= */
+
+/* Floating action menu */
+.fab-menu,
+.home-fab-menu {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 80;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.fab-main {
+  width: 58px;
+  height: 58px;
+
+  border: 1px solid rgba(0, 184, 169, 0.28);
+  border-radius: 999px;
+
+  background: #ffffff;
+  color: var(--brand-strong);
+
+  font-size: 26px;
+  font-weight: 700;
+  cursor: pointer;
+
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.12);
+  transition: background-color 0.18s ease, border-color 0.18s ease;
+}
+
+.fab-main:hover,
+.fab-main:focus-visible {
+  background: var(--brand-soft);
+  border-color: var(--brand-border);
+}
+
+.fab-action {
+  min-width: 152px;
+  width: fit-content;
+  padding: 12px 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 14px;
+
+  border: 1px solid rgba(0, 184, 169, 0.18);
+  border-radius: 999px;
+
+  background: #ffffff;
+  color: var(--brand-strong);
+
+  font-size: 14px;
+  font-weight: 800;
+  text-decoration: none;
+  cursor: pointer;
+
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px) scale(0.96);
+
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.10);
+  transition:
+    opacity 0.18s ease,
+    transform 0.18s ease,
+    background-color 0.18s ease,
+    border-color 0.18s ease;
+}
+
+.fab-action,
+.fab-action:link,
+.fab-action:visited,
+.fab-action span {
+  color: var(--brand-strong);
+  text-decoration: none;
+}
+
+.fab-action:hover,
+.fab-action:focus-visible {
+  background: var(--brand-soft);
+  border-color: var(--brand-border);
+}
+
+.fab-action svg,
+.fab-icon,
+.social-icon {
+  width: 22px;
+  min-width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+
+.fab-action svg {
+  stroke-width: 2;
+}
+
+.fab-icon {
+  text-align: center;
+}
+
+.social-icon {
+  display: block;
+  object-fit: contain;
+  filter: none;
+}
+
+.fab-divider {
+  width: 100%;
+  height: 1px;
+  margin: 2px 0;
+
+  background: rgba(0, 184, 169, 0.15);
+
+  opacity: 0;
+  transform: translateY(8px) scale(0.96);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.fab-menu.open .fab-action,
+.home-fab-menu.open .fab-action,
+.home-fab-menu.open .fab-divider {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+.home-fab-menu .fab-action {
+  min-width: 152px;
+  max-width: 190px;
+}
+
+/* Old song-page FAB is no longer used. */
+.song-fab-menu {
+  display: none !important;
+}
+
+/* Shared focus treatment */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--brand-focus);
+  outline-offset: 2px;
+}

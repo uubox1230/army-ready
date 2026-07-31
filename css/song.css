@@ -1,0 +1,1295 @@
+/* =========================================================
+   ARMY READY v3 — Song Page
+   Clean white layout inspired by Weverse Notice
+========================================================= */
+
+body:has(.song-page) {
+  background: #ffffff;
+}
+
+.song-page {
+  width: 100%;
+  max-width: 720px;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 24px 28px 132px;
+  overflow-x: hidden;
+  background: #ffffff;
+  color: var(--text);
+}
+
+/* Header */
+.song-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 0 0 48px;
+}
+
+.song-header-row .back-btn,
+.done-chip {
+  min-height: 40px;
+  margin: 0;
+  padding: 8px 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  cursor: pointer;
+}
+
+.song-header-row .back-btn {
+  color: #4b5056;
+  font-size: 14px;
+  font-weight: 650;
+}
+
+.done-chip {
+  color: #8b9096;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.song-header-row .back-btn:hover,
+.done-chip:hover {
+  color: #111214;
+  background: transparent;
+}
+
+.done-chip.active {
+  color: var(--primary-light);
+  background: transparent;
+  border: 0;
+}
+
+#songTitle {
+  margin: 0;
+  color: #121315;
+  font-size: clamp(40px, 8vw, 45px);
+  font-weight: 760;
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+}
+
+#songNote {
+  max-width: 600px;
+  margin: 16px 0 0;
+  color: #686d73;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.7;
+}
+
+/* Cue */
+.song-cue {
+  margin: 42px 0 0;
+  padding: 28px 0 0;
+  border: 0;
+  border-top: 1px solid var(--border);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  color: var(--text);
+}
+
+.song-cue::before {
+  content: "切入提示";
+  display: block;
+  margin: 0 0 12px;
+  color: #8b9096;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .08em;
+}
+
+#songCueText {
+  color: #7c5600;
+  font-size: 16px;
+  font-weight: 650;
+  line-height: 1.65;
+}
+
+.cue-player {
+  margin: 22px 0 0;
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: #f7f8f9;
+  box-shadow: none;
+}
+
+.cue-player-main {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr);
+  align-items: center;
+  gap: 16px;
+}
+
+.cue-play-btn {
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid #dadde0;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #17181a;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.cue-play-btn:hover {
+  background: #f0f1f2;
+}
+
+.cue-player-label {
+  margin: 0 0 9px;
+  color: #4f545a;
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.cue-seek {
+  width: 100%;
+  height: 4px;
+  margin: 0;
+  accent-color: var(--primary);
+}
+
+.cue-time-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 7px;
+  color: #92979d;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+/* Streaming */
+.platform-section {
+  margin: 32px 0 0;
+  padding: 0;
+  border: 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  border-radius: 0;
+  background: transparent;
+  overflow: visible;
+}
+
+.platform-toggle {
+  width: 100%;
+  min-height: 84px;
+  padding: 17px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.platform-toggle-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.platform-icon {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background: #f1f3f4;
+  color: var(--primary-light);
+}
+
+.platform-icon svg {
+  width: 21px;
+  height: 21px;
+}
+
+.platform-text h4 {
+  margin: 0;
+  color: #1d1f22;
+  font-size: 15px;
+  font-weight: 700;
+  text-align: left;
+}
+
+.platform-text p {
+  margin: 4px 0 0;
+  color: #8b9096;
+  font-size: 12px;
+  font-weight: 400;
+  text-align: left;
+}
+
+.platform-arrow {
+  width: 19px;
+  height: 19px;
+  color: #9a9fa5;
+}
+
+.platform-content {
+  padding: 0 0 20px;
+}
+
+.platform-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.platform-picker-btn {
+  width: 100%;
+  min-height: 52px;
+  padding: 13px 15px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  background: #ffffff;
+  color: #303338;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.platform-picker-btn:hover {
+  background: #f7f8f9;
+}
+
+.platform-picker-icon {
+  color: var(--primary-light);
+}
+
+.platform-list {
+  margin-top: 14px;
+}
+
+.platform-card {
+  padding: 14px;
+  background: #ffffff;
+  border: 1px solid #e6eaee;
+  border-radius: 16px;
+  box-shadow: none;
+}
+
+.platform-card-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    margin-bottom:14px;
+
+    color:#202124;
+
+    font-size:15px;
+    font-weight:700;
+}
+
+.platform-card-header a{
+    color:var(--brand);
+    font-weight:700;
+    text-decoration:none;
+}
+
+.platform-card-header a:hover{
+    color:var(--brand-strong);
+}
+
+/* ==========================================
+   YouTube Music Button
+========================================== */
+
+.platform-youtube-link,
+.platform-youtube-link:link,
+.platform-youtube-link:visited{
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    width:100%;
+    min-height:52px;
+    margin-top:8px;
+
+    border:1px solid var(--brand-border);
+    border-radius:14px;
+
+    background:var(--brand-soft);
+
+    color:var(--brand) !important;
+
+    font-size:14px;
+    font-weight:800;
+
+    text-decoration:none !important;
+
+    transition:.18s;
+}
+
+.platform-youtube-link:hover{
+
+    background:#dcf8f4;
+    border-color:var(--brand);
+
+    color:var(--brand-strong) !important;
+}
+
+.platform-youtube-link:active{
+    transform:scale(.98);
+}
+
+.platform-youtube-link svg{
+    width:18px;
+    height:18px;
+    margin-right:8px;
+}
+
+/* Equal-width mode switch */
+.song-actions {
+  width: 100%;
+  margin: 36px 0 30px;
+}
+
+.mode-switch {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 0;
+  padding: 4px;
+  border: 1px solid #dde0e3;
+  border-radius: 14px;
+  background: #f1f2f3;
+}
+
+.mode-switch button {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  margin: 0;
+  padding: 10px 8px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: #777c82;
+  font-size: 14px;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.mode-switch button.active {
+  background: #ffffff;
+  color: #17181a;
+  box-shadow: 0 1px 4px rgba(20, 24, 28, .10);
+}
+
+/* Lyrics */
+.read-mode {
+  margin-top: 0;
+}
+
+.chant-line {
+  position: relative;
+  margin: 0;
+  padding: 20px 0 20px 20px;
+  border: 0;
+  border-bottom: 1px solid #eef0f2;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.chant-line::before {
+  content: "";
+  position: absolute;
+  top: 22px;
+  bottom: 22px;
+  left: 0;
+  width: 3px;
+  border-radius: 999px;
+  background: #d7dadd;
+}
+
+.chant-line.lyrics::before {
+  background: #e3e5e7;
+}
+
+.chant-line.sing::before,
+.chant-line.has-highlight.sing::before {
+  background: var(--pink);
+}
+
+.chant-line.chant::before,
+.chant-line.has-highlight.chant::before {
+  background: var(--blue);
+}
+
+.chant-line.cheer::before {
+  background: #d79a13;
+}
+
+.chant-time {
+  margin: 0 0 7px;
+  color: #9a9fa5;
+  font-size: 11px;
+  font-weight: 650;
+}
+
+.chant-text,
+.chant-line.lyrics .chant-text,
+.chant-line.has-highlight .chant-text {
+  color: #272a2e;
+  font-size: 18px;
+  font-weight: 650 !important;
+  line-height: 1.55;
+}
+
+.inline-highlight,
+.chant-line.has-highlight .inline-highlight {
+  font-weight: 800 !important;
+}
+
+.inline-highlight.sing {
+  color: var(--pink);
+}
+
+.inline-highlight.chant {
+  color: var(--blue);
+}
+
+.inline-highlight.cheer {
+  color: #a66e00;
+}
+
+/* Bottom navigation */
+.song-bottom-bar {
+  position: fixed;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  z-index: 90;
+  width: min(640px, calc(100vw - 32px));
+  padding: 6px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 4px;
+  border: 1px solid #dfe2e5;
+  border-radius: 16px;
+  background: rgba(255,255,255,.94);
+  box-shadow: 0 8px 24px rgba(24, 28, 32, .12);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.song-bottom-bar button {
+  min-height: 44px;
+  border: 0;
+  border-radius: 11px;
+  background: transparent;
+  color: #555a60;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.song-bottom-bar button:hover {
+  background: #f3f4f5;
+  color: #17181a;
+}
+
+.song-bottom-bar button:nth-child(2) {
+  background: #f0f1f2;
+  color: #17181a;
+}
+
+
+/* =========================================================
+   Song Page v3 Final — neutral typography and fixed palette
+========================================================= */
+
+body,
+button,
+input,
+textarea,
+select {
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Text",
+    "PingFang TC",
+    "Noto Sans TC",
+    "Microsoft JhengHei",
+    "Apple SD Gothic Neo",
+    "Noto Sans KR",
+    "Segoe UI",
+    sans-serif;
+}
+
+#songTitle {
+  color: #111214;
+  font-weight: 800;
+}
+
+#songNote {
+  color: #555b62;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+#songCueText {
+  color: #805600;
+  font-weight: 750;
+}
+
+.platform-icon,
+.platform-picker-icon,
+.done-chip.active,
+.setlist-sheet-number,
+.setlist-sheet-status {
+  color: #33363a;
+}
+
+.mode-switch button:focus-visible {
+  outline: 2px solid #202124;
+  outline-offset: -3px;
+}
+
+.chant-time,
+.chant-line.lyrics .chant-time,
+.chant-line.has-highlight.sing .chant-time,
+.chant-line.has-highlight.chant .chant-time {
+  color: #626870;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.chant-text,
+.chant-line.lyrics .chant-text,
+.chant-line.sing .chant-text,
+.chant-line.chant .chant-text,
+.chant-line.cheer .chant-text,
+.chant-line.has-highlight .chant-text {
+  color: #202124;
+  font-size: 18px;
+  font-weight: 650 !important;
+  line-height: 1.58;
+  letter-spacing: 0 em;
+}
+
+.inline-highlight,
+.chant-line.has-highlight .inline-highlight {
+  display: inline;
+  font-weight: 800 !important;
+}
+
+.inline-highlight.chant,
+.chant-line.has-highlight .inline-highlight.chant {
+  color: var(--blue);
+}
+
+.inline-highlight.sing,
+.chant-line.has-highlight .inline-highlight.sing {
+  color: var(--pink);
+}
+
+.inline-highlight.cheer,
+.chant-line.has-highlight .inline-highlight.cheer {
+  color: var(--gold);
+}
+
+.chant-line.chant::before,
+.chant-line.has-highlight.chant::before { background: var(--blue); }
+
+.chant-line.sing::before,
+.chant-line.has-highlight.sing::before { background: var(--pink); }
+
+.chant-line.cheer::before { background: var(--gold); }
+
+@media (max-width: 600px) {
+  .chant-text,
+  .chant-line.lyrics .chant-text,
+  .chant-line.sing .chant-text,
+  .chant-line.chant .chant-text,
+  .chant-line.cheer .chant-text,
+  .chant-line.has-highlight .chant-text {
+    font-size: 17px;
+    line-height: 1.62;
+  }
+}
+
+/* ==========================================================
+   v3.2 — Weverse Mint brand accents
+   Brand mint is never used for lyric / chant meaning.
+========================================================== */
+
+/* Header actions */
+.done-chip.active {
+  color: var(--brand-strong);
+  background: var(--brand-soft);
+  border-color: var(--brand-border);
+}
+
+.done-chip.active svg,
+.back-btn:hover svg {
+  color: var(--brand-strong);
+  stroke: currentColor;
+}
+
+/* Cue player UI */
+.cue-play-btn {
+  color: var(--brand-strong);
+  border-color: var(--brand-border);
+  background: var(--brand-soft);
+}
+
+.cue-play-btn:hover {
+  color: #ffffff;
+  background: var(--brand);
+  border-color: var(--brand);
+}
+
+.cue-seek {
+  accent-color: var(--brand);
+}
+
+/* Streaming / platform icon */
+.platform-icon {
+  color: var(--brand-strong);
+  background: var(--brand-soft);
+}
+
+.platform-arrow {
+  color: var(--brand-strong);
+}
+
+.platform-toggle:hover .platform-icon,
+.platform-toggle:focus-visible .platform-icon {
+  background: #dcf8f4;
+}
+
+.platform-toggle:focus-visible,
+.platform-picker-btn:focus-visible,
+.mode-switch button:focus-visible,
+.back-btn:focus-visible,
+.done-chip:focus-visible {
+  outline: 3px solid var(--brand-focus);
+  outline-offset: 2px;
+}
+
+/* Mode switch: mint only as a subtle UI indicator */
+.mode-switch button.active {
+  color: var(--text);
+  box-shadow: inset 0 -2px 0 var(--brand);
+}
+
+/* Bottom setlist control */
+.song-bottom-bar button:nth-child(2) {
+  color: var(--brand-strong);
+  background: var(--brand-soft);
+  border-color: var(--brand-border);
+}
+
+.song-bottom-bar button:nth-child(2):hover,
+.song-bottom-bar button:nth-child(2):focus-visible {
+  color: #ffffff;
+  background: var(--brand);
+  border-color: var(--brand);
+}
+
+.song-bottom-bar button:nth-child(2) svg {
+  color: currentColor;
+  stroke: currentColor;
+}
+
+/* Setlist sheet accents */
+.setlist-sheet {
+  border-color: var(--brand-border);
+}
+
+.setlist-sheet-header p,
+.setlist-sheet-number,
+.setlist-sheet-status {
+  color: var(--brand-strong);
+}
+
+.setlist-sheet-header button {
+  color: var(--brand-strong);
+  background: var(--brand-soft);
+  border-color: var(--brand-border);
+}
+
+.setlist-sheet-item.active {
+  background: var(--brand-soft);
+  border-color: var(--brand);
+}
+
+/* Explicit safeguard: mint must never color lyrics */
+.chant-line.lyrics .chant-text,
+.karaoke-line.lyrics,
+.karaoke-line.lyrics.active,
+.karaoke-line.lyrics.future,
+.karaoke-line.lyrics.past {
+  color: inherit;
+}
+
+/* ==========================================================
+   v3.6 — Song status
+========================================================== */
+
+.done-chip,
+.done-chip.active {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  min-height: auto;
+  padding: 4px 0;
+  border: 0 !important;
+  border-radius: 0;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: #747a82;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.done-chip::before {
+  content: "○";
+  color: #a8adb4;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.done-chip.active::before {
+  content: "✓";
+  color: var(--brand-strong, #00a997);
+  font-size: 17px;
+  font-weight: 900;
+}
+
+.done-chip:hover,
+.done-chip.active:hover {
+  background: transparent !important;
+  color: #33373c;
+}
+
+.done-chip:focus-visible {
+  outline: 2px solid var(--brand-focus, rgba(0, 200, 180, 0.26));
+  outline-offset: 5px;
+  border-radius: 4px;
+}
+
+/* =========================================================
+   Song Page Bottom Setlist Sheet
+========================================================= */
+
+:root {
+  --sheet-mint: #00b8a9;
+  --sheet-mint-dark: #008f84;
+  --sheet-mint-soft: #ecfaf8;
+  --sheet-mint-hover: #f6fcfb;
+  --sheet-text: #24282d;
+  --sheet-muted: #949ca5;
+  --sheet-divider: #e9edef;
+  --sheet-done: #00a596;
+  --sheet-unpracticed: #a5adb6;
+}
+
+.setlist-overlay {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 9998 !important;
+  background: rgba(20, 24, 28, 0.38);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.setlist-overlay.hidden,
+.setlist-sheet.hidden {
+  display: none !important;
+}
+
+body.sheet-open {
+  overflow: hidden;
+  touch-action: none;
+}
+
+.setlist-sheet {
+  position: fixed !important;
+  left: 50% !important;
+  right: auto !important;
+  bottom: 0 !important;
+  z-index: 9999 !important;
+  width: min(620px, calc(100vw - 32px)) !important;
+  max-height: min(76dvh, 720px) !important;
+  padding: 10px 24px 20px;
+  overflow: hidden;
+  transform: translateX(-50%) !important;
+  border: 1px solid rgba(20, 28, 34, 0.08);
+  border-bottom: 0;
+  border-radius: 28px 28px 0 0;
+  background: #ffffff;
+  box-shadow: 0 -20px 70px rgba(21, 28, 34, 0.24);
+  visibility: visible;
+  opacity: 1;
+}
+
+.setlist-handle {
+  width: 38px;
+  height: 4px;
+  margin: 0 auto 14px;
+  border-radius: 999px;
+  background: #d6dade;
+}
+
+.setlist-sheet-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 0 0 14px;
+}
+
+.setlist-sheet-header > div {
+  min-width: 0;
+}
+
+.setlist-sheet-header p {
+  margin: 0 0 5px;
+  color: var(--sheet-mint-dark);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.setlist-sheet-header h3 {
+  margin: 0;
+  color: #15171a;
+  font-size: 24px;
+  font-weight: 780;
+  line-height: 1.2;
+}
+
+.setlist-sheet-header > button {
+  flex: 0 0 auto;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  border: 1px solid #e1e5e8;
+  border-radius: 50%;
+  background: #fafbfb;
+  color: #34383d;
+  font-size: 17px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.setlist-sheet-header > button:hover {
+  background: #f1f4f4;
+}
+
+.setlist-sheet-list {
+  max-height: calc(min(76dvh, 720px) - 102px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: #d4d9dc transparent;
+}
+
+.setlist-sheet-item {
+  position: relative;
+  width: 100%;
+  min-height: 66px;
+  padding: 0 12px;
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  border: 0 !important;
+  border-bottom: 1px solid var(--sheet-divider) !important;
+  border-radius: 0 !important;
+  background: #ffffff !important;
+  color: var(--sheet-text) !important;
+  box-shadow: none !important;
+  text-align: left !important;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  transition:
+    background-color 0.16s ease,
+    color 0.16s ease;
+}
+
+.setlist-sheet-item:last-child {
+  border-bottom: 0 !important;
+}
+
+.setlist-sheet-item:hover {
+  background: var(--sheet-mint-hover) !important;
+}
+
+.setlist-sheet-item.active {
+  background:
+    linear-gradient(
+      90deg,
+      var(--sheet-mint-soft) 0%,
+      #f8fdfc 100%
+    ) !important;
+}
+
+.setlist-sheet-item.active::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 4px;
+  border-radius: 0 4px 4px 0;
+  background: var(--sheet-mint);
+}
+
+.setlist-sheet-number {
+  color: var(--sheet-mint) !important;
+  font-size: 13px !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
+  letter-spacing: 0.04em !important;
+}
+
+.setlist-sheet-item.is-done:not(.active) .setlist-sheet-number {
+  color: var(--sheet-done) !important;
+}
+
+.setlist-sheet-item.is-unpracticed:not(.active) .setlist-sheet-number {
+  color: #b4bbc2 !important;
+}
+
+.setlist-sheet-title {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--sheet-text) !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  line-height: 1.35 !important;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.setlist-sheet-status {
+  color: var(--sheet-muted) !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  line-height: 1.2 !important;
+  white-space: nowrap;
+}
+
+.setlist-sheet-item.active .setlist-sheet-status {
+  color: var(--sheet-mint-dark) !important;
+  font-weight: 800 !important;
+}
+
+.setlist-sheet-item.is-done:not(.active) .setlist-sheet-status {
+  color: var(--sheet-done) !important;
+}
+
+.setlist-sheet-item.is-unpracticed:not(.active) .setlist-sheet-status {
+  color: var(--sheet-unpracticed) !important;
+}
+
+.setlist-sheet-item:focus-visible {
+  outline: 2px solid rgba(0, 184, 169, 0.38);
+  outline-offset: -2px;
+}
+
+@media (max-width: 640px) {
+  .setlist-sheet {
+    width: 100% !important;
+    max-height: min(78dvh, 720px) !important;
+    padding: 10px 18px 18px;
+    border-right: 0;
+    border-left: 0;
+    border-radius: 26px 26px 0 0;
+  }
+
+  .setlist-sheet-list {
+    max-height: calc(min(78dvh, 720px) - 102px);
+  }
+
+  .setlist-sheet-item {
+    min-height: 64px;
+    padding: 0 8px;
+    grid-template-columns: 40px minmax(0, 1fr) auto;
+    gap: 9px;
+  }
+
+  .setlist-sheet-header h3 {
+    font-size: 22px;
+  }
+
+  .setlist-sheet-number {
+    font-size: 12px !important;
+  }
+
+  .setlist-sheet-title {
+    font-size: 14px !important;
+  }
+
+  .setlist-sheet-status {
+    font-size: 11px !important;
+  }
+}
+
+/* =========================================================
+   Streaming CTA — definitive styles
+========================================================= */
+
+.platform-youtube-link,
+.platform-youtube-link:link,
+.platform-youtube-link:visited {
+  width: 100%;
+  min-height: 52px;
+  margin-top: 8px;
+  padding: 13px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #dfe3e7;
+  border-radius: 999px;
+  background: #f5f6f7;
+  color: #30343a !important;
+  font-size: 14px;
+  font-weight: 800;
+  text-decoration: none !important;
+  transition:
+    background-color 0.18s ease,
+    border-color 0.18s ease,
+    color 0.18s ease;
+}
+
+.platform-youtube-link:hover,
+.platform-youtube-link:focus-visible {
+  border-color: #cfd5d9;
+  background: #eceff1;
+  color: #17191c !important;
+}
+
+.platform-youtube-link:active {
+  transform: scale(0.98);
+}
+
+.platform-link-card {
+  padding: 14px;
+}
+
+.platform-card iframe {
+  display: block;
+  width: 100%;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+}
+
+/* =========================================================
+   v3.8 — Shared Highlight / Replace Text Compatibility
+   Read Mode + Karaoke Mode
+========================================================= */
+
+/* =========================================================
+   Read Mode — normal inline highlights
+========================================================= */
+
+.chant-text .inline-highlight {
+  display: inline;
+  font-weight: 800 !important;
+}
+
+.chant-text .inline-highlight.chant {
+  color: var(--blue) !important;
+}
+
+.chant-text .inline-highlight.sing {
+  color: var(--pink) !important;
+}
+
+.chant-text .inline-highlight.cheer {
+  color: var(--gold) !important;
+}
+
+/* =========================================================
+   Replace Text — shared structure
+========================================================= */
+
+.chant-text .replace-line,
+.karaoke-line .replace-line {
+  display: block !important;
+  width: 100%;
+  margin: 0;
+
+  color: inherit !important;
+
+  font: inherit;
+  line-height: inherit;
+  text-align: inherit;
+}
+
+.chant-text .replace-original-inline,
+.karaoke-line .replace-original-inline {
+  display: inline !important;
+
+  color: #8b8f94 !important;
+
+  font: inherit;
+  line-height: inherit;
+
+  text-decoration-line: line-through !important;
+  text-decoration-style: solid !important;
+  text-decoration-thickness: 2px !important;
+  text-decoration-color: #8b8f94 !important;
+  text-decoration-skip-ink: none;
+}
+
+.chant-text .replace-hint,
+.karaoke-line .replace-hint {
+  display: block !important;
+  width: 100%;
+  margin: 6px 0 5px;
+
+  color: #777d84 !important;
+
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  line-height: 1.4 !important;
+  letter-spacing: 0.02em;
+
+  text-align: inherit;
+}
+
+.chant-text .replace-new,
+.karaoke-line .replace-new {
+  display: block !important;
+  width: 100%;
+  margin: 0;
+
+  font: inherit;
+  font-weight: 800 !important;
+  line-height: inherit;
+  text-align: inherit;
+}
+
+/* =========================================================
+   Read Mode — replacement semantic colors
+========================================================= */
+
+.chant-text .replace-new.chant {
+  color: var(--blue) !important;
+}
+
+.chant-text .replace-new.sing {
+  color: var(--pink) !important;
+}
+
+.chant-text .replace-new.cheer {
+  color: var(--gold) !important;
+}
+
+/* =========================================================
+   Karaoke — future replacement preview
+========================================================= */
+
+.karaoke-line.future .replace-line {
+  color: #676b70 !important;
+}
+
+.karaoke-line.future .replace-original-inline {
+  color: #9ca1a7 !important;
+
+  text-decoration-color: #9ca1a7 !important;
+}
+
+.karaoke-line.future .replace-hint {
+  color: #92979d !important;
+}
+
+.karaoke-line.future .replace-new.chant {
+  color: #8eafea !important;
+}
+
+.karaoke-line.future .replace-new.sing {
+  color: #e6a0c5 !important;
+}
+
+.karaoke-line.future .replace-new.cheer {
+  color: #d2b568 !important;
+}
+
+/* =========================================================
+   Karaoke — active replacement
+========================================================= */
+
+.karaoke-line.active .replace-line {
+  color: #202124 !important;
+}
+
+.karaoke-line.active .replace-original-inline {
+  color: #777d84 !important;
+
+  text-decoration-color: #777d84 !important;
+}
+
+.karaoke-line.active .replace-hint {
+  color: #777d84 !important;
+}
+
+.karaoke-line.active .replace-new.chant {
+  color: var(--blue) !important;
+}
+
+.karaoke-line.active .replace-new.sing {
+  color: var(--pink) !important;
+}
+
+.karaoke-line.active .replace-new.cheer {
+  color: var(--gold) !important;
+}
+
+/* =========================================================
+   Karaoke — completed replacement
+========================================================= */
+
+.karaoke-line.past .replace-line,
+.karaoke-line.past .replace-original-inline,
+.karaoke-line.past .replace-hint,
+.karaoke-line.past .replace-new {
+  color: #8b8f94 !important;
+}
+
+.karaoke-line.past .replace-original-inline {
+  text-decoration-color: #8b8f94 !important;
+}
+
+/* =========================================================
+   Mobile spacing
+========================================================= */
+
+@media (max-width: 600px) {
+  .chant-text .replace-hint,
+  .karaoke-line .replace-hint {
+    margin-top: 5px;
+    margin-bottom: 4px;
+
+    font-size: 11px !important;
+  }
+}

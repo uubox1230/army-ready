@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ffffff">
+
+  <title>Official｜ARMY READY</title>
+
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/official.css">
+</head>
+
+<body class="official-page">
+  <header class="official-header">
+    <div class="official-header-inner">
+      <a class="official-back" href="index.html" aria-label="返回首頁">
+        <span aria-hidden="true">‹</span>
+      </a>
+
+      <div class="official-header-copy">
+        <p>ARMY READY</p>
+        <h1>Official</h1>
+      </div>
+    </div>
+  </header>
+
+  <main class="official-main">
+    <section class="official-hero">
+      <p class="official-eyebrow">BTS WORLD TOUR 'ARIRANG'</p>
+      <h2>官方公告整理</h2>
+      <p>
+        集中整理入場、票券、場館規範與現場活動資訊。
+        實際規定仍以主辦單位最新公告為準。
+      </p>
+    </section>
+
+    <section class="official-toolbar" aria-label="公告篩選">
+      <div id="officialFilters" class="official-filters"></div>
+
+      <label class="official-search">
+        <span class="sr-only">搜尋公告</span>
+        <input
+          id="officialSearch"
+          type="search"
+          placeholder="搜尋公告"
+          autocomplete="off"
+        >
+      </label>
+    </section>
+
+    <section class="official-status">
+      <p id="officialResultCount">0 則公告</p>
+      <button id="officialReset" type="button">清除篩選</button>
+    </section>
+
+    <section
+      id="officialList"
+      class="official-list"
+      aria-live="polite"
+    ></section>
+
+    <section id="officialEmpty" class="official-empty hidden">
+      <strong>沒有符合條件的公告</strong>
+      <p>請更換分類或搜尋關鍵字。</p>
+    </section>
+  </main>
+
+  <script src="js/official/data.js"></script>
+  <script src="js/official/page.js"></script>
+</body>
+</html>

@@ -1,0 +1,354 @@
+/* =========================================================
+   ARMY READY — Karaoke Mode
+   Stable centered lyric scrolling
+========================================================= */
+
+/* =========================================================
+   Page lock
+========================================================= */
+
+body.karaoke-lock {
+  height: auto;
+  overflow-y: auto;
+  overflow-anchor: none;
+  background: #ffffff;
+}
+
+body.karaoke-lock .song-page {
+  min-height: 100vh;
+  overflow: visible;
+  overflow-anchor: none;
+  background: #ffffff;
+}
+
+body.karaoke-lock .practice-mode,
+body.karaoke-lock .karaoke-mode,
+body.karaoke-lock .karaoke-scroll-list {
+  overflow-anchor: none;
+}
+
+/* =========================================================
+   Karaoke layout
+========================================================= */
+
+.karaoke-mode {
+  width: 100%;
+  min-height: 560px;
+  height: calc(100dvh - 220px);
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+  padding: 0;
+
+  background: #ffffff;
+}
+
+.karaoke-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+
+  flex-shrink: 0;
+  width: 100%;
+  padding: 12px 0 18px;
+
+  border-bottom: 1px solid #eceef0;
+
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: none;
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.karaoke-clock {
+  margin: 0 0 12px;
+
+  color: #7f858b;
+
+  font-size: 13px;
+  font-weight: 650;
+  text-align: center;
+}
+
+.karaoke-sync-controls {
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.karaoke-sync-controls button,
+#karaokeStartBtn {
+  width: 100%;
+  min-height: 52px;
+  margin: 0;
+  padding: 12px 16px;
+
+  border: 1px solid #d9dcdf;
+  border-radius: 14px;
+
+  background: #ffffff;
+  color: #17181a;
+  box-shadow: none;
+
+  font-size: 14px;
+  font-weight: 750;
+
+  cursor: pointer;
+}
+
+.karaoke-sync-controls button:hover,
+#karaokeStartBtn:hover {
+  background: #f5f6f7;
+}
+
+/* =========================================================
+   Scroll viewport
+========================================================= */
+
+.karaoke-scroll-list {
+  position: relative;
+
+  flex: 1;
+  min-height: 0;
+  height: calc(100dvh - 350px);
+  max-height: calc(100dvh - 350px);
+
+  padding: 30vh 0 42vh;
+
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  overflow-anchor: none;
+
+  background: #ffffff;
+
+  scroll-behavior: auto;
+  scrollbar-width: none;
+
+  -webkit-overflow-scrolling: touch;
+
+  mask-image:
+    linear-gradient(
+      to bottom,
+      transparent 0%,
+      black 14%,
+      black 82%,
+      transparent 100%
+    );
+
+  -webkit-mask-image:
+    linear-gradient(
+      to bottom,
+      transparent 0%,
+      black 14%,
+      black 82%,
+      transparent 100%
+    );
+}
+
+.karaoke-scroll-list::-webkit-scrollbar {
+  display: none;
+}
+
+/* =========================================================
+   Lyrics
+========================================================= */
+
+.karaoke-line {
+  width: 100%;
+  margin: 0;
+  padding: 0 8px;
+
+  display: block;
+
+  border: 0;
+  background: transparent;
+
+  color: #676b70;
+
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Text",
+    "PingFang TC",
+    "Noto Sans TC",
+    "Microsoft JhengHei",
+    "Apple SD Gothic Neo",
+    "Noto Sans KR",
+    "Segoe UI",
+    sans-serif;
+
+  font-size: clamp(22px, 5vw, 30px) !important;
+  font-weight: 750 !important;
+  line-height: 1.28 !important;
+  letter-spacing: -0.01em;
+
+  text-align: center;
+  white-space: normal;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+
+  opacity: 0.72;
+
+  cursor: pointer;
+
+  transform: none !important;
+  text-shadow: none !important;
+  filter: none !important;
+
+  transition:
+    color 0.22s ease,
+    opacity 0.22s ease;
+}
+
+.karaoke-line span {
+  font: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+}
+
+.karaoke-line.future {
+  color: #676b70 !important;
+  opacity: 0.72;
+}
+
+.karaoke-line.past,
+.karaoke-line.past span,
+.karaoke-line.past .karaoke-highlight,
+.karaoke-line.past .inline-highlight,
+.karaoke-line.past .replace-new {
+  color: #8b8f94 !important;
+  opacity: 0.42;
+}
+
+.karaoke-line.active,
+.karaoke-line.active > span {
+  color: #202124 !important;
+  opacity: 1 !important;
+  font-weight: 800 !important;
+}
+
+/* =========================================================
+   Semantic highlights
+========================================================= */
+
+.karaoke-line .karaoke-highlight,
+.karaoke-line .inline-highlight,
+.karaoke-line .replace-new {
+  display: inline;
+  font-weight: 800 !important;
+}
+
+/* Plain lyrics always stay neutral. */
+.karaoke-line .karaoke-highlight.lyrics,
+.karaoke-line.active .karaoke-highlight.lyrics {
+  color: #202124 !important;
+}
+
+/* Upcoming highlighted segment uses pale semantic color. */
+.karaoke-line.future.chant .karaoke-highlight,
+.karaoke-line.future.chant .inline-highlight,
+.karaoke-line.future.chant .replace-new {
+  color: #8eafea !important;
+  opacity: 1 !important;
+}
+
+.karaoke-line.future.sing .karaoke-highlight,
+.karaoke-line.future.sing .inline-highlight,
+.karaoke-line.future.sing .replace-new {
+  color: #e6a0c5 !important;
+  opacity: 1 !important;
+}
+
+.karaoke-line.future.cheer .karaoke-highlight,
+.karaoke-line.future.cheer .inline-highlight,
+.karaoke-line.future.cheer .replace-new {
+  color: #d2b568 !important;
+  opacity: 1 !important;
+}
+
+/* Active sentence stays neutral; only highlight is vivid. */
+.karaoke-line.active.chant,
+.karaoke-line.active.sing,
+.karaoke-line.active.cheer,
+.karaoke-line.active.chant > span,
+.karaoke-line.active.sing > span,
+.karaoke-line.active.cheer > span {
+  color: #202124 !important;
+}
+
+.karaoke-line.active.chant .karaoke-highlight,
+.karaoke-line.active.chant .inline-highlight,
+.karaoke-line.active.chant .replace-new {
+  color: var(--blue) !important;
+}
+
+.karaoke-line.active.sing .karaoke-highlight,
+.karaoke-line.active.sing .inline-highlight,
+.karaoke-line.active.sing .replace-new {
+  color: var(--pink) !important;
+}
+
+.karaoke-line.active.cheer .karaoke-highlight,
+.karaoke-line.active.cheer .inline-highlight,
+.karaoke-line.active.cheer .replace-new {
+  color: var(--gold) !important;
+}
+
+/* =========================================================
+   Accessibility
+========================================================= */
+
+.karaoke-line:focus {
+  outline: none;
+}
+
+.karaoke-line:focus-visible {
+  outline: 2px solid #202124;
+  outline-offset: 6px;
+  border-radius: 8px;
+}
+
+/* =========================================================
+   Bottom navigation
+========================================================= */
+
+body.karaoke-lock .song-bottom-bar {
+  width: min(640px, calc(100vw - 32px));
+}
+
+/* =========================================================
+   Mobile
+========================================================= */
+
+@media (max-width: 600px) {
+  .karaoke-mode {
+    min-height: 520px;
+    height: calc(100dvh - 205px);
+  }
+
+  .karaoke-scroll-list {
+    height: calc(100dvh - 330px);
+    max-height: calc(100dvh - 330px);
+
+    padding-top: 28vh;
+    padding-bottom: 40vh;
+
+    gap: 22px;
+  }
+
+  .karaoke-line {
+    font-size: clamp(20px, 5.6vw, 27px) !important;
+  }
+
+  body.karaoke-lock .song-bottom-bar {
+    width: calc(100vw - 24px);
+  }
+}

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ffffff">
+
+  <title>Community｜ARMY READY</title>
+
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/community.css">
+</head>
+
+<body class="community-page">
+  <header class="community-header">
+    <div class="community-header-inner">
+      <a class="community-back" href="index.html" aria-label="返回首頁">
+        <span aria-hidden="true">‹</span>
+      </a>
+
+      <div class="community-header-copy">
+        <p>ARMY READY</p>
+        <h1>Community</h1>
+      </div>
+
+      <button
+        id="communityFavoriteToggle"
+        class="community-favorite-toggle"
+        type="button"
+        aria-pressed="false"
+      >
+        <span aria-hidden="true">♡</span>
+        <span>收藏</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="community-main">
+    <section class="community-hero">
+      <p class="community-eyebrow">ARMY FAN PROJECTS</p>
+      <h2>粉絲應援活動</h2>
+      <p>
+        整理手幅、物資發放、拍照點與其他非官方活動。
+        請依各主辦單位最新公告與現場規定參加。
+      </p>
+    </section>
+
+    <section class="community-toolbar" aria-label="活動篩選">
+      <div id="communityFilters" class="community-filters"></div>
+
+      <label class="community-search">
+        <span class="sr-only">搜尋活動</span>
+        <input
+          id="communitySearch"
+          type="search"
+          placeholder="搜尋活動、地點或主辦單位"
+          autocomplete="off"
+        >
+      </label>
+    </section>
+
+    <section class="community-status">
+      <p id="communityResultCount">0 個活動</p>
+      <button id="communityReset" type="button">清除篩選</button>
+    </section>
+
+    <section
+      id="communityList"
+      class="community-list"
+      aria-live="polite"
+    ></section>
+
+    <section id="communityEmpty" class="community-empty hidden">
+      <strong>沒有符合條件的活動</strong>
+      <p>請更換分類、日期或搜尋關鍵字。</p>
+    </section>
+  </main>
+
+  <script src="js/community/data.js"></script>
+  <script src="js/community/page.js"></script>
+</body>
+</html>

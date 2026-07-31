@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ARMY READY｜Song</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <section id="songPage" class="song-page hidden">
+
+    <div class="song-header-row">
+        <button class="back-btn" onclick="backHome()">← 返回歌單</button>
+        <button id="doneBtn" class="done-chip" onclick="toggleDone()">○ 未練習</button>
+    </div>
+
+    <h1 id="songTitle">Song Title</h1>
+    <p id="songNote">官方 Fan Chant + 現場練習提醒。</p>
+    <div id="songCue" class="song-cue hidden">
+        <div id="songCueText"></div>
+
+        <div id="cuePlayer" class="cue-player hidden">
+        <audio id="songCueAudio"></audio>
+
+        <div class="cue-player-main">
+            <button id="songCuePlay" class="cue-play-btn" type="button">
+            ▶
+            </button>
+
+            <div class="cue-player-body">
+            <div class="cue-player-label">練習參考音檔</div>
+
+            <input
+                id="cueSeek"
+                class="cue-seek"
+                type="range"
+                min="0"
+                max="100"
+                value="0"
+                step="0.1"
+            >
+
+            <div class="cue-time-row">
+                <span id="cueCurrentTime">0:00</span>
+                <span id="cueDuration">0:00</span>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <div id="platformSection" class="platform-section hidden">
+        <button
+        id="platformToggle"
+        class="platform-toggle"
+        type="button"
+        onclick="togglePlatformSection()"
+        >
+        <div class="platform-toggle-left">
+
+            <div class="platform-icon" aria-hidden="true">
+                <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                    d="M4 14V12C4 7.58 7.58 4 12 4C16.42 4 20 7.58 20 12V14"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    />
+                    <path
+                    d="M6 13H5C3.9 13 3 13.9 3 15V18C3 19.1 3.9 20 5 20H6C7.1 20 8 19.1 8 18V15C8 13.9 7.1 13 6 13Z"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    />
+                    <path
+                    d="M18 13H19C20.1 13 21 13.9 21 15V18C21 19.1 20.1 20 19 20H18C16.9 20 16 19.1 16 18V15C16 13.9 16.9 13 18 13Z"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    />
+                </svg>
+            </div>
+
+            <div class="platform-text">
+            <h4>收聽完整歌曲</h4>
+            <p id="platformSubtitle"></p>
+            </div>
+
+        </div>
+
+        <i
+            id="platformToggleIcon"
+            data-lucide="chevron-down"
+            class="platform-arrow"
+        ></i>
+
+        </button>
+
+        <div id="platformContent" class="platform-content hidden">
+        <div id="platformPicker" class="platform-picker"></div>
+        <div id="platformList" class="platform-list hidden"></div>
+        </div>
+    </div>
+
+    <div class="song-actions">
+        <div class="mode-switch">
+        <button id="readModeBtn" onclick="showReadMode()">完整歌詞</button>
+        <button id="practiceModeBtn" onclick="startPractice()">卡拉OK模式</button>
+        </div>
+    </div>
+
+        <div id="readMode" class="read-mode"></div>
+
+        <div id="practiceMode" class="karaoke-mode hidden">
+        <div class="karaoke-toolbar">
+            <div id="practiceCounter" class="karaoke-clock">0:00 / 0:00</div>
+
+            <div class="karaoke-sync-controls">
+            <button id="karaokeStartBtn" onclick="toggleKaraoke()">▶ 同步開始</button>
+            </div>
+        </div>
+
+        <div id="karaokeLyrics" class="karaoke-scroll-list"></div>
+        </div>
+
+        <nav class="song-bottom-bar">
+        <button type="button" onclick="goPrevSong()">← 上一首</button>
+        <button type="button" onclick="toggleSetlistSheet()">Setlist</button>
+        <button type="button" onclick="goNextSong()">下一首 →</button>
+        </nav>
+
+        <div id="setlistOverlay" class="setlist-overlay hidden" onclick="closeSetlistSheet()"></div>
+
+        <section id="setlistSheet" class="setlist-sheet hidden">
+        <div class="setlist-handle"></div>
+
+        <div class="setlist-sheet-header">
+            <div>
+            <p>SETLIST</p>
+            <h3>選擇歌曲</h3>
+            </div>
+            <button type="button" onclick="closeSetlistSheet()">✕</button>
+        </div>
+
+        <div id="setlistSheetList" class="setlist-sheet-list"></div>
+    </section>
+
+    <script src="js/system/version.js"></script>
+    <script src="js/system/version-render.js"></script>
+    <script src="js/dashboard/dashboard.js"></script>
+    <script src="js/dashboard/dashboard-cards.js"></script>
+    <script src="js/dashboard/dashboard-render.js"></script>
+    <script src="js/system/preferences.js"></script>
+    <script src="js/core/state.js"></script>
+    <script src="js/core/storage.js"></script>
+    <script src="js/core/utils.js"></script>
+    <script src="js/system/fab.js"></script>
+    <script src="js/data/songs/01-hooligan.js"></script>
+    <script src="js/data/songs/02-aliens.js"></script>
+    <script src="js/data/songs/03-run-bts.js"></script>
+    <script src="js/data/songs/04-they-dont-know-bout-us.js"></script>
+    <script src="js/data/songs/05-like-animals.js"></script>
+    <script src="js/data/songs/06-fake-love.js"></script>
+    <script src="js/data/songs/07-swim.js"></script>
+    <script src="js/data/songs/08-merry-go-round.js"></script>
+    <script src="js/data/songs/09-2.0.js"></script>
+    <script src="js/data/songs/10-normal.js"></script>
+    <script src="js/data/songs/11-not-today.js"></script>
+    <script src="js/data/songs/12-mic-drop.js"></script>
+    <script src="js/data/songs/13-fya.js"></script>
+    <script src="js/data/songs/14-fire.js"></script>
+    <script src="js/data/songs/15-body-to-body.js"></script>
+    <script src="js/data/songs/16-idol.js"></script>
+    <script src="js/data/songs/17-come-over.js"></script>
+    <script src="js/data/songs/18-butter.js"></script>
+    <script src="js/data/songs/19-dynamite.js"></script>
+    <script src="js/data/songs/20-please.js"></script>
+    <script src="js/data/songs/21-one-more-night.js"></script>
+    <script src="js/data/songs/22-into-the-sun.js"></script>
+    <script src="js/data/songs-index.js"></script>
+    <script src="js/core/navigation.js"></script>
+    <script src="js/song/song-flow.js"></script>
+    <script src="js/song/song-actions.js"></script>
+    <script src="js/song/setlist-sheet.js"></script>
+    <script src="js/song/platform.js"></script>
+    <script src="js/song/highlight.js"></script>
+    <script src="js/song/song-render.js"></script>
+    <script src="js/song/cue-player.js"></script>
+    <script src="js/song/karaoke.js"></script>
+    <script src="js/system/pwa.js"></script>
+    <script src="js/dashboard/checklist.js"></script>
+    <script src="js/core/app.js"></script>
+    <script src="js/core/song-page.js"></script>
+
+    <script>
+    initSongPage();
+    </script>
+
+</body>
+</html>

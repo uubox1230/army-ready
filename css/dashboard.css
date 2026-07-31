@@ -1,0 +1,870 @@
+/* =========================================================
+   ARMY READY �� Dashboard
+   White / Weverse-inspired home
+========================================================= */
+
+.dashboard-app {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 24px 22px 112px;
+  background: #ffffff;
+}
+
+#dashboardRoot {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+/* =========================================================
+   Hero
+========================================================= */
+
+.dashboard-hero {
+  position: relative;
+  grid-column: 1 / -1;
+  width: 100%;
+  min-height: 460px;
+  margin: 0 0 22px;
+  overflow: hidden;
+  border-radius: 26px;
+  background: #111318;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center 24%;
+  background-repeat: no-repeat;
+  transform: scale(1.002);
+}
+
+.hero-gradient {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(8, 10, 14, 0.04) 25%,
+      rgba(8, 10, 14, 0.20) 54%,
+      rgba(8, 10, 14, 0.82) 100%
+    );
+}
+
+.hero-content {
+  position: absolute;
+  z-index: 2;
+  left: 34px;
+  right: 34px;
+  bottom: 30px;
+
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 34px;
+
+  color: #ffffff;
+}
+
+.hero-info {
+  min-width: 0;
+}
+
+.hero-eyebrow {
+  display: block;
+  margin: 0 0 10px;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+.hero-content h1 {
+  margin: 0;
+  color: #ffffff;
+  font-size: clamp(32px, 4vw, 54px);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  white-space: nowrap;
+}
+
+.hero-city {
+  margin: 16px 0 0;
+  color: var(--brand, #21d8c4);
+  font-size: 12px;
+  font-weight: 850;
+  letter-spacing: 0.16em;
+}
+
+.hero-venue {
+  margin: 5px 0 0;
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 14px;
+  font-weight: 650;
+}
+
+.hero-countdown-v2 {
+  flex: 0 0 auto;
+  text-align: right;
+}
+
+.countdown-main {
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.countdown-main strong {
+  color: #ffffff;
+  font-size: clamp(54px, 6vw, 76px);
+  font-weight: 800;
+  line-height: 0.85;
+  letter-spacing: -0.05em;
+}
+
+.countdown-main span,
+.countdown-sub {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.countdown-main span {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.countdown-sub {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 9px;
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.countdown-sub b {
+  color: #ffffff;
+}
+
+/* =========================================================
+   Cards
+========================================================= */
+
+.dashboard-card {
+  min-width: 0;
+  min-height: 210px;
+  margin: 0;
+  padding: 24px;
+  overflow: hidden;
+  border: 1px solid #e8ebee;
+  border-radius: 22px;
+  background: #ffffff;
+  color: #202124;
+  box-shadow: none;
+}
+
+.dashboard-card:hover {
+  border-color: #d8dddf;
+}
+
+.dashboard-card h2 {
+  margin: 0;
+  color: #202124;
+  font-size: 24px;
+  font-weight: 760;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+
+.card-label {
+  margin: 0 0 9px;
+  color: #7a8088;
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.card-chip,
+.notice-badge,
+.events-badge,
+.venue-badge {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  padding: 5px 9px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--brand-soft, #e9faf7);
+  color: var(--brand-dark, #008f82);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.today-card,
+.continue-card,
+.notice-card,
+.events-card,
+.venue-card,
+.setlist-entry-card {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.today-card-top,
+.continue-card-top,
+.notice-card-top,
+.events-card-top,
+.venue-card-top,
+.setlist-entry-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.today-card-body,
+.continue-meta,
+.card-desc,
+.notice-card .card-desc,
+.events-card .card-desc,
+.setlist-entry-body,
+.venue-subtitle {
+  margin: 12px 0 0;
+  color: #70757a;
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.today-card-action,
+.continue-card-action,
+.notice-card-action,
+.events-card-action,
+.setlist-entry-action,
+.venue-card-action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 18px;
+  border-top: 1px solid #eceff1;
+  color: var(--brand-dark, #008f82);
+  font-size: 14px;
+  font-weight: 750;
+  text-decoration: none;
+}
+
+/* =========================================================
+   My Concert
+========================================================= */
+
+.my-concert-card {
+  display: flex;
+  flex-direction: column;
+  background: #111318;
+  border-color: #111318;
+  color: #ffffff;
+}
+
+.my-concert-card:hover {
+  border-color: #111318;
+}
+
+.my-concert-card h2 {
+  margin-top: 18px;
+  color: #ffffff;
+  font-size: 28px;
+}
+
+.my-concert-card .card-label {
+  color: rgba(255, 255, 255, 0.58);
+}
+
+.my-concert-card .card-chip {
+  background: rgba(255, 255, 255, 0.10);
+  color: #ffffff;
+}
+
+.my-concert-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.my-concert-date {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.my-concert-date strong {
+  color: var(--brand, #21d8c4);
+  font-size: 34px;
+  font-weight: 850;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.my-concert-date span {
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.my-concert-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.my-concert-stat {
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.my-concert-stat span {
+  display: block;
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.my-concert-stat strong {
+  display: block;
+  margin-top: 6px;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.my-concert-action {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding: 18px 0 0;
+  border: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  background: transparent;
+  color: var(--brand, #21d8c4);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+/* =========================================================
+   Quick Access
+========================================================= */
+
+.quick-access-card {
+  grid-column: 1 / -1;
+  min-height: 0;
+}
+
+.quick-access-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.quick-access-item {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid #e8ebee;
+  border-radius: 16px;
+  color: #202124;
+  text-decoration: none;
+  transition:
+    border-color 0.16s ease,
+    transform 0.16s ease;
+}
+
+.quick-access-item:hover {
+  border-color: #cfd8d6;
+  transform: translateY(-1px);
+}
+
+.quick-access-icon {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  background: var(--brand-soft, #e9faf7);
+  color: var(--brand-dark, #008f82);
+}
+
+.quick-access-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.quick-access-copy {
+  min-width: 0;
+}
+
+.quick-access-copy strong,
+.quick-access-copy small {
+  display: block;
+}
+
+.quick-access-copy strong {
+  overflow: hidden;
+  color: #202124;
+  font-size: 14px;
+  font-weight: 800;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.quick-access-copy small {
+  margin-top: 3px;
+  overflow: hidden;
+  color: #8a9096;
+  font-size: 11px;
+  font-weight: 650;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.quick-access-arrow {
+  color: #a3a8ad;
+  font-size: 22px;
+  line-height: 1;
+}
+
+/* =========================================================
+   Latest Updates
+========================================================= */
+
+.latest-updates-card {
+  min-height: 0;
+}
+
+.latest-updates-list {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.latest-update-item {
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 0;
+  border-top: 1px solid #eceff1;
+  color: #202124;
+  text-decoration: none;
+}
+
+.latest-update-item:first-child {
+  border-top: 0;
+}
+
+.latest-update-icon {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: #f4f7f7;
+  color: var(--brand-dark, #008f82);
+}
+
+.latest-update-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.latest-update-copy {
+  min-width: 0;
+}
+
+.latest-update-copy small,
+.latest-update-copy strong {
+  display: block;
+}
+
+.latest-update-copy small {
+  margin-bottom: 4px;
+  color: #8a9096;
+  font-size: 10px;
+  font-weight: 750;
+}
+
+.latest-update-copy strong {
+  overflow: hidden;
+  color: #30343a;
+  font-size: 14px;
+  font-weight: 750;
+  line-height: 1.45;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.latest-update-arrow {
+  color: #a3a8ad;
+  font-size: 22px;
+}
+
+.latest-updates-empty {
+  margin: 14px 0 0;
+  color: #8a9096;
+  font-size: 14px;
+}
+
+/* =========================================================
+   Progress
+========================================================= */
+
+.progress-card-v2 {
+  min-height: 176px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  background: #f6fbfa;
+  border-color: #dff1ee;
+}
+
+.progress-card-v2 h2 {
+  font-size: 28px;
+}
+
+.progress-card-v2 #progressText {
+  margin: 8px 0 0;
+  color: #70757a;
+  font-size: 14px;
+  font-weight: 650;
+}
+
+.progress-ring {
+  flex: 0 0 auto;
+  width: 82px;
+  height: 82px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle closest-side, #f6fbfa 69%, transparent 71%),
+    conic-gradient(
+      var(--brand, #00b8a9) var(--progress),
+      #dfe9e7 0
+    );
+}
+
+.progress-ring span {
+  color: #202124;
+  font-size: 17px;
+  font-weight: 800;
+}
+
+/* =========================================================
+   Venue
+========================================================= */
+
+.venue-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.venue-list span {
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: #f4f6f7;
+  color: #70757a;
+  font-size: 12px;
+  font-weight: 650;
+}
+
+/* =========================================================
+   Home FAB
+========================================================= */
+
+.home-fab-menu {
+  right: 22px;
+  bottom: 22px;
+}
+
+.home-fab-menu .fab-main {
+  width: 54px;
+  height: 54px;
+  border: 1px solid #d8e9e6;
+  border-radius: 50%;
+  background: #ffffff;
+  color: var(--brand-dark, #008f82);
+  font-size: 24px;
+  font-weight: 400;
+  box-shadow: 0 10px 28px rgba(26, 51, 47, 0.14);
+}
+
+.home-fab-menu .fab-action {
+  border: 1px solid #e6eaec;
+  background: #ffffff;
+  color: #30343a;
+  box-shadow: 0 8px 24px rgba(20, 28, 32, 0.10);
+}
+
+.site-footer {
+  color: #92979d;
+}
+
+/* =========================================================
+   Tablet
+========================================================= */
+
+@media (min-width: 561px) and (max-width: 768px) {
+  .dashboard-app {
+    padding: 14px 14px 96px;
+  }
+
+  #dashboardRoot {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .dashboard-hero {
+    min-height: 430px;
+    height: 430px;
+    margin-bottom: 12px;
+    border-radius: 22px;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center 24%;
+  }
+
+  .hero-content {
+    left: 28px;
+    right: 28px;
+    bottom: 26px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+    gap: 24px;
+  }
+
+  .hero-content h1 {
+    font-size: clamp(28px, 4.2vw, 36px);
+    white-space: nowrap;
+  }
+
+  .hero-countdown-v2 {
+    margin-top: 0;
+    text-align: right;
+  }
+
+  .countdown-main,
+  .countdown-sub {
+    justify-content: flex-end;
+  }
+
+  .countdown-main strong {
+    font-size: 58px;
+  }
+
+  .dashboard-card {
+    min-height: 190px;
+    padding: 20px;
+    border-radius: 20px;
+  }
+
+  .quick-access-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* =========================================================
+   Mobile
+========================================================= */
+
+@media (max-width: 560px) {
+  .dashboard-app {
+    padding: 14px 14px 96px;
+  }
+
+  #dashboardRoot {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .dashboard-hero {
+    min-height: 0;
+    height: 320px;
+    margin-bottom: 6px;
+    border-radius: 20px;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center 25%;
+  }
+
+  .hero-gradient {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(8, 10, 14, 0.03) 24%,
+        rgba(8, 10, 14, 0.18) 48%,
+        rgba(8, 10, 14, 0.90) 100%
+      );
+  }
+
+  .hero-content {
+    left: 18px;
+    right: 18px;
+    bottom: 18px;
+    display: block;
+  }
+
+  .hero-info {
+    min-width: 0;
+    padding-right: 106px;
+  }
+
+  .hero-eyebrow {
+    margin-bottom: 7px;
+    font-size: 9px;
+  }
+
+  .hero-content h1 {
+    max-width: none;
+    font-size: clamp(24px, 7.4vw, 30px);
+    line-height: 0.98;
+    white-space: normal;
+  }
+
+  .hero-city {
+    margin-top: 11px;
+    font-size: 10px;
+  }
+
+  .hero-venue {
+    max-width: 210px;
+    margin-top: 4px;
+    font-size: 11px;
+    line-height: 1.35;
+  }
+
+  .hero-countdown-v2 {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin: 0;
+    text-align: right;
+  }
+
+  .countdown-main {
+    justify-content: flex-end;
+    gap: 5px;
+  }
+
+  .countdown-main strong {
+    font-size: 44px;
+  }
+
+  .countdown-main span {
+    font-size: 12px;
+  }
+
+  .countdown-sub {
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 7px;
+    font-size: 10px;
+  }
+
+  .dashboard-card {
+    min-height: 190px;
+    padding: 20px;
+    border-radius: 20px;
+  }
+
+  .my-concert-card h2 {
+    font-size: 23px;
+  }
+
+  .my-concert-date strong {
+    font-size: 30px;
+  }
+
+  .my-concert-stats {
+    gap: 7px;
+  }
+
+  .my-concert-stat {
+    padding: 10px 8px;
+  }
+
+  .my-concert-stat span {
+    font-size: 9px;
+  }
+
+  .my-concert-stat strong {
+    font-size: 14px;
+  }
+
+  .quick-access-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 9px;
+  }
+
+  .quick-access-item {
+    grid-template-columns: 38px minmax(0, 1fr);
+    gap: 10px;
+    padding: 12px;
+  }
+
+  .quick-access-icon {
+    width: 38px;
+    height: 38px;
+  }
+
+  .quick-access-arrow {
+    display: none;
+  }
+
+  .quick-access-copy strong {
+    font-size: 13px;
+  }
+
+  .quick-access-copy small {
+    font-size: 10px;
+  }
+
+  .latest-update-copy strong {
+    white-space: normal;
+  }
+}

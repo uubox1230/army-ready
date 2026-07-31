@@ -1,17 +1,54 @@
 {
   "name": "ARMY READY",
   "short_name": "ARMY READY",
-  "id": "/",
+  "description": "BTS 演唱會應援練習、官方公告、粉絲活動與場館資訊整理。",
+  "id": "./",
   "scope": "./",
   "start_url": "./index.html",
   "display": "standalone",
+  "display_override": [
+    "standalone"
+  ],
+  "orientation": "portrait",
   "background_color": "#0f0b18",
   "theme_color": "#0f0b18",
+  "categories": [
+    "music",
+    "entertainment",
+    "lifestyle"
+  ],
   "icons": [
-  {
-    "src": "android-chrome-2000x2000.png",
-    "sizes": "512x512",
-    "type": "image/png"
-  }
+    {
+      "src": "images/android-chrome-2000x2000.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "官方公告",
+      "short_name": "Official",
+      "description": "查看最新官方公告",
+      "url": "./official.html"
+    },
+    {
+      "name": "粉絲應援",
+      "short_name": "Community",
+      "description": "查看粉絲應援活動",
+      "url": "./community.html"
+    },
+    {
+      "name": "場館指南",
+      "short_name": "Venue",
+      "description": "查看交通、入場與場館提醒",
+      "url": "./venue.html"
+    },
+    {
+      "name": "完整歌單",
+      "short_name": "Setlist",
+      "description": "開啟完整練習歌單",
+      "url": "./setlist.html"
+    }
   ]
 }
