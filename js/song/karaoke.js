@@ -13,6 +13,9 @@
    State
 ========================= */
 
+let karaokeLines = [];
+let karaokeElements = [];
+
 let karaokeIndex = -1;
 let karaokeTimer = null;
 let karaokeStartTime = 0;
@@ -33,8 +36,9 @@ function getKaraokeWrap() {
 }
 
 function getKaraokeElement(index) {
-  return document.querySelector(
-    `.karaoke-line[data-index="${index}"]`
+  return karaokeElements.find(
+    element =>
+      Number(element.dataset.index) === index
   );
 }
 
@@ -44,6 +48,7 @@ function getKaraokeElement(index) {
 
 function startPractice() {
   pauseKaraoke();
+  buildKaraokeCache();
 
   document.getElementById("readMode")?.classList.add("hidden");
   document.getElementById("practiceMode")?.classList.remove("hidden");
@@ -176,6 +181,10 @@ function buildKaraoke() {
       createKaraokeLine(line, index)
     );
   });
+
+  karaokeElements = [
+    ...wrap.querySelectorAll(".karaoke-line")
+  ];
 
   karaokeBuilt = true;
   bindKaraokeScrollState();
@@ -403,19 +412,24 @@ function jumpKaraokeTo(
    Song data
 ========================= */
 
-function getKaraokeLines() {
-  const song =
-    SONGS[AppState.song.currentIndex];
+function buildKaraokeCache() {
+  const song = SONGS[AppState.song.currentIndex];
 
-  if (!song) return [];
+  if (!song) {
+    karaokeLines = [];
+    return;
+  }
 
-  return (
+  karaokeLines =
     song.practiceLines ||
     song.chants.filter(line =>
       line.at !== undefined &&
       line.at !== null
-    )
-  );
+    );
+}
+
+function getKaraokeLines() {
+  return karaokeLines;
 }
 
 /* =========================

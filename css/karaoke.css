@@ -162,13 +162,15 @@ body.karaoke-lock .karaoke-scroll-list {
 ========================================================= */
 
 .karaoke-line {
-  width: 100%;
-  margin: 0;
-  padding: 0 8px;
+  width: calc(100% - 16px);
+  margin: 0 8px;
+  padding: 10px 12px;
 
+  position: relative;
   display: block;
 
   border: 0;
+  border-radius: 14px;
   background: transparent;
 
   color: #676b70;
@@ -199,13 +201,13 @@ body.karaoke-lock .karaoke-scroll-list {
 
   cursor: pointer;
 
-  transform: none !important;
+  transform: none;
   text-shadow: none !important;
   filter: none !important;
 
   transition:
-    color 0.22s ease,
-    opacity 0.22s ease;
+    color 0.12s ease-out,
+    opacity 0.12s ease-out;
 }
 
 .karaoke-line span {
@@ -217,22 +219,49 @@ body.karaoke-lock .karaoke-scroll-list {
 .karaoke-line.future {
   color: #676b70 !important;
   opacity: 0.72;
+  background: transparent;
+  transform: none;
 }
 
-.karaoke-line.past,
+.karaoke-line.past {
+  color: #747980 !important;
+  opacity: 0.58;
+  background: transparent;
+  transform: none;
+}
+
 .karaoke-line.past span,
 .karaoke-line.past .karaoke-highlight,
 .karaoke-line.past .inline-highlight,
 .karaoke-line.past .replace-new {
-  color: #8b8f94 !important;
-  opacity: 0.42;
+  opacity: 1 !important;
 }
 
 .karaoke-line.active,
 .karaoke-line.active > span {
-  color: #202124 !important;
+  color: #111214 !important;
   opacity: 1 !important;
-  font-weight: 800 !important;
+  font-weight: 900 !important;
+}
+
+.karaoke-line.active {
+  background: transparent;
+  transform: none;
+  letter-spacing: -0.015em;
+  text-shadow:
+    0 1px 0 rgba(17, 18, 20, 0.10),
+    0 0 0.5px rgba(17, 18, 20, 0.22) !important;
+}
+
+.karaoke-line.active::after {
+  content: "";
+  display: block;
+  width: 22px;
+  height: 2px;
+  margin: 8px auto 0;
+
+  border-radius: 999px;
+  background: rgba(178, 193, 208, 0.544);
 }
 
 /* =========================================================
@@ -255,21 +284,30 @@ body.karaoke-lock .karaoke-scroll-list {
 /* Upcoming highlighted segment uses pale semantic color. */
 .karaoke-line.future.chant .karaoke-highlight,
 .karaoke-line.future.chant .inline-highlight,
-.karaoke-line.future.chant .replace-new {
+.karaoke-line.future.chant .replace-new,
+.karaoke-line.past.chant .karaoke-highlight,
+.karaoke-line.past.chant .inline-highlight,
+.karaoke-line.past.chant .replace-new {
   color: #8eafea !important;
   opacity: 1 !important;
 }
 
 .karaoke-line.future.sing .karaoke-highlight,
 .karaoke-line.future.sing .inline-highlight,
-.karaoke-line.future.sing .replace-new {
+.karaoke-line.future.sing .replace-new,
+.karaoke-line.past.sing .karaoke-highlight,
+.karaoke-line.past.sing .inline-highlight,
+.karaoke-line.past.sing .replace-new {
   color: #e6a0c5 !important;
   opacity: 1 !important;
 }
 
 .karaoke-line.future.cheer .karaoke-highlight,
 .karaoke-line.future.cheer .inline-highlight,
-.karaoke-line.future.cheer .replace-new {
+.karaoke-line.future.cheer .replace-new,
+.karaoke-line.past.cheer .karaoke-highlight,
+.karaoke-line.past.cheer .inline-highlight,
+.karaoke-line.past.cheer .replace-new {
   color: #d2b568 !important;
   opacity: 1 !important;
 }
@@ -316,6 +354,12 @@ body.karaoke-lock .karaoke-scroll-list {
   border-radius: 8px;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .karaoke-line {
+    transition: none;
+  }
+}
+
 /* =========================================================
    Bottom navigation
 ========================================================= */
@@ -345,6 +389,10 @@ body.karaoke-lock .song-bottom-bar {
   }
 
   .karaoke-line {
+    width: calc(100% - 8px);
+    margin: 0 4px;
+    padding: 9px 10px;
+
     font-size: clamp(20px, 5.6vw, 27px) !important;
   }
 
