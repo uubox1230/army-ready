@@ -133,6 +133,7 @@ body.karaoke-lock .karaoke-scroll-list {
   scrollbar-width: none;
 
   -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
 
   mask-image:
     linear-gradient(
@@ -200,6 +201,8 @@ body.karaoke-lock .karaoke-scroll-list {
   opacity: 0.72;
 
   cursor: pointer;
+  touch-action: pan-y;
+  -webkit-tap-highlight-color: transparent;
 
   transform: none;
   text-shadow: none !important;
@@ -373,6 +376,20 @@ body.karaoke-lock .song-bottom-bar {
 ========================================================= */
 
 @media (max-width: 600px) {
+  /*
+   * iOS Safari 在捲動區同時套用 mask 與 backdrop-filter 時成本很高。
+   * 手機版改為一般白底，不影響任何操作或內容。
+   */
+  .karaoke-toolbar {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .karaoke-scroll-list {
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+
   .karaoke-mode {
     min-height: 520px;
     height: calc(100dvh - 205px);

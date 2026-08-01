@@ -26,6 +26,7 @@ let karaokeBuilt = false;
 let karaokeScrollBound = false;
 let karaokeProgrammaticScroll = false;
 let karaokeProgrammaticScrollTimer = null;
+let karaokeClockSecond = -1;
 
 /* =========================
    Element helpers
@@ -56,6 +57,7 @@ function startPractice() {
 
   karaokeIndex = -1;
   karaokeElapsed = 0;
+  karaokeClockSecond = -1;
   isKaraokeRunning = false;
   karaokeBuilt = false;
 
@@ -149,6 +151,7 @@ function pauseKaraoke() {
 
 function restartKaraoke() {
   karaokeElapsed = 0;
+  karaokeClockSecond = -1;
   activateKaraokeLine(-1, "auto");
   updateKaraokeClock();
   startKaraoke();
@@ -201,39 +204,22 @@ function createKaraokeLine(line, index) {
   button.tabIndex = -1;
 
   /*
-   * 阻止按鈕取得焦點後，由瀏覽器擅自捲動外層頁面。
+   * 保留瀏覽器原生觸控滑動。
+   * 不攔截 touchstart / pointerdown，避免手機在歌詞上無法捲動。
    */
-  const preventFocusScroll = event => {
-    event.preventDefault();
-  };
-
-  button.addEventListener(
-    "pointerdown",
-    preventFocusScroll,
-    { passive: false }
-  );
-
-  button.addEventListener(
-    "mousedown",
-    preventFocusScroll,
-    { passive: false }
-  );
-
-  button.addEventListener(
-    "touchstart",
-    preventFocusScroll,
-    { passive: false }
-  );
-
   button.addEventListener("click", event => {
-    event.preventDefault();
     event.stopPropagation();
 
     /*
      * 使用者主動點擊歌詞時，一律置中。
-     * 不沿用任何之前的手動捲動位置。
+     * 按鈕本身沒有預設送出行為，因此不需要 preventDefault()。
      */
     jumpKaraokeTo(index, "smooth");
+
+    /*
+     * 點擊後移除焦點，避免行動瀏覽器因焦點變更捲動外層頁面。
+     */
+    button.blur();
   });
 
   button.innerHTML = renderKaraokeText(line);
@@ -254,31 +240,27 @@ function activateKaraokeLine(
   const wrap = getKaraokeWrap();
   if (!wrap) return;
 
-  const allLines =
-    wrap.querySelectorAll(".karaoke-line");
+  /*
+   * 使用 buildKaraoke() 已建立的快取，避免每次換句重新查詢 DOM，
+   * 並將原本兩輪 class 更新合併成一輪。
+   */
+  karaokeElements.forEach(element => {
+    const lineIndex = Number(element.dataset.index);
+    let nextState = "future";
 
-  allLines.forEach(element => {
-    element.classList.remove(
-      "active",
-      "past",
-      "future"
-    );
+    if (lineIndex < index) {
+      nextState = "past";
+    } else if (lineIndex === index) {
+      nextState = "active";
+    }
+
+    if (!element.classList.contains(nextState)) {
+      element.classList.remove("active", "past", "future");
+      element.classList.add(nextState);
+    }
   });
 
   karaokeIndex = index;
-
-  allLines.forEach(element => {
-    const lineIndex =
-      Number(element.dataset.index);
-
-    if (lineIndex < index) {
-      element.classList.add("past");
-    } else if (lineIndex === index) {
-      element.classList.add("active");
-    } else {
-      element.classList.add("future");
-    }
-  });
 
   const active = getKaraokeElement(index);
 
@@ -383,6 +365,7 @@ function jumpKaraokeTo(
 
   if (index < 0) {
     karaokeElapsed = 0;
+    karaokeClockSecond = -1;
 
     if (isKaraokeRunning) {
       karaokeStartTime = performance.now();
@@ -397,6 +380,7 @@ function jumpKaraokeTo(
   if (!line) return;
 
   karaokeElapsed = Number(line.at);
+  karaokeClockSecond = -1;
 
   if (isKaraokeRunning) {
     karaokeStartTime =
@@ -491,6 +475,18 @@ function updateKaraokeClock() {
 
   const displayTime =
     Math.min(karaokeElapsed, last);
+
+  /*
+   * 畫面只顯示整秒，不需要每 80ms 重寫文字。
+   * 仍保留原本 80ms 的歌詞同步精度。
+   */
+  const displaySecond = Math.floor(displayTime);
+
+  if (displaySecond === karaokeClockSecond) {
+    return;
+  }
+
+  karaokeClockSecond = displaySecond;
 
   const counter =
     document.getElementById("practiceCounter");
