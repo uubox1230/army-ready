@@ -53,7 +53,7 @@ const DASHBOARD = {
       {
         id: "setlist",
         label: "Setlist",
-        title: "完整歌單",
+        title: "應援練習",
         icon: "music-2",
         href: "setlist.html"
       }
