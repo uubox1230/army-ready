@@ -12,10 +12,10 @@
 
 const COMMUNITY_CATEGORIES = [
   { id: "all", label: "全部" },
-  { id: "banner", label: "手幅" },
-  { id: "giveaway", label: "應援物發放" },
-  { id: "photo", label: "拍照點" },
   { id: "support", label: "應援企劃" },
+  { id: "giveaway", label: "免費發放" },
+  { id: "banner", label: "手幅販售" },
+  { id: "photo", label: "拍照打卡" },
   { id: "other", label: "其他" }
 ];
 
@@ -47,23 +47,23 @@ const COMMUNITY_EVENTS = [
 
   {
     id: "community-example-giveaway",
-    category: "giveaway",
-    date: "2026-11-21",
+    category: "support",
+    date: ["2026-11-19", "2026-11-21", "2026-11-22"],
     title: "應援活動徵才中",
     host: "超有才の台灣阿米",
     summary:
       "如需推廣歡迎透過 X 或 IG 聯繫 @uu_box_，我們會盡量協助宣傳，讓更多阿米知道活動資訊。",
-    location: "高雄國家體育場 場外",
+    location: "---",
     time: "---",
     note: "---",
     links: [
       {
-        label: "X 聯繫 @uu_box_",
+        label: "X 聯繫投稿",
         url: "https://x.com/uu_box_/",
         primary: false
       },
       {
-        label: "IG 聯繫 @uu_box_",
+        label: "IG 聯繫投稿",
         url: "https://www.instagram.com/uu_box_/",
         primary: false
       }
