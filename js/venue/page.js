@@ -1,7 +1,16 @@
+const VENUE_SCROLL = {
+  activeSectionId: "",
+  isProgrammaticScroll: false,
+  scrollTimer: null,
+  releaseTimer: null,
+  resizeTimer: null
+};
+
 function initVenuePage() {
   renderVenueTabs();
   renderVenueSections();
   bindVenueScrollSpy();
+  updateVenueActiveFromScroll();
 }
 
 function renderVenueTabs() {
@@ -13,6 +22,7 @@ function renderVenueTabs() {
       type="button"
       class="venue-tab ${index === 0 ? "active" : ""}"
       data-target="${section.id}"
+      aria-pressed="${index === 0 ? "true" : "false"}"
     >
       ${section.label}
     </button>
@@ -20,11 +30,23 @@ function renderVenueTabs() {
 
   root.querySelectorAll("[data-target]").forEach(button => {
     button.addEventListener("click", () => {
-      const target = document.getElementById(button.dataset.target);
-      target?.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
+      const sectionId = button.dataset.target;
+      const target = document.getElementById(sectionId);
+      if (!target) return;
+
+      VENUE_SCROLL.isProgrammaticScroll = true;
+      updateVenueActiveTab(sectionId, true);
+      window.clearTimeout(VENUE_SCROLL.releaseTimer);
+
+      window.scrollTo({
+        top: getVenueSectionScrollTop(target),
+        behavior: "smooth"
       });
+
+      VENUE_SCROLL.releaseTimer = window.setTimeout(() => {
+        VENUE_SCROLL.isProgrammaticScroll = false;
+        updateVenueActiveFromScroll();
+      }, 700);
     });
   });
 }
@@ -43,7 +65,6 @@ function createVenueSectionMarkup(section) {
     .map((item, index) => `
       <div class="venue-item">
         <span class="venue-item-number">${index + 1}</span>
-
         <div class="venue-item-copy">
           <strong>${item.title}</strong>
           <span>${item.detail}</span>
@@ -63,23 +84,13 @@ function createVenueSectionMarkup(section) {
           <p>${section.label}</p>
           <h2>${section.title}</h2>
         </div>
-
-        <span class="venue-section-icon" aria-hidden="true">
-          ${section.icon}
-        </span>
       </div>
 
-      <p class="venue-section-description">
-        ${section.description}
-      </p>
+      <p class="venue-section-description">${section.description}</p>
 
-      <div class="venue-item-list">
-        ${items}
-      </div>
+      <div class="venue-item-list">${items}</div>
 
-      ${links
-        ? `<div class="venue-section-links">${links}</div>`
-        : ""}
+      ${links ? `<div class="venue-section-links">${links}</div>` : ""}
     </article>
   `;
 }
@@ -102,44 +113,120 @@ function createVenueLinkMarkup(link) {
   `;
 }
 
+function getVenueStickyOffset() {
+  const header = document.querySelector(".venue-header");
+  const tabs = document.getElementById("venueTabs");
+
+  const headerHeight = header?.getBoundingClientRect().height || 0;
+  const tabsHeight = tabs?.getBoundingClientRect().height || 0;
+
+  return headerHeight + tabsHeight + 12;
+}
+
+function getVenueSectionScrollTop(target) {
+  const targetTop = target.getBoundingClientRect().top + window.scrollY;
+  return Math.max(0, targetTop - getVenueStickyOffset());
+}
+
 function bindVenueScrollSpy() {
+  window.addEventListener("scroll", handleVenueScroll, { passive: true });
+
+  window.addEventListener("resize", () => {
+    window.clearTimeout(VENUE_SCROLL.resizeTimer);
+
+    VENUE_SCROLL.resizeTimer = window.setTimeout(() => {
+      if (!VENUE_SCROLL.isProgrammaticScroll) {
+        updateVenueActiveFromScroll();
+      }
+    }, 120);
+  }, { passive: true });
+
+  if ("onscrollend" in window) {
+    window.addEventListener("scrollend", () => {
+      VENUE_SCROLL.isProgrammaticScroll = false;
+      updateVenueActiveFromScroll();
+    }, { passive: true });
+  }
+}
+
+function handleVenueScroll() {
+  if (VENUE_SCROLL.isProgrammaticScroll) return;
+
+  window.clearTimeout(VENUE_SCROLL.scrollTimer);
+
+  VENUE_SCROLL.scrollTimer = window.setTimeout(() => {
+    updateVenueActiveFromScroll();
+  }, 70);
+}
+
+function updateVenueActiveFromScroll() {
   const sections = VENUE_GUIDE.sections
     .map(section => document.getElementById(section.id))
     .filter(Boolean);
 
-  if (!sections.length || !("IntersectionObserver" in window)) return;
+  if (!sections.length) return;
 
-  const observer = new IntersectionObserver(
-    entries => {
-      const visibleEntry = entries
-        .filter(entry => entry.isIntersecting)
-        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+  const markerY = getVenueStickyOffset() + 24;
+  let activeSection = sections[0];
 
-      if (!visibleEntry) return;
-
-      updateVenueActiveTab(visibleEntry.target.id);
-    },
-    {
-      rootMargin: "-25% 0px -60% 0px",
-      threshold: [0.05, 0.2, 0.5]
+  sections.forEach(section => {
+    if (section.getBoundingClientRect().top <= markerY) {
+      activeSection = section;
     }
-  );
+  });
 
-  sections.forEach(section => observer.observe(section));
+  const nearBottom =
+    window.innerHeight + window.scrollY >=
+    document.documentElement.scrollHeight - 8;
+
+  if (nearBottom) {
+    activeSection = sections[sections.length - 1];
+  }
+
+  updateVenueActiveTab(activeSection.id, false);
 }
 
-function updateVenueActiveTab(sectionId) {
-  document.querySelectorAll(".venue-tab").forEach(button => {
-    const isActive = button.dataset.target === sectionId;
-    button.classList.toggle("active", isActive);
+function updateVenueActiveTab(sectionId, centerTab = false) {
+  if (!sectionId) return;
 
-    if (isActive) {
-      button.scrollIntoView({
-        behavior: "smooth",
-        inline: "center",
-        block: "nearest"
-      });
-    }
+  const buttons = Array.from(document.querySelectorAll(".venue-tab"));
+  const activeButton = buttons.find(button => button.dataset.target === sectionId);
+
+  if (!activeButton) return;
+
+  const didChange = VENUE_SCROLL.activeSectionId !== sectionId;
+  VENUE_SCROLL.activeSectionId = sectionId;
+
+  buttons.forEach(button => {
+    const isActive = button === activeButton;
+    button.classList.toggle("active", isActive);
+    button.setAttribute("aria-pressed", String(isActive));
+  });
+
+  if (didChange || centerTab) {
+    keepVenueTabVisible(activeButton, centerTab);
+  }
+}
+
+function keepVenueTabVisible(button, centerTab = false) {
+  const tabs = document.getElementById("venueTabs");
+  if (!tabs || !button) return;
+
+  const tabsRect = tabs.getBoundingClientRect();
+  const buttonRect = button.getBoundingClientRect();
+  const padding = 14;
+
+  const outsideLeft = buttonRect.left < tabsRect.left + padding;
+  const outsideRight = buttonRect.right > tabsRect.right - padding;
+
+  if (!centerTab && !outsideLeft && !outsideRight) return;
+
+  const targetLeft =
+    button.offsetLeft - (tabs.clientWidth - button.offsetWidth) / 2;
+
+  tabs.scrollTo({
+    left: Math.max(0, targetLeft),
+    behavior: centerTab ? "smooth" : "auto"
   });
 }
 

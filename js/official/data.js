@@ -32,7 +32,7 @@ const OFFICIAL_ANNOUNCEMENTS = [
       {
         label: "返回首頁",
         url: "index.html",
-        primary: true
+        primary: false
       }
     ]
   },
@@ -42,14 +42,14 @@ const OFFICIAL_ANNOUNCEMENTS = [
     category: "venue",
     date: "2026-07-31",
     isNew: false,
-    title: "高雄國家體育場資訊將獨立整理",
+    title: "演唱會場館資訊整理",
     summary:
-      "場館交通、入口位置、周邊設施與演唱會當日注意事項，後續將更新至 Venue Guide。",
+      "場館交通、入口位置、周邊設施與演唱會當日注意事項，後續將更新至 Venue Guide 頁面。",
     links: [
       {
-        label: "Venue Guide",
+        label: "Venue Guide 場館指南",
         url: "venue.html",
-        primary: false
+        primary: true
       }
     ]
   }

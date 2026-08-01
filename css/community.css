@@ -233,6 +233,13 @@
 }
 
 .community-card-meta {
+  min-width: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.community-card-category-row,
+.community-card-date-row {
   display: flex;
   flex-wrap: wrap;
   align-items: center;

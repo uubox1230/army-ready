@@ -91,9 +91,11 @@ function getFilteredCommunityEvents() {
 
   return COMMUNITY_EVENTS
     .filter(item => {
+      const categories = normalizeCommunityArray(item.category);
+
       const categoryMatched =
         communityState.category === "all" ||
-        item.category === communityState.category;
+        categories.includes(communityState.category);
 
       const favoriteMatched =
         !communityState.favoritesOnly ||
@@ -104,9 +106,14 @@ function getFilteredCommunityEvents() {
         item.host,
         item.summary,
         item.location,
+        item.time,
         item.note,
-        getCommunityCategoryLabel(item.category)
-      ].join(" ").toLowerCase();
+        getCommunityCategoryLabels(item.category),
+        formatCommunityDates(item.date)
+      ]
+        .filter(Boolean)
+        .join(" ")
+        .toLowerCase();
 
       const queryMatched =
         !communityState.query ||
@@ -114,7 +121,9 @@ function getFilteredCommunityEvents() {
 
       return categoryMatched && favoriteMatched && queryMatched;
     })
-    .sort((a, b) => new Date(a.date) - new Date(b.date));
+    .sort((a, b) => {
+      return getCommunityFirstDate(a.date) - getCommunityFirstDate(b.date);
+    });
 }
 
 function renderCommunityEvents() {
@@ -151,13 +160,13 @@ function createCommunityCardMarkup(item) {
     <article class="community-card">
       <div class="community-card-top">
         <div class="community-card-meta">
-          <span class="community-card-category">
-            ${getCommunityCategoryLabel(item.category)}
-          </span>
+          <div class="community-card-category-row">
+            ${createCommunityCategoryBadges(item.category)}
+          </div>
 
-          <span class="community-card-date">
-            ${formatCommunityDate(item.date)}
-          </span>
+          <div class="community-card-date-row">
+            ${createCommunityDateBadges(item.date)}
+          </div>
         </div>
 
         <button
@@ -217,11 +226,35 @@ function createCommunityLinkMarkup(link) {
   `;
 }
 
+function normalizeCommunityArray(value) {
+  if (Array.isArray(value)) {
+    return value.filter(Boolean);
+  }
+
+  return value ? [value] : [];
+}
+
 function getCommunityCategoryLabel(categoryId) {
   return (
     COMMUNITY_CATEGORIES.find(category => category.id === categoryId)?.label ||
     "其他"
   );
+}
+
+function getCommunityCategoryLabels(categoryValue) {
+  return normalizeCommunityArray(categoryValue)
+    .map(getCommunityCategoryLabel)
+    .join("、");
+}
+
+function createCommunityCategoryBadges(categoryValue) {
+  return normalizeCommunityArray(categoryValue)
+    .map(categoryId => `
+      <span class="community-card-category">
+        ${getCommunityCategoryLabel(categoryId)}
+      </span>
+    `)
+    .join("");
 }
 
 function formatCommunityDate(dateValue) {
@@ -234,6 +267,38 @@ function formatCommunityDate(dateValue) {
     day: "numeric",
     weekday: "short"
   }).format(date);
+}
+
+function formatCommunityDates(dateValue) {
+  return normalizeCommunityArray(dateValue)
+    .map(formatCommunityDate)
+    .join("、");
+}
+
+function createCommunityDateBadges(dateValue) {
+  return normalizeCommunityArray(dateValue)
+    .map(date => `
+      <span class="community-card-date">
+        ${formatCommunityDate(date)}
+      </span>
+    `)
+    .join("");
+}
+
+function getCommunityFirstDate(dateValue) {
+  const dates = normalizeCommunityArray(dateValue);
+
+  if (!dates.length) {
+    return Number.POSITIVE_INFINITY;
+  }
+
+  const timestamps = dates
+    .map(date => new Date(`${date}T00:00:00+08:00`).getTime())
+    .filter(timestamp => !Number.isNaN(timestamp));
+
+  return timestamps.length
+    ? Math.min(...timestamps)
+    : Number.POSITIVE_INFINITY;
 }
 
 function updateCommunityFavoriteToggle() {

@@ -1,5 +1,11 @@
 /* =========================================================
    ARMY READY — Venue Guide
+   Shared UI with Official / Community
+   Guide structure preserved:
+   - Numbered information
+   - Section-by-section reading
+   - Fast scanning
+   - Sticky tabs
 ========================================================= */
 
 .venue-page {
@@ -15,6 +21,11 @@
   box-sizing: border-box;
 }
 
+/* =========================================================
+   Header
+   Matches Official / Community
+========================================================= */
+
 .venue-header {
   position: sticky;
   z-index: 30;
@@ -22,10 +33,11 @@
   border-bottom: 1px solid rgba(230, 233, 236, 0.92);
   background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
 }
 
 .venue-header-inner {
-  width: min(100%, 980px);
+  width: min(100%, 880px);
   min-height: 72px;
   display: flex;
   align-items: center;
@@ -63,19 +75,30 @@
 
 .venue-header-copy h1 {
   margin-top: 2px;
+  color: #202124;
   font-size: 22px;
+  font-weight: 700;
   line-height: 1.1;
   letter-spacing: -0.03em;
 }
 
+/* =========================================================
+   Main layout
+========================================================= */
+
 .venue-main {
-  width: min(100%, 980px);
+  width: min(100%, 880px);
   margin: 0 auto;
   padding: 24px 22px 96px;
 }
 
+/* =========================================================
+   Hero
+   Matches Official proportions and typography
+========================================================= */
+
 .venue-hero {
-  min-height: 250px;
+  min-height: 204px;
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
@@ -86,10 +109,10 @@
   background:
     radial-gradient(
       circle at top right,
-      rgba(33, 216, 196, 0.30),
-      transparent 38%
+      rgba(33, 216, 196, 0.28),
+      transparent 35%
     ),
-    linear-gradient(140deg, #111318, #22272e);
+    #111318;
   color: #ffffff;
 }
 
@@ -103,32 +126,47 @@
 
 .venue-hero h2 {
   margin: 0;
-  font-size: clamp(32px, 6vw, 50px);
+  color: #ffffff;
+  font-size: clamp(30px, 6vw, 46px);
+  font-weight: 700;
   line-height: 1;
   letter-spacing: -0.05em;
 }
 
 .venue-hero-subtitle {
-  margin: 10px 0 0;
-  color: rgba(255, 255, 255, 0.68);
+  margin: 18px 0 0;
+  color: rgba(255, 255, 255, 0.72);
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 400;
+  line-height: 1.75;
 }
 
 .venue-map-button {
   flex: 0 0 auto;
+  min-height: 40px;
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  min-height: 46px;
-  padding: 10px 15px;
-  border-radius: 14px;
+  gap: 7px;
+  padding: 8px 12px;
+  border: 1px solid #dce2e4;
+  border-radius: 12px;
   background: #ffffff;
-  color: #202124;
-  font-size: 13px;
-  font-weight: 800;
+  color: #30343a;
+  font-size: 12px;
+  font-weight: 750;
   text-decoration: none;
 }
+
+.venue-map-button:hover,
+.venue-map-button:focus-visible {
+  border-color: #cfd5d8;
+  background: #f7f8f9;
+}
+
+/* =========================================================
+   Sticky tabs
+   Same visual scale as Official filters
+========================================================= */
 
 .venue-tabs {
   position: sticky;
@@ -139,8 +177,12 @@
   margin-top: 20px;
   padding: 10px 0;
   overflow-x: auto;
+  overflow-y: hidden;
   background: #f7f8f9;
   scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  touch-action: pan-x;
 }
 
 .venue-tabs::-webkit-scrollbar {
@@ -159,6 +201,16 @@
   font-size: 12px;
   font-weight: 750;
   cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.venue-tab:hover {
+  border-color: #d3d8db;
+  background: #fafbfb;
+  color: #30343a;
 }
 
 .venue-tab.active {
@@ -167,17 +219,21 @@
   color: #ffffff;
 }
 
+/* =========================================================
+   Guide sections
+========================================================= */
+
 .venue-sections {
   display: grid;
-  gap: 16px;
+  gap: 12px;
   margin-top: 12px;
 }
 
 .venue-section {
   scroll-margin-top: 132px;
-  padding: 24px;
+  padding: 22px;
   border: 1px solid #e6eaec;
-  border-radius: 22px;
+  border-radius: 20px;
   background: #ffffff;
 }
 
@@ -185,7 +241,7 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 18px;
+  gap: 14px;
 }
 
 .venue-section-heading p,
@@ -204,43 +260,37 @@
 .venue-section-heading h2 {
   margin-top: 7px;
   color: #202124;
-  font-size: 25px;
-  line-height: 1.2;
-  letter-spacing: -0.03em;
-}
-
-.venue-section-icon {
-  width: 44px;
-  height: 44px;
-  flex: 0 0 auto;
-  display: grid;
-  place-items: center;
-  border-radius: 14px;
-  background: #e9faf7;
-  color: #008f82;
-  font-size: 20px;
-  font-weight: 850;
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -0.025em;
 }
 
 .venue-section-description {
-  margin: 14px 0 0;
-  color: #6f757b;
-  font-size: 14px;
-  line-height: 1.75;
+    margin-top: 10px;
+    color: #6f757b;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.65;
+    max-width: 620px;
 }
+
+/* =========================================================
+   Numbered information
+========================================================= */
 
 .venue-item-list {
   display: grid;
-  gap: 10px;
-  margin-top: 18px;
+  gap: 8px;
+  margin-top: 17px;
 }
 
 .venue-item {
   display: grid;
   grid-template-columns: 28px minmax(0, 1fr);
   gap: 12px;
-  padding: 14px;
-  border-radius: 15px;
+  padding: 12px 14px;
+  border-radius: 14px;
   background: #f7f8f9;
 }
 
@@ -256,6 +306,10 @@
   font-weight: 850;
 }
 
+.venue-item-copy {
+  min-width: 0;
+}
+
 .venue-item-copy strong,
 .venue-item-copy span {
   display: block;
@@ -264,35 +318,48 @@
 .venue-item-copy strong {
   color: #30343a;
   font-size: 14px;
-  line-height: 1.45;
+  font-weight: 750;
+  line-height: 1.35;
 }
 
 .venue-item-copy span {
-  margin-top: 5px;
+  margin-top: 2px;
   color: #7d848a;
   font-size: 12px;
-  line-height: 1.6;
+  font-weight: 400;
+  line-height: 1.55;
 }
+
+/* =========================================================
+   Section links
+========================================================= */
 
 .venue-section-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 9px;
-  margin-top: 18px;
+  gap: 8px;
+  margin-top: 17px;
 }
 
 .venue-section-link {
+  min-height: 36px;
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  min-height: 38px;
+  gap: 6px;
   padding: 8px 12px;
   border: 1px solid #dce2e4;
   border-radius: 12px;
-  color: #30343a;
+  background: #ffffff;
+  color: #50565b;
   font-size: 12px;
   font-weight: 750;
   text-decoration: none;
+}
+
+.venue-section-link:hover,
+.venue-section-link:focus-visible {
+  border-color: #cfd5d8;
+  background: #f7f8f9;
 }
 
 .venue-section-link.primary {
@@ -301,25 +368,41 @@
   color: #ffffff;
 }
 
+.venue-section-link.primary:hover,
+.venue-section-link.primary:focus-visible {
+  border-color: #30343a;
+  background: #30343a;
+}
+
+/* =========================================================
+   Important notice
+========================================================= */
+
 .venue-notice {
   margin-top: 18px;
   padding: 20px;
   border: 1px solid #dcefea;
   border-radius: 18px;
-  background: #effaf8;
+  background: #ffffff;
 }
 
 .venue-notice strong {
   color: #176c63;
   font-size: 14px;
+  font-weight: 800;
 }
 
 .venue-notice p {
   margin: 7px 0 0;
   color: #52736f;
   font-size: 13px;
+  font-weight: 400;
   line-height: 1.7;
 }
+
+/* =========================================================
+   Mobile
+========================================================= */
 
 @media (max-width: 700px) {
   .venue-header-inner {
@@ -332,30 +415,71 @@
   }
 
   .venue-hero {
-    min-height: 220px;
+    min-height: 0;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-end;
+    gap: 18px;
     padding: 24px 20px;
     border-radius: 22px;
   }
 
+  .venue-hero h2 {
+    font-size: clamp(30px, 9vw, 38px);
+  }
+
+  .venue-hero-subtitle {
+    margin-top: 14px;
+  }
+
   .venue-map-button {
-    width: 100%;
-    justify-content: space-between;
+    min-height: 36px;
   }
 
   .venue-tabs {
     top: 64px;
+    margin-top: 14px;
   }
 
   .venue-section {
-    padding: 20px;
-    border-radius: 20px;
+    padding: 18px;
+    border-radius: 18px;
   }
 
   .venue-section-heading h2 {
-    font-size: 22px;
+    font-size: 18px;
+  }
+
+  .venue-section-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+    font-size: 17px;
+  }
+
+  .venue-item {
+    padding: 12px;
+  }
+
+  .venue-section-links {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .venue-section-link {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .venue-notice {
+    padding: 18px;
+    border-radius: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .venue-tab {
+    transition: none;
   }
 }

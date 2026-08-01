@@ -13,7 +13,7 @@
 const COMMUNITY_CATEGORIES = [
   { id: "all", label: "全部" },
   { id: "banner", label: "手幅" },
-  { id: "giveaway", label: "物資發放" },
+  { id: "giveaway", label: "應援物發放" },
   { id: "photo", label: "拍照點" },
   { id: "support", label: "應援企劃" },
   { id: "other", label: "其他" }
@@ -22,20 +22,25 @@ const COMMUNITY_CATEGORIES = [
 const COMMUNITY_EVENTS = [
   {
     id: "community-page-launch",
-    category: "support",
-    date: "2026-11-19",
-    title: "粉絲應援活動整理頁建立中",
-    host: "ARMY READY",
+    category: ["support", "giveaway"],
+    date: ["2026-11-19", "2026-11-21", "2026-11-22"],
+    title: "ㄌㄙㄉ｜高雄場外垃圾袋免費領取",
+    host: "ARMY READY (@uu_box_)",
     summary:
-      "之後可將各主辦單位公開發布的手幅、物資、拍照點與其他活動集中整理在此頁。",
-    location: "高雄國家體育場周邊",
+      "阿米限定應援～我們在場外準備了「垃圾袋」要送給大家，希望大家在散場時能把垃圾帶走，讓場館保持乾淨整潔。",
+    location: "高雄國家體育場 場外",
     time: "待公告",
-    note: "實際活動內容以主辦單位公告為準。",
+    note: "當天具體位置會隨時更新在 X & IG 限時動態，請隨時查看。",
     links: [
       {
-        label: "返回首頁",
-        url: "index.html",
+        label: "主辦原公告(X)",
+        url: "https://x.com/uu_box_/status/2067185490777002456?s=20",
         primary: true
+      },
+      {
+        label: "主辦原公告(IG)",
+        url: "https://www.instagram.com/p/DZsAfypGfa_/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+        primary: false
       }
     ]
   },
@@ -44,17 +49,22 @@ const COMMUNITY_EVENTS = [
     id: "community-example-giveaway",
     category: "giveaway",
     date: "2026-11-21",
-    title: "活動資料範例",
-    host: "Example ARMY",
+    title: "應援活動徵才中",
+    host: "超有才の台灣阿米",
     summary:
-      "這是一筆示範資料，可直接在 data.js 中替換成正式的活動資訊。",
-    location: "捷運世運站周邊",
-    time: "14:00 起",
-    note: "數量有限，送完為止。",
+      "如需推廣歡迎透過 X 或 IG 聯繫 @uu_box_，我們會盡量協助宣傳，讓更多阿米知道活動資訊。",
+    location: "高雄國家體育場 場外",
+    time: "---",
+    note: "---",
     links: [
       {
-        label: "活動公告",
-        url: "#",
+        label: "X 聯繫 @uu_box_",
+        url: "https://x.com/uu_box_/",
+        primary: false
+      },
+      {
+        label: "IG 聯繫 @uu_box_",
+        url: "https://www.instagram.com/uu_box_/",
         primary: false
       }
     ]
