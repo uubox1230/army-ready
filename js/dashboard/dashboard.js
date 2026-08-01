@@ -18,17 +18,23 @@ const DASHBOARD = {
 
   myConcert: {
     title: "My Concert",
-    venueLabel: "Venue",
-    practiceLabel: "Practice",
-    eventsLabel: "Saved Events",
-    noticesLabel: "New Notices",
-    continueLabel: "Continue Practice",
-    startLabel: "Start Practice"
+    practiceLabel: "練習進度",
+    eventsLabel: "已儲存的活動",
+    noticesLabel: "新的公告",
+    continueLabel: "繼續練習",
+    startLabel: "開始練習"
   },
 
   quickAccess: {
     title: "Quick Access",
     items: [
+    {
+        id: "setlist",
+        label: "Setlist",
+        title: "應援練習",
+        icon: "music-2",
+        href: "setlist.html"
+      },
       {
         id: "official",
         label: "Official",
@@ -49,20 +55,13 @@ const DASHBOARD = {
         title: "場館指南",
         icon: "map-pinned",
         href: "venue.html"
-      },
-      {
-        id: "setlist",
-        label: "Setlist",
-        title: "應援練習",
-        icon: "music-2",
-        href: "setlist.html"
       }
     ]
   },
 
   updates: {
     title: "Latest Updates",
-    emptyText: "目前沒有新的更新。",
+    emptyText: "公告更新。",
     items: [
       {
         id: "update-official",
@@ -77,7 +76,7 @@ const DASHBOARD = {
         id: "update-community",
         type: "community",
         label: "Community",
-        title: "粉絲應援活動整理頁即將上線",
+        title: "粉絲應援活動整理頁陸續更新中",
         date: "2026-07-31",
         icon: "heart",
         href: "community.html"
@@ -86,7 +85,7 @@ const DASHBOARD = {
         id: "update-venue",
         type: "venue",
         label: "Venue",
-        title: "場館入場與交通資訊將整理於 Venue Guide",
+        title: "入場相關資訊將整理於 Venue Guide",
         date: "2026-07-31",
         icon: "map-pinned",
         href: "venue.html"

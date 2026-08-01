@@ -315,7 +315,7 @@ function updateCommunityFavoriteToggle() {
     <span aria-hidden="true">
       ${communityState.favoritesOnly ? "♥" : "♡"}
     </span>
-    <span>${communityState.favoritesOnly ? "全部活動" : "收藏"}</span>
+    <span>${communityState.favoritesOnly ? "查看全部活動" : "我的收藏"}</span>
   `;
 }
 

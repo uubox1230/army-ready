@@ -249,7 +249,7 @@ function formatUpdateDate(dateValue) {
 function createLatestUpdatesCard() {
   const updates = DASHBOARD.updates;
   const items = Array.isArray(updates.items)
-    ? updates.items.slice(0, 3)
+    ? updates.items.slice(0, 4)
     : [];
 
   const section = document.createElement("section");
