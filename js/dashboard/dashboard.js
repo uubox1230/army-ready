@@ -19,7 +19,7 @@ const DASHBOARD = {
   myConcert: {
     title: "My Concert",
     practiceLabel: "練習進度",
-    eventsLabel: "已儲存的活動",
+    eventsLabel: "已收藏的應援",
     noticesLabel: "新的公告",
     continueLabel: "繼續練習",
     startLabel: "開始練習"
@@ -61,36 +61,8 @@ const DASHBOARD = {
 
   updates: {
     title: "Latest Updates",
-    emptyText: "公告更新。",
-    items: [
-      {
-        id: "update-official",
-        type: "official",
-        label: "Official",
-        title: "官方公告整理頁即將上線",
-        date: "2026-07-31",
-        icon: "megaphone",
-        href: "official.html"
-      },
-      {
-        id: "update-community",
-        type: "community",
-        label: "Community",
-        title: "粉絲應援活動整理頁陸續更新中",
-        date: "2026-07-31",
-        icon: "heart",
-        href: "community.html"
-      },
-      {
-        id: "update-venue",
-        type: "venue",
-        label: "Venue",
-        title: "入場相關資訊將整理於 Venue Guide",
-        date: "2026-07-31",
-        icon: "map-pinned",
-        href: "venue.html"
-      }
-    ]
+    emptyText: "目前沒有更新。",
+    limit: 10
   },
 
   checklist: [
@@ -145,17 +117,17 @@ const DASHBOARD = {
     default: [
       "hero",
       "myConcert",
-      "quickAccess",
       "progress",
+      "quickAccess",
       "latest"
     ],
 
     finalWeek: [
       "hero",
       "myConcert",
+      "progress",
       "quickAccess",
       "checklist",
-      "progress",
       "latest"
     ],
 

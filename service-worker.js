@@ -4,7 +4,7 @@ importScripts("./js/system/version.js");
   APP_CACHE_NAME 仍由 js/system/version.js 管理。
   此處增加結構版本，確保本次 PWA 檔案調整會建立新快取。
 */
-const CACHE_NAME = `${APP_CACHE_NAME}-pwa-2`;
+const CACHE_NAME = `${APP_CACHE_NAME}-pwa-3`;
 
 const ASSETS = [
   "./",

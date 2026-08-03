@@ -3,7 +3,7 @@
 
   新增活動方式：
   1. 複製 COMMUNITY_EVENTS 裡的一個完整物件。
-  2. 修改 id、category、date、title、host、summary、location、time、note。
+  2. 修改 id、category、date、updatedAt、title、host、summary、location、time、note。
   3. 最新或最重要的活動可放在陣列最上方。
 
   category 可使用：
@@ -24,6 +24,7 @@ const COMMUNITY_EVENTS = [
     id: "community-page-launch",
     category: ["support", "giveaway"],
     date: ["2026-11-19", "2026-11-21", "2026-11-22"],
+    updatedAt: "2026-08-03",
     title: "ㄌㄙㄉ｜高雄場外垃圾袋免費領取",
     host: "ARMY READY (@uu_box_)",
     summary:
@@ -49,6 +50,7 @@ const COMMUNITY_EVENTS = [
     id: "community-example-giveaway",
     category: "support",
     date: ["2026-11-19", "2026-11-21", "2026-11-22"],
+    updatedAt: "2026-08-03",
     title: "應援活動徵才中",
     host: "超有才の台灣阿米",
     summary:

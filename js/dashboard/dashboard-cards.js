@@ -108,8 +108,8 @@ function getSavedFanEventsCount() {
 }
 
 function getNewNoticesCount() {
-  const notices = DASHBOARD.updates?.items || [];
-  return notices.filter(item => item.type === "official").length;
+  const notices = getLatestUpdates();
+  return notices.filter(item => item.type === "official" && item.isNew).length;
 }
 
 function formatConcertCardDate(dateValue) {
@@ -246,11 +246,71 @@ function formatUpdateDate(dateValue) {
   }).format(date);
 }
 
+function getUpdateDate(item) {
+  if (item.updatedAt) return item.updatedAt;
+
+  if (Array.isArray(item.date)) return item.date[0];
+  if (item.date) return item.date;
+
+  if (Array.isArray(item.dates)) return item.dates[0];
+  return "";
+}
+
+function getLatestUpdates() {
+  const updates = [];
+
+  if (typeof OFFICIAL_ANNOUNCEMENTS !== "undefined" && Array.isArray(OFFICIAL_ANNOUNCEMENTS)) {
+    OFFICIAL_ANNOUNCEMENTS.forEach(item => {
+      updates.push({
+        id: `official-${item.id}`,
+        type: "official",
+        label: "Official",
+        title: item.title,
+        date: getUpdateDate(item),
+        isNew: Boolean(item.isNew),
+        icon: "megaphone",
+        href: "official.html"
+      });
+    });
+  }
+
+  if (typeof COMMUNITY_EVENTS !== "undefined" && Array.isArray(COMMUNITY_EVENTS)) {
+    COMMUNITY_EVENTS.forEach(item => {
+      updates.push({
+        id: `community-${item.id}`,
+        type: "community",
+        label: "Community",
+        title: item.title,
+        date: getUpdateDate(item),
+        icon: "heart",
+        href: "community.html"
+      });
+    });
+  }
+
+  if (typeof VENUE_GUIDE !== "undefined" && VENUE_GUIDE) {
+    updates.push({
+      id: `venue-${VENUE_GUIDE.id || "guide"}`,
+      type: "venue",
+      label: "Venue",
+      title: VENUE_GUIDE.title || "場館指南",
+      date: getUpdateDate(VENUE_GUIDE),
+      icon: "map-pinned",
+      href: "venue.html"
+    });
+  }
+
+  return updates
+    .filter(item => item.id && item.title && item.date)
+    .filter((item, index, items) =>
+      items.findIndex(candidate => candidate.id === item.id) === index
+    )
+    .sort((a, b) => b.date.localeCompare(a.date));
+}
+
 function createLatestUpdatesCard() {
   const updates = DASHBOARD.updates;
-  const items = Array.isArray(updates.items)
-    ? updates.items.slice(0, 4)
-    : [];
+  const items = getLatestUpdates().slice(0, updates.limit || 10);
 
   const section = document.createElement("section");
   section.className = "dashboard-card latest-updates-card";

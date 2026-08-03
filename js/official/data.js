@@ -3,7 +3,7 @@
 
   新增公告方式：
   1. 複製 OFFICIAL_ANNOUNCEMENTS 裡的一個完整物件。
-  2. 修改 id、category、date、title、summary 與 links。
+  2. 修改 id、category、date、updatedAt、title、summary 與 links。
   3. 最新公告請放在陣列最上方。
 
   category 可使用：
@@ -24,6 +24,7 @@ const OFFICIAL_ANNOUNCEMENTS = [
     id: "official-page-launch",
     category: "general",
     date: "2026-08-01",
+    updatedAt: "2026-08-01",
     isNew: true,
     title: "官方公告整理頁建立中",
     summary:
@@ -45,6 +46,7 @@ const OFFICIAL_ANNOUNCEMENTS = [
     id: "official-fanchant-guide",
     category: "general",
     date: "2026-08-01",
+    updatedAt: "2026-08-01",
     isNew: true,
     title: "BTS “ARIRANG” Fan Chant Guide",
     summary:
@@ -66,6 +68,7 @@ const OFFICIAL_ANNOUNCEMENTS = [
     id: "venue-guide-preview",
     category: "venue",
     date: "2026-07-31",
+    updatedAt: "2026-07-31",
     isNew: false,
     title: "演唱會場館資訊整理",
     summary:
@@ -86,6 +89,7 @@ const OFFICIAL_ANNOUNCEMENTS = [
     id: "ticket-notice-001",
     category: "ticket",
     date: "2026-08-01",
+    updatedAt: "2026-08-03",
     isNew: true,
     title: "公告標題",
     summary: "公告內容摘要。",

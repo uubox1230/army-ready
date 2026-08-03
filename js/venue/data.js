@@ -4,6 +4,9 @@
 ========================================================= */
 
 const VENUE_GUIDE = {
+  id: "venue-guide",
+  title: "高雄國家體育場指南",
+  updatedAt: "2026-08-03",
   sections: [
     {
       id: "transport",
