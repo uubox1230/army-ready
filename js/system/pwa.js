@@ -11,23 +11,39 @@ if ("serviceWorker" in navigator) {
     window.location.reload();
   });
 
-  navigator.serviceWorker.register("./service-worker.js").then(registration => {
-    registration.update();
+  const registerServiceWorker = () => {
+    navigator.serviceWorker.register("./service-worker.js").then(registration => {
+      registration.update();
 
-    registration.addEventListener("updatefound", () => {
-      const newWorker = registration.installing;
+      registration.addEventListener("updatefound", () => {
+        const newWorker = registration.installing;
 
-      newWorker.addEventListener("statechange", () => {
-        if (newWorker.state === "installed" && navigator.serviceWorker.controller) {
-          newWorker.postMessage({ type: "SKIP_WAITING" });
-        }
+        newWorker.addEventListener("statechange", () => {
+          if (newWorker.state === "installed" && navigator.serviceWorker.controller) {
+            newWorker.postMessage({ type: "SKIP_WAITING" });
+          }
+        });
       });
-    });
 
-    if (registration.waiting) {
-      registration.waiting.postMessage({ type: "SKIP_WAITING" });
+      if (registration.waiting) {
+        registration.waiting.postMessage({ type: "SKIP_WAITING" });
+      }
+    });
+  };
+
+  const scheduleServiceWorkerRegistration = () => {
+    if ("requestIdleCallback" in window) {
+      window.requestIdleCallback(registerServiceWorker);
+    } else {
+      window.setTimeout(registerServiceWorker, 0);
     }
-  });
+  };
+
+  if (document.readyState === "complete") {
+    scheduleServiceWorkerRegistration();
+  } else {
+    window.addEventListener("load", scheduleServiceWorkerRegistration, { once: true });
+  }
 }
 
 let deferredPrompt = null;
