@@ -27,6 +27,8 @@ const ASSETS = [
   "./js/system/fab.js",
   "./js/system/pwa.js",
 
+  "./js/vendor/lucide.min.js",
+
   "./js/core/app.js",
   "./js/core/navigation.js",
   "./js/core/storage.js",
