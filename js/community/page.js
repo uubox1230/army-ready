@@ -157,7 +157,7 @@ function createCommunityCardMarkup(item) {
     : "";
 
   return `
-    <article class="community-card">
+    <article id="${item.id}" class="community-card">
       <div class="community-card-top">
         <div class="community-card-meta">
           <div class="community-card-category-row">

@@ -9,23 +9,28 @@
     <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/setlist.css">
+    <link rel="stylesheet" href="css/navigation-menu.css">
 </head>
 
 <body>
 
 <div class="setlist-page">
 
-    <header class="setlist-header">
+    <header class="setlist-global-header">
+        <div class="setlist-header-top">
+            <button class="back-btn global-back-link" onclick="location.href='index.html'">
+                <span class="global-back-icon" aria-hidden="true">‹</span>
+                <span class="global-back-label">返回首頁</span>
+            </button>
+        </div>
+    </header>
 
-        <button class="back-btn" onclick="location.href='index.html'">
-            ← 返回主頁
-        </button>
-
-        <p class="card-label">
+    <section class="setlist-header page-intro setlist-page-intro">
+        <p class="card-label page-intro-eyebrow">
             Practice Library
         </p>
 
-        <h1>BTS WORLD TOUR 'ARIRANG' 完整歌單</h1>
+        <h1 class="page-intro-title">BTS WORLD TOUR 'ARIRANG' 完整歌單</h1>
 
         <input
             id="songSearch"
@@ -35,7 +40,7 @@
             oninput="renderSetlistPage()"
         />
 
-    </header>
+    </section>
 
     <div id="setlistRoot" class="song-list"></div>
 
@@ -70,6 +75,7 @@
 <script src="js/data/songs-index.js"></script>
 <script src="js/setlist/page.js"></script>
 <script src="js/core/app.js"></script>
+<script src="js/system/navigation-menu.js"></script>
 
 </body>
 </html>

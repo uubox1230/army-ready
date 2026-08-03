@@ -89,7 +89,7 @@ function createOfficialCardMarkup(item) {
     : "";
 
   return `
-    <article class="official-card">
+    <article id="${item.id}" class="official-card">
       <div class="official-card-top">
         <div class="official-card-meta">
           <span class="official-card-category">

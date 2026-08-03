@@ -10,28 +10,26 @@
   <link rel="manifest" href="manifest.json">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/venue.css">
+  <link rel="stylesheet" href="css/navigation-menu.css">
 </head>
 
 <body class="venue-page">
   <header class="venue-header">
     <div class="venue-header-inner">
-      <a class="venue-back" href="index.html" aria-label="返回首頁">
-        <span aria-hidden="true">‹</span>
+      <a class="venue-back global-back-link" href="index.html" aria-label="返回首頁">
+        <span class="global-back-icon" aria-hidden="true">‹</span>
+        <span class="global-back-label">返回首頁</span>
       </a>
 
-      <div class="venue-header-copy">
-        <p>ARMY READY</p>
-        <h1>Venue Guide</h1>
-      </div>
     </div>
   </header>
 
   <main class="venue-main">
-    <section class="venue-hero">
+    <section class="venue-hero page-intro">
       <div>
-        <p class="venue-eyebrow">BTS WORLD TOUR 'ARIRANG'</p>
-        <h2>高雄國家體育場</h2>
-        <p class="venue-hero-subtitle">世運主場館</p>
+        <p class="venue-eyebrow page-intro-eyebrow">BTS WORLD TOUR 'ARIRANG'</p>
+        <h2 class="page-intro-title">高雄國家體育場</h2>
+        <p class="venue-hero-subtitle page-intro-description">世運主場館</p>
       </div>
 
       <a
@@ -60,5 +58,6 @@
 
   <script src="js/venue/data.js"></script>
   <script src="js/venue/page.js"></script>
+  <script src="js/system/navigation-menu.js"></script>
 </body>
 </html>

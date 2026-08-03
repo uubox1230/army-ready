@@ -79,6 +79,9 @@ function createVenueSectionMarkup(section) {
 
   return `
     <article id="${section.id}" class="venue-section">
+      ${section === VENUE_GUIDE.sections[0]
+        ? `<span id="${VENUE_GUIDE.id}" data-deep-link-parent="true"></span>`
+        : ""}
       <div class="venue-section-heading">
         <div>
           <p>${section.label}</p>

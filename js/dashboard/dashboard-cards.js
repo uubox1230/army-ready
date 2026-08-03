@@ -269,7 +269,7 @@ function getLatestUpdates() {
         date: getUpdateDate(item),
         isNew: Boolean(item.isNew),
         icon: "megaphone",
-        href: "official.html"
+        href: `official.html#${encodeURIComponent(item.id)}`
       });
     });
   }
@@ -283,7 +283,7 @@ function getLatestUpdates() {
         title: item.title,
         date: getUpdateDate(item),
         icon: "heart",
-        href: "community.html"
+        href: `community.html#${encodeURIComponent(item.id)}`
       });
     });
   }
@@ -296,7 +296,7 @@ function getLatestUpdates() {
       title: VENUE_GUIDE.title || "場館指南",
       date: getUpdateDate(VENUE_GUIDE),
       icon: "map-pinned",
-      href: "venue.html"
+      href: `venue.html#${encodeURIComponent(VENUE_GUIDE.id || "guide")}`
     });
   }
 

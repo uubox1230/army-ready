@@ -10,40 +10,42 @@
   <link rel="manifest" href="manifest.json">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/community.css">
+  <link rel="stylesheet" href="css/navigation-menu.css">
 </head>
 
 <body class="community-page">
   <header class="community-header">
     <div class="community-header-inner">
-      <a class="community-back" href="index.html" aria-label="返回首頁">
-        <span aria-hidden="true">‹</span>
+      <a class="community-back global-back-link" href="index.html" aria-label="返回首頁">
+        <span class="global-back-icon" aria-hidden="true">‹</span>
+        <span class="global-back-label">返回首頁</span>
       </a>
 
-      <div class="community-header-copy">
-        <p>ARMY READY</p>
-        <h1>Community</h1>
-      </div>
-
-      <button
-        id="communityFavoriteToggle"
-        class="community-favorite-toggle"
-        type="button"
-        aria-pressed="false"
-      >
-        <span aria-hidden="true">♡</span>
-        <span>收藏</span>
-      </button>
     </div>
   </header>
 
   <main class="community-main">
-    <section class="community-hero">
-      <p class="community-eyebrow">ARMY FAN PROJECTS</p>
-      <h2>粉絲應援活動</h2>
-      <p>
-        整理手幅、物資發放、拍照點與其他非官方活動。
-        請依各主辦單位最新公告與現場規定參加。
-      </p>
+    <section class="community-hero page-intro">
+      <div class="page-intro-row">
+        <div class="page-intro-copy">
+          <p class="community-eyebrow page-intro-eyebrow">ARMY FAN PROJECTS</p>
+          <h2 class="page-intro-title">粉絲應援活動</h2>
+          <p class="page-intro-description">
+            整理手幅、物資發放、拍照點與其他非官方活動。
+            請依各主辦單位最新公告與現場規定參加。
+          </p>
+        </div>
+
+        <button
+          id="communityFavoriteToggle"
+          class="community-favorite-toggle page-intro-action"
+          type="button"
+          aria-pressed="false"
+        >
+          <span aria-hidden="true">♡</span>
+          <span>我的收藏</span>
+        </button>
+      </div>
     </section>
 
     <section class="community-toolbar" aria-label="活動篩選">
@@ -79,5 +81,6 @@
 
   <script src="js/community/data.js"></script>
   <script src="js/community/page.js"></script>
+  <script src="js/system/navigation-menu.js"></script>
 </body>
 </html>

@@ -5,17 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ARMY READY｜Song</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/navigation-menu.css">
 </head>
 
 <body>
     <section id="songPage" class="song-page hidden">
 
-    <div class="song-header-row">
-        <button class="back-btn" onclick="backHome()">← 返回歌單</button>
+    <header class="song-global-header">
+        <div class="song-header-row">
+            <button class="back-btn global-back-link" onclick="backHome()">
+                <span class="global-back-icon" aria-hidden="true">‹</span>
+                <span class="global-back-label">返回歌單</span>
+            </button>
+        </div>
+    </header>
+
+    <div class="song-title-row">
+        <h1 id="songTitle">Song Title</h1>
         <button id="doneBtn" class="done-chip" onclick="toggleDone()">○ 未練習</button>
     </div>
-
-    <h1 id="songTitle">Song Title</h1>
     <p id="songNote">官方 Fan Chant + 現場練習提醒。</p>
     <div id="songCue" class="song-cue hidden">
         <div id="songCueText"></div>
@@ -195,6 +203,7 @@
     <script src="js/system/pwa.js"></script>
     <script src="js/core/app.js"></script>
     <script src="js/core/song-page.js"></script>
+    <script src="js/system/navigation-menu.js"></script>
 
     <script>
     initSongPage();
