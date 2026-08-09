@@ -19,6 +19,11 @@ function renderHighlight(line) {
   }
 
   const text = line.text || "";
+
+  if (!line.highlight && line.type !== "lyrics") {
+    return `<span class="inline-highlight ${line.type || ""}">${escapeHtml(text)}</span>`;
+  }
+
   const highlights = Array.isArray(line.highlight)
     ? line.highlight
     : [line.highlight || line.practiceText];
