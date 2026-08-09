@@ -519,6 +519,10 @@ function formatKaraokeTime(seconds) {
 ========================= */
 
 function renderKaraokeText(line) {
+  return renderLyricsDisplay(line, renderKaraokeKoreanText);
+}
+
+function renderKaraokeKoreanText(line) {
   if (!line) return "";
 
   if (line.replaceText) {
@@ -572,4 +576,26 @@ function renderKaraokeText(line) {
   });
 
   return safeText;
+}
+
+function refreshKaraokeLyricsDisplay() {
+  if (!karaokeBuilt || !karaokeElements.length) return;
+
+  const lines = getKaraokeLines();
+
+  karaokeElements.forEach(element => {
+    const index = Number(element.dataset.index);
+    const line = index === -1
+      ? { text: "(...)" }
+      : lines[index];
+
+    if (line) element.innerHTML = renderKaraokeText(line);
+  });
+
+  animateLyricsArea(getKaraokeWrap());
+
+  window.requestAnimationFrame(() => {
+    const active = getKaraokeElement(karaokeIndex);
+    if (active) scrollKaraokeToCenter(active, "auto");
+  });
 }

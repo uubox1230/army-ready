@@ -25,14 +25,14 @@ const SONG_FYA = {
       "type": "chant",
       "time": "應援",
       "text": "김남준！김석진！민윤기！정호석！박지민！김태형！전정국！BTS！",
-      "practiceText": "김남준！김석진！민윤기！정호석！박지민！김태형！전정국！BTS！",
-      "at": 7.5
+      "practiceText": "金南俊! 金碩珍! 閔玧其! 鄭號錫! 朴智旻! 金泰亨! 田柾國! BTS!",
+      "at": 7.5,
+      "roman": "Kim Namjoon! Kim Seokjin! Min Yoongi! Jeong Hoseok! Park Jimin! Kim Taehyung! Jeon Jung kook! BTS!"
     },
     {
       "type": "chant",
       "time": "應援",
       "text": "Everything lit it’s fire (fire)",
-      "practiceText": "(fire)",
       "highlight": "(fire)",
       "at": 15.44
     },
@@ -40,7 +40,6 @@ const SONG_FYA = {
       "type": "chant",
       "time": "應援",
       "text": "Everything big it’s fire (fire)",
-      "practiceText": "(fire)",
       "highlight": "(fire)",
       "at": 17.24
     },
@@ -48,7 +47,6 @@ const SONG_FYA = {
       "type": "chant",
       "time": "應援",
       "text": "Everything lit it’s fire (fire)",
-      "practiceText": "(fire)",
       "highlight": "(fire)",
       "at": 19.08
     },
@@ -56,7 +54,6 @@ const SONG_FYA = {
       "type": "chant",
       "time": "應援",
       "text": "Everything big it’s fire (fire)",
-      "practiceText": "(fire)",
       "highlight": "(fire)",
       "at": 20.96
     },
@@ -64,7 +61,6 @@ const SONG_FYA = {
       "type": "chant",
       "time": "應援",
       "text": "She wanna dance on fire (fire)",
-      "practiceText": "(fire)",
       "highlight": "(fire)",
       "at": 22.84
     },
@@ -72,14 +68,12 @@ const SONG_FYA = {
       "type": "lyrics",
       "time": "歌詞",
       "text": "Everything gas it’s fire",
-      "practiceText": "Everything gas it’s fire",
       "at": 24.66
     },
     {
       "type": "chant",
       "time": "應援",
       "text": "Everything lit it’s fire (fire)",
-      "practiceText": "(fire)",
       "highlight": "(fire)",
       "at": 30.3
     },
@@ -87,7 +81,6 @@ const SONG_FYA = {
       "type": "chant",
       "time": "應援",
       "text": "Everything big it’s fire (fire)",
-      "practiceText": "(fire)",
       "highlight": "(fire)",
       "at": 32.12
     },
@@ -95,7 +88,6 @@ const SONG_FYA = {
       "type": "chant",
       "time": "應援",
       "text": "Everything lit it’s fire (fire)",
-      "practiceText": "(fire)",
       "highlight": "(fire)",
       "at": 33.98
     },
@@ -103,7 +95,6 @@ const SONG_FYA = {
       "type": "chant",
       "time": "應援",
       "text": "Everything big it’s fire (fire)",
-      "practiceText": "(fire)",
       "highlight": "(fire)",
       "at": 35.84
     },
@@ -111,7 +102,6 @@ const SONG_FYA = {
       "type": "chant",
       "time": "應援",
       "text": "She wanna dance on fire (fire)",
-      "practiceText": "(fire)",
       "highlight": "(fire)",
       "at": 37.68
     },
@@ -119,7 +109,6 @@ const SONG_FYA = {
       "type": "chant",
       "time": "應援",
       "text": "Everything gas it’s fire (fire)",
-      "practiceText": "(fire)",
       "highlight": "(fire)",
       "at": 39.6
     },
@@ -127,105 +116,90 @@ const SONG_FYA = {
       "type": "lyrics",
       "time": "歌詞",
       "text": "Don’t stand too close, too close to fire",
-      "practiceText": "Don’t stand too close, too close to fire",
       "at": 41.36
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "Gimmie that gasoline",
-      "practiceText": "Gimmie that gasoline",
       "at": 45.18
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "Gimmie that make me fiend",
-      "practiceText": "Gimmie that make me fiend",
       "at": 47.02
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "Gimmie that make me sweat",
-      "practiceText": "Gimmie that make me sweat",
       "at": 48.92
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "Somethin’ I can’t forget",
-      "practiceText": "Somethin’ I can’t forget",
       "at": 50.72
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "Burnin’ out with my slime",
-      "practiceText": "Burnin’ out with my slime",
       "at": 52.6
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "We in a flame, go wild",
-      "practiceText": "We in a flame, go wild",
       "at": 54.46
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "It’s 200 degrees",
-      "practiceText": "It’s 200 degrees",
       "at": 56.32
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "Club go psycho",
-      "practiceText": "Club go psycho",
       "at": 59.54
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "Might take you viral",
-      "practiceText": "Might take you viral",
       "at": 61.32
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "I go full thriller tonight",
-      "practiceText": "I go full thriller tonight",
       "at": 63.2
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "Club go crazy",
-      "practiceText": "Club go crazy",
       "at": 66.96
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "Like Britney, baby",
-      "practiceText": "Like Britney, baby",
       "at": 68.64
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "Hit me with it one more time",
-      "practiceText": "Hit me with it one more time",
       "at": 70.7
     },
     {
       "type": "chant",
       "time": "應援",
       "text": "Everything lit it’s fire (fire)",
-      "practiceText": "(fire)",
       "highlight": "(fire)",
       "at": 74.96
     },
@@ -233,7 +207,6 @@ const SONG_FYA = {
       "type": "chant",
       "time": "應援",
       "text": "Everything big it’s fire (fire)",
-      "practiceText": "(fire)",
       "highlight": "(fire)",
       "at": 76.76
     },
@@ -241,7 +214,6 @@ const SONG_FYA = {
       "type": "chant",
       "time": "應援",
       "text": "Everything lit it’s fire (fire)",
-      "practiceText": "(fire)",
       "highlight": "(fire)",
       "at": 78.6
     },
@@ -249,7 +221,6 @@ const SONG_FYA = {
       "type": "chant",
       "time": "應援",
       "text": "Everything big it’s fire (fire)",
-      "practiceText": "(fire)",
       "highlight": "(fire)",
       "at": 80.5
     },
@@ -257,7 +228,6 @@ const SONG_FYA = {
       "type": "chant",
       "time": "應援",
       "text": "She wanna dance on fire (fire)",
-      "practiceText": "(fire)",
       "highlight": "(fire)",
       "at": 82.32
     },
@@ -265,7 +235,6 @@ const SONG_FYA = {
       "type": "chant",
       "time": "應援",
       "text": "Everything gas it’s fire (fire)",
-      "practiceText": "(fire)",
       "highlight": "(fire)",
       "at": 84.22
     },
@@ -273,14 +242,13 @@ const SONG_FYA = {
       "type": "lyrics",
       "time": "歌詞",
       "text": "Don’t stand too close, too close to fire",
-      "practiceText": "Don’t stand too close, too close to fire",
       "at": 85.84
     },
     {
       "type": "chant",
       "time": "應援",
       "text": "뜨거워 뜨거워",
-      "practiceText": "뜨거워 뜨거워",
+      "practiceText": "的勾窩 的勾窩",
       "roman": "tteu geo wo tteu geo wo",
       "at": 97.26
     },
@@ -288,14 +256,15 @@ const SONG_FYA = {
       "type": "lyrics",
       "time": "歌詞",
       "text": "vibin’ 완전 핫뜨 뜨거워",
-      "practiceText": "vibin’ 완전 핫뜨 뜨거워",
-      "at": 98.3
+      "practiceText": "vibin’ 完衝 哈的 的勾窩",
+      "at": 98.3,
+      "roman": "vibin’ wan jeon hat tteu tteu geo wo"
     },
     {
       "type": "chant",
       "time": "應援",
       "text": "무서워 무서워",
-      "practiceText": "무서워 무서워",
+      "practiceText": "木搜窩 木搜窩",
       "roman": "mu seo wo mu seo wo",
       "at": 100.96
     },
@@ -303,84 +272,80 @@ const SONG_FYA = {
       "type": "lyrics",
       "time": "歌詞",
       "text": "한겨울에도 엉뜨 필요없어",
-      "practiceText": "한겨울에도 엉뜨 필요없어",
-      "at": 102.08
+      "at": 102.08,
+      "roman": "han gyeo u re do eong tteu pi ryo eop seo",
+      "practiceText": "含ㄍㄧㄡ屋累豆 翁的 披溜 歐ㄅ搜"
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "We ragin’, 확 돌아 춤을 춰",
-      "practiceText": "We ragin’, 확 돌아 춤을 춰",
-      "at": 104.18
+      "practiceText": "We ragin’, 花 豆拉 出ㄇ 戳",
+      "at": 104.18,
+      "roman": "We ragin’, hwak do ra chu meul chwo"
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "쭈뼛쭈뼛은 괴로워",
-      "practiceText": "쭈뼛쭈뼛은 괴로워",
-      "at": 105.96
+      "practiceText": "朱漂朱漂岑 給了我",
+      "at": 105.96,
+      "roman": "jju ppyeot jju ppyeo seun geo ro wo"
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "뭘 고민해 걍 끼어들어 번지 뛰어들어",
-      "practiceText": "뭘 고민해 걍 끼어들어 번지 뛰어들어",
-      "at": 107.74
+      "at": 107.74,
+      "roman": "mwol go min hae gyang kki eo deu reo beon ji ttwi eo deu reo",
+      "practiceText": "抹 勾明黑 ㄍㄧㄤ ㄍㄧ歐的嘍 崩幾 嘟一喔的嘍"
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "(We go right now)",
-      "practiceText": "(We go right now)",
       "at": 109.86
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "Club go psycho",
-      "practiceText": "Club go psycho",
       "at": 111.68
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "Might take you viral",
-      "practiceText": "Might take you viral",
       "at": 113.46
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "I go full thriller tonight",
-      "practiceText": "I go full thriller tonight",
       "at": 115.38
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "Club go crazy",
-      "practiceText": "Club go crazy",
       "at": 119.08
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "Like Britney, baby",
-      "practiceText": "Like Britney, baby",
       "at": 120.98
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "Hit me with it one more time",
-      "practiceText": "Hit me with it one more time",
       "at": 122.92
     },
     {
       "type": "chant",
       "time": "應援",
       "text": "Everything lit it’s fire (fire)",
-      "practiceText": "(fire)",
       "highlight": "(fire)",
       "at": 127.06
     },
@@ -388,7 +353,6 @@ const SONG_FYA = {
       "type": "chant",
       "time": "應援",
       "text": "Everything big it’s fire (fire)",
-      "practiceText": "(fire)",
       "highlight": "(fire)",
       "at": 128.84
     },
@@ -396,7 +360,6 @@ const SONG_FYA = {
       "type": "chant",
       "time": "應援",
       "text": "Everything lit it’s fire (fire)",
-      "practiceText": "(fire)",
       "highlight": "(fire)",
       "at": 130.72
     },
@@ -404,7 +367,6 @@ const SONG_FYA = {
       "type": "chant",
       "time": "應援",
       "text": "Everything big it’s fire (fire)",
-      "practiceText": "(fire)",
       "highlight": "(fire)",
       "at": 132.6
     },
@@ -412,7 +374,6 @@ const SONG_FYA = {
       "type": "chant",
       "time": "應援",
       "text": "She wanna dance on fire (fire)",
-      "practiceText": "(fire)",
       "highlight": "(fire)",
       "at": 134.44
     },
@@ -420,7 +381,6 @@ const SONG_FYA = {
       "type": "chant",
       "time": "應援",
       "text": "Everything gas it’s fire (fire)",
-      "practiceText": "(fire)",
       "highlight": "(fire)",
       "at": 136.34
     },
@@ -428,14 +388,12 @@ const SONG_FYA = {
       "type": "lyrics",
       "time": "歌詞",
       "text": "Don’t stand too close, too close to fire",
-      "practiceText": "Don’t stand too close, too close to fire",
       "at": 138.06
     },
     {
       "type": "chant",
       "time": "應援",
       "text": "Everything lit it’s fire (fire)",
-      "practiceText": "(fire)",
       "highlight": "(fire)",
       "at": 156.82
     },
@@ -443,7 +401,6 @@ const SONG_FYA = {
       "type": "chant",
       "time": "應援",
       "text": "Everything big it’s fire (fire)",
-      "practiceText": "(fire)",
       "highlight": "(fire)",
       "at": 158.64
     },
@@ -451,7 +408,6 @@ const SONG_FYA = {
       "type": "chant",
       "time": "應援",
       "text": "Everything lit it’s fire (fire)",
-      "practiceText": "(fire)",
       "highlight": "(fire)",
       "at": 160.5
     },
@@ -459,7 +415,6 @@ const SONG_FYA = {
       "type": "chant",
       "time": "應援",
       "text": "Everything big it’s fire (fire)",
-      "practiceText": "(fire)",
       "highlight": "(fire)",
       "at": 162.38
     },
@@ -467,7 +422,6 @@ const SONG_FYA = {
       "type": "chant",
       "time": "應援",
       "text": "She wanna dance on fire (fire)",
-      "practiceText": "(fire)",
       "highlight": "(fire)",
       "at": 164.2
     },
@@ -475,7 +429,6 @@ const SONG_FYA = {
       "type": "chant",
       "time": "應援",
       "text": "Everything gas it’s fire (fire)",
-      "practiceText": "(fire)",
       "highlight": "(fire)",
       "at": 166.08
     },
@@ -483,15 +436,13 @@ const SONG_FYA = {
       "type": "lyrics",
       "time": "歌詞",
       "text": "Don’t stand too close, too close to fire",
-      "practiceText": "Don’t stand too close, too close to fire",
       "at": 167.68
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "(後面直接變奏接 FIRE 唷！！)",
-      "practiceText": "(後面直接變奏接 FIRE 唷！！)",
       "at": 174.5
     }
   ]
-  };
+};

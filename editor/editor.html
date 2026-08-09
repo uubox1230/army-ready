@@ -1,102 +1,90 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ARMY READY Studio</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lyrics Data Editor v2.2｜ARMY READY</title>
+  <link rel="stylesheet" href="editor.css">
 </head>
 
 <body>
-  <main class="app">
-    <section class="hero">
-      <div class="logo">⚙️</div>
-      <p class="eyebrow">ARMY READY STUDIO</p>
-      <h1>Studio</h1>
-      <p class="subtitle">貼上官方 Fan Chant Guide，快速整理成 App 可用格式。</p>
-    </section>
-
-    <section class="editor-card">
-      <label>歌曲名稱</label>
-      <input id="songTitleInput" placeholder="Come Over" />
-
-      <label>歌曲 ID</label>
-      <input id="songIdInput" placeholder="hooligan / run-bts / fake-love" />
-
-      <label>備註</label>
-      <input id="songNoteInput" placeholder="Knock knock 那段記得大喊 B! T! S!" />
-
-      <label>切入提示</label>
-      <input id="songCueInput" placeholder="從參考音檔 1:59 前奏變化這邊開始喊" />
-
-      <label>切入音檔路徑</label>
-      <input id="songCueAudioInput" placeholder="audio/hooligan-intro.mp3" />
-
-      <label>Apple Music 連結</label>
-      <input id="appleUrlInput" placeholder="https://music.apple.com/..." />
-
-      <label>Spotify 連結</label>
-      <input id="spotifyUrlInput" placeholder="https://open.spotify.com/track/..." />
-
-      <label>YouTube Music 連結</label>
-      <input id="youtubeMusicUrlInput" placeholder="https://music.youtube.com/watch?v=..." />
-
-      <label>貼上完整 Fan Chant Guide</label>
-      <textarea id="rawText" placeholder="把 Weverse Fan Chant Guide 文字貼在這裡"></textarea>
-
-      <button onclick="parseRawText()">解析文字</button>
-    </section>
-
-    <section class="editor-card">
-    <h2>⏱ Timing Editor</h2>
-    <p class="editor-hint">選擇歌曲後，按 Space 記錄目前秒數到該句歌詞。</p>
-
-    <label>選擇現有歌曲</label>
-    <select id="timingSongSelect" onchange="loadTimingSong()"></select>
-
-    <div class="timing-controls">
-        <button onclick="startTiming()">開始標時間</button>
-        <button onclick="pauseTiming()">暫停</button>
-        <button onclick="resetTiming()">重設秒數</button>
+  <header class="editor-header">
+    <div>
+      <p>ARMY READY TOOLS</p>
+      <h1>Lyrics Data Editor <span>v2.2</span></h1>
     </div>
+    <a href="../song.html#hooligan" target="_blank" rel="noopener">開啟 Song Page ↗</a>
+  </header>
 
-    <div class="timing-panel">
-        <div>
-        <p class="editor-hint">目前秒數</p>
-        <div id="timingClock" class="timing-clock">0.00s</div>
+  <main class="editor-shell">
+    <aside class="editor-sidebar">
+      <section class="editor-panel">
+        <label for="songSelect">選擇歌曲</label>
+        <select id="songSelect"></select>
+
+        <div class="editor-progress-copy">
+          <span>韓文輔助資料完成度</span>
+          <strong id="progressText">0 / 0</strong>
         </div>
-
-        <div>
-        <p class="editor-hint">目前句</p>
-        <div id="timingCurrentLine" class="timing-current-line">請先選擇歌曲</div>
+        <div class="editor-progress" aria-hidden="true">
+          <span id="progressFill"></span>
         </div>
-    </div>
+      </section>
 
-    <div class="timing-controls">
-        <button onclick="prevTimingLine()">← 上一句</button>
-        <button onclick="markTiming()">Space：標記</button>
-        <button onclick="nextTimingLine()">下一句 →</button>
-    </div>
+      <section class="editor-panel editor-filters">
+        <label class="editor-checkbox">
+          <input id="incompleteOnly" type="checkbox">
+          <span>只顯示待補行</span>
+        </label>
 
-    <div id="timingLineList" class="timing-line-list"></div>
+        <label for="lineSearch">搜尋歌詞</label>
+        <input id="lineSearch" type="search" placeholder="搜尋韓文、Roman 或空耳">
+      </section>
 
-    <button onclick="exportTimedSong()">匯出這首歌 JSON</button>
-    </section>
+      <section class="editor-panel editor-guide">
+        <h2>填寫規則</h2>
+        <ul>
+          <li>韓文原文只讀，不在此修改。</li>
+          <li>Roman 使用容易跟唱的拼法。</li>
+          <li>中文空耳記錄發音，不是語意翻譯。</li>
+          <li>英文行可保留原文，不列入缺漏。</li>
+          <li>「改喊」行請勿破壞原有內容。</li>
+        </ul>
+      </section>
 
-    <section class="editor-card">
-      <h2>逐行標記</h2>
-      <p class="editor-hint">點選每一行的類型：歌詞、跟唱、應援、歡呼。</p>
-      <div id="lineEditor"></div>
-    </section>
+      <section class="editor-actions">
+        <button id="reloadDataButton" class="secondary" type="button">重新讀取專案歌曲</button>
+        <button id="copyButton" class="secondary" type="button">複製完整 JS</button>
+        <button id="downloadButton" class="primary" type="button">下載目前歌曲 JS</button>
+        <button id="resetButton" class="danger" type="button">捨棄本曲草稿</button>
+        <p id="saveStatus" aria-live="polite">尚未修改</p>
+      </section>
+    </aside>
 
-    <section class="editor-card">
-      <h2>匯出 JSON</h2>
-      <button onclick="exportSong()">產生 JSON</button>
-      <textarea id="outputJson" readonly></textarea>
+    <section class="editor-workspace">
+      <div class="editor-song-heading">
+        <div>
+          <p id="songFileLabel">—</p>
+          <h2 id="songTitle">請選擇歌曲</h2>
+        </div>
+        <div class="editor-legend" aria-label="預覽圖例">
+          <span class="korean">韓文</span>
+          <span class="roman">Roman</span>
+          <span class="practice">空耳</span>
+        </div>
+      </div>
+
+      <div id="emptyState" class="editor-empty hidden">
+        <strong>目前沒有符合條件的歌詞行</strong>
+        <p>請清除搜尋或關閉「只顯示待補行」。</p>
+      </div>
+
+      <div id="lineList" class="editor-line-list"></div>
     </section>
   </main>
 
-  <script src="songs.js"></script>
-  <script src="editor.js"></script>
+  <div id="toast" class="editor-toast" role="status" aria-live="polite"></div>
+
+  <script src="editor-loader.js"></script>
 </body>
 </html>

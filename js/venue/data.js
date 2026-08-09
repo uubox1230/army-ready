@@ -17,9 +17,9 @@ const VENUE_GUIDE = {
         "大型活動期間周邊容易壅塞，建議優先搭乘大眾運輸，並預留進站、步行與安檢時間。",
       items: [
         {
-          title: "場館地址",
+          title: "高雄國家體育場 場館地址",
           detail:
-            "高雄國家體育場位於高雄市左營區世運大道 100 號。"
+            "高雄市左營區世運大道 100 號。"
         },
         {
           title: "高雄捷運紅線 R17 世運站",
@@ -27,7 +27,7 @@ const VENUE_GUIDE = {
             "由 1 號出口前往世運主場館方向，再沿世運大道步行前往場館。活動當日請依現場指標與人流引導行進。"
         },
         {
-          title: "從高鐵左營站出發",
+          title: "從 高鐵左營站 出發",
           detail:
             "可在 R16 左營站搭乘紅線往岡山方向，下一站即為 R17 世運站。"
         },
@@ -52,6 +52,11 @@ const VENUE_GUIDE = {
           label: "查看 R17 世運站資訊",
           url: "https://www.krtc.com.tw/Guide/station_info?id=112c15476dac4be99a1326da8ef08e65",
           primary: false
+        },
+        {
+          label: "高鐵網路訂票",
+          url: "https://www.thsrc.com.tw/ArticleContent/dea241a9-fe69-4e9d-b9a5-6caed6e486d6",
+          primary: false
         }
       ]
     },
@@ -66,7 +71,7 @@ const VENUE_GUIDE = {
         {
           title: "先確認票券與證件",
           detail:
-            "提前準備實名認證之實體票券及身分證件，避免排到入口才翻找資料。"
+            "提前準備實名認證之實體票券及身分證件，避免排到入口才翻找資料。請務必攜帶「票面姓名本人有效、且附照片之個人證件正本」，台灣人士請攜帶：身分證、健保卡、駕照擇一；非台灣人士的外籍人士請憑護照作為核驗之依據。"
         },
         {
           title: "依票面入口與現場指標排隊",
@@ -82,31 +87,6 @@ const VENUE_GUIDE = {
           title: "先截圖必要資訊",
           detail:
             "可先保存座位區域圖、同行者聯絡方式與回程資訊，以免現場網路壅塞時無法即時開啟。"
-        }
-      ]
-    },
-    {
-      id: "belongings",
-      label: "攜帶物",
-      title: "攜帶物品",
-      icon: "🎒",
-      description:
-        "以輕便、容易通過安檢為原則。實際禁帶物品與包袋限制仍須依主辦單位最新公告。",
-      items: [
-        {
-          title: "票券、手機與行動電源",
-          detail:
-            "出發前確認手機電量、票券是否可正常開啟，並準備合規格的行動電源與充電線。"
-        },
-        {
-          title: "雨具與防曬用品",
-          detail:
-            "建議攜帶輕便雨衣、防曬用品與可補充水分的用品。"
-        },
-        {
-          title: "應援物與手燈",
-          detail:
-            "出發前確認手燈電池、配對方式及應援物尺寸。自製物品不得遮擋他人視線或影響安全。"
         },
         {
           title: "避免攜帶大型或危險物品",
@@ -123,6 +103,63 @@ const VENUE_GUIDE = {
         {
           label: "LIVE NATION TAIWAN 官方資訊",
           url: "https://www.livenation.com.tw/event/bts-world-tour-arirang-in-kaohsiung-kaohsiung-tickets-edp1675883#%E6%B4%BB%E5%8B%95%E5%85%A7%E5%AE%B9",
+          primary: false
+        }
+      ]
+    },
+    {
+      id: "belongings",
+      label: "行李",
+      title: "追星必備懶人包",
+      icon: "🎒",
+      description:
+        "以輕便、容易通過安檢為原則。實際禁帶物品與包袋限制仍須依主辦單位最新公告。",
+      items: [
+        {
+          title: "票券與身分證件",
+          detail:
+            "出發前確認「實名制之實體票券」妥善存放攜帶，並準備好本人之身分證件。"
+        },
+        {
+          title: "手機與行動電源",
+          detail:
+            "出發前確認手機電量與記憶體容量，並準備合規格的行動電源與充電線。"
+        },
+        {
+          title: "雨具與防曬用品",
+          detail:
+            "建議攜帶輕便雨衣和防曬用品，11月的高雄還是有機率下雨的。"
+        },
+        {
+          title: "水與巧克力",
+          detail:
+            "巧克力可以快速補充能量，水瓶建議攜帶透明寶特瓶！！每場演唱會都有個別規定，有些可以自己帶水壺，有些會規定要入場後購買，出發前請先確認好主辦方的規定。然後開演前一個小時左右就先不要喝水了，建議先去洗手間，剩下留著演出中間補充。"
+        },
+        {
+          title: "官方手燈",
+          detail:
+            "目前官方規定只有四代阿米棒「BTS OFFICIAL LIGHT STICK VER.4」可以中央控制。出發前請確認備有手燈AAA電池3顆以上（4號電池）和配對方式（請下載官方App），HYBE的充電電池一顆充飽可以用整場沒問題。"
+        },
+        {
+          title: "應援物",
+          detail:
+            "建議使用透明包包以利安檢，王扇、手幅、小卡、娃娃等應援物品以方便攜帶為主準備，如有自製應援板可於ARMY TIME（原則上是IDOL表演後）舉起，以不遮擋他人視線或影響安全為主。請勿將任何物品丟向舞台或藝人，並遵守現場工作人員指示。"
+        },
+        {
+          title: "保健食品與藥品",
+          detail:
+            "基本常備藥品、喉糖、速攻藍莓、眼藥水，過來人提醒您的健康與舒適度~~"
+        }
+      ],
+      links: [
+        {
+          label: "下載阿米棒App(iOS)",
+          url: "https://apps.apple.com/us/app/bts-official-light-stick-ver-4/id6756034037",
+          primary: false
+        },
+        {
+          label: "下載阿米棒App(Android)",
+          url: "https://play.google.com/store/apps/details?id=com.hybe.bts&pcampaignid=web_share",
           primary: false
         }
       ]
@@ -149,6 +186,11 @@ const VENUE_GUIDE = {
           title: "現場服務與失物",
           detail:
             "如遇票務、座位、身體不適或遺失物品等問題，請向現場工作人員或服務台反映。"
+        },
+        {
+          title: "行李寄放",
+          detail:
+            "重要物品請隨身攜帶，其餘大型行李建議提前找好置物點！官方通常沒有開放場館內的寄物櫃，建議多加利用 高雄捷運站 臨時寄放服務。部分場外會有人工顧包包服務，但需自行負擔費用和相關風險，使用前請斟酌。"
         }
       ],
       links: [
@@ -156,12 +198,17 @@ const VENUE_GUIDE = {
           label: "場館官方資訊",
           url: "https://sports.kcg.gov.tw/ArenaIntroduction/NationalStadium",
           primary: false
+        },
+        {
+          label: "高雄捷運行李寄放服務",
+          url: "https://www.krtc.com.tw/Service/convenient_service_more?id=6351b132e7144cebbc23ddf0fd2bbc06",
+          primary: false
         }
       ]
     },
     {
       id: "merch",
-      label: "物販",
+      label: "購物",
       title: "官方周邊",
       icon: "🛍️",
       description:

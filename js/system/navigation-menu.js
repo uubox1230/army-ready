@@ -1,9 +1,9 @@
 const ARMY_NAV_ITEMS = [
-  { id: "home", label: "首頁", href: "index.html" },
-  { id: "setlist", label: "Setlist", href: "setlist.html" },
-  { id: "official", label: "Official", href: "official.html" },
-  { id: "community", label: "Community", href: "community.html" },
-  { id: "venue", label: "Venue Guide", href: "venue.html" }
+  { id: "home", label: "首頁 Main Page", href: "index.html" },
+  { id: "setlist", label: "應援練習 Setlist", href: "setlist.html" },
+  { id: "official", label: "官方公告 Official", href: "official.html" },
+  { id: "community", label: "粉絲應援 Community", href: "community.html" },
+  { id: "venue", label: "場館指南 Venue Guide", href: "venue.html" }
 ];
 
 const deepLinkTimers = new WeakMap();
@@ -59,7 +59,7 @@ function initNavigationMenu() {
   panel.innerHTML = `
     <div class="global-nav-handle" aria-hidden="true"></div>
     <div class="global-nav-heading">
-      <div><small>ARMY READY</small><strong>Menu</strong></div>
+      <div><small>ARMY READY</small><strong>快捷選單</strong></div>
       <button class="global-nav-close" type="button" aria-label="關閉選單">×</button>
     </div>
     <div class="global-nav-links">

@@ -123,6 +123,64 @@
         <button id="readModeBtn" onclick="showReadMode()">完整歌詞</button>
         <button id="practiceModeBtn" onclick="startPractice()">卡拉OK模式</button>
         </div>
+
+        <div id="lyricsDisplayControl" class="lyrics-display-control">
+          <button
+            id="lyricsDisplayTrigger"
+            class="lyrics-display-trigger"
+            type="button"
+            aria-expanded="false"
+            aria-controls="lyricsDisplayPanel"
+          >
+            <span>歌詞顯示</span>
+            <span class="lyrics-display-trigger-meta">
+              <span id="lyricsDisplaySummary">韓文歌詞</span>
+              <span class="lyrics-display-chevron" aria-hidden="true">⌄</span>
+            </span>
+          </button>
+
+          <div id="lyricsDisplayOverlay" class="lyrics-display-overlay"></div>
+
+          <section
+            id="lyricsDisplayPanel"
+            class="lyrics-display-panel"
+            aria-label="歌詞顯示設定"
+            aria-hidden="true"
+          >
+            <div class="lyrics-display-handle" aria-hidden="true"></div>
+            <div class="lyrics-display-heading">
+              <div>
+                <small>LYRICS DISPLAY</small>
+                <strong>歌詞顯示</strong>
+              </div>
+              <button
+                id="lyricsDisplayClose"
+                class="lyrics-display-close"
+                type="button"
+                aria-label="關閉歌詞顯示設定"
+              >×</button>
+            </div>
+
+            <div class="lyrics-display-options">
+              <label class="lyrics-display-option">
+                <input type="checkbox" value="lyrics">
+                <span><strong>韓文歌詞</strong><small>主要歌詞與應援 Highlight</small></span>
+              </label>
+              <label class="lyrics-display-option">
+                <input type="checkbox" value="roman">
+                <span><strong>羅馬拼音</strong><small>韓文發音閱讀輔助</small></span>
+              </label>
+              <label class="lyrics-display-option">
+                <input type="checkbox" value="practice">
+                <span><strong>中文空耳</strong><small>中文發音閱讀輔助</small></span>
+              </label>
+            </div>
+
+            <p id="lyricsDisplayStatus" class="lyrics-display-status" aria-live="polite">
+              至少保留一種歌詞顯示。
+            </p>
+          </section>
+        </div>
     </div>
 
         <div id="readMode" class="read-mode"></div>
