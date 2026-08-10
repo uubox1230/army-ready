@@ -12,7 +12,7 @@ if ("serviceWorker" in navigator) {
   });
 
   const registerServiceWorker = () => {
-    navigator.serviceWorker.register("./service-worker.js").then(registration => {
+    navigator.serviceWorker.register("/service-worker.js").then(registration => {
       registration.update();
 
       registration.addEventListener("updatefound", () => {

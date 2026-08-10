@@ -269,7 +269,7 @@ function getLatestUpdates() {
         date: getUpdateDate(item),
         isNew: Boolean(item.isNew),
         icon: "megaphone",
-        href: `official.html#${encodeURIComponent(item.id)}`
+        href: `/official/#${encodeURIComponent(item.id)}`
       });
     });
   }
@@ -283,7 +283,7 @@ function getLatestUpdates() {
         title: item.title,
         date: getUpdateDate(item),
         icon: "heart",
-        href: `community.html#${encodeURIComponent(item.id)}`
+        href: `/community/#${encodeURIComponent(item.id)}`
       });
     });
   }
@@ -296,7 +296,7 @@ function getLatestUpdates() {
       title: VENUE_GUIDE.title || "場館指南",
       date: getUpdateDate(VENUE_GUIDE),
       icon: "map-pinned",
-      href: `venue.html#${encodeURIComponent(VENUE_GUIDE.id || "guide")}`
+      href: `/venue/#${encodeURIComponent(VENUE_GUIDE.id || "guide")}`
     });
   }
 
@@ -493,7 +493,7 @@ function createSongsCard() {
   const section = document.createElement("section");
   section.className = "dashboard-card setlist-entry-card";
   section.onclick = () => {
-    location.href = "setlist.html";
+    location.href = "/setlist/";
   };
 
   section.innerHTML = `

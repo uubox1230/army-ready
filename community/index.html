@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <base href="/">
+  <meta name="google-site-verification" content="ku-25Kf4jVVo-8VXK0sk0II3x5WiulM9zf3Rz-2AGnc">
+  <meta name="theme-color" content="#ffffff">
+
+  <title>BTS 高雄場粉絲應援活動｜ARMY READY</title>
+  <meta name="description" content="整理 BTS WORLD TOUR 'ARIRANG' 高雄場手幅、免費應援發放、拍照打卡與 ARMY 粉絲應援活動資訊。">
+  <link rel="canonical" href="https://army.uubox.tw/community/">
+  <meta property="og:locale" content="zh_TW">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ARMY READY">
+  <meta property="og:title" content="BTS 高雄場粉絲應援活動｜ARMY READY">
+  <meta property="og:description" content="整理 BTS WORLD TOUR 'ARIRANG' 高雄場手幅、免費應援發放、拍照打卡與 ARMY 粉絲應援活動資訊。">
+  <meta property="og:url" content="https://army.uubox.tw/community/">
+  <meta property="og:image" content="https://army.uubox.tw/images/android-chrome-2000x2000.png">
+  <meta property="og:image:width" content="2000">
+  <meta property="og:image:height" content="2000">
+  <meta property="og:image:alt" content="ARMY READY 紫色愛心圖示">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="BTS 高雄場粉絲應援活動｜ARMY READY">
+  <meta name="twitter:description" content="整理 BTS WORLD TOUR 'ARIRANG' 高雄場手幅、免費應援發放、拍照打卡與 ARMY 粉絲應援活動資訊。">
+  <meta name="twitter:image" content="https://army.uubox.tw/images/android-chrome-2000x2000.png">
+  <meta name="twitter:image:alt" content="ARMY READY 紫色愛心圖示">
+
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/png" href="images/android-chrome-2000x2000.png">
+  <link rel="apple-touch-icon" href="images/android-chrome-2000x2000.png">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/community.css">
+  <link rel="stylesheet" href="css/navigation-menu.css">
+  <script src="js/system/analytics.js" defer></script>
+</head>
+
+<body class="community-page">
+  <header class="community-header">
+    <div class="community-header-inner">
+      <a class="community-back global-back-link" href="/" aria-label="返回首頁">
+        <span class="global-back-icon" aria-hidden="true">‹</span>
+        <span class="global-back-label">返回首頁</span>
+      </a>
+
+    </div>
+  </header>
+
+  <main class="community-main">
+    <section class="community-hero page-intro">
+      <div class="page-intro-row">
+        <div class="page-intro-copy">
+          <p class="community-eyebrow page-intro-eyebrow">ARMY FAN PROJECTS</p>
+          <h2 class="page-intro-title">粉絲應援活動</h2>
+          <p class="page-intro-description">
+            整理免費應援發放、拍照打卡與其他非官方活動。
+            請依各主辦單位最新公告與現場規定參加。
+          </p>
+        </div>
+
+        <button
+          id="communityFavoriteToggle"
+          class="community-favorite-toggle page-intro-action"
+          type="button"
+          aria-pressed="false"
+        >
+          <span aria-hidden="true">♡</span>
+          <span>我的收藏</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="community-toolbar" aria-label="活動篩選">
+      <div id="communityFilters" class="community-filters"></div>
+
+      <label class="community-search">
+        <span class="sr-only">搜尋活動</span>
+        <input
+          id="communitySearch"
+          type="search"
+          placeholder="搜尋活動、地點或主辦單位"
+          autocomplete="off"
+        >
+      </label>
+    </section>
+
+    <section class="community-status">
+      <p id="communityResultCount">0 個活動</p>
+      <button id="communityReset" type="button">清除篩選</button>
+    </section>
+
+    <section
+      id="communityList"
+      class="community-list"
+      aria-live="polite"
+    ></section>
+
+    <section id="communityEmpty" class="community-empty hidden">
+      <strong>沒有符合條件的活動</strong>
+      <p>請更換分類、日期或搜尋關鍵字。</p>
+    </section>
+  </main>
+
+  <script src="js/community/data.js"></script>
+  <script src="js/community/page.js"></script>
+  <script src="js/system/navigation-menu.js"></script>
+</body>
+</html>

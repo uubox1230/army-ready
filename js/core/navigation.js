@@ -26,8 +26,8 @@ function backHome() {
   closeFab();
   closeHomeFab();
 
-  if (window.location.pathname.endsWith("song.html")) {
-    location.href = "setlist.html";
+  if (window.location.pathname.startsWith("/practice/")) {
+    location.href = "/setlist/";
     return;
   }
 
@@ -50,7 +50,7 @@ function restorePageFromHash() {
 
     if (index >= 0) {
 
-      location.href = `song.html#${hash}`;
+      location.href = `/practice/#${encodeURIComponent(hash)}`;
       return;
 
     }
@@ -71,7 +71,7 @@ window.addEventListener("popstate", () => {
 
 function openSong(index, options = {}) {
   const isSongPage =
-    window.location.pathname.endsWith("song.html");
+    window.location.pathname.startsWith("/practice/");
 
   /*
    * openSong() 可能從 Dashboard、Setlist、
@@ -90,7 +90,7 @@ function openSong(index, options = {}) {
     console.warn("[Navigation] 無效的歌曲 index：", index);
 
     if (isSongPage) {
-      location.href = "setlist.html";
+      location.href = "/setlist/";
     }
 
     return false;
@@ -102,7 +102,7 @@ function openSong(index, options = {}) {
     console.warn("[Navigation] 找不到有效的歌曲資料：", safeIndex);
 
     if (isSongPage) {
-      location.href = "setlist.html";
+      location.href = "/setlist/";
     }
 
     return false;
@@ -134,11 +134,11 @@ function openSong(index, options = {}) {
 
   /*
    * 從首頁或 Setlist 進入歌曲時，
-   * 直接跳到獨立的 song.html。
+   * 直接跳到獨立的 Practice Player。
    */
   if (!isSongPage) {
     location.href =
-      `song.html#${encodeURIComponent(song.id)}`;
+      `/practice/#${encodeURIComponent(song.id)}`;
 
     return true;
   }
@@ -149,18 +149,19 @@ function openSong(index, options = {}) {
    * 避免瀏覽紀錄產生重複項目。
    */
   const nextHash = `#${song.id}`;
+  const nextPracticeUrl = `${window.location.pathname}${nextHash}`;
 
   if (window.location.hash === nextHash) {
     history.replaceState(
       { page: "song", index: safeIndex },
       "",
-      nextHash
+      nextPracticeUrl
     );
   } else {
     history.pushState(
       { page: "song", index: safeIndex },
       "",
-      nextHash
+      nextPracticeUrl
     );
   }
 

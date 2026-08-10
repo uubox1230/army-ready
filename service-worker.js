@@ -1,98 +1,113 @@
-importScripts("./js/system/version.js");
+importScripts("/js/system/version.js");
 
 /*
   APP_CACHE_NAME 仍由 js/system/version.js 管理。
   此處增加結構版本，確保本次 PWA 檔案調整會建立新快取。
 */
-const CACHE_NAME = `${APP_CACHE_NAME}-pwa-3`;
+const CACHE_NAME = `${APP_CACHE_NAME}-pwa-4`;
 
 const ASSETS = [
-  "./",
-  "./index.html",
-  "./setlist.html",
-  "./song.html",
-  "./official.html",
-  "./community.html",
-  "./venue.html",
+  "/",
+  "/index.html",
+  "/setlist/",
+  "/practice/",
+  "/official/",
+  "/community/",
+  "/venue/",
+  "/setlist.html",
+  "/song.html",
+  "/official.html",
+  "/community.html",
+  "/venue.html",
 
-  "./css/style.css",
-  "./css/dashboard.css",
-  "./css/official.css",
-  "./css/community.css",
-  "./css/venue.css",
+  "/css/style.css",
+  "/css/variables.css",
+  "/css/base.css",
+  "/css/components.css",
+  "/css/dashboard.css",
+  "/css/setlist.css",
+  "/css/karaoke.css",
+  "/css/song.css",
+  "/css/official.css",
+  "/css/community.css",
+  "/css/venue.css",
+  "/css/navigation-menu.css",
 
-  "./js/system/version.js",
-  "./js/system/version-render.js",
-  "./js/system/preferences.js",
-  "./js/system/fab.js",
-  "./js/system/pwa.js",
+  "/js/system/version.js",
+  "/js/system/version-render.js",
+  "/js/system/preferences.js",
+  "/js/system/fab.js",
+  "/js/system/pwa.js",
+  "/js/system/navigation-menu.js",
+  "/js/system/analytics.js",
 
-  "./js/vendor/lucide.min.js",
+  "/js/vendor/lucide.min.js",
 
-  "./js/core/app.js",
-  "./js/core/navigation.js",
-  "./js/core/storage.js",
-  "./js/core/state.js",
-  "./js/core/utils.js",
-  "./js/core/song-page.js",
+  "/js/core/app.js",
+  "/js/core/navigation.js",
+  "/js/core/storage.js",
+  "/js/core/state.js",
+  "/js/core/utils.js",
+  "/js/core/song-page.js",
 
-  "./js/data/songs/01-hooligan.js",
-  "./js/data/songs/02-aliens.js",
-  "./js/data/songs/03-run-bts.js",
-  "./js/data/songs/04-they-dont-know-bout-us.js",
-  "./js/data/songs/05-like-animals.js",
-  "./js/data/songs/06-fake-love.js",
-  "./js/data/songs/07-swim.js",
-  "./js/data/songs/08-merry-go-round.js",
-  "./js/data/songs/09-2.0.js",
-  "./js/data/songs/10-normal.js",
-  "./js/data/songs/11-not-today.js",
-  "./js/data/songs/12-mic-drop.js",
-  "./js/data/songs/13-fya.js",
-  "./js/data/songs/14-fire.js",
-  "./js/data/songs/15-body-to-body.js",
-  "./js/data/songs/16-idol.js",
-  "./js/data/songs/17-come-over.js",
-  "./js/data/songs/18-butter.js",
-  "./js/data/songs/19-dynamite.js",
-  "./js/data/songs/20-please.js",
-  "./js/data/songs/21-one-more-night.js",
-  "./js/data/songs/22-into-the-sun.js",
-  "./js/data/songs-index.js",
+  "/js/data/songs/01-hooligan.js",
+  "/js/data/songs/02-aliens.js",
+  "/js/data/songs/03-run-bts.js",
+  "/js/data/songs/04-they-dont-know-bout-us.js",
+  "/js/data/songs/05-like-animals.js",
+  "/js/data/songs/06-fake-love.js",
+  "/js/data/songs/07-swim.js",
+  "/js/data/songs/08-merry-go-round.js",
+  "/js/data/songs/09-2.0.js",
+  "/js/data/songs/10-normal.js",
+  "/js/data/songs/11-not-today.js",
+  "/js/data/songs/12-mic-drop.js",
+  "/js/data/songs/13-fya.js",
+  "/js/data/songs/14-fire.js",
+  "/js/data/songs/15-body-to-body.js",
+  "/js/data/songs/16-idol.js",
+  "/js/data/songs/17-come-over.js",
+  "/js/data/songs/18-butter.js",
+  "/js/data/songs/19-dynamite.js",
+  "/js/data/songs/20-please.js",
+  "/js/data/songs/21-one-more-night.js",
+  "/js/data/songs/22-into-the-sun.js",
+  "/js/data/songs-index.js",
 
-  "./js/dashboard/dashboard.js",
-  "./js/dashboard/dashboard-cards.js",
-  "./js/dashboard/dashboard-render.js",
-  "./js/dashboard/checklist.js",
+  "/js/dashboard/dashboard.js",
+  "/js/dashboard/dashboard-cards.js",
+  "/js/dashboard/dashboard-render.js",
+  "/js/dashboard/checklist.js",
 
-  "./js/official/data.js",
-  "./js/official/page.js",
+  "/js/official/data.js",
+  "/js/official/page.js",
 
-  "./js/community/data.js",
-  "./js/community/page.js",
+  "/js/community/data.js",
+  "/js/community/page.js",
 
-  "./js/venue/data.js",
-  "./js/venue/page.js",
+  "/js/venue/data.js",
+  "/js/venue/page.js",
 
-  "./js/song/song-flow.js",
-  "./js/song/song-actions.js",
-  "./js/song/setlist-sheet.js",
-  "./js/song/platform.js",
-  "./js/song/song-render.js",
-  "./js/song/cue-player.js",
-  "./js/song/karaoke.js",
+  "/js/song/song-flow.js",
+  "/js/song/song-actions.js",
+  "/js/song/setlist-sheet.js",
+  "/js/song/platform.js",
+  "/js/song/highlight.js",
+  "/js/song/song-render.js",
+  "/js/song/cue-player.js",
+  "/js/song/karaoke.js",
 
-  "./js/setlist/page.js",
+  "/js/setlist/page.js",
 
-  "./manifest.json",
+  "/manifest.json",
 
-  "./images/android-chrome-2000x2000.png",
-  "./images/arirang-banner.jpg",
+  "/images/android-chrome-2000x2000.png",
+  "/images/arirang-banner.jpg",
 
-  "./icons/instagram.svg",
-  "./icons/x.svg",
+  "/icons/instagram.svg",
+  "/icons/x.svg",
 
-  "./audio/hooligan-intro.mp3"
+  "/audio/hooligan-intro.mp3"
 ];
 
 self.addEventListener("message", event => {
@@ -178,7 +193,7 @@ self.addEventListener("fetch", event => {
           if (cachedPage) return cachedPage;
 
           return (
-            await caches.match("./index.html")
+            await caches.match("/")
           ) || Response.error();
         })
     );

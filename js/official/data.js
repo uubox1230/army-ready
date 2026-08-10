@@ -37,7 +37,7 @@ const OFFICIAL_ANNOUNCEMENTS = [
       },
       {
         label: "返回首頁",
-        url: "index.html",
+        url: "/",
         primary: false
       }
     ]
@@ -59,7 +59,7 @@ const OFFICIAL_ANNOUNCEMENTS = [
       },
       {
         label: "應援練習",
-        url: "https://army.uubox.tw/setlist.html",
+        url: "https://army.uubox.tw/setlist/",
         primary: false
       }
     ]
@@ -76,7 +76,7 @@ const OFFICIAL_ANNOUNCEMENTS = [
     links: [
       {
         label: "Venue Guide 場館指南",
-        url: "venue.html",
+        url: "/venue/",
         primary: false
       }
     ]

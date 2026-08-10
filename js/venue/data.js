@@ -238,12 +238,12 @@ const VENUE_GUIDE = {
       links: [
         {
           label: "查看官方公告",
-          url: "official.html",
+          url: "/official/",
           primary: true
         },
         {
           label: "查看粉絲活動",
-          url: "community.html",
+          url: "/community/",
           primary: false
         }
       ]

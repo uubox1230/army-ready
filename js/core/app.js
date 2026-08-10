@@ -29,7 +29,7 @@ function getCurrentPage() {
     return "setlist";
   }
 
-  if (window.location.pathname.endsWith("song.html")) {
+  if (window.location.pathname.startsWith("/practice/")) {
     return "song";
   }
 

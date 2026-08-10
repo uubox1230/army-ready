@@ -1,21 +1,22 @@
 const ARMY_NAV_ITEMS = [
-  { id: "home", label: "首頁 Main Page", href: "index.html" },
-  { id: "setlist", label: "應援練習 Setlist", href: "setlist.html" },
-  { id: "official", label: "官方公告 Official", href: "official.html" },
-  { id: "community", label: "粉絲應援 Community", href: "community.html" },
-  { id: "venue", label: "場館指南 Venue Guide", href: "venue.html" }
+  { id: "home", label: "首頁 Main Page", href: "/" },
+  { id: "setlist", label: "應援練習 Setlist", href: "/setlist/" },
+  { id: "official", label: "官方公告 Official", href: "/official/" },
+  { id: "community", label: "粉絲應援 Community", href: "/community/" },
+  { id: "venue", label: "場館指南 Venue Guide", href: "/venue/" }
 ];
 
 const deepLinkTimers = new WeakMap();
 
 function getCurrentNavigationPage() {
-  const filename = window.location.pathname.split("/").pop() || "index.html";
+  const segments = window.location.pathname.split("/").filter(Boolean);
+  const section = segments[0] || "";
 
-  if (filename === "setlist.html") return "setlist";
-  if (filename === "official.html") return "official";
-  if (filename === "community.html") return "community";
-  if (filename === "venue.html") return "venue";
-  if (filename === "song.html") return "song";
+  if (section === "setlist") return "setlist";
+  if (section === "official") return "official";
+  if (section === "community") return "community";
+  if (section === "venue") return "venue";
+  if (section === "practice") return "song";
   return "home";
 }
 

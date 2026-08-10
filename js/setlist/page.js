@@ -19,7 +19,7 @@ function renderSetlistPage() {
     btn.className = "song-item";
     btn.setAttribute("aria-label", `開啟 ${song.title}${isDone ? "，已完成" : ""}`);
     btn.onclick = () => {
-      location.href = `song.html#${song.id}`;
+      location.href = `/practice/#${encodeURIComponent(song.id)}`;
     };
 
     btn.innerHTML = `

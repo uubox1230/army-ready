@@ -33,28 +33,28 @@ const DASHBOARD = {
         label: "Setlist",
         title: "應援練習",
         icon: "music-2",
-        href: "setlist.html"
+        href: "/setlist/"
       },
       {
         id: "official",
         label: "Official",
         title: "官方公告",
         icon: "megaphone",
-        href: "official.html"
+        href: "/official/"
       },
       {
         id: "community",
         label: "Community",
         title: "粉絲應援",
         icon: "heart",
-        href: "community.html"
+        href: "/community/"
       },
       {
         id: "venue",
         label: "Venue Guide",
         title: "場館指南",
         icon: "map-pinned",
-        href: "venue.html"
+        href: "/venue/"
       }
     ]
   },

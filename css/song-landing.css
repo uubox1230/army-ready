@@ -1,0 +1,128 @@
+body.song-landing-page {
+  margin: 0;
+  background: #ffffff;
+  color: #202124;
+}
+
+.song-landing-shell {
+  width: min(760px, calc(100% - 40px));
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 24px 0 72px;
+}
+
+.song-landing-nav {
+  min-height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border-bottom: 1px solid #edf0f1;
+}
+
+.song-landing-nav a {
+  color: #4e555b;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.song-landing-nav a:hover { color: #111318; }
+.song-landing-nav a:focus-visible,
+.song-landing-cta:focus-visible {
+  outline: 2px solid rgba(0, 184, 169, 0.38);
+  outline-offset: 3px;
+}
+
+.song-landing-intro { padding: 72px 0 48px; }
+
+.song-landing-eyebrow {
+  margin: 0 0 12px;
+  color: #008f83;
+  font-size: 11px;
+  font-weight: 850;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.song-landing-title {
+  margin: 0;
+  color: #121315;
+  font-size: clamp(42px, 9vw, 68px);
+  font-weight: 760;
+  line-height: 1.02;
+  letter-spacing: -0.045em;
+}
+
+.song-landing-description {
+  max-width: 620px;
+  margin: 22px 0 0;
+  color: #686d73;
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+.song-landing-features {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  margin: 0 0 40px;
+  border: 1px solid #e8ebed;
+  border-radius: 18px;
+  background: #e8ebed;
+  overflow: hidden;
+}
+
+.song-landing-feature {
+  min-height: 112px;
+  padding: 22px;
+  background: #ffffff;
+}
+
+.song-landing-feature strong {
+  display: block;
+  margin-bottom: 7px;
+  font-size: 15px;
+}
+
+.song-landing-feature span {
+  color: #7a8086;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.song-landing-actions { display: grid; gap: 12px; }
+
+.song-landing-cta {
+  min-height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 24px;
+  border-radius: 999px;
+  background: #00b8a9;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.song-landing-cta:hover { background: #009f93; }
+
+.song-landing-secondary {
+  min-height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #596067;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+@media (max-width: 600px) {
+  .song-landing-shell { width: min(100% - 32px, 760px); padding-top: 12px; }
+  .song-landing-intro { padding: 52px 0 38px; }
+  .song-landing-features { grid-template-columns: 1fr; }
+  .song-landing-feature { min-height: 96px; }
+}
