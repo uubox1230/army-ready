@@ -367,7 +367,7 @@ const SONG_NOT_TODAY = {
       "highlight": "Too high",
       "at": 110.96,
       "roman": "Too high nu ga jom meom chu gil",
-      "practiceText": "Too high 努尬 中 矇初ㄍㄧ"
+      "practiceText": "Too high 努尬 囧 矇初ㄍㄧ"
     },
     {
       "type": "lyrics",

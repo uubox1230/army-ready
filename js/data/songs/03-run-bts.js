@@ -106,7 +106,7 @@ const SONG_RUN_BTS = {
       "text": "우린 좀 빠름",
       "roman": "u rin jom ppa reum",
       "at": 38.46,
-      "practiceText": "屋拎 宗 巴冷"
+      "practiceText": "屋拎 囧 巴冷"
     },
     {
       "type": "lyrics",
@@ -352,7 +352,7 @@ const SONG_RUN_BTS = {
       "text": "우린 좀 빠름",
       "roman": "u rin jom ppa reum",
       "at": 103.9,
-      "practiceText": "屋拎 宗 巴冷"
+      "practiceText": "屋拎 囧 巴冷"
     },
     {
       "type": "lyrics",

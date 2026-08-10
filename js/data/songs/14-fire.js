@@ -24,42 +24,38 @@ const SONG_FIRE = {
       "type": "lyrics",
       "time": "歌詞",
       "text": "불타오르네",
-      "practiceText": "불타오르네",
-      "at": 9.12
+      "practiceText": "不他歐了內",
+      "at": 9.12,
+      "roman": "bul ta o reu ne"
     },
     {
       "type": "sing",
       "time": "跟唱",
       "text": "Fire",
-      "practiceText": "Fire",
       "at": 10.14
     },
     {
       "type": "sing",
       "time": "跟唱",
       "text": "Fire",
-      "practiceText": "Fire",
       "at": 14.78
     },
     {
       "type": "sing",
       "time": "跟唱",
       "text": "Fire",
-      "practiceText": "Fire",
       "at": 19.68
     },
     {
       "type": "sing",
       "time": "跟唱",
       "text": "Fire",
-      "practiceText": "Fire",
       "at": 24.5
     },
     {
       "type": "chant",
       "time": "應援",
       "text": "When I wake up in my room (room)",
-      "practiceText": "(room)",
       "highlight": "(room)",
       "at": 28.42
     },
@@ -67,212 +63,206 @@ const SONG_FIRE = {
       "type": "lyrics",
       "time": "歌詞",
       "text": "난 뭣도 없지 (뭣도 없지)",
-      "practiceText": "난 뭣도 없지 (뭣도 없지)",
-      "at": 30.76
+      "practiceText": "南 莫豆 歐ㄅ基 (莫豆 歐ㄅ基)",
+      "at": 30.76,
+      "roman": "nan mwot do eop ji (mwot do eop ji)"
     },
     {
       "type": "chant",
       "time": "應援",
       "text": "해가 지고 난 후 (후)",
-      "practiceText": "(후)",
+      "practiceText": "黑尬 幾勾 南 戶 (戶)",
       "highlight": "(후)",
-      "roman": "hu",
+      "roman": "nae ga ji go nan hu (hu)",
       "at": 33.22
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "비틀대며 걷지 (비틀대며 걷지)",
-      "practiceText": "비틀대며 걷지 (비틀대며 걷지)",
-      "at": 35.62
+      "practiceText": "逼特得謬 勾幾 (逼特得謬 勾幾)",
+      "at": 35.62,
+      "roman": "bi teul dae myeo geot ji (bi teul dae myeo geot ji)"
     },
     {
       "type": "chant",
       "time": "應援",
       "text": "다 만신창이로 취했어 (취했어)",
-      "practiceText": "(취했어)",
+      "practiceText": "大 滿心張一摟 區黑搜 (區黑搜)",
       "highlight": "(취했어)",
-      "roman": "chwi hae sseo",
+      "roman": "da man sin chang i ro chwi hae sseo (chwi hae sseo)",
       "at": 37.62
     },
     {
       "type": "chant",
       "time": "應援",
       "text": "막 욕해 길에서 (길에서)",
-      "practiceText": "(길에서)",
+      "practiceText": "媽 由給 ㄍㄧ累搜 (ㄍㄧ累搜)",
       "highlight": "(길에서)",
-      "roman": "gi re seo",
+      "roman": "mak yok hae gi re seo (gi re seo)",
       "at": 40.6
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "나 맛이 갔지, 미친놈 같지",
-      "practiceText": "나 맛이 갔지, 미친놈 같지",
-      "at": 43.04
+      "at": 43.04,
+      "roman": "na ma si gat ji, mi chin nom gat ji",
+      "practiceText": "拿 麻西 嘎幾, 咪親弄 嘎幾"
     },
     {
       "type": "chant",
       "time": "應援",
       "text": "다 엉망진창 livin' like 삐이",
-      "practiceText": "삐이",
       "highlight": "삐이",
-      "roman": "bi~~",
-      "at": 45.42
+      "roman": "da eong mang jin chang livin' like bi~~",
+      "at": 45.42,
+      "practiceText": "大 翁忙金槍 livin' like 嗶～"
     },
     {
       "type": "chant",
       "time": "應援",
       "text": "니 멋대로 살어 (살어)",
-      "practiceText": "(살어)",
+      "practiceText": "尼 某得嘍 撒嘍 (撒嘍)",
       "highlight": "(살어)",
-      "roman": "sa reo",
+      "roman": "ni meot dae ro sa reo (sa reo)",
       "at": 47.82
     },
     {
       "type": "chant",
       "time": "應援",
       "text": "어차피 니 거야 (니 거야)",
-      "practiceText": "(니 거야)",
+      "practiceText": "歐洽皮 尼 勾呀 (尼 勾呀)",
       "highlight": "(니 거야)",
-      "roman": "ni geo ya",
+      "roman": "eo cha pi ni geo ya (ni geo ya)",
       "at": 50.12
     },
     {
       "type": "chant",
       "time": "應援",
       "text": "애쓰지 좀 말어 (말어)",
-      "practiceText": "(말어)",
+      "practiceText": "欸斯幾 囧 媽嘍 (媽嘍)",
       "highlight": "(말어)",
-      "roman": "ma reo",
+      "roman": "ae sseu ji jom ma reo (ma reo)",
       "at": 52.42
     },
     {
       "type": "chant",
       "time": "應援",
       "text": "져도 괜찮아 (괜찮아)",
-      "practiceText": "(괜찮아)",
+      "practiceText": "糗豆 坤洽那 (坤洽那)",
       "highlight": "(괜찮아)",
-      "roman": "gwaen cha na",
+      "roman": "jyeo do gwaen cha na (gwaen cha na)",
       "at": 54.78
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "Errbody say, la-la-la-la-la",
-      "practiceText": "Errbody say, la-la-la-la-la",
       "at": 57.2
     },
     {
       "type": "sing",
       "time": "跟唱",
       "text": "(la-la-la-la-la)",
-      "practiceText": "(la-la-la-la-la)",
       "at": 59.26
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "Say, la-la-la-la-la",
-      "practiceText": "Say, la-la-la-la-la",
       "at": 60.24
     },
     {
       "type": "sing",
       "time": "跟唱",
       "text": "(la-la-la-la-la)",
-      "practiceText": "(la-la-la-la-la)",
       "at": 61.52
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "손을 들어, 소리 질러 burn it up",
-      "practiceText": "손을 들어, 소리 질러 burn it up",
-      "at": 62.62
+      "practiceText": "搜呢 的嘍, 搜哩 幾嘍 burn it up",
+      "at": 62.62,
+      "roman": "so neul deu reo, so ri jil reo burn it up"
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "불타오르네",
-      "practiceText": "불타오르네",
-      "at": 66.82
+      "practiceText": "不他歐了內",
+      "at": 66.82,
+      "roman": "bul ta o reu ne"
     },
     {
       "type": "chant",
       "time": "應援",
       "text": "(BTS! BTS!)",
-      "practiceText": "(BTS! BTS!)",
       "at": 67.76
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "Eh",
-      "practiceText": "Eh",
       "at": 69.72
     },
     {
       "type": "sing",
       "time": "跟唱",
       "text": "Eh-oh, eh-oh",
-      "practiceText": "Eh-oh, eh-oh",
       "at": 71.6
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "싹 다 불태워라",
-      "practiceText": "싹 다 불태워라",
-      "at": 74.3
+      "practiceText": "撒 大 不ㄊㄟ我啦",
+      "at": 74.3,
+      "roman": "ssak da bul tae wo ra"
     },
     {
       "type": "sing",
       "time": "跟唱",
       "text": "Bow-wow-wow",
-      "practiceText": "Bow-wow-wow",
       "at": 76.42
     },
     {
       "type": "chant",
       "time": "應援",
       "text": "(BTS! BTS!)",
-      "practiceText": "(BTS! BTS!)",
       "at": 77.32
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "Eh",
-      "practiceText": "Eh",
       "at": 79.36
     },
     {
       "type": "sing",
       "time": "跟唱",
       "text": "Eh-oh, eh-oh",
-      "practiceText": "Eh-oh, eh-oh",
       "at": 81.2
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "싹 다 불태워라",
-      "practiceText": "싹 다 불태워라",
-      "at": 83.88
+      "practiceText": "撒 大 不ㄊㄟ我啦",
+      "at": 83.88,
+      "roman": "ssak da bul tae wo ra"
     },
     {
       "type": "sing",
       "time": "跟唱",
       "text": "Bow-wow-wow",
-      "practiceText": "Bow-wow-wow",
       "at": 85.94
     },
     {
       "type": "chant",
       "time": "應援",
       "text": "Hey, burn it up (burn it up)",
-      "practiceText": "(burn it up)",
       "highlight": "(burn it up)",
       "at": 86.9
     },
@@ -280,14 +270,14 @@ const SONG_FIRE = {
       "type": "lyrics",
       "time": "歌詞",
       "text": "전부 다 태울 것 같이",
-      "practiceText": "전부 다 태울 것 같이",
-      "at": 88.98
+      "practiceText": "衝不 大 ㄊㄟ屋 勾 嘎七",
+      "at": 88.98,
+      "roman": "jeon bu da tae ul geot ga chi"
     },
     {
       "type": "chant",
       "time": "應援",
       "text": "Hey, turn it up (turn it up)",
-      "practiceText": "(turn it up)",
       "highlight": "(turn it up)",
       "at": 91.66
     },
@@ -295,21 +285,23 @@ const SONG_FIRE = {
       "type": "lyrics",
       "time": "歌詞",
       "text": "새벽이 다 갈 때까지",
-      "practiceText": "새벽이 다 갈 때까지",
-      "at": 93.78
+      "at": 93.78,
+      "roman": "sae byeo gi da gal ttae kka ji",
+      "practiceText": "誰逼歐ㄍㄧ 大 嘎 得尬幾"
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "그냥 살아도 돼",
-      "practiceText": "그냥 살아도 돼",
-      "at": 96.18
+      "practiceText": "科娘 撒拉豆 堆",
+      "at": 96.18,
+      "roman": "geu nyang sa ra do dwae"
     },
     {
       "type": "sing",
       "time": "跟唱",
       "text": "우린 젊기에",
-      "practiceText": "우린 젊기에",
+      "practiceText": "屋拎 糗ㄍㄧ欸",
       "roman": "u rin jeom gi e",
       "at": 97.7
     },
@@ -317,351 +309,342 @@ const SONG_FIRE = {
       "type": "lyrics",
       "time": "歌詞",
       "text": "그 말하는 넌",
-      "practiceText": "그 말하는 넌",
-      "at": 98.88
+      "practiceText": "哥 媽哈嫩 農",
+      "at": 98.88,
+      "roman": "geu mal ha neun neon "
     },
     {
       "type": "sing",
       "time": "跟唱",
       "text": "뭔 수저길래?",
-      "practiceText": "뭔 수저길래?",
-      "roman": "mwon su jeo gil rae",
-      "at": 99.82
+      "roman": "mwon su jeo gil rae?",
+      "at": 99.82,
+      "practiceText": "抹 蘇揪ㄍㄧ累？"
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "수저, 수저 거려? 난 사람인데",
-      "practiceText": "수저, 수저 거려? 난 사람인데",
-      "at": 101.14
+      "practiceText": "蘇揪, 蘇揪 勾溜？ 南 撒郎民得",
+      "at": 101.14,
+      "roman": "su jeo, su jeo geo ryeo? nan sa ra min de"
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "So what?",
-      "practiceText": "So what?",
       "at": 103.36
     },
     {
       "type": "chant",
       "time": "應援",
       "text": "니 멋대로 살어 (살어)",
-      "practiceText": "(살어)",
       "highlight": "(살어)",
-      "roman": "sa reo",
-      "at": 105.22
+      "at": 105.22,
+      "practiceText": "尼 某得嘍 撒嘍 (撒嘍)",
+      "roman": "ni meot dae ro sa reo (sa reo)"
     },
     {
       "type": "chant",
       "time": "應援",
       "text": "어차피 니 거야 (니 거야)",
-      "practiceText": "(니 거야)",
       "highlight": "(니 거야)",
-      "roman": "ni geo ya",
-      "at": 107.64
+      "at": 107.64,
+      "practiceText": "歐洽皮 尼 勾呀 (尼 勾呀)",
+      "roman": "eo cha pi ni geo ya (ni geo ya)"
     },
     {
       "type": "chant",
       "time": "應援",
       "text": "애쓰지 좀 말어 (말어)",
-      "practiceText": "(말어)",
       "highlight": "(말어)",
-      "roman": "ma reo",
-      "at": 110
+      "at": 110,
+      "roman": "ae sseu ji jom ma reo (ma reo)",
+      "practiceText": "欸斯幾 囧 媽嘍 (媽嘍)"
     },
     {
       "type": "chant",
       "time": "應援",
       "text": "져도 괜찮아 (괜찮아)",
-      "practiceText": "(괜찮아)",
       "highlight": "(괜찮아)",
-      "roman": "gwaen cha na",
-      "at": 112.42
+      "at": 112.42,
+      "practiceText": "糗豆 坤洽那 (坤洽那)",
+      "roman": "jyeo do gwaen cha na (gwaen cha na)"
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "Errbody say, la-la-la-la-la",
-      "practiceText": "Errbody say, la-la-la-la-la",
       "at": 114.76
     },
     {
       "type": "sing",
       "time": "跟唱",
       "text": "(la-la-la-la-la)",
-      "practiceText": "(la-la-la-la-la)",
       "at": 116.84
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "Say, la-la-la-la-la",
-      "practiceText": "Say, la-la-la-la-la",
       "at": 117.82
     },
     {
       "type": "sing",
       "time": "跟唱",
       "text": "(la-la-la-la-la)",
-      "practiceText": "(la-la-la-la-la)",
       "at": 119.12
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "손을 들어, 소리 질러 burn it up",
-      "practiceText": "손을 들어, 소리 질러 burn it up",
-      "at": 120.16
+      "at": 120.16,
+      "practiceText": "搜呢 的嘍, 搜哩 幾嘍 burn it up",
+      "roman": "so neul deu reo, so ri jil reo burn it up"
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "불타오르네",
-      "practiceText": "불타오르네",
-      "at": 124.34
+      "at": 124.34,
+      "practiceText": "不他歐了內",
+      "roman": "bul ta o reu ne"
     },
     {
       "type": "chant",
       "time": "應援",
       "text": "(BTS! BTS!)",
-      "practiceText": "(BTS! BTS!)",
       "at": 125.24
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "Eh",
-      "practiceText": "Eh",
       "at": 127.36
     },
     {
       "type": "sing",
       "time": "跟唱",
       "text": "Eh-oh, eh-oh",
-      "practiceText": "Eh-oh, eh-oh",
       "at": 129.06
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "싹 다 불태워라",
-      "practiceText": "싹 다 불태워라",
-      "at": 131.86
+      "at": 131.86,
+      "practiceText": "撒 大 不ㄊㄟ我啦",
+      "roman": "ssak da bul tae wo ra"
     },
     {
       "type": "sing",
       "time": "跟唱",
       "text": "Bow-wow-wow",
-      "practiceText": "Bow-wow-wow",
       "at": 133.98
     },
     {
       "type": "chant",
       "time": "應援",
       "text": "(BTS! BTS!)",
-      "practiceText": "(BTS! BTS!)",
       "at": 134.92
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "Eh",
-      "practiceText": "Eh",
       "at": 137
     },
     {
       "type": "sing",
       "time": "跟唱",
       "text": "Eh-oh, eh-oh",
-      "practiceText": "Eh-oh, eh-oh",
       "at": 138.78
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "싹 다 불태워라",
-      "practiceText": "싹 다 불태워라",
-      "at": 141.52
+      "at": 141.52,
+      "practiceText": "撒 大 不ㄊㄟ我啦",
+      "roman": "ssak da bul tae wo ra"
     },
     {
       "type": "sing",
       "time": "跟唱",
       "text": "Bow-wow-wow",
-      "practiceText": "Bow-wow-wow",
       "at": 143.58
     },
     {
       "type": "sing",
       "time": "跟唱",
       "text": "(Fire) 겁 많은 자여, 여기로",
-      "practiceText": "(Fire)",
       "highlight": "(Fire)",
-      "at": 144.52
+      "at": 144.52,
+      "roman": "(Fire) geop ma neun ja yeo, yeo gi ro",
+      "practiceText": "(Fire) 勾 媽嫩 加油, 油ㄍㄧ嘍"
     },
     {
       "type": "sing",
       "time": "跟唱",
       "text": "(Fire) 괴로운 자여, 여기로",
-      "practiceText": "(Fire)",
       "highlight": "(Fire)",
-      "at": 146.88
+      "at": 146.88,
+      "roman": "(Fire) goe ro un ja yeo, yeo gi ro",
+      "practiceText": "(Fire) 虧嘍溫 加油, 油ㄍㄧ嘍"
     },
     {
       "type": "sing",
       "time": "跟唱",
       "text": "(Fire) 맨주먹을 들고 all night long",
-      "practiceText": "(Fire)",
       "highlight": "(Fire)",
-      "at": 149.3
+      "at": 149.3,
+      "roman": "(Fire) maen ji meo geul deul go all night long",
+      "practiceText": "(Fire) 妹豬某哥 的狗 all night long"
     },
     {
       "type": "sing",
       "time": "跟唱",
       "text": "(Fire) 진군하는 발걸음으로",
-      "practiceText": "(Fire)",
       "highlight": "(Fire)",
-      "at": 154.1
+      "at": 154.1,
+      "roman": "(Fire) jin gun ha neun bal geo reu meu ro",
+      "practiceText": "(Fire) 金故哈嫩 巴勾冷ㄜ嘍"
     },
     {
       "type": "sing",
       "time": "跟唱",
       "text": "(Fire) 뛰어봐",
-      "practiceText": "(Fire)",
       "highlight": "(Fire)",
-      "at": 156.52
+      "at": 156.52,
+      "roman": "(Fire) ttwi eo bwa",
+      "practiceText": "(Fire) 嘟一歐巴"
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "미쳐버려, 다",
-      "practiceText": "미쳐버려, 다",
-      "at": 161.3
+      "at": 161.3,
+      "roman": "mi chyeo beo ryeo, da",
+      "practiceText": "咪糗波溜, 大"
     },
     {
       "type": "chant",
       "time": "應援",
       "text": "Hot, hot, hot, hotter",
-      "practiceText": "Hot, hot, hot, hotter",
       "at": 166.08
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "싹 다 불태워라",
-      "practiceText": "싹 다 불태워라",
-      "at": 170.34
+      "at": 170.34,
+      "roman": "ssak da bul tae wo ra",
+      "practiceText": "撒 大 不ㄊㄟ我啦"
     },
     {
       "type": "sing",
       "time": "跟唱",
       "text": "Bow-wow-wow",
-      "practiceText": "Bow-wow-wow",
       "at": 172.36
     },
     {
       "type": "chant",
       "time": "應援",
       "text": "Hot, hot, hot, hotter",
-      "practiceText": "Hot, hot, hot, hotter",
       "at": 175.72
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "싹 다 불태워라",
-      "practiceText": "싹 다 불태워라",
-      "at": 179.92
+      "at": 179.92,
+      "practiceText": "撒 大 不ㄊㄟ我啦",
+      "roman": "ssak da bul tae wo ra"
     },
     {
       "type": "sing",
       "time": "跟唱",
       "text": "Bow-wow-wow",
-      "practiceText": "Bow-wow-wow",
       "at": 182
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "Fire~",
-      "practiceText": "Fire~",
       "at": 182.92
     },
     {
       "type": "chant",
       "time": "應援",
       "text": "hot, hot, hot, hotter",
-      "practiceText": "hot, hot, hot, hotter",
       "at": 185.32
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "Fire~",
-      "practiceText": "Fire~",
       "at": 187.66
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "싹 다 불태워라",
-      "practiceText": "싹 다 불태워라",
-      "at": 189.52
+      "at": 189.52,
+      "roman": "ssak da bul tae wo ra",
+      "practiceText": "撒 大 不ㄊㄟ我啦"
     },
     {
       "type": "sing",
       "time": "跟唱",
       "text": "Bow-wow-wow",
-      "practiceText": "Bow-wow-wow",
       "at": 191.54
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "Fire~",
-      "practiceText": "Fire~",
       "at": 192.48
     },
     {
       "type": "chant",
       "time": "應援",
       "text": "hot, hot, hot, hotter",
-      "practiceText": "hot, hot, hot, hotter",
       "at": 194.86
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "Fire~",
-      "practiceText": "Fire~",
       "at": 197.22
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "싹 다 불태워라",
-      "practiceText": "싹 다 불태워라",
-      "at": 199.06
+      "at": 199.06,
+      "practiceText": "撒 大 不ㄊㄟ我啦",
+      "roman": "ssak da bul tae wo ra"
     },
     {
       "type": "sing",
       "time": "跟唱",
       "text": "Bow-wow-wow",
-      "practiceText": "Bow-wow-wow",
       "at": 201.22
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "용서해 줄게",
-      "practiceText": "용서해 줄게",
-      "at": 202.74
+      "at": 202.74,
+      "roman": "yong seo hae jul gae",
+      "practiceText": "永搜黑 揪給"
     },
     {
       "type": "cheer",
       "time": "歡呼",
       "text": "(用力揮舞阿米棒吶喊！)",
-      "practiceText": "(用力揮舞阿米棒吶喊！)",
       "at": 203.8
     }
   ]
-  };
+};

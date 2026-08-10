@@ -90,7 +90,7 @@ const SONG_BODY_TO_BODY = {
       "text": "총 칼 키보드 다 좀 치워",
       "at": 32.54,
       "roman": "chong kal ki bo deu da jom chi wo",
-      "practiceText": "衝 咖 ㄎㄧ波的 大 中 欺我"
+      "practiceText": "衝 咖 ㄎㄧ波的 大 囧 欺我"
     },
     {
       "type": "lyrics",
@@ -127,7 +127,7 @@ const SONG_BODY_TO_BODY = {
       "highlight": "skin to skin",
       "at": 42.54,
       "roman": "jom deo ga kka i wa skin to skin",
-      "practiceText": "中 斗 嘎尬一 哇 skin to skin"
+      "practiceText": "囧 斗 嘎尬一 哇 skin to skin"
     },
     {
       "type": "lyrics",

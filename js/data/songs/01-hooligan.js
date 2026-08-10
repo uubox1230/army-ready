@@ -239,7 +239,7 @@ const SONG_HOOLIGAN = {
       "type": "lyrics",
       "time": "歌詞",
       "text": "시간 됐으니 좀 비켜 좀",
-      "practiceText": "西甘 堆死逆 宗 逼ㄎㄧㄡ 宗",
+      "practiceText": "西甘 堆死逆 囧 逼ㄎㄧㄡ 囧",
       "at": 103.34,
       "roman": "si gan dwae sseu ni jom bi kyeo jom"
     },
