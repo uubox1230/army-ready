@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">ARMY READY small-size icon</title>
+  <desc id="desc">Simplified AR monogram redrawn specifically for favicon sizes.</desc>
+  <rect width="512" height="512" fill="#FFFFFF"/>
+  <g fill="none" stroke="#222222" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M68 404 176 102l53 187" stroke-width="40"/>
+    <path d="M125 290h106" stroke-width="34"/>
+  </g>
+  <g fill="none" stroke="#222222" stroke-width="40" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M276 102h65c58 0 91 32 91 82 0 52-33 84-91 84h-65"/>
+    <path d="m347 279 86 125"/>
+  </g>
+  <rect x="245" y="128" width="62" height="125" rx="31" fill="#222222"/>
+  <g stroke="#FFFFFF" stroke-width="11" stroke-linecap="round"><path d="M257 168h38"/><path d="M257 207h38"/></g>
+  <path d="M276 253v151m-25 0h50" fill="none" stroke="#222222" stroke-width="15" stroke-linecap="round"/>
+  <path d="M253 335c-7-10-23-16-34-3-15 18 10 43 34 59 24-16 49-41 34-59-11-13-27-7-34 3Z" fill="#222222" stroke="#FFFFFF" stroke-width="9" stroke-linejoin="round"/>
+</svg>

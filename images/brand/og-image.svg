@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">ARMY READY social sharing image</title><desc id="desc">ARMY READY Open Graph sharing image.</desc>
+  <rect width="1200" height="630" fill="#FFFFFF"/>
+  <g transform="translate(60 104) scale(.74)">
+    <g fill="none" stroke="#222222" stroke-linecap="round" stroke-width="7"><path d="M43 256v10"/><path d="M58 244v34"/><path d="M73 229v64"/><path d="M88 242v38"/><path d="M424 242v38"/><path d="M439 229v64"/><path d="M454 244v34"/><path d="M469 256v10"/></g>
+    <g transform="translate(-17 0)">
+    <g fill="none" stroke="#222222" stroke-linecap="round" stroke-linejoin="round"><path d="M126 365 218 116l45 154" stroke-width="25"/><path d="M174 271h90" stroke-width="22"/></g>
+    <g fill="none" stroke="#222222" stroke-width="25" stroke-linecap="round" stroke-linejoin="round"><path d="M291 123h52c49 0 77 27 77 68 0 43-28 70-77 70h-52"/><path d="m346 268 72 99"/></g>
+    <rect x="269" y="145" width="44" height="91" rx="22" fill="#222222"/><g fill="none" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round"><path d="M275 169h11"/><path d="M296 169h11"/><path d="M275 188h11"/><path d="M296 188h11"/><path d="M275 207h11"/><path d="M296 207h11"/></g><path d="M291 236v131m-17 0h34" fill="none" stroke="#222222" stroke-width="9" stroke-linecap="round"/><path d="M263 296c-5-8-16-12-24-4-13 13 5 31 24 44 19-13 37-31 24-44-8-8-19-4-24 4Z" fill="#222222" stroke="#FFFFFF" stroke-width="6" stroke-linejoin="round"/>
+    </g>
+  </g>
+  <text x="510" y="205" fill="#222222" font-family="Avenir Next, Montserrat, Arial, sans-serif" font-size="68" font-weight="500" letter-spacing="13" word-spacing="28">ARMY READY</text>
+  <text x="514" y="264" fill="#222222" font-family="Avenir Next, Montserrat, Arial, sans-serif" font-size="25" font-weight="600" letter-spacing="1.8">BTS WORLD TOUR 'ARIRANG'</text>
+  <path d="M514 306h169" stroke="#222222" stroke-width="4" stroke-linecap="round"/>
+  <text x="514" y="380" fill="#222222" font-family="Avenir Next, Montserrat, Arial, sans-serif" font-size="34" font-weight="400">Practice Together.</text><text x="514" y="426" fill="#222222" font-family="Avenir Next, Montserrat, Arial, sans-serif" font-size="34" font-weight="400">Shine Together.</text>
+  <text x="514" y="510" fill="#222222" font-family="Avenir Next, Montserrat, Arial, sans-serif" font-size="23" font-weight="600" letter-spacing="1.8">army.uubox.tw</text>
+</svg>

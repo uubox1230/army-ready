@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 700" role="img" aria-labelledby="title desc">
+  <title id="title">ARMY READY white logo</title><desc id="desc">Single-color white stacked ARMY READY logo for dark backgrounds.</desc>
+  <g transform="translate(104 18)" fill="none" stroke="#FFFFFF" stroke-linecap="round">
+    <g stroke-width="7"><path d="M43 256v10"/><path d="M58 244v34"/><path d="M73 229v64"/><path d="M88 242v38"/><path d="M424 242v38"/><path d="M439 229v64"/><path d="M454 244v34"/><path d="M469 256v10"/></g>
+    <g transform="translate(-17 0)">
+    <g stroke-linejoin="round"><path d="M126 365 218 116l45 154" stroke-width="25"/><path d="M174 271h90" stroke-width="22"/></g>
+    <g stroke-width="25" stroke-linecap="round" stroke-linejoin="round"><path d="M291 123h52c49 0 77 27 77 68 0 43-28 70-77 70h-52"/><path d="m346 268 72 99"/></g>
+    <rect x="269" y="145" width="44" height="91" rx="22" stroke-width="6"/><g stroke-width="5"><path d="M275 169h32"/><path d="M275 188h32"/><path d="M275 207h32"/></g><path d="M291 236v131m-17 0h34" stroke-width="9"/>
+    <path d="M263 296c-5-8-16-12-24-4-13 13 5 31 24 44 19-13 37-31 24-44-8-8-19-4-24 4Z" fill="#FFFFFF" stroke-width="6" stroke-linejoin="round"/>
+    </g>
+  </g><text x="360" y="616" fill="#FFFFFF" font-family="Avenir Next, Montserrat, Arial, sans-serif" font-size="52" font-weight="500" letter-spacing="12" text-anchor="middle">ARMY READY</text>
+</svg>

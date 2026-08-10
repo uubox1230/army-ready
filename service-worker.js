@@ -4,7 +4,7 @@ importScripts("/js/system/version.js");
   APP_CACHE_NAME 仍由 js/system/version.js 管理。
   此處增加結構版本，確保本次 PWA 檔案調整會建立新快取。
 */
-const CACHE_NAME = `${APP_CACHE_NAME}-pwa-4`;
+const CACHE_NAME = `${APP_CACHE_NAME}-pwa-5`;
 
 const ASSETS = [
   "/",
@@ -101,7 +101,13 @@ const ASSETS = [
 
   "/manifest.json",
 
-  "/images/android-chrome-2000x2000.png",
+  "/images/brand/favicon.ico",
+  "/images/brand/favicon-32.png",
+  "/images/brand/favicon-48.png",
+  "/images/brand/apple-touch-icon.png",
+  "/images/brand/icon-192.png",
+  "/images/brand/icon-512.png",
+  "/images/brand/maskable-icon-512.png",
   "/images/arirang-banner.jpg",
 
   "/icons/instagram.svg",

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 700" role="img" aria-labelledby="title desc">
+  <title id="title">ARMY READY primary logo</title><desc id="desc">Primary stacked ARMY READY logo.</desc>
+  <g transform="translate(104 18)">
+    <g fill="none" stroke-linecap="round" stroke-width="7"><g stroke="#222222"><path d="M43 256v10"/><path d="M58 244v34"/><path d="M73 229v64"/><path d="M88 242v38"/></g><g stroke="#222222"><path d="M424 242v38"/><path d="M439 229v64"/><path d="M454 244v34"/><path d="M469 256v10"/></g></g>
+    <g transform="translate(-17 0)">
+    <g fill="none" stroke="#222222" stroke-linecap="round" stroke-linejoin="round"><path d="M126 365 218 116l45 154" stroke-width="25"/><path d="M174 271h90" stroke-width="22"/></g>
+    <g fill="none" stroke="#222222" stroke-width="25" stroke-linecap="round" stroke-linejoin="round"><path d="M291 123h52c49 0 77 27 77 68 0 43-28 70-77 70h-52"/><path d="m346 268 72 99"/></g>
+    <rect x="269" y="145" width="44" height="91" rx="22" fill="#222222"/><g fill="none" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round"><path d="M275 169h11"/><path d="M296 169h11"/><path d="M275 188h11"/><path d="M296 188h11"/><path d="M275 207h11"/><path d="M296 207h11"/></g><path d="M291 236v131m-17 0h34" fill="none" stroke="#222222" stroke-width="9" stroke-linecap="round"/>
+    <path d="M263 296c-5-8-16-12-24-4-13 13 5 31 24 44 19-13 37-31 24-44-8-8-19-4-24 4Z" fill="#222222" stroke="#FFFFFF" stroke-width="6" stroke-linejoin="round"/>
+    </g>
+  </g>
+  <text x="360" y="616" fill="#222222" font-family="Avenir Next, Montserrat, Arial, sans-serif" font-size="52" font-weight="500" letter-spacing="12" word-spacing="24" text-anchor="middle">ARMY READY</text>
+</svg>
