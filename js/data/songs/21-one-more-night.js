@@ -24,19 +24,25 @@ const SONG_ONE_MORE_NIGHT = {
       "type": "lyrics",
       "time": "歌詞",
       "text": "언젠가 너로 인해",
-      "at": 8.72
+      "at": 8.72,
+      "roman": "eon jen ga neo ro in hae",
+      "practiceText": "翁接嘎 no摟 以內"
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "한참을 울게 되겠지",
-      "at": 10.66
+      "at": 10.66,
+      "roman": "han cha meul ul ge doe get jji",
+      "practiceText": "韓茶ㄇ 屋給 堆給幾"
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "난 그 골목길에 서 있었어",
-      "at": 12.76
+      "at": 12.76,
+      "roman": "nan geu gol mok gi re seo i sseo sseo",
+      "practiceText": "南 哥 勾某ㄍㄧ累 搜 一搜搜"
     },
     {
       "type": "lyrics",
@@ -54,19 +60,25 @@ const SONG_ONE_MORE_NIGHT = {
       "type": "lyrics",
       "time": "歌詞",
       "text": "두려운건",
-      "at": 20.16
+      "at": 20.16,
+      "roman": "du ryeo un geon",
+      "practiceText": "嘟柳溫公"
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "벌써 슬픈건",
-      "at": 21.54
+      "at": 21.54,
+      "roman": "beol sseo seul peun geon",
+      "practiceText": "波搜 斯噴公"
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "너무 닮아버린 그림자",
-      "at": 23.06
+      "at": 23.06,
+      "roman": "neo mu dal ma beo rin geu rim ja",
+      "practiceText": "no木 大拉波林 科林加"
     },
     {
       "type": "lyrics",
@@ -91,7 +103,9 @@ const SONG_ONE_MORE_NIGHT = {
       "type": "lyrics",
       "time": "歌詞",
       "text": "꿈이면 깨기 싫어 내",
-      "at": 31.16
+      "at": 31.16,
+      "roman": "kku mi myeon kkae gi si reo nae",
+      "practiceText": "故咪咪翁 給ㄍㄧ 西摟 內"
     },
     {
       "type": "chant",
@@ -155,7 +169,9 @@ const SONG_ONE_MORE_NIGHT = {
       "type": "lyrics",
       "time": "歌詞",
       "text": "기분은 왠종일 like cloud nine",
-      "at": 49.92
+      "at": 49.92,
+      "roman": "gi bu neun on jong il like cloud nine",
+      "practiceText": "ㄍㄧ不恩 玩囧衣 like cloud nine"
     },
     {
       "type": "lyrics",
@@ -167,37 +183,49 @@ const SONG_ONE_MORE_NIGHT = {
       "type": "lyrics",
       "time": "歌詞",
       "text": "이런 내 변화에 나도 놀라",
-      "at": 54.06
+      "at": 54.06,
+      "roman": "i reon ne byeon hwa e na do nol ra",
+      "practiceText": "一龍 內 逼翁華欸 拿豆 no拉"
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "존재 자체로 선물이야",
-      "at": 56.06
+      "at": 56.06,
+      "roman": "jon jae ja che ro seon mu ri ya",
+      "practiceText": "衝接 夾切摟 送木哩呀"
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "너와 함께 맞는 아침",
-      "at": 58.16
+      "at": 58.16,
+      "roman": "neo wa ham kke mat neun a chim",
+      "practiceText": "no哇 韓給 麻嫩 啊親"
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "말이 없어도 다 알기에",
-      "at": 60.22
+      "at": 60.22,
+      "roman": "ma ri eop seo do da al gi e",
+      "practiceText": "媽哩 歐ㄅ搜豆 大 啊ㄍㄧ欸"
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "굳이 대단한 말 대신",
-      "at": 62.22
+      "at": 62.22,
+      "roman": "gu ji dae dan han mal dae sin",
+      "practiceText": "估幾 得但含 麻 得心"
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "그저 곁에만 있어줘",
-      "at": 64.18
+      "at": 64.18,
+      "roman": "geu jeo gyeo te man i sseo jwo",
+      "practiceText": "科揪 ㄍㄧㄡ得滿 一搜揪"
     },
     {
       "type": "lyrics",
@@ -222,7 +250,9 @@ const SONG_ONE_MORE_NIGHT = {
       "type": "lyrics",
       "time": "歌詞",
       "text": "꿈이면 깨기 싫어 내",
-      "at": 72.28
+      "at": 72.28,
+      "roman": "kku mi myeon kkae gi si reo nae",
+      "practiceText": "故咪咪翁 給ㄍㄧ 西摟 內"
     },
     {
       "type": "chant",
@@ -298,13 +328,17 @@ const SONG_ONE_MORE_NIGHT = {
       "type": "lyrics",
       "time": "歌詞",
       "text": "헤어나올 수 없이 수놓인",
-      "at": 94.96
+      "at": 94.96,
+      "roman": "he eo na ol su eop si su no in",
+      "practiceText": "黑歐納喔 蘇 歐ㄅ西 蘇no因"
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "별들과 너를",
-      "at": 96.88
+      "at": 96.88,
+      "roman": "byeol deul gwa neo reul",
+      "practiceText": "標的瓜 no了"
     },
     {
       "type": "lyrics",
@@ -322,43 +356,57 @@ const SONG_ONE_MORE_NIGHT = {
       "type": "lyrics",
       "time": "歌詞",
       "text": "깨어나올 수 없이, bad mornin’",
-      "at": 103.06
+      "at": 103.06,
+      "roman": "kkae eo na ol su eop si, bad mornin’",
+      "practiceText": " 給歐那喔 蘇 歐ㄅ西, bad mornin’"
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "한여름 밤의 꿈을",
-      "at": 104.8
+      "at": 104.8,
+      "roman": "ha nyeo reum ba mui kku meul",
+      "practiceText": "哈扭冷 巴妹 故ㄇ"
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "떠오른 moonlight",
-      "at": 106.68
+      "at": 106.68,
+      "roman": "tteo o reun moonlight",
+      "practiceText": "豆歐冷 moonlight"
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "Selene 같은 너",
-      "at": 107.96
+      "at": 107.96,
+      "roman": "Selene ga teun neo",
+      "practiceText": "Selene 尬疼 no"
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "어젯밤처럼",
-      "at": 109.86
+      "at": 109.86,
+      "roman": "eo jet bam cheo reom",
+      "practiceText": "歐接幫糗龍"
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "아름다워줘 내 곁에서,",
-      "at": 112.34
+      "at": 112.34,
+      "roman": "a reum da wo jwo nae gyeo te sep,",
+      "practiceText": "阿冷大我桌 內 ㄍㄧㄡ ㄊㄟ 搜,"
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "어둠을 깨서",
-      "at": 114
+      "at": 114,
+      "roman": "eo du meul kkae seo",
+      "practiceText": "歐度木 給搜"
     },
     {
       "type": "lyrics",
@@ -370,19 +418,25 @@ const SONG_ONE_MORE_NIGHT = {
       "type": "lyrics",
       "time": "歌詞",
       "text": "단 한 밤만",
-      "at": 116.8
+      "at": 116.8,
+      "roman": "dan han bam man",
+      "practiceText": "大 韓 幫滿"
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "더 볼 수 있다면",
-      "at": 118.12
+      "at": 118.12,
+      "roman": "deo bol su it da nyeon",
+      "practiceText": "豆 波 蘇 一大面"
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "새벽을 지나",
-      "at": 120.06
+      "at": 120.06,
+      "roman": "sae byeo geul ji na",
+      "practiceText": "誰標科 幾那"
     },
     {
       "type": "chant",
@@ -425,7 +479,9 @@ const SONG_ONE_MORE_NIGHT = {
       "type": "lyrics",
       "time": "歌詞",
       "text": "꿈이면 깨기 싫어 내",
-      "at": 129.68
+      "at": 129.68,
+      "roman": "kku mi myeon kkae gi si reo nae",
+      "practiceText": "故咪咪翁 給ㄍㄧ 西摟 內"
     },
     {
       "type": "chant",

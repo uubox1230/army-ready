@@ -48,7 +48,9 @@ const SONG_PLEASE = {
       "type": "lyrics",
       "time": "歌詞",
       "text": "세상이 우릴 갈라놓을 때",
-      "at": 13.1
+      "at": 13.1,
+      "roman": "se sang i u ril gal ra no eul ttae",
+      "practiceText": "誰上衣 屋裡 尬啦noㄜ 得"
     },
     {
       "type": "sing",
@@ -60,7 +62,9 @@ const SONG_PLEASE = {
       "type": "lyrics",
       "time": "歌詞",
       "text": "한 걸음 더 다가설게",
-      "at": 18.78
+      "at": 18.78,
+      "roman": "han geo reum deo da ga seol ge",
+      "practiceText": "韓 勾冷 斗 大嘎搜給"
     },
     {
       "type": "lyrics",
@@ -72,13 +76,17 @@ const SONG_PLEASE = {
       "type": "lyrics",
       "time": "歌詞",
       "text": "함께해줘 나의 worst day",
-      "at": 24.4
+      "at": 24.4,
+      "roman": "ham kke hae jwo na ui worst day",
+      "practiceText": "韓給黑桌 拿欸 worst day"
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "널 더 세게 안을게 right now",
-      "at": 27.32
+      "at": 27.32,
+      "roman": "neol deo sse ge a neul ge right now",
+      "practiceText": "no 豆 誰給 阿呢給 right now"
     },
     {
       "type": "lyrics",
@@ -96,25 +104,33 @@ const SONG_PLEASE = {
       "type": "lyrics",
       "time": "歌詞",
       "text": "네가 있는 곳이라면 나 따라가리",
-      "at": 34.04
+      "at": 34.04,
+      "roman": "ne ga it neun go si ra myeon na tta ra ga ri",
+      "practiceText": "內尬 一嫩 勾西拉麵 拿 大拉咖哩"
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "가시밭길쯤은 나 쉽게 즈려밟지",
-      "at": 36.8
+      "at": 36.8,
+      "roman": "ga si bat gil jjeu meun na swip ge jeu ryeo balp ji",
+      "practiceText": "尬西巴ㄍㄧ稱悶 拿 西給 枝柳巴幾"
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "세상은 말야 항상 우리 사이를 막지",
-      "at": 39.54
+      "at": 39.54,
+      "roman": "se sang eun ma rya hang sang u ri sa i reul mak ji",
+      "practiceText": "誰桑恩 瑪莉雅 夯桑 屋哩 撒一了 麻吉"
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "결국엔 우린 돌고 돌아서 제자리",
-      "at": 42.4
+      "at": 42.4,
+      "roman": "gyeol gu gen u rin dol go do ra seo je ja ri",
+      "practiceText": "ㄍㄧㄡ故給 屋拎 豆勾 豆拉搜 切家裡"
     },
     {
       "type": "lyrics",
@@ -156,7 +172,9 @@ const SONG_PLEASE = {
       "type": "lyrics",
       "time": "歌詞",
       "text": "세상이 우릴 갈라놓을 때",
-      "at": 58.24
+      "at": 58.24,
+      "roman": "se sang i u ril gal ra no eul ttae",
+      "practiceText": "誰上衣 屋裡 尬啦noㄜ 得"
     },
     {
       "type": "sing",
@@ -168,7 +186,9 @@ const SONG_PLEASE = {
       "type": "lyrics",
       "time": "歌詞",
       "text": "한 걸음 더 다가설게",
-      "at": 63.92
+      "at": 63.92,
+      "roman": "han geo reum deo da ga seol ge",
+      "practiceText": "韓 勾冷 斗 大嘎搜給"
     },
     {
       "type": "lyrics",
@@ -180,13 +200,17 @@ const SONG_PLEASE = {
       "type": "lyrics",
       "time": "歌詞",
       "text": "함께해줘 나의 worst day",
-      "at": 69.56
+      "at": 69.56,
+      "roman": "ham kke hae jwo na ui worst day",
+      "practiceText": "韓給黑桌 拿欸 worst day"
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "널 더 세게 안을게 right now",
-      "at": 72.5
+      "at": 72.5,
+      "roman": "neol deo sse ge a neul ge right now",
+      "practiceText": "no 豆 誰給 阿呢給 right now"
     },
     {
       "type": "lyrics",
@@ -252,19 +276,25 @@ const SONG_PLEASE = {
       "type": "lyrics",
       "time": "歌詞",
       "text": "나, 기쁨을 느꼈다면",
-      "at": 90.48
+      "at": 90.48,
+      "roman": "na, gi ppeu meul neu kkyeot da myeon",
+      "practiceText": "拿, ㄍㄧ本ㄜ 那個大面"
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "너에게 오직",
-      "at": 91.72
+      "at": 91.72,
+      "roman": "neo e ge o jik",
+      "practiceText": "no欸給 歐幾"
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "봐, 내 잔이 넘치니",
-      "at": 93.22
+      "at": 93.22,
+      "roman": "bwa, nae ja ni neom chi ni",
+      "practiceText": "巴, 內 加你 弄七你"
     },
     {
       "type": "lyrics",
@@ -276,19 +306,25 @@ const SONG_PLEASE = {
       "type": "lyrics",
       "time": "歌詞",
       "text": "Yeah 염원하며 영원히",
-      "at": 95.98
+      "at": 95.98,
+      "roman": "Yeah yeo mwon ha myeo yeong won hi",
+      "practiceText": "Yeah 永翁哈謬 永翁你"
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "서로의 영혼이",
-      "at": 97.54
+      "at": 97.54,
+      "roman": "seo ro ui yeong ho ni",
+      "practiceText": "搜摟欸 永厚你"
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "그대 안에 기댈래",
-      "at": 99.04
+      "at": 99.04,
+      "roman": "geu dae a ne gi dael rae",
+      "practiceText": "科得 阿內 ㄍㄧ得累"
     },
     {
       "type": "lyrics",
@@ -336,7 +372,9 @@ const SONG_PLEASE = {
       "type": "lyrics",
       "time": "歌詞",
       "text": "세상이 우릴 갈라놓을 때",
-      "at": 114.82
+      "at": 114.82,
+      "roman": "se sang i u ril gal ra no eul ttae",
+      "practiceText": "誰上衣 屋裡 尬啦noㄜ 得"
     },
     {
       "type": "sing",
@@ -348,7 +386,9 @@ const SONG_PLEASE = {
       "type": "lyrics",
       "time": "歌詞",
       "text": "한 걸음 더 다가설게",
-      "at": 120.48
+      "at": 120.48,
+      "roman": "han geo reum deo da ga seol ge",
+      "practiceText": "韓 勾冷 斗 大嘎搜給"
     },
     {
       "type": "lyrics",
@@ -360,13 +400,17 @@ const SONG_PLEASE = {
       "type": "lyrics",
       "time": "歌詞",
       "text": "함께해줘 나의 worst day",
-      "at": 126.06
+      "at": 126.06,
+      "roman": "ham kke hae jwo na ui worst day",
+      "practiceText": "韓給黑桌 拿欸 worst day"
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "널 더 세게 안을게 right now",
-      "at": 128.98
+      "at": 128.98,
+      "practiceText": "no 豆 誰給 阿呢給 right now",
+      "roman": "neol deo sse ge a neul ge right now"
     },
     {
       "type": "lyrics",
@@ -432,7 +476,9 @@ const SONG_PLEASE = {
       "type": "lyrics",
       "time": "歌詞",
       "text": "세상이 우릴 갈라놓을 때",
-      "at": 148.64
+      "at": 148.64,
+      "roman": "se sang i u ril gal ra no eul ttae",
+      "practiceText": "誰上衣 屋裡 尬啦noㄜ 得"
     },
     {
       "type": "sing",
@@ -444,7 +490,9 @@ const SONG_PLEASE = {
       "type": "lyrics",
       "time": "歌詞",
       "text": "한 걸음 더 다가설게",
-      "at": 154.38
+      "at": 154.38,
+      "practiceText": "韓 勾冷 斗 大嘎搜給",
+      "roman": "han geo reum deo da ga seol ge"
     },
     {
       "type": "lyrics",
@@ -456,13 +504,17 @@ const SONG_PLEASE = {
       "type": "lyrics",
       "time": "歌詞",
       "text": "함께해줘 나의 worst day",
-      "at": 160.02
+      "at": 160.02,
+      "roman": "ham kke hae jwo na ui worst day",
+      "practiceText": "韓給黑桌 拿欸 worst day"
     },
     {
       "type": "lyrics",
       "time": "歌詞",
       "text": "널 더 세게 안을게 right now",
-      "at": 162.88
+      "at": 162.88,
+      "roman": "neol deo sse ge a neul ge right now",
+      "practiceText": "no 豆 誰給 阿呢給 right no"
     },
     {
       "type": "lyrics",
