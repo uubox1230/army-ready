@@ -21,6 +21,31 @@ const COMMUNITY_CATEGORIES = [
 
 const COMMUNITY_EVENTS = [
   {
+    id: "community-example-giveaway",
+    category: "support",
+    date: ["2026-11-19", "2026-11-21", "2026-11-22"],
+    updatedAt: "2026-08-03",
+    title: "應援活動徵才中",
+    host: "超有才の台灣阿米",
+    summary:
+      "如需推廣歡迎透過 X 或 IG 聯繫 @uu_box_，我們會盡量協助宣傳，讓更多阿米知道活動資訊。",
+    location: "---",
+    time: "---",
+    note: "---",
+    links: [
+      {
+        label: "X 聯繫投稿",
+        url: "https://x.com/uu_box_/",
+        primary: false
+      },
+      {
+        label: "IG 聯繫投稿",
+        url: "https://www.instagram.com/uu_box_/",
+        primary: false
+      }
+    ]
+  },
+  {
     id: "community-page-launch",
     category: ["support", "giveaway"],
     date: ["2026-11-19", "2026-11-21", "2026-11-22"],
@@ -45,28 +70,22 @@ const COMMUNITY_EVENTS = [
       }
     ]
   },
-
   {
-    id: "community-example-giveaway",
-    category: "support",
+    id: "community-page-launch-@eat_ate_eaten_40",
+    category: ["support", "giveaway"],
     date: ["2026-11-19", "2026-11-21", "2026-11-22"],
-    updatedAt: "2026-08-03",
-    title: "應援活動徵才中",
-    host: "超有才の台灣阿米",
+    updatedAt: "2026-08-11",
+    title: "應援發放",
+    host: "@eat_ate_eaten_40",
     summary:
-      "如需推廣歡迎透過 X 或 IG 聯繫 @uu_box_，我們會盡量協助宣傳，讓更多阿米知道活動資訊。",
-    location: "---",
-    time: "---",
-    note: "---",
+      "手機架應援發放",
+    location: "高雄國家體育場 場外",
+    time: "11/19.21.22 會在脆上發文，請大家留意",
+    note: "領取條件 現場請出示<br>* 本篇 Threads 貼文<br>* 官方會員證明（手機畫面）<br>* 阿米棒（任一代皆可）<br>* 任何周邊/娃娃/成員代言商品",
     links: [
       {
-        label: "X 聯繫投稿",
-        url: "https://x.com/uu_box_/",
-        primary: false
-      },
-      {
-        label: "IG 聯繫投稿",
-        url: "https://www.instagram.com/uu_box_/",
+        label: "主辦原公告(Threads)",
+        url: "https://www.threads.com/share/BAhV4phPKX/",
         primary: false
       }
     ]
