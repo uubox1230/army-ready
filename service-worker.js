@@ -4,7 +4,7 @@ importScripts("/js/system/version.js");
   APP_CACHE_NAME 仍由 js/system/version.js 管理。
   此處增加結構版本，確保本次 PWA 檔案調整會建立新快取。
 */
-const CACHE_NAME = `${APP_CACHE_NAME}-pwa-5`;
+const CACHE_NAME = `${APP_CACHE_NAME}-pwa-6`;
 
 const ASSETS = [
   "/",
@@ -108,12 +108,9 @@ const ASSETS = [
   "/images/brand/icon-192.png",
   "/images/brand/icon-512.png",
   "/images/brand/maskable-icon-512.png",
-  "/images/arirang-banner.jpg",
 
   "/icons/instagram.svg",
-  "/icons/x.svg",
-
-  "/audio/hooligan-intro.mp3"
+  "/icons/x.svg"
 ];
 
 self.addEventListener("message", event => {

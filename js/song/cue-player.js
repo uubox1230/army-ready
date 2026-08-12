@@ -35,7 +35,9 @@ function updateSongCue(song) {
 
     if (song.cueAudio) {
       songCueAudio.pause();
-      songCueAudio.src = song.cueAudio;
+      songCueAudio.removeAttribute("src");
+      songCueAudio.dataset.src = song.cueAudio;
+      songCueAudio.load();
       cuePlayer.classList.remove("hidden");
       songCuePlay.textContent = "▶";
       cueSeek.value = 0;
@@ -44,6 +46,8 @@ function updateSongCue(song) {
     } else {
       songCueAudio.pause();
       songCueAudio.removeAttribute("src");
+      delete songCueAudio.dataset.src;
+      songCueAudio.load();
       cuePlayer.classList.add("hidden");
     }
   } else {
@@ -51,6 +55,8 @@ function updateSongCue(song) {
     songCueText.textContent = "";
     songCueAudio.pause();
     songCueAudio.removeAttribute("src");
+    delete songCueAudio.dataset.src;
+    songCueAudio.load();
     cuePlayer.classList.add("hidden");
   }
 }
@@ -74,10 +80,19 @@ function formatTime(seconds) {
 if (songCueAudio && songCuePlay && cueSeek) {
   songCuePlay.addEventListener("click", async () => {
     if (songCueAudio.paused) {
-      await songCueAudio.play();
-      songCuePlay.textContent = "Ⅱ";
-      const song = SONGS[AppState.song.currentIndex];
-      window.Analytics?.toggleCuePlayer?.(song, true);
+      if (!songCueAudio.getAttribute("src") && songCueAudio.dataset.src) {
+        songCueAudio.src = songCueAudio.dataset.src;
+        songCueAudio.load();
+      }
+
+      try {
+        await songCueAudio.play();
+        songCuePlay.textContent = "Ⅱ";
+        const song = SONGS[AppState.song.currentIndex];
+        window.Analytics?.toggleCuePlayer?.(song, true);
+      } catch (_error) {
+        songCuePlay.textContent = "▶";
+      }
     } else {
       songCueAudio.pause();
       songCuePlay.textContent = "▶";

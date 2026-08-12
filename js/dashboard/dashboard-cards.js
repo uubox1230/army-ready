@@ -54,7 +54,6 @@ function createHeroCard() {
   section.innerHTML = `
     <div
       class="hero-bg"
-      style="background-image:url('${DASHBOARD.concert.banner}')"
       aria-label="${DASHBOARD.concert.tour}"
     ></div>
 

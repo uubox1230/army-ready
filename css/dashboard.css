@@ -35,6 +35,15 @@
 .hero-bg {
   position: absolute;
   inset: 0;
+  background-image: url("../images/arirang-banner.jpg");
+  background-image: -webkit-image-set(
+    url("../images/arirang-banner-desktop.webp") 1x,
+    url("../images/arirang-banner.jpg") 1x
+  );
+  background-image: image-set(
+    url("../images/arirang-banner-desktop.webp") type("image/webp"),
+    url("../images/arirang-banner.jpg") type("image/jpeg")
+  );
   background-size: cover;
   background-position: center 24%;
   background-repeat: no-repeat;
@@ -731,6 +740,15 @@
     height: 100%;
     background-size: cover;
     background-position: center 25%;
+    background-image: url("../images/arirang-banner.jpg");
+    background-image: -webkit-image-set(
+      url("../images/arirang-banner-mobile.webp") 1x,
+      url("../images/arirang-banner.jpg") 1x
+    );
+    background-image: image-set(
+      url("../images/arirang-banner-mobile.webp") type("image/webp"),
+      url("../images/arirang-banner.jpg") type("image/jpeg")
+    );
   }
 
   .hero-gradient {

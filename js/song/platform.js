@@ -23,6 +23,61 @@
    Open / Close Platform
 ========================= */
 
+const APPLE_PERFORMANCE_PREFIX = "army-ready:apple";
+let applePerformanceRun = 0;
+
+function ensureAppleMusicPreconnect() {
+  ["https://embed.music.apple.com", "https://music.apple.com"].forEach(origin => {
+    if (document.head.querySelector(`link[rel="preconnect"][href="${origin}"]`)) return;
+
+    const link = document.createElement("link");
+    link.rel = "preconnect";
+    link.href = origin;
+    link.crossOrigin = "anonymous";
+    document.head.appendChild(link);
+  });
+}
+
+function startApplePerformanceRun() {
+  if (!window.performance?.mark || !window.performance?.measure) return null;
+
+  applePerformanceRun += 1;
+  const run = `${APPLE_PERFORMANCE_PREFIX}:${applePerformanceRun}`;
+  performance.mark(`${run}:button-click`);
+  return run;
+}
+
+function markApplePerformance(run, phase, fromPhase = "button-click") {
+  if (!run || !window.performance?.mark || !window.performance?.measure) return;
+
+  const phaseMark = `${run}:${phase}`;
+  performance.mark(phaseMark);
+
+  try {
+    performance.measure(
+      `${run}:${fromPhase}-to-${phase}`,
+      `${run}:${fromPhase}`,
+      phaseMark
+    );
+  } catch (_error) {
+    /* Performance measurement must never affect the player. */
+  }
+}
+
+function measureApplePerformance(run, fromPhase, toPhase) {
+  if (!run || !window.performance?.measure) return;
+
+  try {
+    performance.measure(
+      `${run}:${fromPhase}-to-${toPhase}`,
+      `${run}:${fromPhase}`,
+      `${run}:${toPhase}`
+    );
+  } catch (_error) {
+    /* Performance measurement must never affect the player. */
+  }
+}
+
 function togglePlatformSection() {
   const content = document.getElementById("platformContent");
   const picker = document.getElementById("platformPicker");
@@ -34,6 +89,12 @@ function togglePlatformSection() {
   const willOpen = content.classList.contains("hidden");
 
   if (willOpen) {
+    const song = SONGS[AppState.song.currentIndex];
+
+    if (song?.platforms?.apple) {
+      ensureAppleMusicPreconnect();
+    }
+
     content.classList.remove("hidden");
     picker.classList.remove("hidden");
 
@@ -197,11 +258,19 @@ function showPlatformCard(platform) {
 
   list.classList.remove("hidden");
 
+  const appleRun = platform.id === "apple"
+    ? startApplePerformanceRun()
+    : null;
+
   /*
    * 使用者再次點擊目前的平台時，
    * 不重新建立 iframe，直接顯示原播放器。
    */
   if (list.dataset.platform === platform.id) {
+    if (appleRun) {
+      markApplePerformance(appleRun, "player-visible");
+    }
+
     const song = SONGS[AppState.song.currentIndex];
     window.Analytics?.clickPlatformPlayer?.(song, platform.id);
     return;
@@ -215,6 +284,9 @@ function showPlatformCard(platform) {
    * Apple Music 才會停止。
    */
   if (platform.id === "apple") {
+    ensureAppleMusicPreconnect();
+    markApplePerformance(appleRun, "iframe-create");
+
     list.innerHTML = `
       <section class="platform-card">
         <div class="platform-card-header">
@@ -238,6 +310,13 @@ function showPlatformCard(platform) {
         </iframe>
       </section>
     `;
+
+    const iframe = list.querySelector("iframe");
+
+    iframe?.addEventListener("load", () => {
+      markApplePerformance(appleRun, "iframe-load");
+      measureApplePerformance(appleRun, "iframe-create", "iframe-load");
+    }, { once: true });
   }
 
   if (platform.id === "spotify") {
@@ -296,6 +375,12 @@ function showPlatformCard(platform) {
   }
 
   list.dataset.platform = platform.id;
+
+  if (appleRun) {
+    requestAnimationFrame(() => {
+      markApplePerformance(appleRun, "player-visible");
+    });
+  }
 
   const song = SONGS[AppState.song.currentIndex];
   window.Analytics?.clickPlatformPlayer?.(song, platform.id);
