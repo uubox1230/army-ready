@@ -117,6 +117,8 @@ function startKaraoke() {
   const lines = getKaraokeLines();
   if (!lines.length) return;
 
+  const isFreshStart = karaokeElapsed <= 0;
+
   isKaraokeRunning = true;
 
   karaokeStartTime =
@@ -135,6 +137,11 @@ function startKaraoke() {
 
   if (startBtn) {
     startBtn.textContent = "Ⅱ 暫停";
+  }
+
+  if (isFreshStart) {
+    const song = SONGS[AppState.song.currentIndex];
+    window.Analytics?.startKaraoke?.(song, "manual");
   }
 }
 

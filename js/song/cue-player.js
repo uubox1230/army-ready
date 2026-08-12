@@ -76,9 +76,13 @@ if (songCueAudio && songCuePlay && cueSeek) {
     if (songCueAudio.paused) {
       await songCueAudio.play();
       songCuePlay.textContent = "Ⅱ";
+      const song = SONGS[AppState.song.currentIndex];
+      window.Analytics?.toggleCuePlayer?.(song, true);
     } else {
       songCueAudio.pause();
       songCuePlay.textContent = "▶";
+      const song = SONGS[AppState.song.currentIndex];
+      window.Analytics?.toggleCuePlayer?.(song, false);
     }
   });
 

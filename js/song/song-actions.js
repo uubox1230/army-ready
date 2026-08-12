@@ -68,6 +68,10 @@ function toggleDone() {
   saveDone([...doneSet]);
   updateDoneButton();
 
+  if (!isDone) {
+    window.Analytics?.finishSong?.(song, "manual");
+  }
+
   if (typeof renderSetlistSheet === "function") {
     renderSetlistSheet();
   }

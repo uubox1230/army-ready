@@ -78,6 +78,22 @@ function initNavigationMenu() {
 
   document.body.append(overlay, panel);
 
+  const analyticsFromPage = currentPage === "song"
+    ? "practice"
+    : currentPage;
+
+  panel.querySelectorAll(".global-nav-link").forEach((link, index) => {
+    const item = ARMY_NAV_ITEMS[index];
+    if (!item) return;
+
+    link.addEventListener("click", () => {
+      window.Analytics?.clickMenu?.(
+        analyticsFromPage,
+        item.id
+      );
+    });
+  });
+
   const trigger = document.getElementById("globalNavTrigger");
   const closeButton = panel.querySelector(".global-nav-close");
 

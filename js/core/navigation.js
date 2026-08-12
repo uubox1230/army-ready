@@ -210,6 +210,11 @@ function openSong(index, options = {}) {
     options.mode || "read"
   );
 
+  window.Analytics?.viewSong?.(
+    song,
+    options.entryPoint
+  );
+
   if (
     options.mode === "karaoke" &&
     typeof startPractice === "function"

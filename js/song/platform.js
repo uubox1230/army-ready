@@ -202,6 +202,8 @@ function showPlatformCard(platform) {
    * 不重新建立 iframe，直接顯示原播放器。
    */
   if (list.dataset.platform === platform.id) {
+    const song = SONGS[AppState.song.currentIndex];
+    window.Analytics?.clickPlatformPlayer?.(song, platform.id);
     return;
   }
 
@@ -294,4 +296,7 @@ function showPlatformCard(platform) {
   }
 
   list.dataset.platform = platform.id;
+
+  const song = SONGS[AppState.song.currentIndex];
+  window.Analytics?.clickPlatformPlayer?.(song, platform.id);
 }
