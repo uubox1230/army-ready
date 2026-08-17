@@ -89,5 +89,30 @@ const COMMUNITY_EVENTS = [
         primary: false
       }
     ]
+  },
+  {
+    id: "community-page-launch-@cowada",
+    category: ["giveaway"],
+    date: ["2026-11-19", "2026-11-21", "2026-11-22"],
+    updatedAt: "2026-08-17",
+    title: "逮丸阿米《為臺灣應援》",
+    host: "@cowada 國際編號30678 #心臟的心",
+    summary:
+      "BTS THIS WEEK, OUR VOTE NEXT WEEK.<br>11月28日，臺灣阿米、回家投票。",
+    location: "高雄國家體育場(世運主場館)",
+    time: "會提前一天於ig、threads上公告停留方位與時間",
+    note: "應援貼紙150份/天、3天共450份，應援公告貼文即刻起歡迎轉發，為臺灣催票。",
+    links: [
+      {
+        label: "主辦原公告(Threads)",
+        url: "https://www.threads.com/share/BAVe8wKR55/",
+        primary: false
+      },
+      {
+        label: "主辦原公告(IG)",
+        url: "https://www.instagram.com/reel/Db7ZgQZTEGB/?igsh=dWtvY2MwcHUwcWNh",
+        primary: false
+      }
+    ]
   }
 ];
