@@ -28,7 +28,8 @@
     TO_PAGE: "to_page",
     LANGUAGE_BEFORE: "language_before",
     LANGUAGE_AFTER: "language_after",
-    CHANGE_SOURCE: "change_source"
+    CHANGE_SOURCE: "change_source",
+    SITE_LANGUAGE: "site_language"
   });
 
   const USER_PROPERTIES = Object.freeze({
@@ -156,8 +157,13 @@
         return false;
       }
 
+      const eventParameters = {
+        [PARAMETERS.SITE_LANGUAGE]: readUiLanguagePreference(),
+        ...parameters
+      };
+
       if (!isProduction) {
-        debug(eventName, parameters, "development_preview");
+        debug(eventName, eventParameters, "development_preview");
         return false;
       }
 
@@ -166,7 +172,7 @@
       }
 
       try {
-        window.gtag("event", eventName, parameters);
+        window.gtag("event", eventName, eventParameters);
         return true;
       } catch (_error) {
         state.blocked = true;
@@ -291,7 +297,8 @@
           changeSource,
           ALLOWED_LANGUAGE_SOURCES,
           "global_menu"
-        )
+        ),
+        [PARAMETERS.SITE_LANGUAGE]: languageAfter
       });
     }
   };
@@ -307,12 +314,17 @@
       window.dataLayer.push(arguments);
     };
 
+    const initialUiLanguage = readUiLanguagePreference();
+
     window.gtag("js", new Date());
+    window.gtag("set", {
+      [PARAMETERS.SITE_LANGUAGE]: initialUiLanguage
+    });
     window.gtag("config", MEASUREMENT_ID, debugMode
       ? { debug_mode: true }
       : {});
     state.initialized = true;
-    Analytics.setUiLanguage(readUiLanguagePreference());
+    Analytics.setUiLanguage(initialUiLanguage);
 
     const script = document.createElement("script");
     script.async = true;
