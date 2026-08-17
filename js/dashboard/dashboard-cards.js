@@ -146,9 +146,12 @@ function createMyConcertCard() {
   const newNotices = getNewNoticesCount();
 
   const hasLastPractice = Boolean(last && SONGS[last.index]);
+  const actionKey = hasLastPractice
+    ? "dashboard.continue_practice"
+    : "dashboard.start_practice";
   const actionLabel = hasLastPractice
-    ? settings.continueLabel
-    : settings.startLabel;
+    ? window.t?.(actionKey, {}, settings.continueLabel) || settings.continueLabel
+    : window.t?.(actionKey, {}, settings.startLabel) || settings.startLabel;
 
   const section = document.createElement("section");
   section.className = "dashboard-card my-concert-card";
@@ -166,27 +169,27 @@ function createMyConcertCard() {
       <span class="card-chip">${DASHBOARD.concert.city}</span>
     </div>
 
-    <h2>${DASHBOARD.concert.venue}</h2>
+    <h2>${settings.venue || DASHBOARD.concert.venue}</h2>
 
     <div class="my-concert-stats">
       <div class="my-concert-stat">
-        <span>${settings.practiceLabel}</span>
+        <span data-i18n="dashboard.practice_progress">${window.t?.("dashboard.practice_progress", {}, settings.practiceLabel) || settings.practiceLabel}</span>
         <strong>${done.length} / ${SONGS.length}</strong>
       </div>
 
       <div class="my-concert-stat">
-        <span>${settings.eventsLabel}</span>
+        <span data-i18n="dashboard.saved_events">${window.t?.("dashboard.saved_events", {}, settings.eventsLabel) || settings.eventsLabel}</span>
         <strong>${savedEvents}</strong>
       </div>
 
       <div class="my-concert-stat">
-        <span>${settings.noticesLabel}</span>
+        <span data-i18n="dashboard.new_notices">${window.t?.("dashboard.new_notices", {}, settings.noticesLabel) || settings.noticesLabel}</span>
         <strong>${newNotices}</strong>
       </div>
     </div>
 
     <button class="my-concert-action" type="button">
-      <span>${actionLabel}</span>
+      <span data-i18n="${actionKey}">${actionLabel}</span>
       <span>›</span>
     </button>
   `;
@@ -211,7 +214,7 @@ function createQuickAccessCard() {
   section.className = "dashboard-card quick-access-card";
 
   section.innerHTML = `
-    <p class="card-label">${quickAccess.title}</p>
+    <p class="card-label" data-i18n="dashboard.quick_access">${window.t?.("dashboard.quick_access", {}, quickAccess.title) || quickAccess.title}</p>
 
     <div class="quick-access-grid">
       ${quickAccess.items.map(item => `
@@ -222,7 +225,7 @@ function createQuickAccessCard() {
 
           <span class="quick-access-copy">
             <strong>${item.label}</strong>
-            <small>${item.title}</small>
+            <small data-i18n="dashboard.${item.id}">${window.t?.(`dashboard.${item.id}`, {}, item.title) || item.title}</small>
           </span>
 
           <span class="quick-access-arrow">›</span>
@@ -255,6 +258,33 @@ function getUpdateDate(item) {
   return "";
 }
 
+function getLatestUpdateTitle(source, item) {
+  if (window.I18n?.language !== "en") return item.title;
+
+  if (
+    source === "official" &&
+    typeof OFFICIAL_ANNOUNCEMENTS_EN !== "undefined"
+  ) {
+    return OFFICIAL_ANNOUNCEMENTS_EN[item.id]?.title || item.title;
+  }
+
+  if (
+    source === "community" &&
+    typeof COMMUNITY_EVENTS_EN !== "undefined"
+  ) {
+    return COMMUNITY_EVENTS_EN[item.id]?.title || item.title;
+  }
+
+  if (
+    source === "venue" &&
+    typeof VENUE_GUIDE_EN !== "undefined"
+  ) {
+    return VENUE_GUIDE_EN.title || item.title;
+  }
+
+  return item.title;
+}
+
 function getLatestUpdates() {
   const updates = [];
 
@@ -264,7 +294,7 @@ function getLatestUpdates() {
         id: `official-${item.id}`,
         type: "official",
         label: "Official",
-        title: item.title,
+        title: getLatestUpdateTitle("official", item),
         date: getUpdateDate(item),
         isNew: Boolean(item.isNew),
         icon: "megaphone",
@@ -279,7 +309,7 @@ function getLatestUpdates() {
         id: `community-${item.id}`,
         type: "community",
         label: "Community",
-        title: item.title,
+        title: getLatestUpdateTitle("community", item),
         date: getUpdateDate(item),
         icon: "heart",
         href: `/community/#${encodeURIComponent(item.id)}`
@@ -292,7 +322,7 @@ function getLatestUpdates() {
       id: `venue-${VENUE_GUIDE.id || "guide"}`,
       type: "venue",
       label: "Venue",
-      title: VENUE_GUIDE.title || "場館指南",
+      title: getLatestUpdateTitle("venue", VENUE_GUIDE) || "場館指南",
       date: getUpdateDate(VENUE_GUIDE),
       icon: "map-pinned",
       href: `/venue/#${encodeURIComponent(VENUE_GUIDE.id || "guide")}`
@@ -315,7 +345,7 @@ function createLatestUpdatesCard() {
   section.className = "dashboard-card latest-updates-card";
 
   section.innerHTML = `
-    <p class="card-label">${updates.title}</p>
+    <p class="card-label" data-i18n="dashboard.latest_updates">${window.t?.("dashboard.latest_updates", {}, updates.title) || updates.title}</p>
 
     <div class="latest-updates-list">
       ${items.length
@@ -334,13 +364,27 @@ function createLatestUpdatesCard() {
           </a>
         `).join("")
         : `
-          <p class="latest-updates-empty">${updates.emptyText}</p>
+          <p class="latest-updates-empty" data-i18n="dashboard.no_updates">${window.t?.("dashboard.no_updates", {}, updates.emptyText) || updates.emptyText}</p>
         `}
     </div>
   `;
 
   return section;
 }
+
+function refreshLatestUpdatesLanguage() {
+  const current = document.querySelector(".latest-updates-card");
+  if (!current) return;
+
+  const replacement = createLatestUpdatesCard();
+  current.replaceWith(replacement);
+  window.lucide?.createIcons?.();
+}
+
+document.addEventListener(
+  "armyready:languagechange",
+  refreshLatestUpdatesLanguage
+);
 
 function createContinueCard() {
   const last = getLastPractice();
@@ -461,12 +505,13 @@ function createProgressCard() {
     ? Math.round((done.length / SONGS.length) * 100)
     : 0;
 
-  const message =
-    percent >= 100 ? "꙳⸌♡⸍꙳ 準備征服現場 ꙳⸌♡⸍꙳" :
-    percent >= 80 ? "快要練習完了！(ง๑ •̀_•́)ง" :
-    percent >= 50 ? "練習一半了，加油！" :
-    percent >= 20 ? "衝啊！你可以的！( ੭˙ᗜ˙)੭" :
-    "開始練習叭 (๑˃ᴗ˂๑) ";
+  const messageKey =
+    percent >= 100 ? "dashboard.progress.complete" :
+    percent >= 80 ? "dashboard.progress.almost" :
+    percent >= 50 ? "dashboard.progress.half" :
+    percent >= 20 ? "dashboard.progress.started" :
+    "dashboard.progress.begin";
+  const message = window.t?.(messageKey) || "開始練習叭 (๑˃ᴗ˂๑)";
 
   const section = document.createElement("section");
   section.className = "dashboard-card progress-card-v2";
@@ -474,7 +519,7 @@ function createProgressCard() {
   section.innerHTML = `
     <div>
       <p class="card-label">ARMY Ready</p>
-      <h2>${message}</h2>
+      <h2 data-i18n="${messageKey}">${message}</h2>
       <p id="progressText">${done.length} / ${SONGS.length} Songs</p>
     </div>
 

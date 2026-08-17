@@ -46,25 +46,35 @@
     <div class="home-fab-menu" id="homeFabMenu">
       <button id="installBtn" class="fab-action" type="button">
         <i data-lucide="download"></i>
-        <span>加到主畫面</span>
+        <span data-i18n="home.install">加到主畫面</span>
       </button>
 
       <button id="shareBtn" class="fab-action" type="button">
         <i data-lucide="share-2"></i>
-        <span>分享給朋友</span>
+        <span data-i18n="home.share">分享給朋友</span>
       </button>
 
       <div class="fab-divider"></div>
 
       <a class="fab-action" href="https://www.instagram.com/uu_box_" target="_blank" rel="noopener">
         <img src="icons/instagram.svg" class="social-icon ig-icon">
-        <span>追蹤 uubox</span>
+        <span data-i18n="home.follow.ig">追蹤 uubox</span>
       </a>
 
       <a class="fab-action" href="https://x.com/uu_box_" target="_blank" rel="noopener">
         <img src="icons/x.svg" class="social-icon x-icon">
-        <span>追蹤 uubox</span>
+        <span data-i18n="home.follow.x">追蹤 uubox</span>
       </a>
+
+      <div class="fab-divider"></div>
+
+      <section class="home-fab-language" aria-label="Language / 語言">
+        <span data-i18n="language.title">Language / 語言</span>
+        <div>
+          <button type="button" data-language-option="zh-TW" aria-pressed="false" data-i18n="language.zh_tw">繁體中文</button>
+          <button type="button" data-language-option="en" aria-pressed="false" data-i18n="language.en">English</button>
+        </div>
+      </section>
 
       <button class="fab-main" onclick="toggleHomeFab()" type="button">
         ＋
@@ -79,6 +89,9 @@
   </footer>
 
   <script src="js/system/version.js"></script>
+  <script src="js/i18n/zh-TW.js"></script>
+  <script src="js/i18n/en.js"></script>
+  <script src="js/i18n/i18n.js"></script>
   <script src="js/system/version-render.js"></script>
 
   <script src="js/system/preferences.js"></script>
@@ -87,8 +100,11 @@
   <script src="js/core/utils.js"></script>
 
   <script src="js/official/data.js"></script>
+  <script src="js/official/data-en.js"></script>
   <script src="js/community/data.js"></script>
+  <script src="js/community/data-en.js"></script>
   <script src="js/venue/data.js"></script>
+  <script src="js/venue/data-en.js"></script>
   <script src="js/dashboard/dashboard.js"></script>
   <script src="js/data/songs/01-hooligan.js"></script>
   <script src="js/data/songs/02-aliens.js"></script>

@@ -33,7 +33,7 @@ function renderOfficialFilters() {
       }"
       data-category="${category.id}"
     >
-      ${category.label}
+      ${window.t?.(`official.category.${category.id}`, {}, category.label) || category.label}
     </button>
   `).join("");
 
@@ -46,8 +46,33 @@ function renderOfficialFilters() {
   });
 }
 
+function getOfficialAnnouncementsForCurrentLanguage() {
+  if (
+    window.I18n?.language !== "en" ||
+    typeof OFFICIAL_ANNOUNCEMENTS_EN === "undefined"
+  ) {
+    return OFFICIAL_ANNOUNCEMENTS;
+  }
+
+  return OFFICIAL_ANNOUNCEMENTS.map(item => {
+    const translation = OFFICIAL_ANNOUNCEMENTS_EN[item.id] || {};
+
+    return {
+      ...item,
+      title: translation.title || item.title,
+      summary: translation.summary || item.summary,
+      links: Array.isArray(item.links)
+        ? item.links.map((link, index) => ({
+            ...link,
+            label: translation.links?.[index] || link.label
+          }))
+        : item.links
+    };
+  });
+}
+
 function getFilteredOfficialAnnouncements() {
-  return OFFICIAL_ANNOUNCEMENTS
+  return getOfficialAnnouncementsForCurrentLanguage()
     .filter(item => {
       const categoryMatched =
         officialState.category === "all" ||
@@ -77,7 +102,7 @@ function renderOfficialAnnouncements() {
 
   const items = getFilteredOfficialAnnouncements();
 
-  count.textContent = `${items.length} 則公告`;
+  count.textContent = window.t?.("official.result_count", { count: items.length }, `${items.length} 則公告`) || `${items.length} 則公告`;
   list.innerHTML = items.map(createOfficialCardMarkup).join("");
 
   empty.classList.toggle("hidden", items.length > 0);
@@ -135,10 +160,8 @@ function createOfficialLinkMarkup(link) {
 }
 
 function getOfficialCategoryLabel(categoryId) {
-  return (
-    OFFICIAL_CATEGORIES.find(category => category.id === categoryId)?.label ||
-    "其他"
-  );
+  const fallback = OFFICIAL_CATEGORIES.find(category => category.id === categoryId)?.label || "其他";
+  return window.t?.(`official.category.${categoryId}`, {}, fallback) || fallback;
 }
 
 function formatOfficialDate(dateValue) {
@@ -146,7 +169,9 @@ function formatOfficialDate(dateValue) {
 
   if (Number.isNaN(date.getTime())) return dateValue;
 
-  return new Intl.DateTimeFormat("zh-TW", {
+  const locale = window.I18n?.language === "en" ? "en-US" : "zh-TW";
+
+  return new Intl.DateTimeFormat(locale, {
     year: "numeric",
     month: "2-digit",
     day: "2-digit"
@@ -165,3 +190,7 @@ function resetOfficialFilters() {
 }
 
 document.addEventListener("DOMContentLoaded", initOfficialPage);
+document.addEventListener("armyready:languagechange", () => {
+  renderOfficialFilters();
+  renderOfficialAnnouncements();
+});

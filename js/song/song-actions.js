@@ -85,7 +85,9 @@ function updateDoneButton() {
   const isDone = isCurrentSongDone();
 
   doneBtn.textContent =
-    isDone ? "已完成" : "未練習";
+    isDone
+      ? window.t?.("practice.done", {}, "已完成") || "已完成"
+      : window.t?.("practice.not_started", {}, "未練習") || "未練習";
 
   doneBtn.classList.toggle("active", isDone);
   doneBtn.setAttribute("aria-pressed", String(isDone));
@@ -93,7 +95,9 @@ function updateDoneButton() {
   doneBtn.setAttribute(
     "aria-label",
     isDone
-      ? "取消已完成狀態"
-      : "標記為已完成"
+      ? window.t?.("practice.unmark_done", {}, "取消已完成狀態") || "取消已完成狀態"
+      : window.t?.("practice.mark_done", {}, "標記為已完成") || "標記為已完成"
   );
 }
+
+document.addEventListener("armyready:languagechange", updateDoneButton);

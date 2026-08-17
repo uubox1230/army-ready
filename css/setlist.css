@@ -49,6 +49,11 @@
   letter-spacing: -0.01em;
 }
 
+/* Setlist-only title size; does not affect other page intros. */
+.setlist-page .setlist-page-intro .page-intro-title {
+  font-size: clamp(28px, 4vw, 38px);
+}
+
 .song-search {
   width: 100%;
   height: 52px;

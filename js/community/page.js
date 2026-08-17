@@ -43,7 +43,7 @@ function renderCommunityFilters() {
       }"
       data-category="${category.id}"
     >
-      ${category.label}
+      ${window.t?.(`community.category.${category.id}`, {}, category.label) || category.label}
     </button>
   `).join("");
 
@@ -53,6 +53,34 @@ function renderCommunityFilters() {
       renderCommunityFilters();
       renderCommunityEvents();
     });
+  });
+}
+
+function getCommunityEventsForCurrentLanguage() {
+  if (
+    window.I18n?.language !== "en" ||
+    typeof COMMUNITY_EVENTS_EN === "undefined"
+  ) {
+    return COMMUNITY_EVENTS;
+  }
+
+  return COMMUNITY_EVENTS.map(item => {
+    const translation = COMMUNITY_EVENTS_EN[item.id] || {};
+
+    return {
+      ...item,
+      title: translation.title || item.title,
+      summary: translation.summary || item.summary,
+      location: translation.location || item.location,
+      time: translation.time || item.time,
+      note: translation.note || item.note,
+      links: Array.isArray(item.links)
+        ? item.links.map((link, index) => ({
+            ...link,
+            label: translation.links?.[index] || link.label
+          }))
+        : item.links
+    };
   });
 }
 
@@ -89,7 +117,7 @@ function toggleCommunityFavorite(eventId) {
 function getFilteredCommunityEvents() {
   const favorites = getCommunityFavorites();
 
-  return COMMUNITY_EVENTS
+  return getCommunityEventsForCurrentLanguage()
     .filter(item => {
       const categories = normalizeCommunityArray(item.category);
 
@@ -135,7 +163,7 @@ function renderCommunityEvents() {
 
   const items = getFilteredCommunityEvents();
 
-  count.textContent = `${items.length} 個活動`;
+  count.textContent = window.t?.("community.result_count", { count: items.length }, `${items.length} 個活動`) || `${items.length} 個活動`;
   list.innerHTML = items.map(createCommunityCardMarkup).join("");
 
   list.querySelectorAll("[data-favorite-id]").forEach(button => {
@@ -173,7 +201,9 @@ function createCommunityCardMarkup(item) {
           type="button"
           class="community-card-favorite ${isFavorite ? "active" : ""}"
           data-favorite-id="${item.id}"
-          aria-label="${isFavorite ? "取消收藏" : "收藏活動"}"
+          aria-label="${isFavorite
+            ? window.t?.("community.favorite_remove", {}, "取消收藏") || "取消收藏"
+            : window.t?.("community.favorite_add", {}, "收藏活動") || "收藏活動"}"
           aria-pressed="${isFavorite}"
         >
           <span aria-hidden="true">${isFavorite ? "♥" : "♡"}</span>
@@ -181,22 +211,22 @@ function createCommunityCardMarkup(item) {
       </div>
 
       <h3>${item.title}</h3>
-      <p class="community-card-host">主辦：${item.host}</p>
+      <p class="community-card-host">${window.t?.("community.host", {}, "主辦") || "主辦"}：${item.host}</p>
       <p class="community-card-summary">${item.summary}</p>
 
       <div class="community-card-details">
         <div class="community-card-detail">
-          <span>地點</span>
+          <span>${window.t?.("community.location", {}, "地點") || "地點"}</span>
           <strong>${item.location}</strong>
         </div>
 
         <div class="community-card-detail">
-          <span>時間</span>
+          <span>${window.t?.("community.time", {}, "時間") || "時間"}</span>
           <strong>${item.time}</strong>
         </div>
 
         <div class="community-card-detail">
-          <span>提醒</span>
+          <span>${window.t?.("community.note", {}, "提醒") || "提醒"}</span>
           <strong>${item.note}</strong>
         </div>
       </div>
@@ -235,10 +265,8 @@ function normalizeCommunityArray(value) {
 }
 
 function getCommunityCategoryLabel(categoryId) {
-  return (
-    COMMUNITY_CATEGORIES.find(category => category.id === categoryId)?.label ||
-    "其他"
-  );
+  const fallback = COMMUNITY_CATEGORIES.find(category => category.id === categoryId)?.label || "其他";
+  return window.t?.(`community.category.${categoryId}`, {}, fallback) || fallback;
 }
 
 function getCommunityCategoryLabels(categoryValue) {
@@ -262,7 +290,9 @@ function formatCommunityDate(dateValue) {
 
   if (Number.isNaN(date.getTime())) return dateValue;
 
-  return new Intl.DateTimeFormat("zh-TW", {
+  const locale = window.I18n?.language === "en" ? "en-US" : "zh-TW";
+
+  return new Intl.DateTimeFormat(locale, {
     month: "numeric",
     day: "numeric",
     weekday: "short"
@@ -315,7 +345,9 @@ function updateCommunityFavoriteToggle() {
     <span aria-hidden="true">
       ${communityState.favoritesOnly ? "♥" : "♡"}
     </span>
-    <span>${communityState.favoritesOnly ? "查看全部活動" : "我的收藏"}</span>
+    <span>${communityState.favoritesOnly
+      ? window.t?.("community.favorite_hide", {}, "查看全部活動") || "查看全部活動"
+      : window.t?.("community.favorite_show", {}, "我的收藏") || "我的收藏"}</span>
   `;
 }
 
@@ -332,3 +364,7 @@ function resetCommunityFilters() {
 }
 
 document.addEventListener("DOMContentLoaded", initCommunityPage);
+document.addEventListener("armyready:languagechange", () => {
+  renderCommunityFilters();
+  renderCommunityEvents();
+});

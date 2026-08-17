@@ -13,8 +13,9 @@ function renderAppVersion() {
       : "v1.4.3";
 
   versionEls.forEach(el => {
-    el.textContent = `版本 ${version}`;
+    el.textContent = window.t?.("common.version", { version }, `版本 ${version}`) || `版本 ${version}`;
   });
 }
 
 renderAppVersion();
+document.addEventListener("armyready:languagechange", renderAppVersion);

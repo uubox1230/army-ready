@@ -40,9 +40,9 @@
 
     <header class="song-global-header">
         <div class="song-header-row">
-            <button class="back-btn global-back-link" onclick="backHome()">
+            <button class="back-btn global-back-link" onclick="backHome()" aria-label="返回歌單" data-i18n-aria-label="common.back_setlist">
                 <span class="global-back-icon" aria-hidden="true">‹</span>
-                <span class="global-back-label">返回歌單</span>
+                <span class="global-back-label" data-i18n="common.back_setlist">返回歌單</span>
             </button>
         </div>
     </header>
@@ -64,7 +64,7 @@
             </button>
 
             <div class="cue-player-body">
-            <div class="cue-player-label">練習參考音檔</div>
+            <div class="cue-player-label" data-i18n="practice.cue_label">練習參考音檔</div>
 
             <input
                 id="cueSeek"
@@ -125,7 +125,7 @@
             </div>
 
             <div class="platform-text">
-            <h4>收聽完整歌曲</h4>
+            <h4 data-i18n="practice.platform_title">收聽完整歌曲</h4>
             <p id="platformSubtitle"></p>
             </div>
 
@@ -147,8 +147,8 @@
 
     <div class="song-actions">
         <div class="mode-switch">
-        <button id="readModeBtn" onclick="showReadMode()">完整歌詞</button>
-        <button id="practiceModeBtn" onclick="startPractice()">卡拉OK模式</button>
+        <button id="readModeBtn" onclick="showReadMode()" data-i18n="practice.mode.lyrics">完整歌詞</button>
+        <button id="practiceModeBtn" onclick="startPractice()" data-i18n="practice.mode.karaoke">卡拉OK模式</button>
         </div>
 
         <div id="lyricsDisplayControl" class="lyrics-display-control">
@@ -159,7 +159,7 @@
             aria-expanded="false"
             aria-controls="lyricsDisplayPanel"
           >
-            <span>歌詞顯示</span>
+            <span data-i18n="practice.display.title">歌詞顯示</span>
             <span class="lyrics-display-trigger-meta">
               <span id="lyricsDisplaySummary">韓文歌詞</span>
               <span class="lyrics-display-chevron" aria-hidden="true">⌄</span>
@@ -172,39 +172,58 @@
             id="lyricsDisplayPanel"
             class="lyrics-display-panel"
             aria-label="歌詞顯示設定"
+            data-i18n-aria-label="practice.display.settings"
             aria-hidden="true"
           >
             <div class="lyrics-display-handle" aria-hidden="true"></div>
             <div class="lyrics-display-heading">
               <div>
                 <small>LYRICS DISPLAY</small>
-                <strong>歌詞顯示</strong>
+                <strong data-i18n="practice.display.title">歌詞顯示</strong>
               </div>
               <button
                 id="lyricsDisplayClose"
                 class="lyrics-display-close"
                 type="button"
                 aria-label="關閉歌詞顯示設定"
+                data-i18n-aria-label="practice.display.close"
               >×</button>
             </div>
 
             <div class="lyrics-display-options">
               <label class="lyrics-display-option">
                 <input type="checkbox" value="lyrics">
-                <span><strong>韓文歌詞</strong><small>主要歌詞與應援 Highlight</small></span>
+                <span>
+                  <strong data-i18n="practice.display.lyrics">韓文歌詞</strong>
+                  <small data-i18n="practice.display.lyrics_description">
+                    主要歌詞與應援 Highlight
+                  </small>
+                </span>
               </label>
+
               <label class="lyrics-display-option">
                 <input type="checkbox" value="roman">
-                <span><strong>羅馬拼音</strong><small>韓文發音閱讀輔助</small></span>
+                <span>
+                  <strong data-i18n="practice.display.roman">羅馬拼音</strong>
+                  <small data-i18n="practice.display.roman_description">
+                    韓文發音閱讀輔助
+                  </small>
+                </span>
               </label>
+
               <label class="lyrics-display-option">
                 <input type="checkbox" value="practice">
-                <span><strong>中文空耳</strong><small>中文發音閱讀輔助</small></span>
+                <span>
+                  <strong data-i18n="practice.display.practice">中文空耳</strong>
+                  <small data-i18n="practice.display.practice_description">
+                    中文發音閱讀輔助
+                  </small>
+                </span>
               </label>
             </div>
 
             <p id="lyricsDisplayStatus" class="lyrics-display-status" aria-live="polite">
-              至少保留一種歌詞顯示。
+              <span data-i18n="practice.display.minimum">至少保留一種歌詞顯示。</span>
             </p>
           </section>
         </div>
@@ -217,7 +236,7 @@
             <div id="practiceCounter" class="karaoke-clock">0:00 / 0:00</div>
 
             <div class="karaoke-sync-controls">
-            <button id="karaokeStartBtn" onclick="toggleKaraoke()">▶ 同步開始</button>
+            <button id="karaokeStartBtn" onclick="toggleKaraoke()" data-i18n="practice.karaoke.start">▶ 同步開始</button>
             </div>
         </div>
 
@@ -225,9 +244,9 @@
         </div>
 
         <nav class="song-bottom-bar">
-        <button type="button" onclick="goPrevSong()">← 上一首</button>
+        <button type="button" onclick="goPrevSong()" data-i18n="practice.previous">← 上一首</button>
         <button type="button" onclick="toggleSetlistSheet()">Setlist</button>
-        <button type="button" onclick="goNextSong()">下一首 →</button>
+        <button type="button" onclick="goNextSong()" data-i18n="practice.next">下一首 →</button>
         </nav>
 
         <div id="setlistOverlay" class="setlist-overlay hidden" onclick="closeSetlistSheet()"></div>
@@ -238,7 +257,7 @@
         <div class="setlist-sheet-header">
             <div>
             <p>SETLIST</p>
-            <h3>選擇歌曲</h3>
+            <h3 data-i18n="practice.choose_song">選擇歌曲</h3>
             </div>
             <button type="button" onclick="closeSetlistSheet()">✕</button>
         </div>
@@ -247,6 +266,9 @@
     </section>
 
     <script src="js/system/version.js"></script>
+    <script src="js/i18n/zh-TW.js"></script>
+    <script src="js/i18n/en.js"></script>
+    <script src="js/i18n/i18n.js"></script>
     <script src="js/system/version-render.js"></script>
     <script src="js/system/preferences.js"></script>
     <script src="js/core/state.js"></script>

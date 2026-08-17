@@ -9,22 +9,58 @@ const VENUE_SCROLL = {
 function initVenuePage() {
   renderVenueTabs();
   renderVenueSections();
+  renderVenueNotice();
   bindVenueScrollSpy();
   updateVenueActiveFromScroll();
+}
+
+function getVenueGuideForCurrentLanguage() {
+  if (window.I18n?.language !== "en" || typeof VENUE_GUIDE_EN === "undefined") {
+    return VENUE_GUIDE;
+  }
+
+  return {
+    ...VENUE_GUIDE,
+    title: VENUE_GUIDE_EN.title || VENUE_GUIDE.title,
+    notice: VENUE_GUIDE_EN.notice || VENUE_GUIDE.notice,
+    sections: VENUE_GUIDE.sections.map(section => {
+      const translation = VENUE_GUIDE_EN.sections?.[section.id] || {};
+
+      return {
+        ...section,
+        label: translation.label || section.label,
+        title: translation.title || section.title,
+        description: translation.description || section.description,
+        items: section.items.map((item, index) => ({
+          ...item,
+          title: translation.items?.[index]?.title || item.title,
+          detail: translation.items?.[index]?.detail || item.detail
+        })),
+        links: Array.isArray(section.links)
+          ? section.links.map((link, index) => ({
+              ...link,
+              label: translation.links?.[index] || link.label
+            }))
+          : section.links
+      };
+    })
+  };
 }
 
 function renderVenueTabs() {
   const root = document.getElementById("venueTabs");
   if (!root) return;
 
-  root.innerHTML = VENUE_GUIDE.sections.map((section, index) => `
+  const guide = getVenueGuideForCurrentLanguage();
+
+  root.innerHTML = guide.sections.map((section, index) => `
     <button
       type="button"
       class="venue-tab ${index === 0 ? "active" : ""}"
       data-target="${section.id}"
       aria-pressed="${index === 0 ? "true" : "false"}"
     >
-      ${section.label}
+      ${window.t?.(`venue.tab.${section.id}`, {}, section.label) || section.label}
     </button>
   `).join("");
 
@@ -55,12 +91,14 @@ function renderVenueSections() {
   const root = document.getElementById("venueSections");
   if (!root) return;
 
-  root.innerHTML = VENUE_GUIDE.sections
-    .map(createVenueSectionMarkup)
+  const guide = getVenueGuideForCurrentLanguage();
+
+  root.innerHTML = guide.sections
+    .map((section, index) => createVenueSectionMarkup(section, index, guide.id))
     .join("");
 }
 
-function createVenueSectionMarkup(section) {
+function createVenueSectionMarkup(section, sectionIndex, guideId) {
   const items = section.items
     .map((item, index) => `
       <div class="venue-item">
@@ -79,8 +117,8 @@ function createVenueSectionMarkup(section) {
 
   return `
     <article id="${section.id}" class="venue-section">
-      ${section === VENUE_GUIDE.sections[0]
-        ? `<span id="${VENUE_GUIDE.id}" data-deep-link-parent="true"></span>`
+      ${sectionIndex === 0
+        ? `<span id="${guideId}" data-deep-link-parent="true"></span>`
         : ""}
       <div class="venue-section-heading">
         <div>
@@ -96,6 +134,14 @@ function createVenueSectionMarkup(section) {
       ${links ? `<div class="venue-section-links">${links}</div>` : ""}
     </article>
   `;
+}
+
+function renderVenueNotice() {
+  const notice = document.getElementById("venueNoticeText");
+  if (!notice) return;
+
+  const guide = getVenueGuideForCurrentLanguage();
+  notice.textContent = guide.notice || VENUE_GUIDE.notice || notice.textContent;
 }
 
 function createVenueLinkMarkup(link) {
@@ -234,3 +280,16 @@ function keepVenueTabVisible(button, centerTab = false) {
 }
 
 document.addEventListener("DOMContentLoaded", initVenuePage);
+document.addEventListener("armyready:languagechange", () => {
+  const activeSectionId = VENUE_SCROLL.activeSectionId;
+  renderVenueTabs();
+  renderVenueSections();
+  renderVenueNotice();
+
+  if (activeSectionId) {
+    VENUE_SCROLL.activeSectionId = "";
+    updateVenueActiveTab(activeSectionId, false);
+  }
+
+  updateVenueActiveFromScroll();
+});

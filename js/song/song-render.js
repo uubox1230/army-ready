@@ -76,7 +76,7 @@ function renderChants() {
 
   read.innerHTML = song.chants.map(line => `
     <div class="chant-line ${line.type || ""} ${line.highlight ? "has-highlight" : ""}">
-      <div class="chant-time">${line.time || getBadge(line.type)}</div>
+      <div class="chant-time" ${line.time ? "" : `data-i18n="practice.badge.${line.type}"`}>${line.time || getBadge(line.type)}</div>
       <div class="chant-text">${renderLyricsDisplay(line)}</div>
     </div>
   `).join("");
@@ -182,9 +182,9 @@ function syncLyricsDisplayControl() {
 
   const display = getLyricsDisplaySettings();
   const labels = {
-    lyrics: "韓文",
-    roman: "羅馬",
-    practice: "空耳"
+    lyrics: window.t?.("practice.display.summary_lyrics", {}, "韓文") || "韓文",
+    roman: window.t?.("practice.display.summary_roman", {}, "羅馬") || "羅馬",
+    practice: window.t?.("practice.display.summary_practice", {}, "空耳") || "空耳"
   };
 
   control.querySelectorAll('input[type="checkbox"]').forEach(input => {
@@ -219,17 +219,19 @@ function refreshLyricsDisplayAreas() {
 function getBadge(type) {
   switch (type) {
     case "lyrics":
-      return "🎵 歌詞";
+      return window.t?.("practice.badge.lyrics", {}, "🎵 歌詞") || "🎵 歌詞";
     case "sing":
-      return "🎤 跟唱";
+      return window.t?.("practice.badge.sing", {}, "🎤 跟唱") || "🎤 跟唱";
     case "chant":
-      return "💙 應援";
+      return window.t?.("practice.badge.chant", {}, "💙 應援") || "💙 應援";
     case "cheer":
-      return "🎉 歡呼";
+      return window.t?.("practice.badge.cheer", {}, "🎉 歡呼") || "🎉 歡呼";
     default:
       return "🎵";
   }
 }
+
+document.addEventListener("armyready:languagechange", syncLyricsDisplayControl);
 
 function showReadMode() {
   document.getElementById("readMode").classList.remove("hidden");

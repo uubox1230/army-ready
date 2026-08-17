@@ -18,6 +18,7 @@ const DASHBOARD = {
 
   myConcert: {
     title: "My Concert",
+    venue: "Kaohsiung National Stadium",
     practiceLabel: "練習進度",
     eventsLabel: "已收藏的應援",
     noticesLabel: "新的公告",

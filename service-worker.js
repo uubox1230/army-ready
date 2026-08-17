@@ -4,7 +4,7 @@ importScripts("/js/system/version.js");
   APP_CACHE_NAME 仍由 js/system/version.js 管理。
   此處增加結構版本，確保本次 PWA 檔案調整會建立新快取。
 */
-const CACHE_NAME = `${APP_CACHE_NAME}-pwa-6`;
+const CACHE_NAME = `${APP_CACHE_NAME}-pwa-11`;
 
 const ASSETS = [
   "/",
@@ -40,6 +40,10 @@ const ASSETS = [
   "/js/system/pwa.js",
   "/js/system/navigation-menu.js",
   "/js/system/analytics.js",
+
+  "/js/i18n/zh-TW.js",
+  "/js/i18n/en.js",
+  "/js/i18n/i18n.js",
 
   "/js/vendor/lucide.min.js",
 
@@ -80,12 +84,15 @@ const ASSETS = [
   "/js/dashboard/checklist.js",
 
   "/js/official/data.js",
+  "/js/official/data-en.js",
   "/js/official/page.js",
 
   "/js/community/data.js",
+  "/js/community/data-en.js",
   "/js/community/page.js",
 
   "/js/venue/data.js",
+  "/js/venue/data-en.js",
   "/js/venue/page.js",
 
   "/js/song/song-flow.js",

@@ -40,9 +40,9 @@
 <body class="community-page">
   <header class="community-header">
     <div class="community-header-inner">
-      <a class="community-back global-back-link" href="/" aria-label="返回首頁">
+      <a class="community-back global-back-link" href="/" aria-label="返回首頁" data-i18n-aria-label="common.back_home">
         <span class="global-back-icon" aria-hidden="true">‹</span>
-        <span class="global-back-label">返回首頁</span>
+        <span class="global-back-label" data-i18n="common.back_home">返回首頁</span>
       </a>
 
     </div>
@@ -53,8 +53,17 @@
       <div class="page-intro-row">
         <div class="page-intro-copy">
           <p class="community-eyebrow page-intro-eyebrow">ARMY FAN PROJECTS</p>
-          <h2 class="page-intro-title">粉絲應援活動</h2>
-          <p class="page-intro-description">
+          <h2
+            class="page-intro-title"
+            data-i18n="community.intro.title"
+          >
+            粉絲應援活動
+          </h2>
+
+          <p
+            class="page-intro-description"
+            data-i18n="community.intro.description"
+          >
             本頁面僅為非官方活動資訊之整理與分享平台（包含免費應援、拍照打卡等）。投稿內容及主辦單位之立場與行為，均不代表本站立場。請依各主辦單位之最新公告與現場規定參加，並請自行評估與理性判斷。
           </p>
         </div>
@@ -66,7 +75,7 @@
           aria-pressed="false"
         >
           <span aria-hidden="true">♡</span>
-          <span>我的收藏</span>
+          <span data-i18n="community.favorite_show">我的收藏</span>
         </button>
       </div>
     </section>
@@ -75,11 +84,12 @@
       <div id="communityFilters" class="community-filters"></div>
 
       <label class="community-search">
-        <span class="sr-only">搜尋活動</span>
+        <span class="sr-only" data-i18n="community.search_label">搜尋活動</span>
         <input
           id="communitySearch"
           type="search"
           placeholder="搜尋活動、地點或主辦單位"
+          data-i18n-placeholder="community.search_placeholder"
           autocomplete="off"
         >
       </label>
@@ -87,7 +97,7 @@
 
     <section class="community-status">
       <p id="communityResultCount">0 個活動</p>
-      <button id="communityReset" type="button">清除篩選</button>
+      <button id="communityReset" type="button" data-i18n="common.reset_filters">清除篩選</button>
     </section>
 
     <section
@@ -97,12 +107,16 @@
     ></section>
 
     <section id="communityEmpty" class="community-empty hidden">
-      <strong>沒有符合條件的活動</strong>
-      <p>請更換分類、日期或搜尋關鍵字。</p>
+      <strong data-i18n="community.empty_title">沒有符合條件的活動</strong>
+      <p data-i18n="community.empty_body">請更換分類、日期或搜尋關鍵字。</p>
     </section>
   </main>
 
+  <script src="js/i18n/zh-TW.js"></script>
+  <script src="js/i18n/en.js"></script>
+  <script src="js/i18n/i18n.js"></script>
   <script src="js/community/data.js"></script>
+  <script src="js/community/data-en.js"></script>
   <script src="js/community/page.js"></script>
   <script src="js/system/navigation-menu.js"></script>
 </body>

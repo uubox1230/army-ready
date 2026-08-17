@@ -62,9 +62,9 @@ function isMobileDevice() {
 async function copyShareLink(url) {
   try {
     await navigator.clipboard.writeText(url);
-    alert("已複製網址！");
+    alert(window.t?.("pwa.copied", {}, "已複製網址！") || "已複製網址！");
   } catch {
-    prompt("複製這個網址分享給朋友：", url);
+    prompt(window.t?.("pwa.copy_prompt", {}, "複製這個網址分享給朋友：") || "複製這個網址分享給朋友：", url);
   }
 }
 
@@ -76,7 +76,7 @@ if (shareBtn) {
 
     const shareData = {
       title: "ARMY READY 💜",
-      text: "一起練 BTS Fan Chant！高雄場見～",
+      text: window.t?.("pwa.share_text", {}, "一起練 BTS Fan Chant！高雄場見～") || "一起練 BTS Fan Chant！高雄場見～",
       url: shareUrl
     };
 
@@ -102,7 +102,7 @@ if (installBtn) {
     const isAndroid = /Android/i.test(navigator.userAgent);
 
     if (isIOS) {
-      alert("iPhone 安裝方式：按 Safari 下方分享按鈕 → 選擇「加入主畫面」。");
+      alert(window.t?.("pwa.ios_install", {}, "iPhone 安裝方式：按 Safari 下方分享按鈕 → 選擇「加入主畫面」。") || "iPhone 安裝方式：按 Safari 下方分享按鈕 → 選擇「加入主畫面」。");
       return;
     }
 
@@ -113,7 +113,7 @@ if (installBtn) {
       return;
     }
 
-    alert("請用瀏覽器選單選擇「加入主畫面」或「安裝 App」。");
+    alert(window.t?.("pwa.install_help", {}, "請用瀏覽器選單選擇「加入主畫面」或「安裝 App」。") || "請用瀏覽器選單選擇「加入主畫面」或「安裝 App」。");
   });
 }
 

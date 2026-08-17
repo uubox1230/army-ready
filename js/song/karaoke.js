@@ -63,7 +63,7 @@ function startPractice() {
 
   const startBtn = document.getElementById("karaokeStartBtn");
   if (startBtn) {
-    startBtn.textContent = "▶ 同步開始";
+    startBtn.textContent = window.t?.("practice.karaoke.start", {}, "▶ 同步開始") || "▶ 同步開始";
   }
 
   buildKaraoke();
@@ -136,7 +136,7 @@ function startKaraoke() {
   const startBtn = document.getElementById("karaokeStartBtn");
 
   if (startBtn) {
-    startBtn.textContent = "Ⅱ 暫停";
+    startBtn.textContent = window.t?.("practice.karaoke.pause", {}, "Ⅱ 暫停") || "Ⅱ 暫停";
   }
 
   if (isFreshStart) {
@@ -152,9 +152,28 @@ function pauseKaraoke() {
   const startBtn = document.getElementById("karaokeStartBtn");
 
   if (startBtn) {
-    startBtn.textContent = "▶ 繼續同步";
+    startBtn.textContent = window.t?.("practice.karaoke.resume", {}, "▶ 繼續同步") || "▶ 繼續同步";
   }
 }
+
+function updateKaraokeLanguageLabel() {
+  const startBtn = document.getElementById("karaokeStartBtn");
+  if (!startBtn) return;
+
+  const lines = getKaraokeLines();
+  const lastAt = Number(lines[lines.length - 1]?.at || 0);
+  const key = karaokeElapsed >= lastAt && lastAt > 0
+    ? "practice.karaoke.restart"
+    : isKaraokeRunning
+      ? "practice.karaoke.pause"
+      : karaokeElapsed > 0
+        ? "practice.karaoke.resume"
+        : "practice.karaoke.start";
+
+  startBtn.textContent = window.t?.(key, {}, startBtn.textContent) || startBtn.textContent;
+}
+
+document.addEventListener("armyready:languagechange", updateKaraokeLanguageLabel);
 
 function restartKaraoke() {
   karaokeElapsed = 0;
@@ -466,7 +485,7 @@ function updateKaraokeIndex() {
       document.getElementById("karaokeStartBtn");
 
     if (startBtn) {
-      startBtn.textContent = "↺ 重新開始";
+      startBtn.textContent = window.t?.("practice.karaoke.restart", {}, "↺ 重新開始") || "↺ 重新開始";
     }
   }
 }

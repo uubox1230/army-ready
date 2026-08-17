@@ -1,9 +1,9 @@
 const ARMY_NAV_ITEMS = [
-  { id: "home", label: "首頁 Main Page", href: "/" },
-  { id: "setlist", label: "應援練習 Setlist", href: "/setlist/" },
-  { id: "official", label: "官方公告 Official", href: "/official/" },
-  { id: "community", label: "粉絲應援 Community", href: "/community/" },
-  { id: "venue", label: "場館指南 Venue Guide", href: "/venue/" }
+  { id: "home", label: "首頁 Main Page", key: "navigation.home", href: "/" },
+  { id: "setlist", label: "應援練習 Setlist", key: "navigation.setlist", href: "/setlist/" },
+  { id: "official", label: "官方公告 Official", key: "navigation.official", href: "/official/" },
+  { id: "community", label: "粉絲應援 Community", key: "navigation.community", href: "/community/" },
+  { id: "venue", label: "場館指南 Venue Guide", key: "navigation.venue", href: "/venue/" }
 ];
 
 const deepLinkTimers = new WeakMap();
@@ -32,6 +32,7 @@ function initNavigationMenu() {
   if (!mount || document.getElementById("globalNavTrigger")) return;
 
   const currentPage = getCurrentNavigationPage();
+  const translate = (key, fallback) => window.t?.(key, {}, fallback) || fallback;
   const nav = document.createElement("div");
   nav.className = "global-nav";
   nav.innerHTML = `
@@ -39,7 +40,8 @@ function initNavigationMenu() {
       id="globalNavTrigger"
       class="global-nav-trigger"
       type="button"
-      aria-label="開啟全站選單"
+      aria-label="${translate("navigation.open_menu", "開啟全站選單")}"
+      data-i18n-aria-label="navigation.open_menu"
       aria-expanded="false"
       aria-controls="globalNavPanel"
     >
@@ -55,13 +57,14 @@ function initNavigationMenu() {
   const panel = document.createElement("nav");
   panel.id = "globalNavPanel";
   panel.className = "global-nav-panel";
-  panel.setAttribute("aria-label", "全站導覽");
+  panel.setAttribute("aria-label", translate("navigation.label", "全站導覽"));
+  panel.setAttribute("data-i18n-aria-label", "navigation.label");
   panel.setAttribute("aria-hidden", "true");
   panel.innerHTML = `
     <div class="global-nav-handle" aria-hidden="true"></div>
     <div class="global-nav-heading">
-      <div><small>ARMY READY</small><strong>快捷選單</strong></div>
-      <button class="global-nav-close" type="button" aria-label="關閉選單">×</button>
+      <div><small>ARMY READY</small><strong data-i18n="navigation.quick_menu">${translate("navigation.quick_menu", "快捷選單")}</strong></div>
+      <button class="global-nav-close" type="button" aria-label="${translate("navigation.close_menu", "關閉選單")}" data-i18n-aria-label="navigation.close_menu">×</button>
     </div>
     <div class="global-nav-links">
       ${ARMY_NAV_ITEMS.map(item => `
@@ -70,9 +73,16 @@ function initNavigationMenu() {
           href="${item.href}"
           ${item.id === currentPage ? 'aria-current="page"' : ""}
         >
-          <span>${item.label}</span><span aria-hidden="true">›</span>
+          <span data-i18n="${item.key}">${translate(item.key, item.label)}</span><span aria-hidden="true">›</span>
         </a>
       `).join("")}
+    </div>
+    <div class="global-nav-language" aria-label="${translate("language.title", "Language / 語言")}">
+      <p data-i18n="language.title">${translate("language.title", "Language / 語言")}</p>
+      <div class="global-nav-language-options">
+        <button type="button" data-language-option="zh-TW" aria-pressed="false" data-i18n="language.zh_tw">繁體中文</button>
+        <button type="button" data-language-option="en" aria-pressed="false" data-i18n="language.en">English</button>
+      </div>
     </div>
   `;
 
@@ -119,6 +129,9 @@ function initNavigationMenu() {
   document.addEventListener("keydown", event => {
     if (event.key === "Escape") closeMenu();
   });
+
+  window.I18n?.apply?.(panel);
+  window.I18n?.refreshControls?.(panel);
 }
 
 function getDeepLinkTarget() {

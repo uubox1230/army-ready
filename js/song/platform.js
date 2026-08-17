@@ -297,7 +297,7 @@ function showPlatformCard(platform) {
             target="_blank"
             rel="noopener"
           >
-            開啟
+            <span data-i18n="practice.platform_open">${window.t?.("practice.platform_open", {}, "開啟") || "開啟"}</span>
           </a>
         </div>
 
@@ -330,7 +330,7 @@ function showPlatformCard(platform) {
             target="_blank"
             rel="noopener"
           >
-            開啟
+            <span data-i18n="practice.platform_open">${window.t?.("practice.platform_open", {}, "開啟") || "開啟"}</span>
           </a>
         </div>
 
@@ -358,7 +358,7 @@ function showPlatformCard(platform) {
             target="_blank"
             rel="noopener"
           >
-            開啟
+            <span data-i18n="practice.platform_open">${window.t?.("practice.platform_open", {}, "開啟") || "開啟"}</span>
           </a>
         </div>
 

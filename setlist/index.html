@@ -43,9 +43,9 @@
 
     <header class="setlist-global-header">
         <div class="setlist-header-top">
-            <button class="back-btn global-back-link" onclick="location.href='/'">
+            <button class="back-btn global-back-link" onclick="location.href='/'" aria-label="返回首頁" data-i18n-aria-label="common.back_home">
                 <span class="global-back-icon" aria-hidden="true">‹</span>
-                <span class="global-back-label">返回首頁</span>
+                <span class="global-back-label" data-i18n="common.back_home">返回首頁</span>
             </button>
         </div>
     </header>
@@ -55,13 +55,14 @@
             Practice Library
         </p>
 
-        <h1 class="page-intro-title">BTS WORLD TOUR 'ARIRANG' 完整歌單</h1>
+        <h1 class="page-intro-title" data-i18n="setlist.intro.title">BTS WORLD TOUR 'ARIRANG' 完整歌單</h1>
 
         <input
             id="songSearch"
             class="song-search"
             type="search"
             placeholder="搜尋歌曲..."
+            data-i18n-placeholder="setlist.search_placeholder"
             oninput="renderSetlistPage()"
         />
 
@@ -71,6 +72,9 @@
 
 </div>
 
+<script src="js/i18n/zh-TW.js"></script>
+<script src="js/i18n/en.js"></script>
+<script src="js/i18n/i18n.js"></script>
 <script src="js/system/preferences.js"></script>
 <script src="js/core/state.js"></script>
 <script src="js/core/storage.js"></script>

@@ -39,6 +39,10 @@ function toggleHomeFab() {
   fabMain.textContent = isOpen ? "×" : "＋";
 }
 
+document.querySelectorAll("#homeFabMenu [data-language-option]").forEach(button => {
+  button.addEventListener("click", closeHomeFab);
+});
+
 /* =========================
    Song FAB
 ========================= */

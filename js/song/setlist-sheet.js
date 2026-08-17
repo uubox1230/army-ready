@@ -59,7 +59,11 @@ function renderSetlistSheet() {
 
     const status = document.createElement("span");
     status.className = "setlist-sheet-status";
-    status.textContent = current ? "目前歌曲" : done ? "✓ 已完成" : "○ 未練習";
+    status.textContent = current
+      ? window.t?.("practice.current_song", {}, "目前歌曲") || "目前歌曲"
+      : done
+        ? `✓ ${window.t?.("practice.done", {}, "已完成") || "已完成"}`
+        : `○ ${window.t?.("practice.not_started", {}, "未練習") || "未練習"}`;
 
     button.append(number, title, status);
     button.addEventListener("click", () => {
@@ -70,6 +74,12 @@ function renderSetlistSheet() {
     list.appendChild(button);
   });
 }
+
+document.addEventListener("armyready:languagechange", () => {
+  if (!document.getElementById("setlistSheet")?.classList.contains("hidden")) {
+    renderSetlistSheet();
+  }
+});
 
 function centerActiveSetlistItem() {
   const { list } = getSetlistSheetElements();

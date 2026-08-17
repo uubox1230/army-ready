@@ -17,7 +17,14 @@ function renderSetlistPage() {
 
     btn.type = "button";
     btn.className = "song-item";
-    btn.setAttribute("aria-label", `開啟 ${song.title}${isDone ? "，已完成" : ""}`);
+    const doneSuffix = isDone
+      ? window.t?.("setlist.done_suffix", {}, "，已完成") || "，已完成"
+      : "";
+    btn.setAttribute("aria-label", window.t?.(
+      "setlist.open_song",
+      { title: song.title, status: doneSuffix },
+      `開啟 ${song.title}${doneSuffix}`
+    ) || `開啟 ${song.title}${doneSuffix}`);
     btn.onclick = () => {
       location.href = `/practice/#${encodeURIComponent(song.id)}`;
     };
@@ -26,7 +33,7 @@ function renderSetlistPage() {
       <span class="song-number">${String(index + 1).padStart(2, "0")}</span>
       <span class="song-name">${song.title}</span>
       <span class="status">
-        ${isDone ? '<span class="status-check" aria-hidden="true">✓</span><span>已完成</span>' : ""}
+        ${isDone ? `<span class="status-check" aria-hidden="true">✓</span><span>${window.t?.("setlist.done", {}, "已完成") || "已完成"}</span>` : ""}
       </span>
     `;
 
@@ -35,3 +42,4 @@ function renderSetlistPage() {
 }
 
 document.addEventListener("DOMContentLoaded", renderSetlistPage);
+document.addEventListener("armyready:languagechange", renderSetlistPage);

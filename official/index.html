@@ -40,9 +40,9 @@
 <body class="official-page">
   <header class="official-header">
     <div class="official-header-inner">
-      <a class="official-back global-back-link" href="/" aria-label="返回首頁">
+      <a class="official-back global-back-link" href="/" aria-label="返回首頁" data-i18n-aria-label="common.back_home">
         <span class="global-back-icon" aria-hidden="true">‹</span>
-        <span class="global-back-label">返回首頁</span>
+        <span class="global-back-label" data-i18n="common.back_home">返回首頁</span>
       </a>
 
     </div>
@@ -51,10 +51,18 @@
   <main class="official-main">
     <section class="official-hero page-intro">
       <p class="official-eyebrow page-intro-eyebrow">BTS WORLD TOUR 'ARIRANG'</p>
-      <h2 class="page-intro-title">官方公告整理</h2>
-      <p class="page-intro-description">
-        集中整理入場、票券、場館規範與現場活動資訊。
-        實際規定仍以主辦單位最新公告為準。
+      <h2
+        class="page-intro-title"
+        data-i18n="official.intro.title"
+      >
+        官方公告整理
+      </h2>
+
+      <p
+        class="page-intro-description"
+        data-i18n="official.intro.description"
+      >
+        集中整理入場、票券、場館規範與現場活動資訊。實際規定仍以主辦單位最新公告為準。
       </p>
     </section>
 
@@ -62,11 +70,12 @@
       <div id="officialFilters" class="official-filters"></div>
 
       <label class="official-search">
-        <span class="sr-only">搜尋公告</span>
+        <span class="sr-only" data-i18n="official.search_label">搜尋公告</span>
         <input
           id="officialSearch"
           type="search"
           placeholder="搜尋公告"
+          data-i18n-placeholder="official.search_placeholder"
           autocomplete="off"
         >
       </label>
@@ -74,7 +83,7 @@
 
     <section class="official-status">
       <p id="officialResultCount">0 則公告</p>
-      <button id="officialReset" type="button">清除篩選</button>
+      <button id="officialReset" type="button" data-i18n="common.reset_filters">清除篩選</button>
     </section>
 
     <section
@@ -84,12 +93,16 @@
     ></section>
 
     <section id="officialEmpty" class="official-empty hidden">
-      <strong>沒有符合條件的公告</strong>
-      <p>請更換分類或搜尋關鍵字。</p>
+      <strong data-i18n="official.empty_title">沒有符合條件的公告</strong>
+      <p data-i18n="official.empty_body">請更換分類或搜尋關鍵字。</p>
     </section>
   </main>
 
+  <script src="js/i18n/zh-TW.js"></script>
+  <script src="js/i18n/en.js"></script>
+  <script src="js/i18n/i18n.js"></script>
   <script src="js/official/data.js"></script>
+  <script src="js/official/data-en.js"></script>
   <script src="js/official/page.js"></script>
   <script src="js/system/navigation-menu.js"></script>
 </body>

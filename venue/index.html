@@ -40,9 +40,9 @@
 <body class="venue-page">
   <header class="venue-header">
     <div class="venue-header-inner">
-      <a class="venue-back global-back-link" href="/" aria-label="返回首頁">
+      <a class="venue-back global-back-link" href="/" aria-label="返回首頁" data-i18n-aria-label="common.back_home">
         <span class="global-back-icon" aria-hidden="true">‹</span>
-        <span class="global-back-label">返回首頁</span>
+        <span class="global-back-label" data-i18n="common.back_home">返回首頁</span>
       </a>
 
     </div>
@@ -52,8 +52,19 @@
     <section class="venue-hero page-intro">
       <div>
         <p class="venue-eyebrow page-intro-eyebrow">BTS WORLD TOUR 'ARIRANG'</p>
-        <h2 class="page-intro-title">高雄國家體育場</h2>
-        <p class="venue-hero-subtitle page-intro-description">世運主場館</p>
+        <h2
+          class="page-intro-title"
+          data-i18n="venue.intro.title"
+        >
+          高雄國家體育場
+        </h2>
+
+        <p
+          class="venue-hero-subtitle page-intro-description"
+          data-i18n="venue.intro.description"
+        >
+          本站將盡力收集並整理相關資訊，協助大家順利參與演唱會。實際活動規範與現場限制，請務必以主辦單位及場館之最新公告為準。
+        </p>
       </div>
 
       <a
@@ -62,25 +73,29 @@
         target="_blank"
         rel="noopener noreferrer"
       >
-        <span>開啟地圖</span>
+        <span data-i18n="common.open_map">開啟地圖</span>
         <span aria-hidden="true">↗</span>
       </a>
     </section>
 
-    <nav id="venueTabs" class="venue-tabs" aria-label="場館資訊分類"></nav>
+    <nav id="venueTabs" class="venue-tabs" aria-label="場館資訊分類" data-i18n-aria-label="venue.tabs_label"></nav>
 
     <section id="venueSections" class="venue-sections"></section>
 
     <section class="venue-notice">
-      <strong>重要提醒</strong>
-      <p>
+      <strong data-i18n="venue.important">重要提醒</strong>
+      <p id="venueNoticeText">
         本頁為 ARMY READY 整理資訊，實際入口、交通管制、物販與現場規範，
         請以主辦單位及場館最新公告為準。
       </p>
     </section>
   </main>
 
+  <script src="js/i18n/zh-TW.js"></script>
+  <script src="js/i18n/en.js"></script>
+  <script src="js/i18n/i18n.js"></script>
   <script src="js/venue/data.js"></script>
+  <script src="js/venue/data-en.js"></script>
   <script src="js/venue/page.js"></script>
   <script src="js/system/navigation-menu.js"></script>
 </body>

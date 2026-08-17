@@ -3,6 +3,8 @@
 
   const MEASUREMENT_ID = "G-QFM846XY2X";
   const PRODUCTION_HOSTNAME = "army.uubox.tw";
+  const UI_LANGUAGE_STORAGE_KEY = "armyReadyUiLanguage";
+  const ALLOWED_UI_LANGUAGES = new Set(["zh-TW", "en"]);
 
   const EVENTS = Object.freeze({
     VIEW_SONG: "view_song",
@@ -10,7 +12,8 @@
     FINISH_SONG: "finish_song",
     CLICK_PLATFORM_PLAYER: "click_platform_player",
     TOGGLE_CUE_PLAYER: "toggle_cue_player",
-    CLICK_MENU: "click_menu"
+    CLICK_MENU: "click_menu",
+    CHANGE_LANGUAGE: "change_language"
   });
 
   const PARAMETERS = Object.freeze({
@@ -22,7 +25,14 @@
     PLATFORM: "platform",
     CUE_ON: "cue_on",
     FROM_PAGE: "from_page",
-    TO_PAGE: "to_page"
+    TO_PAGE: "to_page",
+    LANGUAGE_BEFORE: "language_before",
+    LANGUAGE_AFTER: "language_after",
+    CHANGE_SOURCE: "change_source"
+  });
+
+  const USER_PROPERTIES = Object.freeze({
+    UI_LANGUAGE: "ui_language"
   });
 
   const ALLOWED_EVENTS = new Set(Object.values(EVENTS));
@@ -44,6 +54,16 @@
     "venue",
     "songs"
   ]);
+  const ALLOWED_LANGUAGE_SOURCES = new Set(["global_menu"]);
+
+  function readUiLanguagePreference() {
+    try {
+      const value = window.localStorage.getItem(UI_LANGUAGE_STORAGE_KEY);
+      return ALLOWED_UI_LANGUAGES.has(value) ? value : "zh-TW";
+    } catch (_error) {
+      return "zh-TW";
+    }
+  }
 
   const isProduction =
     window.location.protocol === "https:" &&
@@ -113,6 +133,7 @@
     measurementId: MEASUREMENT_ID,
     events: EVENTS,
     parameters: PARAMETERS,
+    userProperties: USER_PROPERTIES,
     isProduction,
     isDevelopment,
     debugMode,
@@ -231,6 +252,47 @@
         [PARAMETERS.FROM_PAGE]: fromPage,
         [PARAMETERS.TO_PAGE]: toPage
       });
+    },
+
+    setUiLanguage(language) {
+      const uiLanguage = ALLOWED_UI_LANGUAGES.has(language)
+        ? language
+        : "zh-TW";
+
+      if (!isProduction || !state.initialized || state.blocked || typeof window.gtag !== "function") {
+        debug(USER_PROPERTIES.UI_LANGUAGE, uiLanguage, "user_property_preview");
+        return false;
+      }
+
+      try {
+        window.gtag("set", "user_properties", {
+          [USER_PROPERTIES.UI_LANGUAGE]: uiLanguage
+        });
+        return true;
+      } catch (_error) {
+        state.blocked = true;
+        return false;
+      }
+    },
+
+    changeLanguage(languageBefore, languageAfter, changeSource = "global_menu") {
+      if (
+        !ALLOWED_UI_LANGUAGES.has(languageBefore) ||
+        !ALLOWED_UI_LANGUAGES.has(languageAfter) ||
+        languageBefore === languageAfter
+      ) {
+        return false;
+      }
+
+      return this.track(EVENTS.CHANGE_LANGUAGE, {
+        [PARAMETERS.LANGUAGE_BEFORE]: languageBefore,
+        [PARAMETERS.LANGUAGE_AFTER]: languageAfter,
+        [PARAMETERS.CHANGE_SOURCE]: allowed(
+          changeSource,
+          ALLOWED_LANGUAGE_SOURCES,
+          "global_menu"
+        )
+      });
     }
   };
 
@@ -250,6 +312,7 @@
       ? { debug_mode: true }
       : {});
     state.initialized = true;
+    Analytics.setUiLanguage(readUiLanguagePreference());
 
     const script = document.createElement("script");
     script.async = true;
