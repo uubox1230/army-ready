@@ -24,6 +24,16 @@ const COMMUNITY_EVENTS_EN = Object.freeze({
       "The exact location will be updated throughout the day on X and Instagram Stories. Please check for the latest information.",
     links: ["Original Post (X)", "Original Post (Instagram)"]
   },
+  "community-page-launch-@imfish1208": {
+    title: "2026 Kaohsiung National Stadium Fan Giveaway",
+    summary:
+      "Squeeze Flex-Frame Coin Pouch (Limited Edition) Giveaway for ARMY!",
+    location: "Will be announced on X (Twitter) and Threads on the event day. Please stay tuned!",
+    time: "Will be announced on X (Twitter) and Threads on the event day. Please stay tuned!",
+    note:
+      "Follow the Threads account (@imfish1208) and like the post.",
+    links: ["Original Post (Threads)", "Original Post (X)"]
+  },
   "community-page-launch-@eat_ate_eaten_40": {
     title: "Fan Support Giveaway",
     summary: "Phone stand giveaway.",

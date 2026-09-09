@@ -71,6 +71,31 @@ const COMMUNITY_EVENTS = [
     ]
   },
   {
+    id: "community-page-launch-@imfish1208",
+    category: ["giveaway"],
+    date: ["2026-11-19", "2026-11-21", "2026-11-22"],
+    updatedAt: "2026-09-09",
+    title: "2026年高雄世運場應援",
+    host: "@imfish1208",
+    summary:
+      "金屬彈片零錢包應援",
+    location: "當天會公佈在推特和脆，請隨時查看。",
+    time: "當天會公佈在推特和脆，請隨時查看。",
+    note: "追蹤脆帳並按讚貼文",
+    links: [
+      {
+        label: "主辦原公告(Threads)",
+        url: "https://www.threads.com/@imfish1208/post/DdB1oCZiYpJ?xmt=AQG0LVi4lCIxUG3BdpHCliJ9FrUrQuE9y8-24vn3WJZfaw",
+        primary: false
+      },
+      {
+        label: "主辦原公告(X)",
+        url: "https://x.com/HoChu0110/status/2097320964728176976?s=20",
+        primary: false
+      }
+    ]
+  },
+  {
     id: "community-page-launch-@eat_ate_eaten_40",
     category: ["support", "giveaway"],
     date: ["2026-11-19", "2026-11-21", "2026-11-22"],
