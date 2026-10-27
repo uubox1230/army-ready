@@ -6,6 +6,9 @@
 
 const COMMUNITY_EVENTS_EN = Object.freeze({
   "community-example-giveaway": {
+    cover: {
+      alt: "Fan project submissions cover"
+    },
     title: "Fan Project Submissions Open",
     summary:
       "To share your project on ARMY READY, contact @uu_box_ through X or Instagram. We will do our best to help more ARMY discover your event.",
@@ -15,6 +18,9 @@ const COMMUNITY_EVENTS_EN = Object.freeze({
     links: ["Submit via X", "Submit via Instagram"]
   },
   "community-page-launch": {
+    cover: {
+      alt: "ㄌㄙㄉ free trash bag giveaway event cover"
+    },
     title: "ㄌㄙㄉ | Free Trash Bag Giveaway",
     summary:
       "A special fan support item for ARMY! We have prepared free trash bags outside the venue, hoping everyone can clean up and take their trash when leaving, keeping the venue clean and spotless.",
@@ -25,6 +31,9 @@ const COMMUNITY_EVENTS_EN = Object.freeze({
     links: ["Original Post (X)", "Original Post (Instagram)"]
   },
   "community-page-launch-@lanlan__0901": {
+    cover: {
+      alt: "BTS ARIRANG Kaohsiung concert fan giveaway event cover"
+    },
     title: "BTS ARIRANG Kaohsiung Concert Fan Giveaway",
     summary:
       "Random Film Keychains & Double-Sided Cheering Fans",
@@ -35,6 +44,9 @@ const COMMUNITY_EVENTS_EN = Object.freeze({
     links: ["Original Post (X)"]
   },
   "community-page-launch-@imfish1208": {
+    cover: {
+      alt: "2026 Kaohsiung National Stadium fan giveaway event cover"
+    },
     title: "2026 Kaohsiung National Stadium Fan Giveaway",
     summary:
       "Squeeze Flex-Frame Coin Pouch (Limited Edition) Giveaway for ARMY!",
@@ -45,6 +57,9 @@ const COMMUNITY_EVENTS_EN = Object.freeze({
     links: ["Original Post (Threads)", "Original Post (X)"]
   },
   "community-page-launch-@eat_ate_eaten_40": {
+    cover: {
+      alt: "Phone stand fan support giveaway event cover"
+    },
     title: "Fan Support Giveaway",
     summary: "Phone stand giveaway.",
     location: "Outside Kaohsiung National Stadium",
@@ -55,6 +70,9 @@ const COMMUNITY_EVENTS_EN = Object.freeze({
     links: ["Original Post (Threads)"]
   },
   "community-page-launch-@cowada": {
+    cover: {
+      alt: "Taiwan ARMY Cheering for Taiwan event cover"
+    },
     title: "TAIWAN ARMY 《Cheering for TAIWAN》",
     summary:
       "BTS THIS WEEK, OUR VOTE NEXT WEEK.<br>On November 28, Taiwanese ARMYs, let's head home and vote!",

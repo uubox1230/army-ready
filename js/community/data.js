@@ -25,6 +25,10 @@ const COMMUNITY_EVENTS = [
     category: "support",
     date: ["2026-11-19", "2026-11-21", "2026-11-22"],
     updatedAt: "2026-08-03",
+    cover: {
+    src: "/images/community/community-example-giveaway.webp",
+    alt: "應援活動投稿募集封面"
+    },
     title: "應援活動徵才中",
     host: "超有才の台灣阿米",
     summary:
@@ -50,6 +54,10 @@ const COMMUNITY_EVENTS = [
     category: ["support", "giveaway"],
     date: ["2026-11-19", "2026-11-21", "2026-11-22"],
     updatedAt: "2026-08-03",
+    cover: {
+      src: "/images/community/community-page-launch.webp",
+      alt: "ㄌㄙㄉ高雄場外垃圾袋免費領取活動封面"
+    },
     title: "ㄌㄙㄉ｜高雄場外垃圾袋免費領取",
     host: "ARMY READY (@uu_box_)",
     summary:
@@ -75,6 +83,10 @@ const COMMUNITY_EVENTS = [
     category: ["giveaway"],
     date: ["2026-11-19", "2026-11-21", "2026-11-22"],
     updatedAt: "2026-10-27",
+    cover: {
+      src: "/images/community/community-page-launch-@lanlan__0901.webp",
+      alt: "防彈阿里郎高雄場應援發放活動封面"
+    },
     title: "防彈阿里郎高雄場應援發放",
     host: "@lanlan__0901",
     summary:
@@ -95,6 +107,10 @@ const COMMUNITY_EVENTS = [
     category: ["giveaway"],
     date: ["2026-11-19", "2026-11-21", "2026-11-22"],
     updatedAt: "2026-09-09",
+    cover: {
+      src: "/images/community/community-page-launch-@imfish1208.webp",
+      alt: "2026年高雄世運場應援活動封面"
+    },
     title: "2026年高雄世運場應援",
     host: "@imfish1208",
     summary:
@@ -120,6 +136,10 @@ const COMMUNITY_EVENTS = [
     category: ["support", "giveaway"],
     date: ["2026-11-19", "2026-11-21", "2026-11-22"],
     updatedAt: "2026-08-11",
+    cover: {
+      src: "/images/community/community-page-launch-@eat_ate_eaten_40.webp",
+      alt: "手機架應援發放活動封面"
+    },
     title: "應援發放",
     host: "@eat_ate_eaten_40",
     summary:
@@ -140,6 +160,10 @@ const COMMUNITY_EVENTS = [
     category: ["giveaway"],
     date: ["2026-11-19", "2026-11-21", "2026-11-22"],
     updatedAt: "2026-08-17",
+    cover: {
+      src: "/images/community/community-page-launch-@cowada.webp",
+      alt: "逮丸阿米為臺灣應援活動封面"
+    },
     title: "逮丸阿米《為臺灣應援》",
     host: "@cowada 國際編號30678 #心臟的心",
     summary:

@@ -225,6 +225,35 @@
   background: #ffffff;
 }
 
+.community-card.has-cover {
+  padding: 0;
+  overflow: hidden;
+}
+
+.community-card-cover {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  flex: 0 0 auto;
+  overflow: hidden;
+  border-radius: 20px 20px 0 0;
+}
+
+.community-card-cover img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
+
+.community-card-content {
+  min-width: 0;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  padding: 22px;
+}
+
 .community-card-top {
   display: flex;
   align-items: flex-start;
@@ -427,6 +456,14 @@
   .community-card {
     padding: 18px;
     border-radius: 18px;
+  }
+
+  .community-card-cover {
+    border-radius: 18px 18px 0 0;
+  }
+
+  .community-card-content {
+    padding: 18px;
   }
 
   .community-card h3 {

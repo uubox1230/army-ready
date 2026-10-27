@@ -74,6 +74,12 @@ function getCommunityEventsForCurrentLanguage() {
       location: translation.location || item.location,
       time: translation.time || item.time,
       note: translation.note || item.note,
+      cover: item.cover
+        ? {
+            ...item.cover,
+            alt: translation.cover?.alt || item.cover.alt
+          }
+        : item.cover,
       links: Array.isArray(item.links)
         ? item.links.map((link, index) => ({
             ...link,
@@ -172,6 +178,18 @@ function renderCommunityEvents() {
     });
   });
 
+  list.querySelectorAll("[data-community-cover]").forEach(image => {
+    const hideFailedCover = () => {
+      image.closest(".community-card-cover")?.remove();
+    };
+
+    image.addEventListener("error", hideFailedCover, { once: true });
+
+    if (image.complete && image.naturalWidth === 0) {
+      hideFailedCover();
+    }
+  });
+
   empty.classList.toggle("hidden", items.length > 0);
   updateCommunityFavoriteToggle();
 }
@@ -184,57 +202,84 @@ function createCommunityCardMarkup(item) {
     ? item.links.map(createCommunityLinkMarkup).join("")
     : "";
 
+  const cover = createCommunityCoverMarkup(item.cover);
+
+  const content = `
+    <div class="community-card-top">
+      <div class="community-card-meta">
+        <div class="community-card-category-row">
+          ${createCommunityCategoryBadges(item.category)}
+        </div>
+
+        <div class="community-card-date-row">
+          ${createCommunityDateBadges(item.date)}
+        </div>
+      </div>
+
+      <button
+        type="button"
+        class="community-card-favorite ${isFavorite ? "active" : ""}"
+        data-favorite-id="${item.id}"
+        aria-label="${isFavorite
+          ? window.t?.("community.favorite_remove", {}, "取消收藏") || "取消收藏"
+          : window.t?.("community.favorite_add", {}, "收藏活動") || "收藏活動"}"
+        aria-pressed="${isFavorite}"
+      >
+        <span aria-hidden="true">${isFavorite ? "♥" : "♡"}</span>
+      </button>
+    </div>
+
+    <h3>${item.title}</h3>
+    <p class="community-card-host">${window.t?.("community.host", {}, "主辦") || "主辦"}：${item.host}</p>
+    <p class="community-card-summary">${item.summary}</p>
+
+    <div class="community-card-details">
+      <div class="community-card-detail">
+        <span>${window.t?.("community.location", {}, "地點") || "地點"}</span>
+        <strong>${item.location}</strong>
+      </div>
+
+      <div class="community-card-detail">
+        <span>${window.t?.("community.time", {}, "時間") || "時間"}</span>
+        <strong>${item.time}</strong>
+      </div>
+
+      <div class="community-card-detail">
+        <span>${window.t?.("community.note", {}, "提醒") || "提醒"}</span>
+        <strong>${item.note}</strong>
+      </div>
+    </div>
+
+    ${links
+      ? `<div class="community-card-links">${links}</div>`
+      : ""}
+  `;
+
   return `
-    <article id="${item.id}" class="community-card">
-      <div class="community-card-top">
-        <div class="community-card-meta">
-          <div class="community-card-category-row">
-            ${createCommunityCategoryBadges(item.category)}
-          </div>
-
-          <div class="community-card-date-row">
-            ${createCommunityDateBadges(item.date)}
-          </div>
-        </div>
-
-        <button
-          type="button"
-          class="community-card-favorite ${isFavorite ? "active" : ""}"
-          data-favorite-id="${item.id}"
-          aria-label="${isFavorite
-            ? window.t?.("community.favorite_remove", {}, "取消收藏") || "取消收藏"
-            : window.t?.("community.favorite_add", {}, "收藏活動") || "收藏活動"}"
-          aria-pressed="${isFavorite}"
-        >
-          <span aria-hidden="true">${isFavorite ? "♥" : "♡"}</span>
-        </button>
-      </div>
-
-      <h3>${item.title}</h3>
-      <p class="community-card-host">${window.t?.("community.host", {}, "主辦") || "主辦"}：${item.host}</p>
-      <p class="community-card-summary">${item.summary}</p>
-
-      <div class="community-card-details">
-        <div class="community-card-detail">
-          <span>${window.t?.("community.location", {}, "地點") || "地點"}</span>
-          <strong>${item.location}</strong>
-        </div>
-
-        <div class="community-card-detail">
-          <span>${window.t?.("community.time", {}, "時間") || "時間"}</span>
-          <strong>${item.time}</strong>
-        </div>
-
-        <div class="community-card-detail">
-          <span>${window.t?.("community.note", {}, "提醒") || "提醒"}</span>
-          <strong>${item.note}</strong>
-        </div>
-      </div>
-
-      ${links
-        ? `<div class="community-card-links">${links}</div>`
-        : ""}
+    <article id="${item.id}" class="community-card ${cover ? "has-cover" : ""}">
+      ${cover}
+      ${cover
+        ? `<div class="community-card-content">${content}</div>`
+        : content}
     </article>
+  `;
+}
+
+function createCommunityCoverMarkup(cover) {
+  if (!cover?.src) return "";
+
+  return `
+    <div class="community-card-cover">
+      <img
+        data-community-cover
+        src="${cover.src}"
+        alt="${cover.alt || ""}"
+        width="1200"
+        height="675"
+        loading="lazy"
+        decoding="async"
+      >
+    </div>
   `;
 }
 
