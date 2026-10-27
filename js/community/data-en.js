@@ -24,6 +24,16 @@ const COMMUNITY_EVENTS_EN = Object.freeze({
       "The exact location will be updated throughout the day on X and Instagram Stories. Please check for the latest information.",
     links: ["Original Post (X)", "Original Post (Instagram)"]
   },
+  "community-page-launch-@lanlan__0901": {
+    title: "BTS ARIRANG Kaohsiung Concert Fan Giveaway",
+    summary:
+      "Random Film Keychains & Double-Sided Cheering Fans",
+    location: "Will be announced on X (Twitter) on the event day. Please stay tuned!",
+    time: "Will be announced on X (Twitter) on the event day. Please stay tuned!",
+    note:
+      "＊Limit 1 random film keychain per person (regardless of style/design).<br>＊Limit 1 cheering fan per person (regardless of style/design).",
+    links: ["Original Post (X)"]
+  },
   "community-page-launch-@imfish1208": {
     title: "2026 Kaohsiung National Stadium Fan Giveaway",
     summary:

@@ -21,7 +21,7 @@ const OFFICIAL_CATEGORIES = [
 
 const OFFICIAL_ANNOUNCEMENTS = [
   {
-    id: "official-pop-up-KAOHSIUNG",
+    id: "official-pop-up-kaohsiung-guide",
     category: "merch",
     date: "2026-10-27",
     updatedAt: "2026-10-27",

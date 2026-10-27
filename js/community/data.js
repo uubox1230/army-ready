@@ -71,6 +71,26 @@ const COMMUNITY_EVENTS = [
     ]
   },
   {
+    id: "community-page-launch-@lanlan__0901",
+    category: ["giveaway"],
+    date: ["2026-11-19", "2026-11-21", "2026-11-22"],
+    updatedAt: "2026-10-27",
+    title: "防彈阿里郎高雄場應援發放",
+    host: "@lanlan__0901",
+    summary:
+      "隨機膠片吊飾&雙面應援扇",
+    location: "當天會公佈在推特，請隨時查看。",
+    time: "當天會公佈在推特，請隨時查看。",
+    note: "＊隨機膠片吊飾每人限領一個(不分款式)<br>＊應援扇每人限領一把(不分款式)",
+    links: [
+      {
+        label: "主辦原公告(X)",
+        url: "https://x.com/lanlan__0901/status/2106618689521156458?s=20",
+        primary: false
+      }
+    ]
+  },
+  {
     id: "community-page-launch-@imfish1208",
     category: ["giveaway"],
     date: ["2026-11-19", "2026-11-21", "2026-11-22"],
