@@ -21,24 +21,24 @@ const OFFICIAL_CATEGORIES = [
 
 const OFFICIAL_ANNOUNCEMENTS = [
   {
-    id: "official-page-launch",
-    category: "general",
-    date: "2026-08-01",
-    updatedAt: "2026-08-01",
+    id: "official-pop-up-KAOHSIUNG",
+    category: "merch",
+    date: "2026-10-27",
+    updatedAt: "2026-10-27",
     isNew: true,
-    title: "官方公告整理頁建立中",
+    title: "【公告】BTS POP-UP : ARIRANG IN KAOHSIUNG 活動條款與注意事項",
     summary:
-      "之後會將 HYBE、LIVE NATION、Tixcraft 發布的公告集中整理在此頁。",
+      "線上預約開放時間：2026年10月28日（三）12:00 (台灣時間 GMT+8)<br>※ 請使用 Google Chrome 或 Safari 瀏覽器進入預約頁面。<br>※ 尚未完成會員註冊者將無法進行預約。<br><br>[活動資訊]<br>* 活動日期：2026年11月05日（周四）- 2026年11月23日（周一）<br>* 營業時間：週一至週五 11:00 - 22:00 (GMT+8) 週六至週日 10:30 - 22:00 (GMT+8)<br>* 地點：E SKY MALL 1F (台灣高雄市鼓山區大順一路115號，804)",
     links: [
       {
-        label: "Weverse 主頁",
-        url: "https://weverse.io/bts/highlight",
-        primary: true
+        label: "Weverse 官方公告",
+        url: "https://weverse.io/bts/notice/40411",
+        primary: false
       },
       {
-        label: "返回首頁",
-        url: "/",
-        primary: false
+        label: "預約網址",
+        url: "https://bts-popup-booking.venue.zone/en/19/kaohsiung-2026",
+        primary: true
       }
     ]
   },
@@ -60,6 +60,28 @@ const OFFICIAL_ANNOUNCEMENTS = [
       {
         label: "應援練習",
         url: "https://army.uubox.tw/setlist/",
+        primary: false
+      }
+    ]
+  },
+  {
+    id: "official-page-launch",
+    category: "general",
+    date: "2026-08-01",
+    updatedAt: "2026-08-01",
+    isNew: false,
+    title: "官方公告整理頁建立中",
+    summary:
+      "之後會將 HYBE、LIVE NATION、Tixcraft 發布的公告集中整理在此頁。",
+    links: [
+      {
+        label: "Weverse 主頁",
+        url: "https://weverse.io/bts/highlight",
+        primary: true
+      },
+      {
+        label: "返回首頁",
+        url: "/",
         primary: false
       }
     ]
