@@ -82,5 +82,19 @@ const COMMUNITY_EVENTS_EN = Object.freeze({
     note:
       "150 fan-made stickers per day (450 total across 3 days). Feel free to repost the official event announcement starting now to help encourage voter turnout in Taiwan!",
     links: ["Original Post (Threads)", "Original Post (Instagram)"]
+  },
+  "community-page-launch-@taiyaki_1209": {
+    cover: {
+      alt: "Free Onsite Fan Giveaway Celebrating BTS's Taiwan Concert event cover"
+    },
+    title: "Free Onsite Fan Giveaway Celebrating BTS's Taiwan Concert",
+    summary:
+      "Claiming Requirements<br>^ Present any official BTS merchandise, official light stick, or concert ticket.<br>^To claim the ARIRANG eco-bag, you must pass the BTS TMI Trivia Quiz. Answer correctly to claim (questions will be drawn at random onsite).",
+    location: "Kaohsiung National Stadium (World Games Stadium)",
+    time:
+      "Will be announced on X (Twitter) and Threads on the event day. Please stay tuned!",
+    note:
+      "We put so much into making these ㅠㅠ We sincerely hope these gifts go to true, loving fans on the day!",
+    links: ["Original Post (Threads)"]
   }
 });

@@ -133,7 +133,7 @@ const COMMUNITY_EVENTS = [
   },
   {
     id: "community-page-launch-@eat_ate_eaten_40",
-    category: ["support", "giveaway"],
+    category: ["giveaway"],
     date: ["2026-11-19", "2026-11-21", "2026-11-22"],
     updatedAt: "2026-08-11",
     cover: {
@@ -180,6 +180,30 @@ const COMMUNITY_EVENTS = [
       {
         label: "主辦原公告(IG)",
         url: "https://www.instagram.com/reel/Db7ZgQZTEGB/?igsh=dWtvY2MwcHUwcWNh",
+        primary: false
+      }
+    ]
+  },
+  {
+    id: "community-page-launch-@taiyaki_1209",
+    category: ["giveaway"],
+    date: ["2026-11-21", "2026-11-22"],
+    updatedAt: "2026-10-29",
+    cover: {
+      src: "/images/community/community-page-launch-@taiyaki_1209.webp",
+      alt: "慶祝防彈臺灣演唱會免費場外應援活動封面"
+    },
+    title: "慶祝防彈臺灣演唱會免費場外應援",
+    host: "推特:@C1S2I7L0V6I1A3 / Threads:@taiyaki_1209",
+    summary:
+      "領取方式<br>^出示BTS官方周邊/手燈/演唱會門票<br>^領取ARIRANG環保袋需通過防彈TMI快問快答, 回答正確即可領取（現場隨機抽題）",
+    location: "高雄國家體育場(世運主場館)場外",
+    time: "當天會公佈在推特、Threads，請隨時查看。",
+    note: "成本好高好高希望領到的都是真米ㅠㅠ",
+    links: [
+      {
+        label: "主辦原公告(Threads)",
+        url: "www.threads.com/share/H43J-7D35/",
         primary: false
       }
     ]
