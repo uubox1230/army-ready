@@ -203,7 +203,7 @@ const COMMUNITY_EVENTS = [
     links: [
       {
         label: "主辦原公告(Threads)",
-        url: "www.threads.com/share/H43J-7D35/",
+        url: "https://www.threads.com/@taiyaki_1209/post/Dd_X1afD9aa?xmt=AQG0Dh2egQRG0ED2XfxZZe2Qaad-_fE9fsH4NFSnyGpDyg",
         primary: false
       }
     ]
