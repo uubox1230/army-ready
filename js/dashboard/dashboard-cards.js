@@ -660,25 +660,59 @@ function createRecapCard() {
 
 function createChecklistCard() {
   const done = getChecklistDone();
+  const total = DASHBOARD.checklist.length;
+  const completed = DASHBOARD.checklist.filter(item =>
+    done.includes(item.id)
+  ).length;
+  const percent = total > 0
+    ? Math.round((completed / total) * 100)
+    : 0;
 
   const section = document.createElement("section");
   section.className = "dashboard-card checklist-card";
 
   section.innerHTML = `
-    <p class="card-label">Final Week Checklist</p>
-    <h2>今天要完成</h2>
+    <div class="checklist-header">
+      <div>
+        <p class="card-label" data-i18n="dashboard.checklist.label">${window.t?.("dashboard.checklist.label", {}, "Final Week Checklist") || "Final Week Checklist"}</p>
+        <h2 data-i18n="dashboard.checklist.title">${window.t?.("dashboard.checklist.title", {}, "演唱會前，最後確認") || "演唱會前，最後確認"}</h2>
+      </div>
+
+      <strong class="checklist-count" aria-live="polite">
+        ${completed} / ${total}
+      </strong>
+    </div>
+
+    <div
+      class="checklist-progress"
+      role="progressbar"
+      aria-label="${window.t?.("dashboard.checklist.progress", {}, "Checklist completion") || "Checklist completion"}"
+      data-i18n-aria-label="dashboard.checklist.progress"
+      aria-valuemin="0"
+      aria-valuemax="${total}"
+      aria-valuenow="${completed}"
+    >
+      <span style="width: ${percent}%"></span>
+    </div>
 
     <div class="checklist-list">
-      ${DASHBOARD.checklist.map(item => `
-        <button
-          type="button"
-          class="checklist-item ${done.includes(item.id) ? "done" : ""}"
-          onclick="toggleChecklistItem('${item.id}')"
-        >
-          <span>${done.includes(item.id) ? "☑" : "☐"}</span>
-          <strong>${item.text}</strong>
-        </button>
-      `).join("")}
+      ${DASHBOARD.checklist.map(item => {
+        const isDone = done.includes(item.id);
+        const translationKey = `dashboard.checklist.${item.id}`;
+        const label = window.t?.(translationKey, {}, item.text) || item.text;
+
+        return `
+          <button
+            type="button"
+            class="checklist-item ${isDone ? "done" : ""}"
+            aria-pressed="${isDone}"
+            onclick="toggleChecklistItem('${item.id}')"
+          >
+            <span class="checklist-checkbox" aria-hidden="true"></span>
+            <strong data-i18n="${translationKey}">${label}</strong>
+          </button>
+        `;
+      }).join("")}
     </div>
   `;
 
