@@ -6,7 +6,7 @@
 const VENUE_GUIDE = {
   id: "venue-guide",
   title: "高雄國家體育場指南",
-  updatedAt: "2026-08-03",
+  updatedAt: "2026-11-13",
   notice:
     "本頁為 ARMY READY 整理資訊，實際入口、交通管制、物販與現場規範，請以主辦單位及場館最新公告為準。",
   sections: [
