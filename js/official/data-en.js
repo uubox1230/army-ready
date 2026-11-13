@@ -5,6 +5,18 @@
 ========================================================= */
 
 const OFFICIAL_ANNOUNCEMENTS_EN = Object.freeze({
+  "official-army-zone-kaohsiung-guide": {
+    title: "BTS WORLD TOUR ‘ARIRANG’ IN KAOHSIUNG ARMY ZONE Operating Announcement",
+    summary:
+      "BTS WORLD TOUR 'ARIRANG' IN KAOHSIUNG will take place over three days on November 19, 21, and 22. An exclusive membership booth, [ARMY ZONE], will be available onsite for BTS GLOBAL OFFICIAL MEMBERSHIP ARMY MEMBERSHIP (hereinafter referred to as ARMY MEMBERSHIP) holders.",
+    links: ["Official Weverse Notice"]
+  },
+  "official-merch-kaohsiung-guide": {
+    title: "BTS WORLD TOUR 'ARIRANG' IN KAOHSIUNG - Official Merchandise Sales and Booth Operations Announcement",
+    summary:
+      "Official merchandise will be available from Wednesday, November 18 to Monday, November 23 via two methods: Weverse Shop Pick-Up (purchase on Weverse Shop and pick up onsite) and Onsite Purchase. Please refer to the instructions below for detailed purchasing guidelines.",
+    links: ["Official Weverse Notice"]
+  },
   "official-pop-up-kaohsiung-guide": {
     title: "BTS POP-UP : ARIRANG IN KAOHSIUNG",
     summary:

@@ -21,6 +21,40 @@ const OFFICIAL_CATEGORIES = [
 
 const OFFICIAL_ANNOUNCEMENTS = [
   {
+    id: "official-army-zone-kaohsiung-guide",
+    category: "general",
+    date: "2026-11-13",
+    updatedAt: "2026-11-13",
+    isNew: true,
+    title: "[公告] BTS WORLD TOUR ‘ARIRANG’ IN KAOHSIUNG 會員攤位 ARMY ZONE 營運公告",
+    summary:
+      "BTS WORLD TOUR 'ARIRANG' IN KAOHSIUNG將於11月19日、21日、22日共三天舉行，現場將設有專為 BTS GLOBAL OFFICIAL MEMBERSHIP ARMY MEMBERSHIP（以下簡稱 ARMY MEMBERSHIP）會員所安排的會員攤位「ARMY ZONE」。",
+    links: [
+      {
+        label: "Weverse 官方公告",
+        url: "https://weverse.io/bts/notice/39838?hl=zh-tw",
+        primary: false
+      }
+    ]
+  },
+  {
+    id: "official-merch-kaohsiung-guide",
+    category: "merch",
+    date: "2026-11-12",
+    updatedAt: "2026-11-13",
+    isNew: true,
+    title: "[公告] BTS WORLD TOUR 'ARIRANG' IN KAOHSIUNG - 官方商品現場販售及攤位營運公告",
+    summary:
+      "官方商品於11月18日（三）至11月23日（一）期間，可透過 Weverse Shop 購買後現場取貨及現場購買兩種方式購買，詳細購買方式請參閱說明。",
+    links: [
+      {
+        label: "Weverse 官方公告",
+        url: "https://weverse.io/bts/notice/40945?hl=zh-tw",
+        primary: false
+      }
+    ]
+  },
+  {
     id: "official-pop-up-kaohsiung-guide",
     category: "merch",
     date: "2026-10-27",

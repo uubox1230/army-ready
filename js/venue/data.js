@@ -219,7 +219,12 @@ const VENUE_GUIDE = {
         {
           title: "先確認官方公告",
           detail:
-            "確認販售日期、開始時間、排隊地點、品項、限購數量與付款方式，再安排抵達時間。"
+            "官方商品於11月18日（三）至11月23日（一）期間，可透過 Weverse Shop 購買後現場取貨及現場購買兩種方式購買，現場購買僅限刷卡付款。（部分卡片可能因發卡機構因素而無法完成付款。）"
+        },
+        {
+          title: "Weverse Shop 購買後取貨說明",
+          detail:
+            "Weverse Shop 會員可透過 Weverse Shop BTS（GLOBAL）購買官方商品後，前往取貨地點領取。<br><br>* Weverse Shop 販售時間（Local Time）<br>- 2026年11月17日（二）上午10點～下午6點<br>- 2026年11月18日（三）上午10點～下午6點<br>- 2026年11月19日（四）上午10點～下午6點<br>- 2026年11月20日（五）上午10點～下午6點<br>- 2026年11月21日（六）上午10點～下午6點<br>- 2026年11月22日（日）上午10點～下午6點<br>- 2026年11月23日（一）上午10點～下午6點<br><br>* 取貨地點<br>- KAOHSIUNG NATIONAL STADIUM PLAZA (Weverse Official Merchandise Pickup Booth)<br>高雄國家體育場廣場 (Weverse官方周邊商品自提點)"
         },
         {
           title: "注意排隊與補貨資訊",

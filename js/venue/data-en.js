@@ -170,7 +170,12 @@ const VENUE_GUIDE_EN = Object.freeze({
         {
           title: "Verify Official Announcements First",
           detail:
-            "Check the sales dates, start times, queue locations, item lists, purchase limits, and accepted payment methods before planning your arrival time."
+            "Official merchandise will be available from Wednesday, November 18 to Monday, November 23 via two methods: Weverse Shop Pick-Up (purchase on Weverse Shop and pick up onsite) and Onsite Purchase. Onsite purchases are by credit/debit card only. (Payment with certain cards may fail due to issuing bank restrictions.)"
+        },
+        {
+          title: "Weverse Shop Pick-Up Instructions",
+          detail:
+            "Weverse Shop members can purchase official merchandise via Weverse Shop BTS (GLOBAL) and pick up their orders at the designated pick-up location.<br><br>* Weverse Shop Sales Hours (Local Time)<br>- Tuesday, November 17, 2026: 10:00 AM – 6:00 PM<br>- Wednesday, November 18, 2026: 10:00 AM – 6:00 PM<br>- Thursday, November 19, 2026: 10:00 AM – 6:00 PM<br>- Friday, November 20, 2026: 10:00 AM – 6:00 PM<br>- Saturday, November 21, 2026: 10:00 AM – 6:00 PM<br>- Sunday, November 22, 2026: 10:00 AM – 6:00 PM<br>- Monday, November 23, 2026: 10:00 AM – 6:00 PM<br><br>* Pick-Up Location<br>- KAOHSIUNG NATIONAL STADIUM PLAZA (Weverse Official Merchandise Pickup Booth)"
         },
         {
           title: "Pay Attention to Queue Lines and Restock Updates",
