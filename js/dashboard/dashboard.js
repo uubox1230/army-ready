@@ -66,13 +66,24 @@ const DASHBOARD = {
     limit: 10
   },
 
-  checklist: [
-    { id: "main-setlist", text: "Main Setlist" },
-    { id: "encore", text: "Encore" },
-    { id: "army-bomb", text: "阿米棒更新" },
-    { id: "traffic", text: "交通確認" },
-    { id: "fan-events", text: "粉絲應援活動" }
-  ],
+  essentials: {
+    sections: [
+      { id: "entry", icon: "ticket", href: "/official/" },
+      { id: "packing", icon: "backpack" },
+      { id: "transport", icon: "train-front", href: "/venue/" },
+      { id: "fan-support", icon: "heart", href: "/community/" }
+    ],
+    packingItems: [
+      "phone",
+      "power-bank",
+      "ticket",
+      "identification",
+      "army-bomb",
+      "water",
+      "medicine",
+      "weather-gear"
+    ]
+  },
 
   venue: {
     title: "Venue",

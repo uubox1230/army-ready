@@ -156,3 +156,27 @@ function saveChecklistDone(done) {
 
   writeStorageJson(checklistKey, safeDone);
 }
+
+/* =========================
+   Concert Day Essentials
+========================= */
+
+const essentialsPackingKey = "army-ready-concert-essentials-packing";
+
+function getEssentialsPackingDone() {
+  const saved = readStorageJson(essentialsPackingKey, []);
+
+  if (!Array.isArray(saved)) {
+    return [];
+  }
+
+  return [...new Set(saved.filter(item => typeof item === "string"))];
+}
+
+function saveEssentialsPackingDone(done) {
+  const safeDone = Array.isArray(done)
+    ? [...new Set(done.filter(item => typeof item === "string"))]
+    : [];
+
+  writeStorageJson(essentialsPackingKey, safeDone);
+}

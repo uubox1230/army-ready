@@ -659,58 +659,112 @@ function createRecapCard() {
 }
 
 function createChecklistCard() {
-  const done = getChecklistDone();
-  const total = DASHBOARD.checklist.length;
-  const completed = DASHBOARD.checklist.filter(item =>
-    done.includes(item.id)
-  ).length;
-  const percent = total > 0
-    ? Math.round((completed / total) * 100)
-    : 0;
+  const packingDone = getEssentialsPackingDone();
+  const essentials = DASHBOARD.essentials;
 
-  const section = document.createElement("section");
-  section.className = "dashboard-card checklist-card";
+  const translate = (key, fallback) =>
+    window.t?.(`dashboard.essentials.${key}`, {}, fallback) || fallback;
 
-  section.innerHTML = `
-    <div class="checklist-header">
-      <div>
-        <p class="card-label" data-i18n="dashboard.checklist.label">${window.t?.("dashboard.checklist.label", {}, "Final Week Checklist") || "Final Week Checklist"}</p>
-        <h2 data-i18n="dashboard.checklist.title">${window.t?.("dashboard.checklist.title", {}, "演唱會前，最後確認") || "演唱會前，最後確認"}</h2>
-      </div>
-
-      <strong class="checklist-count" aria-live="polite">
-        ${completed} / ${total}
-      </strong>
+  const renderInfoBlock = (sectionId, blockId) => `
+    <div class="essentials-info-block">
+      <strong data-i18n="dashboard.essentials.${sectionId}.${blockId}.title">${translate(`${sectionId}.${blockId}.title`, "")}</strong>
+      <p data-i18n="dashboard.essentials.${sectionId}.${blockId}.body">${translate(`${sectionId}.${blockId}.body`, "")}</p>
     </div>
+  `;
 
-    <div
-      class="checklist-progress"
-      role="progressbar"
-      aria-label="${window.t?.("dashboard.checklist.progress", {}, "Checklist completion") || "Checklist completion"}"
-      data-i18n-aria-label="dashboard.checklist.progress"
-      aria-valuemin="0"
-      aria-valuemax="${total}"
-      aria-valuenow="${completed}"
-    >
-      <span style="width: ${percent}%"></span>
+  const renderPackingChecklist = () => `
+    <div class="essentials-packing-progress" aria-live="polite">
+      <strong id="essentialsPackingCount">${translate("packing.progress", `已準備 ${packingDone.length} / ${essentials.packingItems.length} 項`).replace("{completed}", packingDone.length).replace("{total}", essentials.packingItems.length)}</strong>
     </div>
-
-    <div class="checklist-list">
-      ${DASHBOARD.checklist.map(item => {
-        const isDone = done.includes(item.id);
-        const translationKey = `dashboard.checklist.${item.id}`;
-        const label = window.t?.(translationKey, {}, item.text) || item.text;
-
+    <div class="essentials-packing-list">
+      ${essentials.packingItems.map(itemId => {
+        const isDone = packingDone.includes(itemId);
         return `
           <button
             type="button"
-            class="checklist-item ${isDone ? "done" : ""}"
+            class="essentials-packing-item ${isDone ? "done" : ""}"
+            data-packing-id="${itemId}"
             aria-pressed="${isDone}"
-            onclick="toggleChecklistItem('${item.id}')"
+            onclick="toggleEssentialsPackingItem('${itemId}')"
           >
-            <span class="checklist-checkbox" aria-hidden="true"></span>
-            <strong data-i18n="${translationKey}">${label}</strong>
+            <span class="essentials-checkbox" aria-hidden="true"></span>
+            <span data-i18n="dashboard.essentials.packing.item.${itemId}">${translate(`packing.item.${itemId}`, itemId)}</span>
           </button>
+        `;
+      }).join("")}
+    </div>
+    <p class="essentials-caution" data-i18n="dashboard.essentials.packing.caution">${translate("packing.caution", "請依官方規定確認可攜帶物品。")}</p>
+  `;
+
+  const contentBySection = {
+    entry: `
+      ${renderInfoBlock("entry", "ticket")}
+      ${renderInfoBlock("entry", "time")}
+      ${renderInfoBlock("entry", "rules")}
+    `,
+    packing: renderPackingChecklist(),
+    transport: `
+      ${renderInfoBlock("transport", "arrival")}
+      ${renderInfoBlock("transport", "entry")}
+      ${renderInfoBlock("transport", "departure")}
+    `,
+    "fan-support": `
+      ${renderInfoBlock("fan-support", "projects")}
+      ${renderInfoBlock("fan-support", "time")}
+      ${renderInfoBlock("fan-support", "updates")}
+    `
+  };
+
+  const section = document.createElement("section");
+  section.className = "dashboard-card checklist-card essentials-card";
+
+  section.innerHTML = `
+    <div class="essentials-header">
+      <p class="card-label" data-i18n="dashboard.essentials.label">${translate("label", "CONCERT DAY ESSENTIALS")}</p>
+      <h2 data-i18n="dashboard.essentials.title">${translate("title", "出發前，最後確認！")}</h2>
+      <p class="essentials-subtitle" data-i18n="dashboard.essentials.subtitle">${translate("subtitle", "入場必備、隨身物品、交通提醒，一次確認。")}</p>
+    </div>
+
+    <div class="essentials-accordion">
+      ${essentials.sections.map(item => {
+        const panelId = `essentials-panel-${item.id}`;
+        const buttonId = `essentials-trigger-${item.id}`;
+        return `
+          <div class="essentials-section" data-essential-section="${item.id}">
+            <button
+              id="${buttonId}"
+              type="button"
+              class="essentials-trigger"
+              aria-expanded="false"
+              aria-controls="${panelId}"
+              onclick="toggleEssentialsSection('${item.id}')"
+            >
+              <span class="essentials-icon" aria-hidden="true"><i data-lucide="${item.icon}"></i></span>
+              <span class="essentials-trigger-copy">
+                <strong data-i18n="dashboard.essentials.${item.id}.title">${translate(`${item.id}.title`, item.id)}</strong>
+                <small data-i18n="dashboard.essentials.${item.id}.summary">${translate(`${item.id}.summary`, "")}</small>
+              </span>
+              <i class="essentials-chevron" data-lucide="chevron-down" aria-hidden="true"></i>
+            </button>
+
+            <div
+              id="${panelId}"
+              class="essentials-panel"
+              role="region"
+              aria-labelledby="${buttonId}"
+              hidden
+            >
+              <div class="essentials-panel-inner">
+                ${contentBySection[item.id]}
+                ${item.href ? `
+                  <a class="essentials-link" href="${item.href}">
+                    <span data-i18n="dashboard.essentials.${item.id}.link">${translate(`${item.id}.link`, "查看更多")}</span>
+                    <i data-lucide="arrow-right" aria-hidden="true"></i>
+                  </a>
+                ` : ""}
+              </div>
+            </div>
+          </div>
         `;
       }).join("")}
     </div>
