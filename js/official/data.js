@@ -21,6 +21,28 @@ const OFFICIAL_CATEGORIES = [
 
 const OFFICIAL_ANNOUNCEMENTS = [
   {
+    id: "official-entry-notice-kaohsiung-guide",
+    category: "entry",
+    date: "2026-11-13",
+    updatedAt: "2026-11-13",
+    isNew: true,
+    title: "[LIVE NATION 公告] BTS WORLD TOUR ’ARIRANG’ IN KAOHSIUNG － 入場辦法",
+    summary:
+      "◎ 本場演出為全場實名制，請一人一票一實體證件<br><br>演出當日於各驗票口，將會核對每張票券上印製的姓名是否與持票者本人及其證件皆相符，請務必攜帶「票面姓名本人有效、且附照片之個人證件正本」。台灣人士請攜帶：身分證、健保卡、駕照擇一；非台灣人士的外籍人士請憑護照作為核驗之依據，非上述有效證件恕無法受理，現場工作人員確認無誤後方可入場。若證件非正本（含圖檔、照片、影本等）、證件無照片、姓名有誤、姓名處為空白或填寫其他資料、證件照片無法辨認是否為本人等，包含但不限於上述者皆無法入場，亦無法提供任何其他方式驗證入場。請務必特別注意，以免影響您的入場權益。",
+    links: [
+      {
+        label: "LIVE NATION 官方公告(中)",
+        url: "https://www.livenation.com.tw/bts-khh26",
+        primary: true
+      },
+      {
+        label: "LIVE NATION 官方公告(EN)",
+        url: "https://www.livenation.com.tw/en/bts-khh26",
+        primary: false
+      }
+    ]
+  },
+  {
     id: "official-army-zone-kaohsiung-guide",
     category: "general",
     date: "2026-11-13",

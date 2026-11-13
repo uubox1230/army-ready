@@ -5,6 +5,12 @@
 ========================================================= */
 
 const OFFICIAL_ANNOUNCEMENTS_EN = Object.freeze({
+  "official-entry-notice-kaohsiung-guide": {
+    title: "[LIVE NATION Notice] BTS WORLD TOUR ’ARIRANG’ IN KAOHSIUNG － Entry Notice",
+    summary:
+      "◎ This is a real-name event. One ticket and one physical photo ID per attendee.<br><br>On the event day, the name printed on each ticket will be checked against a valid photo ID (National ID card, NHI card, driver’s license, or passport; foreign nationals must present a passport) at the entrance. Only those whose names and IDs match the attendee will be allowed to enter. Copies, photos, screenshots, IDs without photos, mismatched names, other data instead of the real name, or photos that cannot be recognized will result in denied entry.",
+    links: ["Official Notice(TW)", "Official Notice(EN)"]
+  },
   "official-army-zone-kaohsiung-guide": {
     title: "BTS WORLD TOUR ‘ARIRANG’ IN KAOHSIUNG ARMY ZONE Operating Announcement",
     summary:
