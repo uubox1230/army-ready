@@ -76,9 +76,14 @@ const VENUE_GUIDE = {
             "提前準備實名認證之實體票券及身分證件，避免排到入口才翻找資料。請務必攜帶「票面姓名本人有效、且附照片之個人證件正本」。<br><b>* 台灣人士請攜帶：本人身分證、健保卡、駕照擇一</b><br><b>* 外籍人士請攜帶：本人護照</b>"
         },
         {
-          title: "依票面入口與現場指標排隊",
+          title: "入場時間",
           detail:
-            "不同座位區可能使用不同入口。入口名稱、開放時間及分流方式，請以票面資訊與現場公告為準。"
+            "11:00  VIP 報到<br>14:30  SOUNDCHECK 入場<br>16:00  SOUNDCHECK 開始<br>16:30  觀眾入場<br>19:00  演出開始 Show Time"
+        },
+        {
+          title: "入口相關資訊",
+          detail:
+            "不同座位區將使用不同入口，請依票面入口與現場指標排隊。<br><br>VIP SOUNDCHECK<br>請自 E門、F門、G門、H車道 入場<br><br>平面特區 A.R.M.Y Floor Seating<br>請自 D車道、F車道、H車道 入場<br><br>一樓 二樓 看台區<br>A.B.C.D.E.F.G.H.I.V Level 1 & Level 2 Seating<br>請自 C門、D門、E門、F門、G門 入場"
         },
         {
           title: "預留安檢與驗票時間",
@@ -93,19 +98,19 @@ const VENUE_GUIDE = {
         {
           title: "避免攜帶大型或危險物品",
           detail:
-            "入場須配合安檢及入場須知，為安全考量，禁止攜帶超過 37 x 25 x 11.5公分之包包和任何形式之行李箱；除手機之外，任何專業形式之拍照、攝影、錄音等設備(包含如<b>手機擴充鏡頭</b>、<b>增距鏡</b>、腳架、手持棒、穩定器、自拍棒等等) 皆禁止攜帶及使用，同時禁止線上直播。<br><br>主辦單位有權請違反規定者立即離開現場，建議輕便前往並請提早到場進行安檢以避免耽誤觀賞演出。相關規定請於演出日前造訪LIVE NATION TAIWAN官方網站、官方臉書粉絲專頁、Instagram、Ｘ 獲得最新資訊。主辦單位保留修改或終止本活動之權力。"
+            "入場須配合安檢及入場須知，為安全考量，禁止攜帶超過 37 x 25 x 11.5 公分之包包和任何形式之行李箱；除手機之外，任何專業形式之拍照、攝影、錄音等設備(包含如<b>手機擴充鏡頭</b>、<b>增距鏡</b>、腳架、手持棒、穩定器、自拍棒等等) 皆禁止攜帶及使用，同時禁止線上直播。<br><br>主辦單位有權請違反規定者立即離開現場，建議輕便前往並請提早到場進行安檢以避免耽誤觀賞演出。相關規定請於演出日前造訪LIVE NATION TAIWAN官方網站、官方臉書粉絲專頁、Instagram、Ｘ 獲得最新資訊。主辦單位保留修改或終止本活動之權力。"
         }
       ],
       links: [
         {
           label: "Tixcraft 拓元官方資訊",
           url: "https://tixcraft.com/activity/detail/26_btskns#intro",
-          primary: true
+          primary: false
         },
         {
           label: "LIVE NATION TAIWAN 官方資訊",
-          url: "https://www.livenation.com.tw/event/bts-world-tour-arirang-in-kaohsiung-kaohsiung-tickets-edp1675883#%E6%B4%BB%E5%8B%95%E5%85%A7%E5%AE%B9",
-          primary: false
+          url: "https://www.livenation.com.tw/bts-khh26",
+          primary: true
         }
       ]
     },

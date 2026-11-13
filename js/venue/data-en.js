@@ -57,9 +57,14 @@ const VENUE_GUIDE_EN = Object.freeze({
             "Have your physical ticket and ID ready before joining the line to avoid delays at the gate. You must present a valid, original photo ID matching the name on your ticket.<br>* Taiwanese Citizens: National ID Card, National Health Insurance Card, or Driver's License.<br>* Non-Taiwanese / International Guests: Original Passport."
         },
         {
-          title: "Line Up According to Your Ticket Entrance and Onsite Signage",
+          title: "Entry Times",
           detail:
-            "Different seating sections may use different entrances. Please refer to your ticket and venue announcements for entrance names, opening times, and crowd control routes."
+            "11:00  VIP Check-in<br>14:30  SOUNDCHECK Entry<br>16:00  SOUNDCHECK Begins<br>16:30  Audience Entry<br>19:00  Performance Starts Show Time"
+        },
+        {
+          title: "Entrance Information",
+          detail:
+            "Different seating sections may use different entrances. Please refer to your ticket and venue announcements for entrance names, opening times, and crowd control routes.<br><br>VIP SOUNDCHECK<br>GO TO E, F, G Gate / H Entrance<br><br>平面特區 A.R.M.Y Floor Seating<br>GO TO D, F, H Entrance<br><br>A.B.C.D.E.F.G.H.I.V Level 1 & Level 2 Seating<br>Balcony Seats GO TO C, D, E, F, G Gate"
         },
         {
           title: "Allow Extra Time for Security Checks and Ticket Inspection",
