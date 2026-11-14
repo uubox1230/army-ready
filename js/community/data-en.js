@@ -96,5 +96,19 @@ const COMMUNITY_EVENTS_EN = Object.freeze({
     note:
       "We put so much into making these ㅠㅠ We sincerely hope these gifts go to true, loving fans on the day!",
     links: ["Original Post (Threads)"]
+  },
+  "community-page-launch-@tung_1342": {
+    cover: {
+      alt: "ARMY BOMB Decoration & Swim Ring Keychain event cover"
+    },
+    title: "ARMY BOMB Decoration & Swim Ring Keychain",
+    summary:
+      "ARMYs, feel free to come spot me! I'd love to share the joy with everyone~ You can politely ask for one, or bring a little freebie to trade! No pressure at all 👀",
+    location: "Will be updated on Threads on the event day. Please stay tuned!",
+    time:
+      "Will be updated on Threads on the event day. Please stay tuned!",
+    note:
+      "Claiming requirements apply. Please check the Threads post for details 🙏",
+    links: ["Original Post (Threads)"]
   }
 });

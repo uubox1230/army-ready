@@ -207,5 +207,29 @@ const COMMUNITY_EVENTS = [
         primary: false
       }
     ]
+  },
+  {
+    id: "community-page-launch-@tung_1342",
+    category: ["giveaway"],
+    date: ["2026-11-21", "2026-11-22"],
+    updatedAt: "2026-11-14",
+    cover: {
+      src: "/images/community/community-page-launch-@tung_1342.webp",
+      alt: "阿米棒裝飾&泳圈吊飾活動封面"
+    },
+    title: "阿米棒裝飾&泳圈吊飾",
+    host: "@tung_1342",
+    summary:
+      "歡迎阿米們來捕捉我，想要和大家一起分享喜悅～可以禮貌伸手，也可以帶小東西來交換喔！千萬不要有壓力👀",
+    location: "當天在 Threads 更新，請隨時查看。",
+    time: "當天在 Threads 更新，請隨時查看。",
+    note: "有領取條件，詳情可至Threads貼文查看🙏",
+    links: [
+      {
+        label: "主辦原公告(Threads)",
+        url: "https://www.threads.com/@tung_1342/post/Dfo6SfplIGT?xmt=AQG0Ngl8dcHFI01QPHyGqYYcWQz72A88qt0yxv8xvpWCJQ",
+        primary: false
+      }
+    ]
   }
 ];
