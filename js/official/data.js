@@ -21,6 +21,33 @@ const OFFICIAL_CATEGORIES = [
 
 const OFFICIAL_ANNOUNCEMENTS = [
   {
+    id: "official-light-stick-notice-kaohsiung-guide",
+    category: "general",
+    date: "2026-11-16",
+    updatedAt: "2026-11-17",
+    isNew: true,
+    title: "[公告] BTS WORLD TOUR ‘ARIRANG’ IN KAOHSIUNG 官方應援棒使用指南",
+    summary:
+      "BTS WORLD TOUR ‘ARIRANG’ IN KAOHSIUNG 演唱會將採用與舞台資訊聯動的應援棒演出方式。 在最新版本的應援棒官方應用程式（BTS OFFICIAL LIGHT STICK Ver.4）中，可以點擊[演出模式]進行應援棒配對。",
+    links: [
+      {
+        label: "Weverse 官方公告",
+        url: "https://weverse.io/bts/notice/41022?hl=zh-tw",
+        primary: true
+      },
+      {
+        label: "下載阿米棒App(iOS)",
+        url: "https://apps.apple.com/us/app/bts-official-light-stick-ver-4/id6756034037",
+        primary: false
+      },
+      {
+        label: "下載阿米棒App(Android)",
+        url: "https://play.google.com/store/apps/details?id=com.hybe.bts&pcampaignid=web_share",
+        primary: false
+      }
+    ]
+  },
+  {
     id: "official-entry-notice-kaohsiung-guide",
     category: "entry",
     date: "2026-11-13",

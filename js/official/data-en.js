@@ -5,6 +5,12 @@
 ========================================================= */
 
 const OFFICIAL_ANNOUNCEMENTS_EN = Object.freeze({
+  "official-light-stick-notice-kaohsiung-guide": {
+    title: "BTS WORLD TOUR ‘ARIRANG’ IN KAOHSIUNG Official Light Stick Usage Guide",
+    summary:
+      "BTS WORLD TOUR 'ARIRANG' IN KAOHSIUNG concert will feature light stick performances synchronized with the stage production. You can pair your light stick by selecting [Concert Mode] in the latest version of the official light stick application (BTS OFFICIAL LIGHT STICK Ver.4).",
+    links: ["Official Weverse Notice", "Download the Light Stick App (iOS)", "Download the Light Stick App (Android)"]
+  },
   "official-entry-notice-kaohsiung-guide": {
     title: "[LIVE NATION Notice] BTS WORLD TOUR ’ARIRANG’ IN KAOHSIUNG － Entry Notice",
     summary:
