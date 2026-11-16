@@ -31,6 +31,12 @@ function getVenueGuideForCurrentLanguage() {
         label: translation.label || section.label,
         title: translation.title || section.title,
         description: translation.description || section.description,
+        media: Array.isArray(section.media)
+          ? section.media.map(media => ({
+              ...media,
+              ...(translation.media?.[media.id] || {})
+            }))
+          : [],
         items: section.items.map((item, index) => ({
           ...item,
           title: translation.items?.[index]?.title || item.title,
@@ -96,6 +102,8 @@ function renderVenueSections() {
   root.innerHTML = guide.sections
     .map((section, index) => createVenueSectionMarkup(section, index, guide.id))
     .join("");
+
+  bindVenueImageFallbacks(root);
 }
 
 function createVenueSectionMarkup(section, sectionIndex, guideId) {
@@ -115,6 +123,16 @@ function createVenueSectionMarkup(section, sectionIndex, guideId) {
     ? section.links.map(createVenueLinkMarkup).join("")
     : "";
 
+  const media = Array.isArray(section.media) ? section.media : [];
+  const mediaBeforeItems = media
+    .filter(item => item.placement === "before-items")
+    .map(createVenueMediaMarkup)
+    .join("");
+  const mediaAfterItems = media
+    .filter(item => item.placement !== "before-items")
+    .map(createVenueMediaMarkup)
+    .join("");
+
   return `
     <article id="${section.id}" class="venue-section">
       ${sectionIndex === 0
@@ -129,11 +147,89 @@ function createVenueSectionMarkup(section, sectionIndex, guideId) {
 
       <p class="venue-section-description">${section.description}</p>
 
+      ${mediaBeforeItems ? `<div class="venue-media-list before-items">${mediaBeforeItems}</div>` : ""}
+
       <div class="venue-item-list">${items}</div>
+
+      ${mediaAfterItems ? `<div class="venue-media-list after-items">${mediaAfterItems}</div>` : ""}
 
       ${links ? `<div class="venue-section-links">${links}</div>` : ""}
     </article>
   `;
+}
+
+function createVenueMediaMarkup(media) {
+  const viewLabel = window.t?.("venue.image.view", {}, "查看高解析原圖") || "查看高解析原圖";
+  const downloadLabel = window.t?.("venue.image.download", {}, "下載原圖") || "下載原圖";
+  const officialLabel = window.t?.("venue.image.official", {}, "官方資訊") || "官方資訊";
+  const unavailableLabel = window.t?.("venue.image.unavailable", {}, "圖片暫時無法載入") || "圖片暫時無法載入";
+  const saveHint = window.t?.("venue.image.save_hint", {}, "iPhone 可開啟原圖後長按儲存。") || "iPhone 可開啟原圖後長按儲存。";
+  const viewAriaLabel = `${viewLabel}：${media.title}`;
+  const downloadAriaLabel = `${downloadLabel}：${media.title}`;
+  const classes = [
+    "venue-media-card",
+    media.featured ? "featured" : "",
+    media.compact ? "compact" : ""
+  ].filter(Boolean).join(" ");
+
+  return `
+    <figure class="${classes}" data-venue-media-id="${media.id}">
+      <a
+        class="venue-media-preview"
+        href="${media.src}"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="${viewAriaLabel}"
+      >
+        <img
+          data-venue-image
+          src="${media.src}"
+          alt="${media.alt}"
+          width="${media.width}"
+          height="${media.height}"
+          loading="lazy"
+          decoding="async"
+        >
+        <span class="venue-media-unavailable" aria-hidden="true">${unavailableLabel}</span>
+      </a>
+
+      <figcaption class="venue-media-copy">
+        <span class="venue-media-official">${officialLabel}</span>
+        <h3>${media.title}</h3>
+        <p>${media.caption}</p>
+      </figcaption>
+
+      <div class="venue-media-actions">
+        <a href="${media.src}" target="_blank" rel="noopener noreferrer" aria-label="${viewAriaLabel}">
+          <span>${viewLabel}</span>
+          <span aria-hidden="true">↗</span>
+        </a>
+        <a href="${media.src}" download aria-label="${downloadAriaLabel}">
+          <span>${downloadLabel}</span>
+          <span aria-hidden="true">↓</span>
+        </a>
+      </div>
+
+      <p class="venue-media-save-hint">${saveHint}</p>
+    </figure>
+  `;
+}
+
+function bindVenueImageFallbacks(root) {
+  root.querySelectorAll("[data-venue-image]").forEach(image => {
+    const markUnavailable = () => {
+      const card = image.closest(".venue-media-card");
+      card?.classList.add("image-load-failed");
+      card?.querySelector(".venue-media-unavailable")?.setAttribute("aria-hidden", "false");
+    };
+
+    if (image.complete && image.naturalWidth === 0) {
+      markUnavailable();
+      return;
+    }
+
+    image.addEventListener("error", markUnavailable, { once: true });
+  });
 }
 
 function renderVenueNotice() {

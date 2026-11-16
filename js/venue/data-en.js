@@ -50,6 +50,28 @@ const VENUE_GUIDE_EN = Object.freeze({
       title: "Entry Guidelines",
       description:
         "Before entering the venue, please double-check your designated entrance, seating area, and ticket status. Do not follow lines blindly.",
+      media: {
+        "official-seat-map": {
+          title: "Official Seat Map",
+          alt: "Official BTS WORLD TOUR ARIRANG Kaohsiung seat map showing the stage, floor sections, stands, and ticket-price color legend",
+          caption: "This official seating layout is for reference and is subject to change. Follow the latest organizer and onsite information."
+        },
+        "venue-entrance-map": {
+          title: "Venue Entrance & Site Map",
+          alt: "Kaohsiung National Stadium map showing Gates C to H, floor entrances, onsite services, and road closure information",
+          caption: "Follow the entrance printed on your ticket, onsite signage, and staff directions. Do not infer an entrance from the seat map alone."
+        },
+        "concert-schedule": {
+          title: "Concert Schedule & Onsite Services",
+          alt: "Kaohsiung schedule showing VIP check-in, Soundcheck, general entry, show time, entry gates, and onsite service hours",
+          caption: "Includes entry times, gate groups, ticketing, information, food and beverage, official merchandise, Weverse pickup, and ARMY ZONE."
+        },
+        "prohibited-items": {
+          title: "Official Prohibited Items Guide",
+          alt: "Official Kaohsiung prohibited-items guide covering bag size, recording equipment, umbrellas, containers, and dangerous items",
+          caption: "Refer to this official guide and the organizer's latest announcements for prohibited items and security rules."
+        }
+      },
       items: [
         {
           title: "Prepare Your Ticket and Photo ID in Advance",
@@ -92,6 +114,13 @@ const VENUE_GUIDE_EN = Object.freeze({
       title: "Packing List — Concert Essentials",
       description:
         "Keep it light and easy to pass security. Official rules on prohibited items and bag size restrictions remain subject to the organizers' latest announcements.",
+      media: {
+        "lightstick-ver4-guide": {
+          title: "BTS Official Light Stick Ver.4 Guide",
+          alt: "BTS Official Light Stick Ver.4 setup guide covering app installation, Concert Mode, Bluetooth, seat information, and pairing",
+          caption: "Wireless control is available only for the Ver.4 Light Stick at this show. Ver.3 and SE are not supported."
+        }
+      },
       items: [
         {
           title: "Ticket and ID",

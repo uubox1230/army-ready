@@ -69,6 +69,51 @@ const VENUE_GUIDE = {
       icon: "🎫",
       description:
         "抵達場館後先確認自己的入口、座位區與票券狀態，不要只依照他人排隊方向判斷。",
+      media: [
+        {
+          id: "official-seat-map",
+          src: "/images/venue/official-seat-map.png",
+          width: 1080,
+          height: 1350,
+          placement: "before-items",
+          featured: true,
+          title: "官方座位配置圖",
+          alt: "BTS WORLD TOUR ARIRANG 高雄場官方座位配置圖，包含舞台、平面特區、看台區與票價顏色圖例",
+          caption: "座位配置為官方示意圖，實際配置可能變更，請以現場及主辦單位最新公告為準。"
+        },
+        {
+          id: "venue-entrance-map",
+          src: "/images/venue/venue-entrance-map.jpeg",
+          width: 1638,
+          height: 2048,
+          placement: "before-items",
+          featured: true,
+          title: "場館入口與配置圖",
+          alt: "高雄國家體育場 C 至 H 入口、平面特區車道、服務位置及交通管制配置圖",
+          caption: "請依票面入口、現場指標及工作人員引導行進，不要自行推測座位區與入口的對應。"
+        },
+        {
+          id: "concert-schedule",
+          src: "/images/venue/concert-schedule.jpeg",
+          width: 1638,
+          height: 2048,
+          placement: "before-items",
+          featured: true,
+          title: "演唱會時間表與現場服務資訊",
+          alt: "高雄場 VIP 報到、Soundcheck、一般入場、演出時間、入口及現場服務時間表",
+          caption: "包含入場時間、入口分類、票務、服務台、餐飲、官方周邊、Weverse 領取處與 ARMY ZONE。"
+        },
+        {
+          id: "prohibited-items",
+          src: "/images/venue/prohibited-items.jpeg",
+          width: 1638,
+          height: 2048,
+          placement: "after-items",
+          title: "官方禁止攜帶物品",
+          alt: "高雄場官方禁止攜帶物品完整圖卡，包含包袋尺寸、攝錄設備、雨傘、容器及危險物品規定",
+          caption: "禁帶物品與安檢規定請以本官方圖卡及主辦單位最新公告為準。"
+        }
+      ],
       items: [
         {
           title: "先確認票券與證件",
@@ -121,6 +166,19 @@ const VENUE_GUIDE = {
       icon: "🎒",
       description:
         "以輕便、容易通過安檢為原則。實際禁帶物品與包袋限制仍須依主辦單位最新公告。",
+      media: [
+        {
+          id: "lightstick-ver4-guide",
+          src: "/images/venue/lightstick-ver4-guide.jpg",
+          width: 745,
+          height: 2520,
+          placement: "after-items",
+          compact: true,
+          title: "BTS Official Light Stick Ver.4 使用指南",
+          alt: "BTS Official Light Stick Ver.4 App 安裝、Concert Mode、藍牙、座位輸入及配對步驟",
+          caption: "本次演出僅支援 Ver.4 無線中央控制；Ver.3 與 SE 不支援連動。"
+        }
+      ],
       items: [
         {
           title: "票券與身分證件",
