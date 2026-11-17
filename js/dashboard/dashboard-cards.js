@@ -46,7 +46,12 @@ function createPlaceholderCard(title) {
 
 function createHeroCard() {
   const state = getHeroState();
-  const phase = getConcertPhase();
+  const selectedConcertDate = getSelectedConcertDateValue();
+  const concertDateOptions = [
+    { value: "2026-11-19", key: "dashboard.countdown.date_1119", fallback: "11/19（四）" },
+    { value: "2026-11-21", key: "dashboard.countdown.date_1121", fallback: "11/21（六）" },
+    { value: "2026-11-22", key: "dashboard.countdown.date_1122", fallback: "11/22（日）" }
+  ];
 
   const section = document.createElement("section");
   section.className = "dashboard-hero";
@@ -67,15 +72,35 @@ function createHeroCard() {
         <p class="hero-venue">${DASHBOARD.concert.venue}</p>
       </div>
 
-      <div class="hero-countdown-v2 ${phase === "finished" ? "hidden" : ""}">
-        <div class="countdown-main">
-          <strong id="countdownDays">--</strong>
-          <span>Days</span>
+      <div class="hero-countdown-v2" data-countdown-state="counting">
+        <div class="countdown-selector">
+          <label class="sr-only" for="concertDateSelect" data-i18n="dashboard.countdown.select_label">
+            選擇演唱會日期
+          </label>
+          <select
+            id="concertDateSelect"
+            aria-label="選擇演唱會日期"
+            data-i18n-aria-label="dashboard.countdown.select_aria"
+            onchange="selectConcertDate(this.value)"
+          >
+            ${concertDateOptions.map(option => `
+              <option
+                value="${option.value}"
+                data-i18n="${option.key}"
+                ${option.value === selectedConcertDate ? "selected" : ""}
+              >${window.t?.(option.key, {}, option.fallback) || option.fallback}</option>
+            `).join("")}
+          </select>
         </div>
 
-        <div class="countdown-sub">
-          <span><b id="countdownHours">--</b> Hours</span>
-          <span><b id="countdownMinutes">--</b> Minutes</span>
+        <div class="countdown-main" role="status" aria-live="polite">
+          <strong id="countdownDays">--</strong>
+          <span id="countdownDaysLabel" data-i18n="dashboard.countdown.days">天</span>
+        </div>
+
+        <div id="countdownSub" class="countdown-sub">
+          <span><b id="countdownHours">--</b> <span data-i18n="dashboard.countdown.hours">小時</span></span>
+          <span><b id="countdownMinutes">--</b> <span data-i18n="dashboard.countdown.minutes">分鐘</span></span>
         </div>
       </div>
     </div>
@@ -122,11 +147,13 @@ function formatConcertCardDate(dateValue) {
   }
 
   const dateLabel = new Intl.DateTimeFormat("en-US", {
+    timeZone: "Asia/Taipei",
     month: "2-digit",
     day: "2-digit"
   }).format(date);
 
   const weekday = new Intl.DateTimeFormat("en-US", {
+    timeZone: "Asia/Taipei",
     weekday: "short"
   }).format(date).toUpperCase();
 
@@ -136,10 +163,27 @@ function formatConcertCardDate(dateValue) {
   };
 }
 
+function getSelectedConcertShow() {
+  const selectedValue = getSelectedConcertDateValue();
+  return DASHBOARD.concert.dates.find(value => value.startsWith(selectedValue))
+    || DASHBOARD.concert.dates[0];
+}
+
+function updateMyConcertDate() {
+  const dateContainer = document.querySelector(".my-concert-date");
+  if (!dateContainer) return;
+
+  const formattedDate = formatConcertCardDate(getSelectedConcertShow());
+  const dateLabel = dateContainer.querySelector("strong");
+  const weekdayLabel = dateContainer.querySelector("span");
+
+  if (dateLabel) dateLabel.textContent = formattedDate.date;
+  if (weekdayLabel) weekdayLabel.textContent = formattedDate.weekday;
+}
+
 function createMyConcertCard() {
   const settings = DASHBOARD.myConcert;
-  const firstShow = DASHBOARD.concert.dates[0];
-  const formattedDate = formatConcertCardDate(firstShow);
+  const formattedDate = formatConcertCardDate(getSelectedConcertShow());
   const done = getDone();
   const last = getLastPractice();
   const savedEvents = getSavedFanEventsCount();
@@ -774,20 +818,39 @@ function createChecklistCard() {
 }
 
 function updateDashboardCountdown() {
-  const target = getConcertStartDate();
-  const now = new Date();
-  const diff = Math.max(0, target - now);
-
-  const totalMinutes = Math.floor(diff / (1000 * 60));
-  const days = Math.floor(totalMinutes / (60 * 24));
-  const hours = Math.floor((totalMinutes % (60 * 24)) / 60);
-  const minutes = totalMinutes % 60;
-
+  const state = getDashboardCountdownState();
+  const container = document.querySelector(".hero-countdown-v2");
   const daysElement = document.getElementById("countdownDays");
+  const daysLabel = document.getElementById("countdownDaysLabel");
   const hoursElement = document.getElementById("countdownHours");
   const minutesElement = document.getElementById("countdownMinutes");
+  const countdownSub = document.getElementById("countdownSub");
+  const select = document.getElementById("concertDateSelect");
 
-  if (daysElement) daysElement.textContent = days;
-  if (hoursElement) hoursElement.textContent = hours;
-  if (minutesElement) minutesElement.textContent = minutes;
+  if (select && select.value !== state.selectedDate) {
+    select.value = state.selectedDate;
+  }
+
+  if (container) {
+    container.dataset.countdownState = state.isEnded
+      ? "ended"
+      : state.isToday
+        ? "today"
+        : "counting";
+  }
+
+  if (daysElement) {
+    daysElement.textContent = state.isEnded
+      ? window.t?.("dashboard.countdown.ended", {}, "演出已結束") || "演出已結束"
+      : state.isToday
+        ? window.t?.("dashboard.countdown.today", {}, "就是今天！") || "就是今天！"
+        : state.days;
+  }
+
+  if (daysLabel) daysLabel.hidden = state.isEnded || state.isToday;
+  if (countdownSub) countdownSub.hidden = state.isEnded;
+  if (hoursElement) hoursElement.textContent = state.hours;
+  if (minutesElement) minutesElement.textContent = state.minutes;
 }
+
+document.addEventListener("armyready:languagechange", updateDashboardCountdown);

@@ -6,7 +6,18 @@ const VENUE_SCROLL = {
   resizeTimer: null
 };
 
+const VENUE_VIEWER = {
+  dialog: null,
+  image: null,
+  mediaTitle: null,
+  trigger: null,
+  scale: 1,
+  scrollY: 0,
+  bodyStyle: null
+};
+
 function initVenuePage() {
+  initVenueImageViewer();
   renderVenueTabs();
   renderVenueSections();
   renderVenueNotice();
@@ -104,6 +115,7 @@ function renderVenueSections() {
     .join("");
 
   bindVenueImageFallbacks(root);
+  bindVenueImageViewerTriggers(root);
 }
 
 function createVenueSectionMarkup(section, sectionIndex, guideId) {
@@ -174,11 +186,10 @@ function createVenueMediaMarkup(media) {
 
   return `
     <figure class="${classes}" data-venue-media-id="${media.id}">
-      <a
+      <button
+        type="button"
         class="venue-media-preview"
-        href="${media.src}"
-        target="_blank"
-        rel="noopener noreferrer"
+        data-venue-view-image="${media.id}"
         aria-label="${viewAriaLabel}"
       >
         <img
@@ -191,7 +202,7 @@ function createVenueMediaMarkup(media) {
           decoding="async"
         >
         <span class="venue-media-unavailable" aria-hidden="true">${unavailableLabel}</span>
-      </a>
+      </button>
 
       <figcaption class="venue-media-copy">
         <span class="venue-media-official">${officialLabel}</span>
@@ -200,10 +211,10 @@ function createVenueMediaMarkup(media) {
       </figcaption>
 
       <div class="venue-media-actions">
-        <a href="${media.src}" target="_blank" rel="noopener noreferrer" aria-label="${viewAriaLabel}">
+        <button type="button" data-venue-view-image="${media.id}" aria-label="${viewAriaLabel}">
           <span>${viewLabel}</span>
           <span aria-hidden="true">↗</span>
-        </a>
+        </button>
         <a href="${media.src}" download aria-label="${downloadAriaLabel}">
           <span>${downloadLabel}</span>
           <span aria-hidden="true">↓</span>
@@ -230,6 +241,174 @@ function bindVenueImageFallbacks(root) {
 
     image.addEventListener("error", markUnavailable, { once: true });
   });
+}
+
+function initVenueImageViewer() {
+  if (document.getElementById("venueImageViewer")) return;
+
+  const dialog = document.createElement("dialog");
+  dialog.id = "venueImageViewer";
+  dialog.className = "venue-image-viewer";
+  dialog.setAttribute("aria-labelledby", "venueViewerTitle");
+  dialog.innerHTML = `
+    <div class="venue-viewer-shell">
+      <header class="venue-viewer-header">
+        <div>
+          <span id="venueViewerTitle" data-i18n="venue.viewer.title">官方圖片檢視器</span>
+          <strong id="venueViewerMediaTitle"></strong>
+        </div>
+        <button
+          type="button"
+          class="venue-viewer-close"
+          data-venue-viewer-close
+          aria-label="關閉圖片檢視器"
+          data-i18n-aria-label="venue.viewer.close"
+        >×</button>
+      </header>
+
+      <div class="venue-viewer-toolbar">
+        <button type="button" data-venue-zoom="out" aria-label="縮小" data-i18n-aria-label="venue.viewer.zoom_out">−</button>
+        <button type="button" data-venue-zoom="reset" aria-label="重設縮放" data-i18n-aria-label="venue.viewer.zoom_reset">
+          <span data-venue-zoom-value>100%</span>
+        </button>
+        <button type="button" data-venue-zoom="in" aria-label="放大" data-i18n-aria-label="venue.viewer.zoom_in">＋</button>
+      </div>
+
+      <div class="venue-viewer-viewport">
+        <img id="venueViewerImage" alt="" draggable="false">
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(dialog);
+  window.I18n?.apply?.(dialog);
+
+  VENUE_VIEWER.dialog = dialog;
+  VENUE_VIEWER.image = dialog.querySelector("#venueViewerImage");
+  VENUE_VIEWER.mediaTitle = dialog.querySelector("#venueViewerMediaTitle");
+
+  dialog.querySelector("[data-venue-viewer-close]")?.addEventListener("click", closeVenueImageViewer);
+  dialog.querySelectorAll("[data-venue-zoom]").forEach(button => {
+    button.addEventListener("click", () => changeVenueViewerZoom(button.dataset.venueZoom));
+  });
+
+  dialog.addEventListener("click", event => {
+    if (event.target === dialog) closeVenueImageViewer();
+  });
+
+  dialog.addEventListener("cancel", event => {
+    event.preventDefault();
+    closeVenueImageViewer();
+  });
+
+  dialog.addEventListener("keydown", event => {
+    if (event.key === "+" || event.key === "=") changeVenueViewerZoom("in");
+    if (event.key === "-") changeVenueViewerZoom("out");
+    if (event.key === "0") changeVenueViewerZoom("reset");
+  });
+
+  dialog.addEventListener("close", restoreVenueViewerPage);
+}
+
+function bindVenueImageViewerTriggers(root) {
+  root.querySelectorAll("[data-venue-view-image]").forEach(button => {
+    button.addEventListener("click", () => {
+      openVenueImageViewer(button.dataset.venueViewImage, button);
+    });
+  });
+}
+
+function getVenueMediaById(mediaId) {
+  const guide = getVenueGuideForCurrentLanguage();
+
+  for (const section of guide.sections) {
+    const media = section.media?.find(item => item.id === mediaId);
+    if (media) return media;
+  }
+
+  return null;
+}
+
+function openVenueImageViewer(mediaId, trigger) {
+  const media = getVenueMediaById(mediaId);
+  const dialog = VENUE_VIEWER.dialog;
+  if (!media || !dialog || !VENUE_VIEWER.image) return;
+
+  VENUE_VIEWER.trigger = trigger;
+  VENUE_VIEWER.scrollY = window.scrollY;
+  VENUE_VIEWER.bodyStyle = {
+    position: document.body.style.position,
+    top: document.body.style.top,
+    left: document.body.style.left,
+    right: document.body.style.right,
+    width: document.body.style.width,
+    overflow: document.body.style.overflow
+  };
+
+  VENUE_VIEWER.image.src = media.src;
+  VENUE_VIEWER.image.alt = media.alt;
+  VENUE_VIEWER.mediaTitle.textContent = media.title;
+  setVenueViewerZoom(1);
+
+  document.body.style.position = "fixed";
+  document.body.style.top = `-${VENUE_VIEWER.scrollY}px`;
+  document.body.style.left = "0";
+  document.body.style.right = "0";
+  document.body.style.width = "100%";
+  document.body.style.overflow = "hidden";
+  document.documentElement.classList.add("venue-viewer-open");
+
+  dialog.showModal();
+  dialog.querySelector("[data-venue-viewer-close]")?.focus();
+}
+
+function closeVenueImageViewer() {
+  if (VENUE_VIEWER.dialog?.open) VENUE_VIEWER.dialog.close();
+}
+
+function restoreVenueViewerPage() {
+  const savedStyle = VENUE_VIEWER.bodyStyle;
+
+  if (savedStyle) {
+    document.body.style.position = savedStyle.position;
+    document.body.style.top = savedStyle.top;
+    document.body.style.left = savedStyle.left;
+    document.body.style.right = savedStyle.right;
+    document.body.style.width = savedStyle.width;
+    document.body.style.overflow = savedStyle.overflow;
+  }
+
+  document.documentElement.classList.remove("venue-viewer-open");
+
+  const trigger = VENUE_VIEWER.trigger;
+  VENUE_VIEWER.trigger = null;
+  VENUE_VIEWER.bodyStyle = null;
+  trigger?.focus({ preventScroll: true });
+  window.scrollTo(0, VENUE_VIEWER.scrollY);
+}
+
+function changeVenueViewerZoom(action) {
+  const nextScale = action === "in"
+    ? VENUE_VIEWER.scale + 0.5
+    : action === "out"
+      ? VENUE_VIEWER.scale - 0.5
+      : 1;
+
+  setVenueViewerZoom(nextScale);
+}
+
+function setVenueViewerZoom(scale) {
+  const safeScale = Math.min(4, Math.max(1, scale));
+  const viewport = VENUE_VIEWER.dialog?.querySelector(".venue-viewer-viewport");
+  const value = VENUE_VIEWER.dialog?.querySelector("[data-venue-zoom-value]");
+
+  VENUE_VIEWER.scale = safeScale;
+  if (VENUE_VIEWER.image) VENUE_VIEWER.image.style.width = `${safeScale * 100}%`;
+  if (value) value.textContent = `${Math.round(safeScale * 100)}%`;
+  if (safeScale === 1 && viewport) {
+    viewport.scrollTop = 0;
+    viewport.scrollLeft = 0;
+  }
 }
 
 function renderVenueNotice() {
@@ -377,6 +556,7 @@ function keepVenueTabVisible(button, centerTab = false) {
 
 document.addEventListener("DOMContentLoaded", initVenuePage);
 document.addEventListener("armyready:languagechange", () => {
+  closeVenueImageViewer();
   const activeSectionId = VENUE_SCROLL.activeSectionId;
   renderVenueTabs();
   renderVenueSections();

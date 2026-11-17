@@ -117,7 +117,61 @@
 
 .hero-countdown-v2 {
   flex: 0 0 auto;
+  display: grid;
+  justify-items: end;
   text-align: right;
+}
+
+.countdown-selector {
+  position: relative;
+  display: inline-flex;
+  margin-bottom: 12px;
+}
+
+.countdown-selector > label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.countdown-selector::after {
+  position: absolute;
+  top: 50%;
+  right: 11px;
+  content: "⌄";
+  color: #16756c;
+  font-size: 14px;
+  font-weight: 850;
+  pointer-events: none;
+  transform: translateY(-58%);
+}
+
+.countdown-selector select {
+  min-width: 132px;
+  min-height: 38px;
+  padding: 8px 32px 8px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.44);
+  border-radius: 12px;
+  appearance: none;
+  -webkit-appearance: none;
+  background: rgba(255, 255, 255, 0.94);
+  color: #30343a;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 780;
+  line-height: 1.2;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(4, 12, 16, 0.16);
+}
+
+.countdown-selector select:focus-visible {
+  outline: 3px solid rgba(33, 216, 196, 0.42);
+  outline-offset: 2px;
 }
 
 .countdown-main {
@@ -156,6 +210,19 @@
 
 .countdown-sub b {
   color: #ffffff;
+}
+
+.countdown-sub[hidden] {
+  display: none;
+}
+
+.hero-countdown-v2[data-countdown-state="today"] .countdown-main strong,
+.hero-countdown-v2[data-countdown-state="ended"] .countdown-main strong {
+  max-width: 220px;
+  font-size: clamp(23px, 3vw, 34px);
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  white-space: normal;
 }
 
 /* =========================================================
@@ -1069,6 +1136,17 @@
     text-align: right;
   }
 
+  .countdown-selector {
+    margin-bottom: 9px;
+  }
+
+  .countdown-selector select {
+    min-width: 122px;
+    min-height: 44px;
+    padding-right: 30px;
+    font-size: 10px;
+  }
+
   .countdown-main {
     justify-content: flex-end;
     gap: 5px;
@@ -1087,6 +1165,12 @@
     gap: 8px;
     margin-top: 7px;
     font-size: 10px;
+  }
+
+  .hero-countdown-v2[data-countdown-state="today"] .countdown-main strong,
+  .hero-countdown-v2[data-countdown-state="ended"] .countdown-main strong {
+    max-width: 132px;
+    font-size: 21px;
   }
 
   .dashboard-card {

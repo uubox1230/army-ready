@@ -180,3 +180,38 @@ function saveEssentialsPackingDone(done) {
 
   writeStorageJson(essentialsPackingKey, safeDone);
 }
+
+/* =========================
+   Selected Concert Date
+========================= */
+
+const concertDatePreferenceKey = "armyReadyConcertDate";
+let concertDateMemoryValue = "";
+
+function getConcertDatePreference(availableDates) {
+  const safeDates = Array.isArray(availableDates)
+    ? availableDates.filter(value => typeof value === "string")
+    : [];
+  const fallback = safeDates[0] || "";
+  const saved = readStorageJson(concertDatePreferenceKey, "");
+
+  if (safeDates.includes(saved)) {
+    concertDateMemoryValue = saved;
+    return saved;
+  }
+
+  if (safeDates.includes(concertDateMemoryValue)) {
+    return concertDateMemoryValue;
+  }
+
+  concertDateMemoryValue = fallback;
+  return fallback;
+}
+
+function saveConcertDatePreference(value, availableDates) {
+  const safeDates = Array.isArray(availableDates) ? availableDates : [];
+  if (!safeDates.includes(value)) return false;
+
+  concertDateMemoryValue = value;
+  return writeStorageJson(concertDatePreferenceKey, value);
+}

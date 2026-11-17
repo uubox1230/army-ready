@@ -365,16 +365,23 @@
 
 .venue-media-preview {
   position: relative;
+  width: 100%;
   display: block;
+  padding: 0;
   overflow: hidden;
+  border: 0;
   border-bottom: 1px solid #e5e9ea;
   background: #eef1f2;
   color: #50565b;
+  font: inherit;
+  text-align: left;
   text-decoration: none;
+  cursor: zoom-in;
 }
 
 .venue-media-preview:focus-visible,
-.venue-media-actions a:focus-visible {
+.venue-media-actions a:focus-visible,
+.venue-media-actions button:focus-visible {
   outline: 3px solid rgba(33, 216, 196, 0.32);
   outline-offset: -3px;
 }
@@ -454,7 +461,8 @@
   padding: 0 15px 10px;
 }
 
-.venue-media-actions a {
+.venue-media-actions a,
+.venue-media-actions button {
   min-height: 42px;
   display: flex;
   align-items: center;
@@ -465,24 +473,27 @@
   border-radius: 11px;
   background: #ffffff;
   color: #42484d;
+  font: inherit;
   font-size: 11px;
   font-weight: 750;
   line-height: 1.35;
   text-decoration: none;
+  cursor: pointer;
 }
 
-.venue-media-actions a:first-child {
+.venue-media-actions > :first-child {
   border-color: #111318;
   background: #111318;
   color: #ffffff;
 }
 
-.venue-media-actions a:hover {
+.venue-media-actions a:hover,
+.venue-media-actions button:hover {
   border-color: #cbd3d6;
   background: #f5f7f7;
 }
 
-.venue-media-actions a:first-child:hover {
+.venue-media-actions > :first-child:hover {
   border-color: #30343a;
   background: #30343a;
 }
@@ -493,6 +504,145 @@
   color: #8a9096;
   font-size: 9px;
   line-height: 1.5;
+}
+
+/* =========================================================
+   Official image viewer
+========================================================= */
+
+.venue-viewer-open {
+  overscroll-behavior: none;
+}
+
+.venue-image-viewer {
+  width: min(96vw, 1180px);
+  height: min(94dvh, 980px);
+  max-width: none;
+  max-height: none;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: 18px;
+  background: #111318;
+  color: #ffffff;
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.42);
+}
+
+.venue-image-viewer::backdrop {
+  background: rgba(5, 8, 11, 0.84);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.venue-viewer-shell {
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto auto minmax(0, 1fr);
+}
+
+.venue-viewer-header {
+  min-height: 66px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 12px 10px 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  background: #111318;
+}
+
+.venue-viewer-header > div {
+  min-width: 0;
+}
+
+.venue-viewer-header span,
+.venue-viewer-header strong {
+  display: block;
+}
+
+.venue-viewer-header span {
+  color: #21d8c4;
+  font-size: 9px;
+  font-weight: 850;
+  letter-spacing: 0.1em;
+}
+
+.venue-viewer-header strong {
+  margin-top: 3px;
+  overflow: hidden;
+  font-size: 14px;
+  line-height: 1.35;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.venue-viewer-close,
+.venue-viewer-toolbar button {
+  min-width: 44px;
+  min-height: 44px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  font: inherit;
+  cursor: pointer;
+}
+
+.venue-viewer-close {
+  flex: 0 0 auto;
+  font-size: 28px;
+  font-weight: 300;
+  line-height: 1;
+}
+
+.venue-viewer-close:hover,
+.venue-viewer-toolbar button:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.venue-viewer-close:focus-visible,
+.venue-viewer-toolbar button:focus-visible {
+  outline: 3px solid rgba(33, 216, 196, 0.46);
+  outline-offset: 2px;
+}
+
+.venue-viewer-toolbar {
+  min-height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 5px 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: #181b20;
+}
+
+.venue-viewer-toolbar button:nth-child(2) {
+  min-width: 72px;
+  font-size: 11px;
+  font-weight: 750;
+}
+
+.venue-viewer-viewport {
+  min-width: 0;
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  touch-action: pan-x pan-y pinch-zoom;
+  background: #25282d;
+  -webkit-overflow-scrolling: touch;
+}
+
+.venue-viewer-viewport img {
+  width: 100%;
+  max-width: none;
+  height: auto;
+  display: block;
+  margin: 0;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 /* =========================================================
@@ -645,6 +795,21 @@
 
   .venue-media-actions {
     grid-template-columns: 1fr;
+  }
+
+  .venue-image-viewer {
+    width: 100vw;
+    height: 100dvh;
+    border-radius: 0;
+  }
+
+  .venue-viewer-header {
+    min-height: 62px;
+    padding-left: 14px;
+  }
+
+  .venue-viewer-header strong {
+    font-size: 13px;
   }
 
   .venue-section-links {
