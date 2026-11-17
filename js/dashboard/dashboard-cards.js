@@ -46,12 +46,6 @@ function createPlaceholderCard(title) {
 
 function createHeroCard() {
   const state = getHeroState();
-  const selectedConcertDate = getSelectedConcertDateValue();
-  const concertDateOptions = [
-    { value: "2026-11-19", key: "dashboard.countdown.date_1119", fallback: "11/19（四）" },
-    { value: "2026-11-21", key: "dashboard.countdown.date_1121", fallback: "11/21（六）" },
-    { value: "2026-11-22", key: "dashboard.countdown.date_1122", fallback: "11/22（日）" }
-  ];
 
   const section = document.createElement("section");
   section.className = "dashboard-hero";
@@ -73,26 +67,6 @@ function createHeroCard() {
       </div>
 
       <div class="hero-countdown-v2" data-countdown-state="counting">
-        <div class="countdown-selector">
-          <label class="sr-only" for="concertDateSelect" data-i18n="dashboard.countdown.select_label">
-            選擇演唱會日期
-          </label>
-          <select
-            id="concertDateSelect"
-            aria-label="選擇演唱會日期"
-            data-i18n-aria-label="dashboard.countdown.select_aria"
-            onchange="selectConcertDate(this.value)"
-          >
-            ${concertDateOptions.map(option => `
-              <option
-                value="${option.value}"
-                data-i18n="${option.key}"
-                ${option.value === selectedConcertDate ? "selected" : ""}
-              >${window.t?.(option.key, {}, option.fallback) || option.fallback}</option>
-            `).join("")}
-          </select>
-        </div>
-
         <div class="countdown-main" role="status" aria-live="polite">
           <strong id="countdownDays">--</strong>
           <span id="countdownDaysLabel" data-i18n="dashboard.countdown.days">天</span>
@@ -148,18 +122,13 @@ function formatConcertCardDate(dateValue) {
 
   const dateLabel = new Intl.DateTimeFormat("en-US", {
     timeZone: "Asia/Taipei",
-    month: "2-digit",
-    day: "2-digit"
-  }).format(date);
-
-  const weekday = new Intl.DateTimeFormat("en-US", {
-    timeZone: "Asia/Taipei",
-    weekday: "short"
+    month: "short",
+    day: "numeric",
+    year: "numeric"
   }).format(date).toUpperCase();
 
   return {
-    date: dateLabel,
-    weekday
+    date: dateLabel
   };
 }
 
@@ -170,20 +139,77 @@ function getSelectedConcertShow() {
 }
 
 function updateMyConcertDate() {
-  const dateContainer = document.querySelector(".my-concert-date");
-  if (!dateContainer) return;
+  const selectedValue = getSelectedConcertDateValue();
+  const label = document.getElementById("myConcertDateLabel");
+  const selectedShow = getSelectedConcertShow();
 
-  const formattedDate = formatConcertCardDate(getSelectedConcertShow());
-  const dateLabel = dateContainer.querySelector("strong");
-  const weekdayLabel = dateContainer.querySelector("span");
+  if (label) label.textContent = formatConcertCardDate(selectedShow).date;
 
-  if (dateLabel) dateLabel.textContent = formattedDate.date;
-  if (weekdayLabel) weekdayLabel.textContent = formattedDate.weekday;
+  document.querySelectorAll(".my-concert-date-option").forEach(option => {
+    const isSelected = option.dataset.value === selectedValue;
+    option.setAttribute("aria-selected", String(isSelected));
+    option.classList.toggle("selected", isSelected);
+  });
+}
+
+function setConcertDateMenuOpen(open, returnFocus = false) {
+  const trigger = document.getElementById("myConcertDateButton");
+  const menu = document.getElementById("myConcertDateMenu");
+  if (!trigger || !menu) return;
+
+  trigger.setAttribute("aria-expanded", String(open));
+  menu.hidden = !open;
+
+  if (open) {
+    const selectedOption = menu.querySelector('[aria-selected="true"]');
+    requestAnimationFrame(() => selectedOption?.focus());
+  } else if (returnFocus) {
+    trigger.focus();
+  }
+}
+
+function toggleConcertDateMenu() {
+  const trigger = document.getElementById("myConcertDateButton");
+  setConcertDateMenuOpen(trigger?.getAttribute("aria-expanded") !== "true");
+}
+
+function chooseConcertDate(value) {
+  selectConcertDate(value);
+  setConcertDateMenuOpen(false, true);
+}
+
+function handleConcertDateMenuKeydown(event) {
+  const menu = document.getElementById("myConcertDateMenu");
+  if (!menu || menu.hidden) return;
+
+  const options = Array.from(menu.querySelectorAll(".my-concert-date-option"));
+  const currentIndex = options.indexOf(document.activeElement);
+
+  if (event.key === "Escape") {
+    event.preventDefault();
+    setConcertDateMenuOpen(false, true);
+    return;
+  }
+
+  let nextIndex = null;
+  if (event.key === "ArrowDown") nextIndex = (currentIndex + 1) % options.length;
+  if (event.key === "ArrowUp") nextIndex = (currentIndex - 1 + options.length) % options.length;
+  if (event.key === "Home") nextIndex = 0;
+  if (event.key === "End") nextIndex = options.length - 1;
+
+  if (nextIndex !== null) {
+    event.preventDefault();
+    options[nextIndex]?.focus();
+  }
 }
 
 function createMyConcertCard() {
   const settings = DASHBOARD.myConcert;
-  const formattedDate = formatConcertCardDate(getSelectedConcertShow());
+  const selectedConcertDate = getSelectedConcertDateValue();
+  const concertDateOptions = DASHBOARD.concert.dates.map(value => ({
+    value: value.slice(0, 10),
+    label: formatConcertCardDate(value).date
+  }));
   const done = getDone();
   const last = getLastPractice();
   const savedEvents = getSavedFanEventsCount();
@@ -204,9 +230,33 @@ function createMyConcertCard() {
     <div class="my-concert-top">
       <div>
         <p class="card-label">${settings.title}</p>
-        <div class="my-concert-date">
-          <strong>${formattedDate.date}</strong>
-          <span>${formattedDate.weekday}</span>
+        <div class="my-concert-date" onkeydown="handleConcertDateMenuKeydown(event)">
+          <button
+            id="myConcertDateButton"
+            class="my-concert-date-trigger"
+            type="button"
+            aria-haspopup="listbox"
+            aria-expanded="false"
+            aria-controls="myConcertDateMenu"
+            aria-label="選擇演唱會日期"
+            data-i18n-aria-label="dashboard.countdown.select_aria"
+            onclick="toggleConcertDateMenu()"
+          >
+            <span id="myConcertDateLabel">${formatConcertCardDate(getSelectedConcertShow()).date}</span>
+            <i data-lucide="chevron-down" aria-hidden="true"></i>
+          </button>
+          <div id="myConcertDateMenu" class="my-concert-date-menu" role="listbox" aria-label="選擇演唱會日期" data-i18n-aria-label="dashboard.countdown.select_aria" hidden>
+            ${concertDateOptions.map(option => `
+              <button
+                class="my-concert-date-option${option.value === selectedConcertDate ? " selected" : ""}"
+                type="button"
+                role="option"
+                aria-selected="${option.value === selectedConcertDate}"
+                data-value="${option.value}"
+                onclick="chooseConcertDate(this.dataset.value)"
+              >${option.label}</button>
+            `).join("")}
+          </div>
         </div>
       </div>
 
@@ -825,12 +875,6 @@ function updateDashboardCountdown() {
   const hoursElement = document.getElementById("countdownHours");
   const minutesElement = document.getElementById("countdownMinutes");
   const countdownSub = document.getElementById("countdownSub");
-  const select = document.getElementById("concertDateSelect");
-
-  if (select && select.value !== state.selectedDate) {
-    select.value = state.selectedDate;
-  }
-
   if (container) {
     container.dataset.countdownState = state.isEnded
       ? "ended"
@@ -854,3 +898,10 @@ function updateDashboardCountdown() {
 }
 
 document.addEventListener("armyready:languagechange", updateDashboardCountdown);
+
+document.addEventListener("click", event => {
+  const selector = document.querySelector(".my-concert-date");
+  if (selector && !selector.contains(event.target)) {
+    setConcertDateMenuOpen(false);
+  }
+});

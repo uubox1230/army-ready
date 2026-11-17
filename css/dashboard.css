@@ -122,58 +122,6 @@
   text-align: right;
 }
 
-.countdown-selector {
-  position: relative;
-  display: inline-flex;
-  margin-bottom: 12px;
-}
-
-.countdown-selector > label {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-
-.countdown-selector::after {
-  position: absolute;
-  top: 50%;
-  right: 11px;
-  content: "⌄";
-  color: #16756c;
-  font-size: 14px;
-  font-weight: 850;
-  pointer-events: none;
-  transform: translateY(-58%);
-}
-
-.countdown-selector select {
-  min-width: 132px;
-  min-height: 38px;
-  padding: 8px 32px 8px 12px;
-  border: 1px solid rgba(255, 255, 255, 0.44);
-  border-radius: 12px;
-  appearance: none;
-  -webkit-appearance: none;
-  background: rgba(255, 255, 255, 0.94);
-  color: #30343a;
-  font: inherit;
-  font-size: 11px;
-  font-weight: 780;
-  line-height: 1.2;
-  cursor: pointer;
-  box-shadow: 0 6px 20px rgba(4, 12, 16, 0.16);
-}
-
-.countdown-selector select:focus-visible {
-  outline: 3px solid rgba(33, 216, 196, 0.42);
-  outline-offset: 2px;
-}
-
 .countdown-main {
   display: flex;
   align-items: baseline;
@@ -375,24 +323,89 @@
 }
 
 .my-concert-date {
-  display: flex;
-  align-items: baseline;
-  gap: 10px;
+  position: relative;
+  display: inline-block;
+  min-height: 44px;
 }
 
-.my-concert-date strong {
+.my-concert-date-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  max-width: 100%;
+  padding: 4px 0;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
   color: var(--brand, #21d8c4);
-  font-size: 34px;
+  font: inherit;
+  font-size: 22px;
   font-weight: 850;
   line-height: 1;
   letter-spacing: -0.04em;
+  cursor: pointer;
 }
 
-.my-concert-date span {
+.my-concert-date-trigger:focus-visible,
+.my-concert-date-option:focus-visible {
+  outline: 3px solid rgba(33, 216, 196, 0.42);
+  outline-offset: 3px;
+}
+
+.my-concert-date-trigger > svg {
+  width: 18px;
+  height: 18px;
   color: rgba(255, 255, 255, 0.68);
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 0.08em;
+  transition: transform 140ms ease;
+}
+
+.my-concert-date-trigger[aria-expanded="true"] > svg {
+  transform: rotate(180deg);
+}
+
+.my-concert-date-menu {
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + 6px);
+  left: 0;
+  width: min(230px, calc(100vw - 64px));
+  padding: 6px;
+  border: 1px solid #dfe4e6;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.24);
+}
+
+.my-concert-date-menu[hidden] {
+  display: none;
+}
+
+.my-concert-date-option {
+  display: block;
+  width: 100%;
+  min-height: 40px;
+  padding: 9px 11px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: #30343a;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.3;
+  text-align: left;
+  cursor: pointer;
+}
+
+.my-concert-date-option:hover,
+.my-concert-date-option:focus-visible {
+  background: #f0f7f6;
+}
+
+.my-concert-date-option.selected {
+  background: #e4f6f3;
+  color: #126f65;
 }
 
 .my-concert-stats {
@@ -1136,17 +1149,6 @@
     text-align: right;
   }
 
-  .countdown-selector {
-    margin-bottom: 9px;
-  }
-
-  .countdown-selector select {
-    min-width: 122px;
-    min-height: 44px;
-    padding-right: 30px;
-    font-size: 10px;
-  }
-
   .countdown-main {
     justify-content: flex-end;
     gap: 5px;
@@ -1183,8 +1185,8 @@
     font-size: 23px;
   }
 
-  .my-concert-date strong {
-    font-size: 30px;
+  .my-concert-date-trigger {
+    font-size: 20px;
   }
 
   .my-concert-stats {
